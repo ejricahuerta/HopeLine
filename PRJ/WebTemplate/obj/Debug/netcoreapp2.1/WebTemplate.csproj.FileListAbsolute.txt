@@ -1,0 +1,13 @@
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.deps.json
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.runtimeconfig.json
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.runtimeconfig.dev.json
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.dll
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.pdb
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.csproj.CoreCompileInputs.cache
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorAssemblyInfo.cache
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorAssemblyInfo.cs
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.AssemblyInfoInputs.cache
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.AssemblyInfo.cs
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorTargetAssemblyInfo.cache
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.dll
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.pdb

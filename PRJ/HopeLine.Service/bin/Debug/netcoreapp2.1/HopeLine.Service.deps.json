@@ -7,27 +7,14 @@
   "targets": {
     ".NETCoreApp,Version=v2.1": {
       "HopeLine.Service/1.0.0": {
-        "dependencies": {
-          "HopeLine.DataAccess": "1.0.0"
-        },
         "runtime": {
           "HopeLine.Service.dll": {}
-        }
-      },
-      "HopeLine.DataAccess/1.0.0": {
-        "runtime": {
-          "HopeLine.DataAccess.dll": {}
         }
       }
     }
   },
   "libraries": {
     "HopeLine.Service/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "HopeLine.DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

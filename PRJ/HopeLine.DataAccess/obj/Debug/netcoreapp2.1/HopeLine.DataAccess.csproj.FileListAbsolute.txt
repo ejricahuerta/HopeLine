@@ -7,7 +7,9 @@ C:\Users\S2Admin\source\repos\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\Ho
 C:\Users\S2Admin\source\repos\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs
 C:\Users\S2Admin\source\repos\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
 C:\Users\S2Admin\source\repos\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
-C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csprojAssemblyReference.cache
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.deps.json
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csproj.CoreCompileInputs.cache
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfoInputs.cache
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs

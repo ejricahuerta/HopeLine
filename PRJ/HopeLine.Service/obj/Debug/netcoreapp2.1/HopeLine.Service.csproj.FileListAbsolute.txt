@@ -13,12 +13,8 @@ C:\Users\S2Admin\source\repos\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeL
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.deps.json
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.dll
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.pdb
-C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
-C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
-C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csprojAssemblyReference.cache
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csproj.CoreCompileInputs.cache
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfoInputs.cache
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfo.cs
-C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csproj.CopyComplete
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.dll
 C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.pdb

@@ -523,9 +523,6 @@
         }
       },
       "HopeLine.Service/1.0.0": {
-        "dependencies": {
-          "HopeLine.DataAccess": "1.0.0"
-        },
         "runtime": {
           "HopeLine.Service.dll": {}
         },

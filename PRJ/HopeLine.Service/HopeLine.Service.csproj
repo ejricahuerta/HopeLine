@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="SignalR\" />
   </ItemGroup>
 
