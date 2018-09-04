@@ -8,9 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{50445FAA-7280-450B-9F67-0F378DA4DE6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{AD525E09-50E6-4BD9-8D76-114F195591BE}"
-	ProjectSection(SolutionItems) = preProject
-		README.txt = README.txt
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.DataAccess", "HopeLine.DataAccess\HopeLine.DataAccess.csproj", "{C628554F-D151-4B53-9709-A86D618626F1}"
 EndProject
