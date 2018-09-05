@@ -25,7 +25,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.txt = README.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.Infrastructure", "HopeLine.Infrastructure\HopeLine.Infrastructure.csproj", "{A9F6973F-A78D-4980-B618-A96E068A9FE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.Infrastructure", "HopeLine.Infrastructure\HopeLine.Infrastructure.csproj", "{A9F6973F-A78D-4980-B618-A96E068A9FE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F60949F2-F211-4BEC-B242-4BF158C412C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FEE00506-E28B-4301-8F77-380F4F07515B}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\Application Core.docx = ..\..\..\..\Desktop\Application Core.docx
+		..\..\..\..\Desktop\DataAccess.docx = ..\..\..\..\Desktop\DataAccess.docx
+		..\..\..\..\Desktop\Infrastructure.docx = ..\..\..\..\Desktop\Infrastructure.docx
+		..\..\..\..\Desktop\Web.docx = ..\..\..\..\Desktop\Web.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +68,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{AB49124D-D887-4130-A903-8E9C4BB836B9} = {F60949F2-F211-4BEC-B242-4BF158C412C4}
+		{50445FAA-7280-450B-9F67-0F378DA4DE6A} = {F60949F2-F211-4BEC-B242-4BF158C412C4}
+		{AD525E09-50E6-4BD9-8D76-114F195591BE} = {F60949F2-F211-4BEC-B242-4BF158C412C4}
 		{C628554F-D151-4B53-9709-A86D618626F1} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
 		{1F48D52D-B411-457E-8858-AFB86410EE52} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
 		{3CE5BDCE-E7B9-4752-9BA9-8526B0A5AE18} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
