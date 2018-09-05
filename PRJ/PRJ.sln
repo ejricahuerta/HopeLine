@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.txt = README.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.Infrastructure", "HopeLine.Infrastructure\HopeLine.Infrastructure.csproj", "{A9F6973F-A78D-4980-B618-A96E068A9FE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F6973F-A78D-4980-B618-A96E068A9FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F6973F-A78D-4980-B618-A96E068A9FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F6973F-A78D-4980-B618-A96E068A9FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F6973F-A78D-4980-B618-A96E068A9FE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{1F48D52D-B411-457E-8858-AFB86410EE52} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
 		{3CE5BDCE-E7B9-4752-9BA9-8526B0A5AE18} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
 		{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E} = {AD525E09-50E6-4BD9-8D76-114F195591BE}
+		{A9F6973F-A78D-4980-B618-A96E068A9FE8} = {AB49124D-D887-4130-A903-8E9C4BB836B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E042FC1D-AC48-45DC-B3DB-39EDA1E58DB2}

@@ -4344,6 +4344,16 @@
           "bin/placeholder/HopeLine.DataAccess.dll": {}
         }
       },
+      "HopeLine.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "compile": {
+          "bin/placeholder/HopeLine.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HopeLine.Infrastructure.dll": {}
+        }
+      },
       "HopeLine.Service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
@@ -11520,6 +11530,11 @@
       "path": "../HopeLine.DataAccess/HopeLine.DataAccess.csproj",
       "msbuildProject": "../HopeLine.DataAccess/HopeLine.DataAccess.csproj"
     },
+    "HopeLine.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
+      "msbuildProject": "../HopeLine.Infrastructure/HopeLine.Infrastructure.csproj"
+    },
     "HopeLine.Service/1.0.0": {
       "type": "project",
       "path": "../HopeLine.Service/HopeLine.Service.csproj",
@@ -11529,6 +11544,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "HopeLine.DataAccess >= 1.0.0",
+      "HopeLine.Infrastructure >= 1.0.0",
       "HopeLine.Service >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0"
@@ -11569,6 +11585,9 @@
           "projectReferences": {
             "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
               "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            },
+            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
             },
             "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
               "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
