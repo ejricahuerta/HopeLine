@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HopeLine.DataAccess.Migrations.ResourcesDb
 {
     [DbContext(typeof(ResourcesDbContext))]
-    [Migration("20180905203146_INIT")]
-    partial class INIT
+    [Migration("20180905211449_INIT_Resources")]
+    partial class INIT_Resources
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

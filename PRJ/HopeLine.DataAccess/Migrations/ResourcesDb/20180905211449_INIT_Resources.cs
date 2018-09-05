@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HopeLine.DataAccess.Migrations.ResourcesDb
 {
-    public partial class INIT : Migration
+    public partial class INIT_Resources : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
