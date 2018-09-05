@@ -11,7 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
+  
+ <!--Dependencies-->
   <ItemGroup>
     <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
     <ProjectReference Include="..\HopeLine.Infrastructure\HopeLine.Infrastructure.csproj" />
