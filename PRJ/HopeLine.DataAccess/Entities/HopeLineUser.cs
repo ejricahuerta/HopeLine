@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace HopeLine.DataAccess.Entities
 {
 
     public class HopeLineUser : IdentityUser
     {
-        
+
+        public HopeLineUser()
+        {
+
+        }
         [Required]
         [MinLength(2)]
         [MaxLength(20)]

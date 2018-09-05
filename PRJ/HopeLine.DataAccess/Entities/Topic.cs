@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HopeLine.DataAccess.Entities.Base;
 
 namespace HopeLine.DataAccess.Entities
 {
     //TODO : add props
-    public class Topic
+    public class Topic : BaseEntity
     {
     }
 }

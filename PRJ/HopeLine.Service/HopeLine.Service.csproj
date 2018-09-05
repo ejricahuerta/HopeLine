@@ -8,4 +8,8 @@
     <Folder Include="SignalR\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

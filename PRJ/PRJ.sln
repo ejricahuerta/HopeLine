@@ -9,13 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{50445FAA-728
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{AD525E09-50E6-4BD9-8D76-114F195591BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.DataAccess", "HopeLine.DataAccess\HopeLine.DataAccess.csproj", "{C628554F-D151-4B53-9709-A86D618626F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.DataAccess", "HopeLine.DataAccess\HopeLine.DataAccess.csproj", "{C628554F-D151-4B53-9709-A86D618626F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.Service", "HopeLine.Service\HopeLine.Service.csproj", "{1F48D52D-B411-457E-8858-AFB86410EE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.Service", "HopeLine.Service\HopeLine.Service.csproj", "{1F48D52D-B411-457E-8858-AFB86410EE52}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C628554F-D151-4B53-9709-A86D618626F1} = {C628554F-D151-4B53-9709-A86D618626F1}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.API", "HopeLine.API\HopeLine.API.csproj", "{3CE5BDCE-E7B9-4752-9BA9-8526B0A5AE18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.API", "HopeLine.API\HopeLine.API.csproj", "{3CE5BDCE-E7B9-4752-9BA9-8526B0A5AE18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTemplate", "WebTemplate\WebTemplate.csproj", "{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTemplate", "WebTemplate\WebTemplate.csproj", "{3A9498D6-EF9D-4FA1-B2F5-565EAE9F698E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1352BE3A-A71C-46F9-9960-0410EB9DAE20}"
 	ProjectSection(SolutionItems) = preProject

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HopeLine.DataAccess.Entities.Base;
 
 namespace HopeLine.DataAccess.Entities
 {
-    public class Resource
+    public class Resource : BaseEntity
     {
+
     }
 }
