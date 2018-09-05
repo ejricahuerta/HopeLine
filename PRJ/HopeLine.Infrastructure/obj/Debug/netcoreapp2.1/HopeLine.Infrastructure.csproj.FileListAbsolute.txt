@@ -1,9 +1,0 @@
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.deps.json
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csprojAssemblyReference.cache
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfo.cs
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
-C:\Users\ejricahuerta\Source\Repos\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
