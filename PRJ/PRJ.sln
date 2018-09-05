@@ -29,14 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.Infrastructure", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F60949F2-F211-4BEC-B242-4BF158C412C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{FEE00506-E28B-4301-8F77-380F4F07515B}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\Desktop\Application Core.docx = ..\..\..\..\Desktop\Application Core.docx
-		..\..\..\..\Desktop\DataAccess.docx = ..\..\..\..\Desktop\DataAccess.docx
-		..\..\..\..\Desktop\Infrastructure.docx = ..\..\..\..\Desktop\Infrastructure.docx
-		..\..\..\..\Desktop\Web.docx = ..\..\..\..\Desktop\Web.docx
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
