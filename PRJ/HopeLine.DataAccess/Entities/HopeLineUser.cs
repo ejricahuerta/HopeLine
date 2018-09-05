@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 namespace HopeLine.DataAccess.Entities
 {
 
+    //TODO : create own Identity User
     public class HopeLineUser : IdentityUser
     {
-
         public HopeLineUser()
         {
 
