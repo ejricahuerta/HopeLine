@@ -9,6 +9,11 @@ namespace HopeLine.DataAccess.Entities
     //TODO : create own Identity User
     public class HopeLineUser : IdentityUser
     {
+
+        public enum Account
+        {
+            Guest, User, Mentor
+        }
         public HopeLineUser()
         {
 
@@ -24,10 +29,8 @@ namespace HopeLine.DataAccess.Entities
         [MaxLength(20)]
         public string LastName { get; set; }
 
-        [Required]
-        [MinLength(5)]
-        [MaxLength(10)]
-        public String AccountType { get; set; }
+
+        public Account AccountType { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
