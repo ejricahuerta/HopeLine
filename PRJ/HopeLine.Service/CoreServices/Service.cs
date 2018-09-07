@@ -3,7 +3,7 @@
 namespace HopeLine.Service.CoreServices
 {
 
-    //TODO : replace with real service
+    //This is a template do not modify
     public class Service : IServices
     {
     }
