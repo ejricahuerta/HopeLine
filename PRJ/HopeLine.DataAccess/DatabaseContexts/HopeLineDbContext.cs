@@ -13,6 +13,12 @@ namespace HopeLine.DataAccess.DatabaseContexts
 
         }
 
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
+
+
         public HopeLineDbContext(DbContextOptions<HopeLineDbContext> options) : base(options)
         {
         }
