@@ -681,28 +681,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
+    "C:\\Users\\EXD\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ejricahuerta\\source\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
       "projectName": "HopeLine.Infrastructure",
-      "projectPath": "c:\\Users\\ejricahuerta\\source\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ejricahuerta\\source\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
