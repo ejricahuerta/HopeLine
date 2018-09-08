@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace HopeLine.Service.SignalR
+namespace HopeLine.API.Hubs
 {
-    //TODO : add func and implementations
+    //TODO : add implementation for signal r core messaging
     public class ChatHub : Hub
     {
 
