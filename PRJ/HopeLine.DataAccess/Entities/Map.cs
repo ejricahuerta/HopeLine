@@ -3,7 +3,7 @@
 namespace HopeLine.DataAccess.Entities
 {
     //TODO : add props
-    public class Map : BaseEntity
+    public class Map : CommonEntity
     {
     }
 }

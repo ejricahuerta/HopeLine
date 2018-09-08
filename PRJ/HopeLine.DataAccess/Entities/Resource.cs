@@ -2,7 +2,7 @@
 
 namespace HopeLine.DataAccess.Entities
 {
-    public class Resource : BaseEntity
+    public class Resource : CommonEntity
     {
 
     }
