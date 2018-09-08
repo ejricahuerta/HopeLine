@@ -14,7 +14,6 @@ namespace HopeLine.DataAccess.Repositories
     {
         private readonly HopeLineDbContext _hopeLineDb;
 
-
         public UserRepository(HopeLineDbContext hopeLineDb)
         {
             _hopeLineDb = hopeLineDb;
@@ -61,14 +60,6 @@ namespace HopeLine.DataAccess.Repositories
         /// </summary>
         /// <param name="id"></param>
         public void Remove(object id)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Save()
         {
             throw new NotImplementedException();
         }

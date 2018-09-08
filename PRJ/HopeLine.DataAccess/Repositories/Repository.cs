@@ -1,6 +1,7 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities.Base;
 using HopeLine.DataAccess.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace HopeLine.DataAccess.Repositories
@@ -15,11 +16,17 @@ namespace HopeLine.DataAccess.Repositories
     {
         private readonly HopeLineDbContext _hopeLineDb;
         private readonly ResourcesDbContext _resourcesDb;
+        private DbSet<T> _entities;
 
-        public Repository(HopeLineDbContext hopeLineDb, ResourcesDbContext resourcesDb)
+        /// <summary>
+        /// Injecting db contexts
+        /// </summary>
+        /// <param name="hopeLineDb"></param>
+        public Repository(HopeLineDbContext hopeLineDb)
         {
             _hopeLineDb = hopeLineDb;
-            _resourcesDb = resourcesDb;
+            _entities = _hopeLineDb.Set<T>();
+
         }
 
         public void Delete(T obj)
