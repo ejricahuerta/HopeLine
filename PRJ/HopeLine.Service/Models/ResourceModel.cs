@@ -3,6 +3,10 @@
 namespace HopeLine.Service.Models
 {
     //TODO : add props
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class ResourceModel : BaseModel
     {
     }

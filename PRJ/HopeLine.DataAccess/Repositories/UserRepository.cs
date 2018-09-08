@@ -14,6 +14,10 @@ namespace HopeLine.DataAccess.Repositories
     {
         private readonly HopeLineDbContext _hopeLineDb;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hopeLineDb"></param>
         public UserRepository(HopeLineDbContext hopeLineDb)
         {
             _hopeLineDb = hopeLineDb;

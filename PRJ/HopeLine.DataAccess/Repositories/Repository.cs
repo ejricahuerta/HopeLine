@@ -15,7 +15,6 @@ namespace HopeLine.DataAccess.Repositories
     public class Repository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly HopeLineDbContext _hopeLineDb;
-        private readonly ResourcesDbContext _resourcesDb;
         private DbSet<T> _entities;
 
         /// <summary>
@@ -29,36 +28,55 @@ namespace HopeLine.DataAccess.Repositories
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public void Delete(T obj)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T Get(object id)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<T> GetAll()
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public void Insert(T obj)
         {
             throw new System.NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Remove(object id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Save()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         public void Update(T obj)
         {
             throw new System.NotImplementedException();

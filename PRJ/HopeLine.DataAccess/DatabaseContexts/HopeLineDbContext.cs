@@ -6,6 +6,10 @@ namespace HopeLine.DataAccess.DatabaseContexts
 {
 
     //TODO : Add References to Identity
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class HopeLineDbContext : IdentityDbContext<HopeLineUser>
     {
         public HopeLineDbContext()
@@ -23,10 +27,19 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Topic> Topics { get; set; }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public HopeLineDbContext(DbContextOptions<HopeLineDbContext> options) : base(options)
         {
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //TODO : move to azure keys

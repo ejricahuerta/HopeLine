@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace HopeLine.Security.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ITokenService
     {
         Task<ClaimsIdentity> GetClaimsIdentity(string username, string password);

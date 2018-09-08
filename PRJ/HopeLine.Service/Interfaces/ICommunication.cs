@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HopeLine.Service.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICommunication
     {
         //For Admin Only

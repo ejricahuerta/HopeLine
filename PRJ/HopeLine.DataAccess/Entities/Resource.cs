@@ -2,6 +2,11 @@
 
 namespace HopeLine.DataAccess.Entities
 {
+    //TODO : add props
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class Resource : CommonEntity
     {
 

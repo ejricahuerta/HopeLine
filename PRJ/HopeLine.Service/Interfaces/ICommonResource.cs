@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace HopeLine.Service.Interfaces
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICommonResource
     {
         IEnumerable<Community> GetCommunities();

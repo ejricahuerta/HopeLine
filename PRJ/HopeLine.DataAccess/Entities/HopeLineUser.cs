@@ -7,12 +7,16 @@ namespace HopeLine.DataAccess.Entities
 {
 
     //TODO : create own Identity User
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class HopeLineUser : IdentityUser
     {
 
         public enum Account
         {
-            Guest, User, Mentor
+            User, Mentor
         }
         public HopeLineUser()
         {
@@ -28,7 +32,6 @@ namespace HopeLine.DataAccess.Entities
         [MinLength(2)]
         [MaxLength(20)]
         public string LastName { get; set; }
-
 
         public Account AccountType { get; set; }
 

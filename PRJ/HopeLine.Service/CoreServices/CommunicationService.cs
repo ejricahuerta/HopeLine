@@ -5,6 +5,7 @@ using HopeLine.DataAccess.Interfaces;
 
 namespace HopeLine.Service.CoreServices
 {
+    //TODO : change repo to unit of work.
     public class CommunicationService //: ICommunication
     {
         private readonly IRepository<HopeLineUser> _userRepo;
