@@ -14,6 +14,5 @@ namespace HopeLine.DataAccess.Interfaces
         void Delete(T obj);
 
         void Remove(object id);
-        void Save();
     }
 }
