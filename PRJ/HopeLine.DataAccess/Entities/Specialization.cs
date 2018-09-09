@@ -12,8 +12,8 @@ namespace HopeLine.DataAccess.Entities
 
         public Specialization()
         {
-            Mentors = new List<>();
-            Topics = new List<>();
+            Mentors = new List<MentorAccount>();
+            Topics = new List<Topic>();
         }
     }
 }

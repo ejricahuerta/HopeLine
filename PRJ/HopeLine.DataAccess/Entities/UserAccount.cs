@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HopeLine.DataAccess.Entities
 {
-    class UserAccount : HopeLineUser
+   public class UserAccount : HopeLineUser
     {
         public UserAccount()
         {
