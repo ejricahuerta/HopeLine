@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -11,7 +12,11 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Topic : BaseEntity
     {
+
+        [Required]
         public string Name { get; set; }
+
+        [Required]
         public string Description { get; set; }
     }
 }

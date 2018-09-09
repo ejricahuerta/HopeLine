@@ -9,5 +9,6 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Schedule : BaseEntity
     {
+
     }
 }

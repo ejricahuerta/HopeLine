@@ -9,5 +9,7 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Map : CommonEntity
     {
+        public string Url { get; set; }
+
     }
 }
