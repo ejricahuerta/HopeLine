@@ -9,11 +9,13 @@ namespace HopeLine.DataAccess.Repositories
 {
     /// <summary>
     /// This is a seperated to main context
+    /// This class gets the information from the database and is a layer before hitting the real database
+    /// 
     /// </summary>
     public class ResourceRepository : IRepository<CommonEntity>
     {
-        private readonly ResourcesDbContext _resourcesDb;
-        private readonly DbSet<CommonEntity> _entities;
+        private readonly ResourcesDbContext _resourcesDb; // 
+        private readonly DbSet<CommonEntity> _entities; // These are the objects from the mapped table of type CommonEntity
 
 
         /// <summary>
@@ -32,7 +34,11 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Delete(CommonEntity obj)
         {
-            throw new NotImplementedException();
+            //TODO : Do try/catches for error handling
+            _resourcesDb.Remove(obj);
+            _entities.Remove(obj);
+            this.Remove(obj.Id);
+
         }
 
         /// <summary>
@@ -42,7 +48,7 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public CommonEntity Get(object id)
         {
-            throw new NotImplementedException();
+            return _entities.Find(id);
         }
 
         /// <summary>
@@ -51,7 +57,7 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public IEnumerable<CommonEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return _entities;
         }
 
         /// <summary>
@@ -60,7 +66,9 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Insert(CommonEntity obj)
         {
-            throw new NotImplementedException();
+            //TODO : 
+            _entities.Add(obj);
+            _resourcesDb.Add(obj);
         }
 
         /// <summary>
@@ -69,7 +77,7 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="id"></param>
         public void Remove(object id)
         {
-            throw new NotImplementedException();
+            _entities.Remove(_entities.Find(id));
         }
 
         /// <summary>
@@ -78,7 +86,8 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Update(CommonEntity obj)
         {
-            throw new NotImplementedException();
+            _entities.Update(obj);
+            _resourcesDb.Update(obj);
         }
     }
 }
