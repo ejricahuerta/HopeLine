@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -10,6 +11,12 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Community : CommonEntity
     {
+        [Required]
+        [StringLength(40)]
+        public string Name { get; set; }
 
+        [Required]
+        [StringLength(500)]
+        public string Description { get; set; }
     }
 }
