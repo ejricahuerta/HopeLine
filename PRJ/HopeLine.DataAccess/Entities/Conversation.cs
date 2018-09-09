@@ -6,7 +6,7 @@ namespace HopeLine.DataAccess.Entities
     //TODO : Add props
 
     /// <summary>
-    /// 
+    /// This is where the
     /// </summary>
     public class Conversation : BaseEntity
     {
