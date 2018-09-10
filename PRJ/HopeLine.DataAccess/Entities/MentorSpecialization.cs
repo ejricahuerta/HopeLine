@@ -1,5 +1,9 @@
 ﻿namespace HopeLine.DataAccess.Entities
 {
+
+    /// <summary>
+    /// this class allows the many to many rel for mentor and specialization
+    /// </summary>
     public class MentorSpecialization
     {
         public string MentorAccountId { get; set; }

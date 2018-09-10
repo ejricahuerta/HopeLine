@@ -5,7 +5,7 @@ namespace HopeLine.DataAccess.Entities
     //TODO : add props
 
     /// <summary>
-    /// 
+    /// this class will hold saved maps
     /// </summary>
     public class Map : CommonEntity
     {

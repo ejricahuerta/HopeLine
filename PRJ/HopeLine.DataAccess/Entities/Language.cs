@@ -4,10 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
-    //TODO : Add props
 
     /// <summary>
-    /// 
+    /// this class with hold info for available speaking languages
     /// </summary>
     public class Language : BaseEntity
     {

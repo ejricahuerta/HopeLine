@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
-    //TODO : Add props
+    /// <summary>
+    /// this class holds topics and mentors available for each topic
+    /// </summary>
     public class Specialization : BaseEntity
     {
 

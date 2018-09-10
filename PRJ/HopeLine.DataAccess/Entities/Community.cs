@@ -6,10 +6,16 @@ namespace HopeLine.DataAccess.Entities
     //TODO : add props
 
     /// <summary>
-    /// This class will hold links for 
+    /// This class will hold links for all community that user can join and interact with
     /// </summary>
     public class Community : CommonEntity
     {
+
+        public Community()
+        {
+            //TODO: add the placeholder image here
+            //ImageURL = "somestatic.file.link.png here";
+        }
         [Required]
         [StringLength(40)]
         public string Name { get; set; }

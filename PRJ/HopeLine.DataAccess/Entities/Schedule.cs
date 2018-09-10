@@ -9,6 +9,6 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Schedule : BaseEntity
     {
-
+        //TODO : need to decide about this class func - Eduardo
     }
 }

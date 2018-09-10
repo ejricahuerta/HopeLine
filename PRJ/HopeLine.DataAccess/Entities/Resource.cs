@@ -10,6 +10,11 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Resource : CommonEntity
     {
+        public Resource()
+        {
+            //TODO : add the static place holder imagelink here
+            //ImgUrl = "";
+        }
 
         [Required]
         [MinLength(2)]
