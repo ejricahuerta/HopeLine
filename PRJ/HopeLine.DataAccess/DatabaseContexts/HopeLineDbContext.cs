@@ -16,8 +16,14 @@ namespace HopeLine.DataAccess.DatabaseContexts
         {
 
         }
-
+        #region all accounts
+        public DbSet<AdminAccount> AdminAccounts { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<MentorAccount> MentorAccounts { get; set; }
+        public DbSet<GuestAccount> GuestAccounts { get; set; }
+        #endregion
         // TODO : Add all entities
+
         //public Dbset<> MyProperty { get; set; }
 
         public DbSet<Language> Languages { get; set; }
@@ -28,7 +34,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
 
 
         /// <summary>
-        /// 
+        /// Override constructor with options
         /// </summary>
         /// <param name="options"></param>
         public HopeLineDbContext(DbContextOptions<HopeLineDbContext> options) : base(options)
@@ -42,8 +48,33 @@ namespace HopeLine.DataAccess.DatabaseContexts
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //TODO : move to azure keys
+            //TODO : move to appsettings.json file
             optionsBuilder.UseSqlServer("Server=tcp:prj.database.windows.net,1433;Initial Catalog=HopeLineDB;Persist Security Info=False;User ID=hopeline;Password=Prjgroup7;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //this is a temporary fix EF team is removing all many to many relationship soon
+            //https://github.com/aspnet/EntityFrameworkCore/issues/1368
+
+
+            #region profile and language many to many relationship
+            modelBuilder.Entity<ProfileLanguage>()
+                .HasKey(k => new { k.ProfileId, k.LanguageId });
+
+            modelBuilder.Entity<ProfileLanguage>()
+                .HasOne(p => p.Profile)
+                .WithMany(l => l.ProfileLanguages)
+                .HasForeignKey(pl => pl.ProfileId);
+
+            modelBuilder.Entity<ProfileLanguage>()
+                .HasOne(p => p.Language)
+                .WithMany(l => l.ProfileLanguages)
+                .HasForeignKey(pl => pl.LanguageId);
+            #endregion
+
         }
 
     }
