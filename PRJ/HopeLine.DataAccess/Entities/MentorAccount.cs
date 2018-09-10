@@ -1,4 +1,6 @@
-﻿namespace HopeLine.DataAccess.Entities
+﻿using System.Collections.Generic;
+
+namespace HopeLine.DataAccess.Entities
 {
     /// <summary>
     /// This class is for mentors who are hired by Admins
@@ -11,9 +13,12 @@
         public MentorAccount()
         {
             AccountType = Account.Mentor;
+            MentorSpecializations = new List<MentorSpecialization>();
         }
 
         //TODO : add more properties like availabilitie and Schedule
         public Profile Profile { get; set; }
+
+        public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
     }
 }

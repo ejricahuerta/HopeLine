@@ -8,19 +8,24 @@ namespace HopeLine.DataAccess.Entities
     public class Specialization : BaseEntity
     {
 
+        public Specialization()
+        {
+            Topics = new List<Topic>();
+            MentorSpecializations = new List<MentorSpecialization>();
+        }
+
         [Required]
+        [StringLength(40)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(200)]
         public string Description { get; set; }
 
         [Required]
-        public ICollection<MentorAccount> Mentors { get; set; }
-        
-        [Required]
         public ICollection<Topic> Topics { get; set; }
 
-        public Specialization()
-        {
-            Mentors = new List<MentorAccount>();
-            Topics = new List<Topic>();
-        }
+        public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
     }
+
 }

@@ -75,6 +75,23 @@ namespace HopeLine.DataAccess.DatabaseContexts
                 .HasForeignKey(pl => pl.LanguageId);
             #endregion
 
+
+            #region mentor and specialization many to many
+
+            modelBuilder.Entity<MentorSpecialization>().
+                HasKey(k => new { k.MentorAccountId, k.SpecializationId });
+
+            modelBuilder.Entity<MentorSpecialization>()
+                .HasOne(m => m.MentorAccount)
+                .WithMany(ms => ms.MentorSpecializations)
+                .HasForeignKey(m => m.MentorAccountId);
+
+            modelBuilder.Entity<MentorSpecialization>()
+                .HasOne(s => s.Specialization)
+                .WithMany(ms => ms.MentorSpecializations).
+                HasForeignKey(s => s.SpecializationId);
+
+            #endregion
         }
 
     }
