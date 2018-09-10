@@ -4,14 +4,16 @@ using HopeLine.DataAccess.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    partial class HopeLineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180910221722_removed id for profile and language mapper")]
+    partial class removedidforprofileandlanguagemapper
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,14 +4,16 @@ using HopeLine.DataAccess.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    partial class HopeLineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180910220558_many to many for profile and languages")]
+    partial class manytomanyforprofileandlanguages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,13 +159,17 @@ namespace HopeLine.DataAccess.Migrations
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
                 {
-                    b.Property<int>("ProfileId");
-
                     b.Property<int>("LanguageId");
 
-                    b.HasKey("ProfileId", "LanguageId");
+                    b.Property<int>("ProfileId");
 
-                    b.HasIndex("LanguageId");
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<int>("Id");
+
+                    b.HasKey("LanguageId", "ProfileId");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("ProfileLanguage");
                 });

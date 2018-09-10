@@ -4,14 +4,16 @@ using HopeLine.DataAccess.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    partial class HopeLineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180910213038_added more properties and accounts")]
+    partial class addedmorepropertiesandaccounts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,21 +117,17 @@ namespace HopeLine.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ConversationId");
-
-                    b.Property<string>("CountryOrigin")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.Property<string>("CountryOrigin");
 
                     b.Property<DateTime>("DateAdded");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.Property<string>("LanguageName");
+
+                    b.Property<int?>("ProfileId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConversationId");
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("Languages");
                 });
@@ -153,19 +151,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Profile");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
-                {
-                    b.Property<int>("ProfileId");
-
-                    b.Property<int>("LanguageId");
-
-                    b.HasKey("ProfileId", "LanguageId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("ProfileLanguage");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Schedule", b =>
@@ -371,7 +356,7 @@ namespace HopeLine.DataAccess.Migrations
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
 
-                    b.Property<int>("ProfileId")
+                    b.Property<int?>("ProfileId")
                         .HasColumnName("UserAccount_ProfileId");
 
                     b.HasIndex("ProfileId");
@@ -384,29 +369,16 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
                 {
                     b.HasOne("HopeLine.DataAccess.Entities.MentorAccount", "Mentor")
-                        .WithMany()
+                        .WithMany("Conversations")
                         .HasForeignKey("MentorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
                 {
-                    b.HasOne("HopeLine.DataAccess.Entities.Conversation")
-                        .WithMany("LanguageUsed")
-                        .HasForeignKey("ConversationId");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
-                {
-                    b.HasOne("HopeLine.DataAccess.Entities.Language", "Language")
-                        .WithMany("ProfileLanguages")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
-                        .WithMany("ProfileLanguages")
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("HopeLine.DataAccess.Entities.Profile")
+                        .WithMany("Languages")
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
@@ -476,8 +448,7 @@ namespace HopeLine.DataAccess.Migrations
                 {
                     b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
                         .WithMany()
-                        .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProfileId");
                 });
 #pragma warning restore 612, 618
         }
