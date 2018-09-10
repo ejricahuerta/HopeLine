@@ -43,6 +43,15 @@ li {
 
 }
 
+.navbar-inverse {
+    background-color: lightgreen;
+	border-color: lightgreen;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+
 /********************************/
 /*       Fade Bs-carousel       */
 /********************************/
@@ -182,7 +191,7 @@ li {
 
 /*  FOOTER CSS BEGIN  */
 footer {
-    background-color: #0c1a1e;
+    background-color: lightgreen;
     min-height: 350px;
     font-family: 'Open Sans', sans-serif;
     width:100%;
@@ -239,7 +248,7 @@ footer {
 
 .copyright {
     min-height: 40px;
-    background-color: #000000;
+    background-color: lightgreen;
     
 
 }
@@ -254,7 +263,7 @@ footer {
 .heading7 {
     font-size: 21px;
     font-weight: 700;
-    color: #d9d6d6;
+    color: white;
     margin-bottom: 22px;
 }
 
@@ -323,4 +332,24 @@ footer {
 .google {
     background-color: #f63e28;
 }
+
+.py-5{
+ padding-bottom: 3rem !important;
+  padding-top: 3rem !important;
+  background: no-repeat center center scroll;
+  -webkit background-size: cover;
+  -webkit background-size: cover;
+  -webkit background-size: cover;
+  -webkit background-size: cover;
+  
+	  
+}
+
+.py-5->indexButton{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	
+	
+}
+
 /*  FOOTER CSS END  */
