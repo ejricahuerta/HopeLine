@@ -9,23 +9,27 @@ namespace HopeLine.DataAccess.Entities
     //TODO : create own Identity User
 
     /// <summary>
-    /// 
+    ///  This class is an extension of Identity provided by netcore 2 identity framework
     /// </summary>
     public class HopeLineUser : IdentityUser
     {
-
+        /// <summary>
+        /// These are types of user
+        /// </summary>
         public enum Account
         {
-            User, Mentor
+            Admin, Mentor, User, Guest
+
         }
-        public HopeLineUser()
+        public HopeLineUser() : base()
         {
+            DateAdded = DateTime.UtcNow;
 
         }
-
 
         public Account AccountType { get; set; }
 
+        [Required]
         [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
     }

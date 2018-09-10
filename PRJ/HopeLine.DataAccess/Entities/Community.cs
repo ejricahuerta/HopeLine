@@ -6,8 +6,7 @@ namespace HopeLine.DataAccess.Entities
     //TODO : add props
 
     /// <summary>
-    /// This will be a forum webpage where users will be able to speak
-    /// with other users
+    /// This class will hold links for 
     /// </summary>
     public class Community : CommonEntity
     {
@@ -18,5 +17,13 @@ namespace HopeLine.DataAccess.Entities
         [Required]
         [StringLength(500)]
         public string Description { get; set; }
+
+        [Required]
+        [DataType(DataType.Url)]
+        [StringLength(100)]
+        public string URL { get; set; }
+
+        [DataType(DataType.ImageUrl)]
+        public string ImageURL { get; set; }
     }
 }
