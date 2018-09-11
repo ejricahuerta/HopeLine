@@ -33,7 +33,6 @@ namespace HopeLine.API
             services.AddIdentity<HopeLineUser, IdentityRole>(opt => { })
                 .AddEntityFrameworkStores<HopeLineDbContext>()
                 .AddDefaultTokenProviders();
-
             //TODO : Add JWT Config
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opt =>
@@ -47,6 +46,7 @@ namespace HopeLine.API
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("somesecretkey")) // TODO : use appsettings
                     }
                 );
+            services.AddCors();
 
 
 
@@ -73,6 +73,8 @@ namespace HopeLine.API
             {
                 app.UseHsts();
             }
+
+            app.UseCors();
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
