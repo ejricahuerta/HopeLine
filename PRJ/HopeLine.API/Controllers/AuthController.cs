@@ -3,7 +3,6 @@ using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Controllers
@@ -30,25 +29,27 @@ namespace HopeLine.API.Controllers
             _tokenService = tokenService;
         }
         [HttpPost]
-        public async Task<object> Login([FromBody] UserModel user)
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            var userLogginIn = await _userManager.FindByEmailAsync(user.Email);
+            var user = await _userManager.FindByEmailAsync(model.Username);
 
-            if (userLogginIn != null)
+            if (user != null)
             {
-                var result = await _signInManager.PasswordSignInAsync(userLogginIn, user.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
                 if (result.Succeeded)
                 {
-                    return _tokenService.GenerateJwtToken(user.Email, userLogginIn);
+                    return Ok(_tokenService.GenerateJwtToken(model.Username, user));
                 }
 
             }
-            throw new ApplicationException("INVALID LOGIN!");
+
+            return Unauthorized();
 
         }
 
-        //TODO : Login
+
 
         //TODO : Logout
 
