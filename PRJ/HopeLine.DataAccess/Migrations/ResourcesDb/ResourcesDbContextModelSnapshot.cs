@@ -27,6 +27,20 @@ namespace HopeLine.DataAccess.Migrations.ResourcesDb
 
                     b.Property<DateTime>("DateAdded");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<string>("ImageURL");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
                     b.HasKey("Id");
 
                     b.ToTable("Communities");
@@ -40,6 +54,8 @@ namespace HopeLine.DataAccess.Migrations.ResourcesDb
 
                     b.Property<DateTime>("DateAdded");
 
+                    b.Property<string>("Url");
+
                     b.HasKey("Id");
 
                     b.ToTable("Maps");
@@ -52,6 +68,18 @@ namespace HopeLine.DataAccess.Migrations.ResourcesDb
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("ImgUrl")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 

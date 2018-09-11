@@ -4,8 +4,10 @@ using System.Text;
 
 namespace HopeLine.Service.Interfaces
 {
-    //TODO : Sample interface
+    //Sample interface dont edit. this is a Template only
     interface IServices
     {
+        //void SomeFunc();
+
     }
 }
