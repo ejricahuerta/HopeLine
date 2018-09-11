@@ -9,6 +9,11 @@ namespace HopeLine.API.Controllers
     [ApiController]
     public class ResourcesController : ControllerBase
     {
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return NotFound();
+        }
         //TODO : Add Community GET
         //TODO : Add Resources GET
     }
