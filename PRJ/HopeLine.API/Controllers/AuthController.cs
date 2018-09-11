@@ -1,5 +1,4 @@
 ﻿using HopeLine.DataAccess.Entities;
-using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +16,7 @@ namespace HopeLine.API.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -28,15 +27,16 @@ namespace HopeLine.API.Controllers
         //private readonly IUserService _userService;
 
         public AuthController(/*IUserService userService*/UserManager<HopeLineUser> userManager,
-                                SignInManager<HopeLineUser> signInManager, ITokenService tokenService)
+                                SignInManager<HopeLineUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
 
         }
 
+
+        //TODO : needs to separate token builder and create new action for sending tokens
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<object> Login([FromBody] LoginModel model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
@@ -49,7 +49,29 @@ namespace HopeLine.API.Controllers
             throw new ApplicationException("UNTRACED ERROR!");
         }
 
-        private object GenerateToken(string username, HopeLineUser user)
+
+        [HttpPost]
+        public async Task<object> Register([FromBody] RegisterModel model)
+        {
+            var user = new UserAccount
+            {
+                UserName = model.Username,
+                Email = model.Username
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                return await GenerateToken(model.Username, user);
+            }
+            throw new ApplicationException("UNTRACED ERROR!");
+
+        }
+
+
+        //TODO : move to security prj
+        private async Task<object> GenerateToken(string username, HopeLineUser user)
         {
             var claims = new List<Claim>
             {
@@ -62,6 +84,8 @@ namespace HopeLine.API.Controllers
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(Convert.ToDouble(30));
 
+
+            // TODO : string const must be inside appsettings
             var token = new JwtSecurityToken(
                 "https://localhost:5000",
                 "https://localhost:5000",
