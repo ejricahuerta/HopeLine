@@ -11,6 +11,5 @@
             AccountType = Account.User;
         }
         public Profile Profile { get; set; }
-        public int ProfileId { get; set; }
     }
 }
