@@ -53,6 +53,7 @@ namespace HopeLine.Service.Configurations
                     config.SaveToken = true;
                     config.TokenValidationParameters = new TokenValidationParameters
                     {
+                        //TODO : move to appsettings
                         ValidIssuer = "http://localhost:5000",
                         ValidAudience = "http://localhost:5000",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup7")),
@@ -70,7 +71,7 @@ namespace HopeLine.Service.Configurations
         /// <param name="app"></param>
         public static void Configure(IApplicationBuilder app)
         {
-
+            //implement additional config when the app runs HERE
         }
     }
 }
