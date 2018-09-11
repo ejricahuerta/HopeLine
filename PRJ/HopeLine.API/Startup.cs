@@ -1,12 +1,7 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
-using HopeLine.DataAccess.Entities;
-using HopeLine.Security.Configurations;
-using HopeLine.Security.Interfaces;
-using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,15 +22,13 @@ namespace HopeLine.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            ConfigureServiceExtension.Configure(services);
-            services.AddLogging();
+            ConfigureServiceExtension.AddConfiguration(services);
+
             services.AddCors();
 
-            //TODO : Add Dependency Injections
-            services.AddTransient<ITokenService, TokenService>();
+            services.AddLogging();
             //services.AddTransient<interface,implementationClass>();
-
-            //TODO : Add SignalR
+            services.AddMvc();
 
 
 
@@ -44,16 +37,12 @@ namespace HopeLine.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
                                 IHostingEnvironment env,
-                                HopeLineDbContext context,
-                                UserManager<HopeLineUser> manager)
+                                HopeLineDbContext context // TODO : this shouldn't be be here
+                                )
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
             }
 
             app.UseCors(opt =>
@@ -62,11 +51,11 @@ namespace HopeLine.API
                 .AllowAnyOrigin());
 
             app.UseAuthentication();
-            app.UseHttpsRedirection();
             app.UseMvc();
 
-            SeedDatabase.Initialize(app);
 
+            //TODO : create a static class to access this from service layer instead
+            context.Database.EnsureCreated();
         }
     }
 }
