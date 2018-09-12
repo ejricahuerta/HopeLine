@@ -49,11 +49,13 @@
         </div>
     </div>
        
-    <form class="form-signin">
+    <form class="form-account">
         <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Login with HopeLine Account</h1>
+        <hr/>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <br/>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
@@ -61,19 +63,22 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <div class="mb-2">
-            <label>
-              <a href="Register.html" type="button" value="Sign-up" class="btn btn-sm btn-success btn-block">Sign-up</a>
-            </label>
-          </div>
           <div class="mb-2">
             <label>
               <a href="ForgotPassword.html" type="button" value="ForgotPassword" class="btn btn-sm btn-warning btn-block">Forgot Password</a>
             </label>
           </div>
-          <hr/>
+          <br/>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <br/>
+        <hr/>
+        <div class="mb-2">
+            <label>
+              <a href="GuestLogin.html" type="button" value="Login as Guest" class="btn btn-outline-secondary">Login as Guest</a>
+            </label>
+            <label class="pull-right">
+                <a href="Register.html" type="button" value="Sign-up" class="btn btn-outline-secondary">Sign-up</a>
+              </label>
+          </div>
     </form>
 
 
