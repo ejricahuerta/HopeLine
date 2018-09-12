@@ -22,7 +22,6 @@ namespace HopeLine.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            ConfigureServiceExtension.AddConfiguration(services);
 
             services.AddCors();
 
@@ -30,6 +29,7 @@ namespace HopeLine.API
             //services.AddTransient<interface,implementationClass>();
             services.AddMvc();
 
+            ConfigureServiceExtension.AddConfiguration(services);
 
 
         }
