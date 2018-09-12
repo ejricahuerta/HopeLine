@@ -156,6 +156,9 @@ li {
     margin: 20px auto;
 }
 
+
+
+
 /********************************/
 /*       Slides backgrounds     */
 /********************************/
@@ -196,11 +199,12 @@ li {
 }
 
 /*  FOOTER CSS BEGIN  */
-footer {
+.footer {
     background-color: lightgreen;
     min-height: 350px;
     font-family: 'Open Sans', sans-serif;
     width:100%;
+
     
 }
 
@@ -341,16 +345,14 @@ footer {
 
 /*Padding and adjustments to properly align elements for class py-5*/
 .py-5{
- padding-bottom: 3rem !important;
+ 
   padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
   background: no-repeat center center scroll;
   
 }
-/*main button/logo in index page*/
-.mx-auto{
-	margin-left: auto !important;
-	margin-right: auto !important;
-}
+
+
 
 .d-block{
 	display: block !important;
@@ -360,16 +362,7 @@ footer {
 	display: block !important;
 }
 
-#mainButton{
-  width: 100%;
-  height: 200px;
- 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
 
-}
 
 .submit{
 	
