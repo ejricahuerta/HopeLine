@@ -27,3 +27,5 @@ PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.RazorAssemblyInfo.cs
 *.cache
 *.xml
 *.cache
+*.json
+*.txt
