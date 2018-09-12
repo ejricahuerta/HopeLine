@@ -6,11 +6,14 @@ namespace HopeLine.API.Controllers
     /// <summary>
     /// 
     /// </summary>
-    [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ConvoController : ControllerBase
     {
-
+        [Authorize]
+        public IActionResult Check()
+        {
+            return Ok("VALID");
+        }
     }
 }

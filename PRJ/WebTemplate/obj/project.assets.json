@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
       "projectName": "WebTemplate",
-      "projectPath": "c:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
       "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\WebTemplate\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

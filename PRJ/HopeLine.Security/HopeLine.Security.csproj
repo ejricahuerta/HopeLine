@@ -5,11 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <None Remove="Services\TokenService.cs~RF49d415.TMP" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
+    <ProjectReference Include="..\HopeLine.Service\HopeLine.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

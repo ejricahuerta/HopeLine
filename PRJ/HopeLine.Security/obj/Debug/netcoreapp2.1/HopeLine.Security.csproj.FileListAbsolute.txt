@@ -1,0 +1,16 @@
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.deps.json
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.pdb
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csprojAssemblyReference.cache
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CoreCompileInputs.cache
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfoInputs.cache
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfo.cs
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CopyComplete
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.pdb

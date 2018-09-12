@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\AuthController.cs~RF1f20ee.TMP" />
+    <None Remove="Startup.cs~RF2834a9.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

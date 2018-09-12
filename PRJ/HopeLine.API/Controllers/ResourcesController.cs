@@ -12,7 +12,7 @@ namespace HopeLine.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return NotFound();
+            return Ok("some return");
         }
         //TODO : Add Community GET
         //TODO : Add Resources GET
