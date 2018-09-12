@@ -20,3 +20,10 @@ PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.csproj.CoreCompileInputs.cac
 PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.csprojAssemblyReference.cache
 PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.RazorAssemblyInfo.cache
 PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.RazorAssemblyInfo.cs
+*.cache
+*.pdb
+*.CopyComplete
+*.dll
+*.cache
+*.xml
+*.cache
