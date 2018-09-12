@@ -21,15 +21,13 @@ namespace HopeLine.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            ConfigureServiceExtension.AddConfiguration(services);
 
 
             services.AddCors();
-
             services.AddLogging();
-            //services.AddTransient<interface,implementationClass>();
             services.AddMvc();
 
-            ConfigureServiceExtension.AddConfiguration(services);
 
 
         }
@@ -43,6 +41,10 @@ namespace HopeLine.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
             }
 
             app.UseCors(opt =>
