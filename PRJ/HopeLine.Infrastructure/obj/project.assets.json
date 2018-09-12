@@ -681,27 +681,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\osori\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
       "projectName": "HopeLine.Infrastructure",
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
