@@ -1,4 +1,5 @@
-﻿using HopeLine.Service.Config;
+﻿
+using HopeLine.Service.Configurations;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
