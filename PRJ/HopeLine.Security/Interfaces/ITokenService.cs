@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities;
+using System.Security.Claims;
 
 namespace HopeLine.Security.Interfaces
 {
@@ -7,6 +8,7 @@ namespace HopeLine.Security.Interfaces
     /// </summary>
     public interface ITokenService
     {
-        object GenerateJwtToken(string email, HopeLineUser user);
+        object GenerateToken(string username, HopeLineUser user);
+        ClaimsPrincipal GetClaimsPrincipalFromExpiredToken(string expiredToken);
     }
 }

@@ -1,7 +1,10 @@
 ﻿//using HopeLine.Security.Interfaces;
 
+
 using HopeLine.DataAccess.Entities;
+using HopeLine.Security.Helpers;
 using HopeLine.Security.Interfaces;
+using HopeLine.Service.Config;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -13,28 +16,54 @@ namespace HopeLine.Security.Services
 {
     public class TokenService : ITokenService
     {
-        public object GenerateJwtToken(string email, HopeLineUser user)
+        public object GenerateToken(string username, HopeLineUser user)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SOMEkeyidontknow"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(60));
+            var expires = DateTime.Now.AddDays(Convert.ToDouble(30));
 
+
+            var claims = this.CreateClaims(user);
+            // TODO : string const must be inside appsettings
             var token = new JwtSecurityToken(
-                "http://localhost:44340",
-                "http://localhost:44340",
+                APIConstant.URL,
+                APIConstant.URL,
                 claims,
                 expires: expires,
                 signingCredentials: creds
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+
+        }
+
+
+
+        public ClaimsPrincipal GetClaimsPrincipalFromExpiredToken(string expiredToken)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+            var claimsPrincipal = tokenHandler.ValidateToken(expiredToken, JWTHelpers.TokenValidationParameters, out securityToken);
+
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
+
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            {
+                throw new SecurityTokenException("Invalid Token");
+            }
+
+            return claimsPrincipal;
+        }
+
+        private List<Claim> CreateClaims(HopeLineUser user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
+            };
+            return claims;
         }
     }
 }

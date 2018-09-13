@@ -1350,6 +1350,19 @@
         "runtime": {
           "bin/placeholder/HopeLine.DataAccess.dll": {}
         }
+      },
+      "HopeLine.Service/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "HopeLine.DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HopeLine.Service.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HopeLine.Service.dll": {}
+        }
       }
     }
   },
@@ -4396,36 +4409,39 @@
       "type": "project",
       "path": "../HopeLine.DataAccess/HopeLine.DataAccess.csproj",
       "msbuildProject": "../HopeLine.DataAccess/HopeLine.DataAccess.csproj"
+    },
+    "HopeLine.Service/1.0.0": {
+      "type": "project",
+      "path": "../HopeLine.Service/HopeLine.Service.csproj",
+      "msbuildProject": "../HopeLine.Service/HopeLine.Service.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "HopeLine.DataAccess >= 1.0.0",
+      "HopeLine.Service >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj",
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj",
       "projectName": "HopeLine.Security",
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\obj\\",
+      "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj",
+      "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Security\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -4437,8 +4453,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            },
+            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
             }
           }
         }
