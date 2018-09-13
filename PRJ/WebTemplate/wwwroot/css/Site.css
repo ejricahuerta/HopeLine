@@ -208,6 +208,15 @@ li {
     
 }
 
+#footer{
+	
+	    background-color: lightgreen;
+    min-height: 350px;
+    font-family: 'Open Sans', sans-serif;
+    width:100%;
+
+}
+
 .footer-col {
     margin-top: 50px;
 }
@@ -344,7 +353,7 @@ li {
 }
 
 /*Padding and adjustments to properly align elements for class py-5*/
-.py-5{
+.py-5, .py-6{
  
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
