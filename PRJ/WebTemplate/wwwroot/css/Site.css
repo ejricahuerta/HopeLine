@@ -156,6 +156,12 @@ li {
     margin: 20px auto;
 }
 
+.btn-success{
+	display: block! important;
+	margin-left:auto !important;
+	margin-right: auto !important;
+	
+}
 
 
 
@@ -199,22 +205,13 @@ li {
 }
 
 /*  FOOTER CSS BEGIN  */
-.footer {
+footer {
     background-color: lightgreen;
     min-height: 350px;
     font-family: 'Open Sans', sans-serif;
     width:100%;
 
     
-}
-
-#footer{
-	
-	    background-color: lightgreen;
-    min-height: 350px;
-    font-family: 'Open Sans', sans-serif;
-    width:100%;
-
 }
 
 .footer-col {
@@ -355,8 +352,8 @@ li {
 /*Padding and adjustments to properly align elements for class py-5*/
 .py-5, .py-6{
  
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important;
   background: no-repeat center center scroll;
   
 }
@@ -381,7 +378,11 @@ li {
 
 
 
+/*map elements*/
 
+#map{
+	margin: auto;
+}
 
 
 /*  FOOTER CSS END  */
