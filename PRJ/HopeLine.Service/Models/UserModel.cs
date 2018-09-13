@@ -4,11 +4,16 @@ using static HopeLine.DataAccess.Entities.HopeLineUser;
 namespace HopeLine.Service.Models
 {
 
+    public interface IUserModel
+    {
+        string Id { get; set; }
+    }
+
     /// <summary>
     /// DTO fo users. this does not contain any logic at all.
     /// it is a Dummy data transfer object
     /// </summary>
-    public class UserModel
+    public class UserModel : IUserModel
     {
         public string Id { get; set; }
         public string FirstName { get; set; }
