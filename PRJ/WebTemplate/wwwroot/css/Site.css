@@ -4,9 +4,19 @@
 body {
     padding-top: 50px;
 	font-size: 16px;
-	
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#headerMenu {
+    color: white;
 
 }
+
+.header{
+	overflow: hidden;
+}
+
 
 .well .well{
     background-color: white;
@@ -42,10 +52,24 @@ li {
     list-style-type: none;
 }
 
+/*Navbar Settings*/
 
+.fixed-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 
-#navbar {
-    color: lightgreen;
+}
+
+.bg-dark{
+    background-color: white;
+
+}
+
+.navbar {
+    background-color: lightgreen;
 
 }
 
@@ -58,6 +82,49 @@ li {
 	color: white;
 }
 
+
+.nav-link {
+display: block;
+padding: .5rem 4rem;
+
+}
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.5);
+    border-color: rgba(255,255,255,.1);
+}
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+/* button, select {
+    text-transform: none;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button {
+    border-radius: 0;
+}
+ */
+
+
+/*********************/
 /********************************/
 /*       Fade Bs-carousel       */
 /********************************/

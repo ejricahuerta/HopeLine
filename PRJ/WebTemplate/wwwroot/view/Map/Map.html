@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>HopeLine</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="../../css/Site.css"></link>
@@ -11,7 +11,7 @@
 
 <body  >
 
-    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top bg-light">
+    <div class="navbar navbar-inverse navbar-fixed-top bg-light">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -52,26 +52,9 @@
 	   
       <section class="Map-section container"> 
     <div id="map" style="width:800px;height:800px;background:yellow"></div>
-
- <script> 
- function myMap() { 
- var mapOptions = { 
-    center: new google.maps.LatLng(51.5, -0.12), 
-    zoom: 10, 
-    mapTypeId: google.maps.MapTypeId.HYBRID 
- } 
- var map = new google.maps.Map(document.getElementById("map"), mapOptions); 
- } 
- </script> 
-
  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> 
-
     </section> 
-	
-	
-	
-	
-	
+		
 	
 
         <footer>
@@ -131,7 +114,7 @@
             </div>
         </div>
 		<script src="../js/Site.js"></script>
-
+		
 </body>
 
 
