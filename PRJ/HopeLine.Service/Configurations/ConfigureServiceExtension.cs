@@ -84,9 +84,18 @@ namespace HopeLine.Service.Configurations
         /// Add extenstion here 
         /// </summary>
         /// <param name="app"></param>
-        public static void Configure(IApplicationBuilder app)
+        public static void UseConfiguration(IApplicationBuilder app)
         {
             //implement additional config when the app runs HERE
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
+                    context.Database.EnsureCreated();
+
+                //TODO : do populate data HERE!
+            }
         }
     }
 }
+
+
