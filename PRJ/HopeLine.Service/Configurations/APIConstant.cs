@@ -1,4 +1,4 @@
-﻿namespace HopeLine.Service.Config
+﻿namespace HopeLine.Service.Configurations
 {
     public class APIConstant
     {
