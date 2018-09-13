@@ -4,7 +4,7 @@
 using HopeLine.DataAccess.Entities;
 using HopeLine.Security.Helpers;
 using HopeLine.Security.Interfaces;
-using HopeLine.Service.Config;
+using HopeLine.Service.Configurations;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
