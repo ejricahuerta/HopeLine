@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using static HopeLine.DataAccess.Entities.HopeLineUser;
 
 namespace HopeLine.Service.Models
 {
+
+
 
     public interface IUserModel
     {
@@ -22,7 +23,7 @@ namespace HopeLine.Service.Models
         public string Username { get; set; }
         public string Phone { get; set; }
         public ICollection<string> Languages { get; set; }
-        public Account AccountType { get; set; }
+        public string AccountType { get; set; }
     }
 
 }
