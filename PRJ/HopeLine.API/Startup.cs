@@ -1,4 +1,6 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
+using HopeLine.Security.Interfaces;
+using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +30,8 @@ namespace HopeLine.API
             services.AddLogging();
             services.AddMvc();
 
+
+            services.AddSingleton<ITokenService, TokenService>();
 
 
         }
