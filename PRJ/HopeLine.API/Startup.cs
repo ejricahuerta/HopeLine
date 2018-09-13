@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.AspNetCore.Http;
 namespace HopeLine.API
 {
     public class Startup
@@ -48,6 +48,14 @@ namespace HopeLine.API
                 app.UseHsts();
             }
 
+            app.UseStatusCodePages(async context =>
+                {
+                    context.HttpContext.Response.ContentType = "application/json";
+                    await context.HttpContext.Response.WriteAsync(
+                        "Status code page, status code: " +
+                        context.HttpContext.Response.StatusCode);
+                });
+
             app.UseCors(opt =>
             opt.AllowAnyHeader()
                 .AllowCredentials()
@@ -57,7 +65,7 @@ namespace HopeLine.API
             app.UseMvc();
 
             ConfigureServiceExtension.UseConfiguration(app);
-            //TODO : create a static class to access this from service layer instead
+
 
         }
     }
