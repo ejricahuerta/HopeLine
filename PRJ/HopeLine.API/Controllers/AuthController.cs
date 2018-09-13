@@ -69,15 +69,11 @@ namespace HopeLine.API.Controllers
 
 
 
-        //TODO : Refresh Token
+        //TODO : Refresh Token if needed
 
-        [HttpPost]
-        public async Task<IActionResult> RefreshToken(string token)
-        {
 
-            //TODO : add logic for  refreshing token
-            throw new NotImplementedException();
-        }
         //TODO : Logout
+
+
     }
 }
