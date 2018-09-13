@@ -1,5 +1,4 @@
-﻿using HopeLine.DataAccess.DatabaseContexts;
-using HopeLine.Security.Interfaces;
+﻿using HopeLine.Security.Interfaces;
 using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Builder;
@@ -38,9 +37,7 @@ namespace HopeLine.API
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
-                                IHostingEnvironment env,
-                                HopeLineDbContext context // TODO : this shouldn't be be here
-                                )
+                                IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -59,9 +56,9 @@ namespace HopeLine.API
             app.UseAuthentication();
             app.UseMvc();
 
-
+            ConfigureServiceExtension.UseConfiguration(app);
             //TODO : create a static class to access this from service layer instead
-            context.Database.EnsureCreated();
+
         }
     }
 }
