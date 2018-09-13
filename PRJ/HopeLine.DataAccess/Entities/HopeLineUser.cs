@@ -20,8 +20,9 @@ namespace HopeLine.DataAccess.Entities
         {
             Admin, Mentor, User, Guest
 
+
         }
-        public HopeLineUser() : base()
+        public HopeLineUser()
         {
             DateAdded = DateTime.UtcNow;
 
