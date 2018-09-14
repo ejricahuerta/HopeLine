@@ -40,9 +40,31 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public IEnumerable<UserModel> GetAllUsersByAccountType(HopeLineUser.Account accountType)
+        public IEnumerable<UserModel> GetAllUsersByAccountType(string userType)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                return _repository.GetAll()
+                    .Where(a => a.AccountType.ToString().Contains(userType))
+                    .Select(u =>
+                           new UserModel
+                           {
+                               Id = u.Id,
+
+                               FirstName = (u.Profile != null) ? u.Profile.FirstName : "",
+                               LastName = (u.Profile != null) ? u.Profile.LastName : "",
+                               Languages = new List<string>(),
+                               AccountType = u.AccountType.ToString(),
+                               Username = u.UserName,
+                               Email = u.Email
+                           });
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception("Unable to process Service :", ex);
+            }
+
         }
 
         public IEnumerable<ActivityModel> GetMentorActivities(string mentorId)

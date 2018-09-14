@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Remove="Configurations\ConfigureServiceExtension.cs~RF23f959.TMP" />
+    <None Remove="CoreServices\UserService.cs~RF1fdcdc.TMP" />
   </ItemGroup>
 
   <ItemGroup>

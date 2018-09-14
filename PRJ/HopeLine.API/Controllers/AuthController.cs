@@ -40,40 +40,43 @@ namespace HopeLine.API.Controllers
 
         public async Task<object> Login([FromBody] LoginModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
-                return _tokenService.GenerateToken(model.Username, user);
-            }
-            throw new ApplicationException("UNTRACED ERROR!");
-        }
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
 
+                if (result.Succeeded)
+                {
+                    var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
+                    return _tokenService.GenerateToken(model.Username, user);
+                }
+            }
+            return BadRequest("Unable to Login...");
+        }
 
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterModel model)
         {
-
-            var user = new UserAccount
+            if (ModelState.IsValid)
             {
-                Profile = new Profile
+                var user = new UserAccount
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                },
+                    Profile = new Profile
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    },
 
-                UserName = model.Username,
-                Email = model.Username
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
+                    UserName = model.Username,
+                    Email = model.Username
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
 
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return _tokenService.GenerateToken(model.Username, user);
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return _tokenService.GenerateToken(model.Username, user);
+                }
             }
-
 
             return BadRequest("Unable to Process Registration...");
 

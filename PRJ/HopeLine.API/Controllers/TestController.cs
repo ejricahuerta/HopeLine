@@ -18,13 +18,34 @@ namespace HopeLine.API.Controllers
         {
             _userService = userService;
         }
+
+        //localhost:5000/api/Test/users?apikey=1234
         // GET: api/Test
         [HttpGet("users")]
 
-        public IActionResult Users()
+        public IActionResult Users([FromQuery]string apikey)
+        {
+            if (apikey.Equals("1234"))
+            {
+
+                return Ok(_userService.GetAllUsers());
+            }
+            return BadRequest("Enter your api key");
+
+        }
+
+        //localhost:5000/api/Test/usersByType?apikey=1234&userType=User
+        [HttpGet("usersbytype")]
+
+        public IActionResult Users([FromQuery]string apikey, [FromQuery]string userType)
         {
 
-            return Ok(_userService.GetAllUsers());
+            if (apikey.Equals("1234"))
+            {
+
+                return Ok(_userService.GetAllUsersByAccountType(userType));
+            }
+            return BadRequest("Enter your api key");
 
         }
 
