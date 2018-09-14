@@ -3,7 +3,9 @@ using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,15 +21,17 @@ namespace HopeLine.API.Controllers
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
         private readonly ITokenService _tokenService;
+        //private readonly ILogger _logger;
 
         //private readonly IUserService _userService;
 
         public AuthController(/*IUserService userService*/UserManager<HopeLineUser> userManager,
-                                SignInManager<HopeLineUser> signInManager, ITokenService tokenService)
+                                SignInManager<HopeLineUser> signInManager, ITokenService tokenService/*, ILogger logger*/)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            // _logger = logger;
         }
 
 
@@ -36,33 +40,45 @@ namespace HopeLine.API.Controllers
 
         public async Task<object> Login([FromBody] LoginModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
-                return _tokenService.GenerateToken(model.Username, user);
-            }
-            throw new ApplicationException("UNTRACED ERROR!");
-        }
+                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
 
+                if (result.Succeeded)
+                {
+                    var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
+                    return _tokenService.GenerateToken(model.Username, user);
+                }
+            }
+            return BadRequest("Unable to Login...");
+        }
 
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterModel model)
         {
-            var user = new UserAccount
+            if (ModelState.IsValid)
             {
-                UserName = model.Username,
-                Email = model.Username
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
+                var user = new UserAccount
+                {
+                    Profile = new Profile
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    },
 
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return _tokenService.GenerateToken(model.Username, user);
+                    UserName = model.Username,
+                    Email = model.Username
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return _tokenService.GenerateToken(model.Username, user);
+                }
             }
-            throw new ApplicationException("UNTRACED ERROR!");
+
+            return BadRequest("Unable to Process Registration...");
 
         }
         //TODO : Refresh Token if needed

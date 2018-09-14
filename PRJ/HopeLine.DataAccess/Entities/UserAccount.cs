@@ -10,6 +10,5 @@
         {
             AccountType = Account.User;
         }
-        public Profile Profile { get; set; }
     }
 }

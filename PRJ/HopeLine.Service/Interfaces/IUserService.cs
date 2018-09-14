@@ -8,7 +8,7 @@ namespace HopeLine.Service.Interfaces
     {
 
         IEnumerable<UserModel> GetAllUsers();
-        IEnumerable<UserModel> GetAllUsersByAccountType(Account accountType);
+        IEnumerable<UserModel> GetAllUsersByAccountType(string userType);
 
 
         //Can be refactored

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Models\RegisterModel.cs~RF2e6b9b.TMP" />
     <None Remove="Services\TokenService.cs~RF49d415.TMP" />
   </ItemGroup>
 

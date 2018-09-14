@@ -1,5 +1,7 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities;
+using HopeLine.DataAccess.Interfaces;
+using HopeLine.DataAccess.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +28,7 @@ namespace HopeLine.Service.Configurations
                                                 .UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
-                .AddDefaultTokenProviders().AddDefaultUI();
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -75,7 +77,7 @@ namespace HopeLine.Service.Configurations
                     };
 
                 });
-
+            services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
 
         }
 

@@ -1,8 +1,10 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HopeLine.DataAccess.Repositories
 {
@@ -13,6 +15,7 @@ namespace HopeLine.DataAccess.Repositories
     public class UserRepository : IRepository<HopeLineUser>
     {
         private readonly HopeLineDbContext _hopeLineDb;
+        private readonly DbSet<HopeLineUser> _entities;
 
         /// <summary>
         /// 
@@ -21,6 +24,7 @@ namespace HopeLine.DataAccess.Repositories
         public UserRepository(HopeLineDbContext hopeLineDb)
         {
             _hopeLineDb = hopeLineDb;
+            _entities = _hopeLineDb.Set<HopeLineUser>();
         }
 
         /// <summary>
@@ -48,7 +52,8 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public IEnumerable<HopeLineUser> GetAll()
         {
-            throw new NotImplementedException();
+
+            return _entities.Include(p => p.Profile).ToList();
         }
 
         /// <summary>

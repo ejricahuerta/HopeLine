@@ -13,7 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HopeLine.API
 {
-    public class Startup
+    public class
+        Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -34,6 +35,8 @@ namespace HopeLine.API
 
             services.AddSingleton<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }

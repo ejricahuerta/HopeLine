@@ -87,6 +87,8 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<int?>("ProfileId");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -103,6 +105,8 @@ namespace HopeLine.DataAccess.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ProfileId");
 
                     b.ToTable("AspNetUsers");
 
@@ -372,9 +376,6 @@ namespace HopeLine.DataAccess.Migrations
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
 
-                    b.Property<int?>("ProfileId");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("MentorAccount");
 
@@ -385,10 +386,6 @@ namespace HopeLine.DataAccess.Migrations
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnName("UserAccount_ProfileId");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("UserAccount");
 
@@ -401,6 +398,13 @@ namespace HopeLine.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("MentorId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.HopeLineUser", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
@@ -485,21 +489,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasOne("HopeLine.DataAccess.Entities.HopeLineUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>
-                {
-                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.UserAccount", b =>
-                {
-                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
-                        .WithMany()
-                        .HasForeignKey("ProfileId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

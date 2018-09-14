@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Controllers\AuthController.cs~RF11aedb.TMP" />
     <None Remove="Controllers\AuthController.cs~RF1f20ee.TMP" />
+    <None Remove="Controllers\ConvoController.cs~RF182aa5.TMP" />
+    <None Remove="Startup.cs~RF247be7.TMP" />
     <None Remove="Startup.cs~RF2834a9.TMP" />
   </ItemGroup>
 
@@ -15,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
   
  <!--Dependencies-->
