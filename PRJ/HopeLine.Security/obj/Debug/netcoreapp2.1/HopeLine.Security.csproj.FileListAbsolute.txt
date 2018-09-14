@@ -2,11 +2,15 @@ C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.dll
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.pdb
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.dll
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.pdb
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Tokens.xml
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.Authentication.JwtBearer.xml
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csprojAssemblyReference.cache
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CoreCompileInputs.cache
 C:\Users\EXD\Source\Repos\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfoInputs.cache
