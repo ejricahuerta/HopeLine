@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-HopeLine.Web-61BE8193-D262-42F6-AC18-67A8C5F2D409</UserSecretsId>
+    <UserSecretsId>aspnet-HopeLine.Web-2A475D5A-1AE3-4BA3-AFE5-3C8F7DBB2691</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +14,10 @@
     <ProjectReference Include="..\HopeLine.Infrastructure\HopeLine.Infrastructure.csproj" />
     <ProjectReference Include="..\HopeLine.Security\HopeLine.Security.csproj" />
     <ProjectReference Include="..\HopeLine.Service\HopeLine.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 
 </Project>
