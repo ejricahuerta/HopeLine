@@ -26,7 +26,7 @@ namespace HopeLine.Service.Configurations
                                                 .UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders().AddDefaultUI();
 
             services.Configure<IdentityOptions>(options =>
             {
