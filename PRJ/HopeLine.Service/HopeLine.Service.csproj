@@ -18,10 +18,6 @@
     <None Remove="Configurations\ConfigureServiceExtension.cs~RF23f959.TMP" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
   <!--Dependencies-->
   <ItemGroup>
     <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />

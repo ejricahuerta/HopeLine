@@ -1,6 +1,5 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities;
-using HopeLine.Service.Config;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -84,9 +83,18 @@ namespace HopeLine.Service.Configurations
         /// Add extenstion here 
         /// </summary>
         /// <param name="app"></param>
-        public static void Configure(IApplicationBuilder app)
+        public static void UseConfiguration(IApplicationBuilder app)
         {
             //implement additional config when the app runs HERE
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
+                    context.Database.EnsureCreated();
+
+                //TODO : do populate data HERE!
+            }
         }
     }
 }
+
+

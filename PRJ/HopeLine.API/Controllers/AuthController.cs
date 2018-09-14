@@ -20,7 +20,6 @@ namespace HopeLine.API.Controllers
         private readonly SignInManager<HopeLineUser> _signInManager;
         private readonly ITokenService _tokenService;
 
-
         //private readonly IUserService _userService;
 
         public AuthController(/*IUserService userService*/UserManager<HopeLineUser> userManager,
@@ -66,18 +65,11 @@ namespace HopeLine.API.Controllers
             throw new ApplicationException("UNTRACED ERROR!");
 
         }
+        //TODO : Refresh Token if needed
 
 
-
-        //TODO : Refresh Token
-
-        [HttpPost]
-        public async Task<IActionResult> RefreshToken(string token)
-        {
-
-            //TODO : add logic for  refreshing token
-            throw new NotImplementedException();
-        }
         //TODO : Logout
+
+
     }
 }

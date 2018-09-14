@@ -1,7 +1,12 @@
-﻿using HopeLine.DataAccess.DatabaseContexts;
+﻿using HopeLine.API.Hubs;
+using HopeLine.Security.Interfaces;
+using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
+using HopeLine.Service.CoreServices;
+using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,23 +25,21 @@ namespace HopeLine.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             ConfigureServiceExtension.AddConfiguration(services);
 
 
             services.AddCors();
             services.AddLogging();
-            services.AddMvc();
+            services.AddSignalR();
 
-
+            services.AddSingleton<ITokenService, TokenService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app,
-                                IHostingEnvironment env,
-                                HopeLineDbContext context // TODO : this shouldn't be be here
-                                )
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -47,17 +50,31 @@ namespace HopeLine.API
                 app.UseHsts();
             }
 
+            app.UseStatusCodePages(async context =>
+                {
+                    context.HttpContext.Response.ContentType = "application/json";
+                    await context.HttpContext.Response.WriteAsync(
+                        "Status code page, status code: " +
+                        context.HttpContext.Response.StatusCode);
+                });
+
             app.UseCors(opt =>
-            opt.AllowAnyHeader()
-                .AllowCredentials()
-                .AllowAnyOrigin());
+                opt.AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyOrigin());
 
             app.UseAuthentication();
             app.UseMvc();
 
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chat");
+            });
 
-            //TODO : create a static class to access this from service layer instead
-            context.Database.EnsureCreated();
+
+            ConfigureServiceExtension.UseConfiguration(app);
+
+
         }
     }
 }

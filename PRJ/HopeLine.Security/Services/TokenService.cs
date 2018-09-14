@@ -4,7 +4,7 @@
 using HopeLine.DataAccess.Entities;
 using HopeLine.Security.Helpers;
 using HopeLine.Security.Interfaces;
-using HopeLine.Service.Config;
+using HopeLine.Service.Configurations;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,13 @@ namespace HopeLine.Security.Services
 {
     public class TokenService : ITokenService
     {
+
+        /// <summary>
+        /// generate bearer token for auth controller
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public object GenerateToken(string username, HopeLineUser user)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup"));
@@ -38,7 +45,11 @@ namespace HopeLine.Security.Services
         }
 
 
-
+        /// <summary>
+        /// this will only be implemented when refresh toekn is needed
+        /// </summary>
+        /// <param name="expiredToken"></param>
+        /// <returns></returns>
         public ClaimsPrincipal GetClaimsPrincipalFromExpiredToken(string expiredToken)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -55,6 +66,12 @@ namespace HopeLine.Security.Services
             return claimsPrincipal;
         }
 
+
+        /// <summary>
+        /// create claims for user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private List<Claim> CreateClaims(HopeLineUser user)
         {
             var claims = new List<Claim>

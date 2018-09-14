@@ -8,6 +8,7 @@ namespace HopeLine.Security.Interfaces
     /// </summary>
     public interface ITokenService
     {
+
         object GenerateToken(string username, HopeLineUser user);
         ClaimsPrincipal GetClaimsPrincipalFromExpiredToken(string expiredToken);
     }
