@@ -3,7 +3,9 @@ using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,15 +21,17 @@ namespace HopeLine.API.Controllers
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
         private readonly ITokenService _tokenService;
+        //private readonly ILogger _logger;
 
         //private readonly IUserService _userService;
 
         public AuthController(/*IUserService userService*/UserManager<HopeLineUser> userManager,
-                                SignInManager<HopeLineUser> signInManager, ITokenService tokenService)
+                                SignInManager<HopeLineUser> signInManager, ITokenService tokenService/*, ILogger logger*/)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
+            // _logger = logger;
         }
 
 
@@ -50,8 +54,15 @@ namespace HopeLine.API.Controllers
         [HttpPost]
         public async Task<object> Register([FromBody] RegisterModel model)
         {
+
             var user = new UserAccount
             {
+                Profile = new Profile
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                },
+
                 UserName = model.Username,
                 Email = model.Username
             };
@@ -62,7 +73,9 @@ namespace HopeLine.API.Controllers
                 await _signInManager.SignInAsync(user, false);
                 return _tokenService.GenerateToken(model.Username, user);
             }
-            throw new ApplicationException("UNTRACED ERROR!");
+
+
+            return BadRequest("Unable to Process Registration...");
 
         }
         //TODO : Refresh Token if needed

@@ -17,7 +17,6 @@ namespace HopeLine.DataAccess.Entities
         }
 
         //TODO : add more properties like availabilitie and Schedule
-        public Profile Profile { get; set; }
 
         public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
     }

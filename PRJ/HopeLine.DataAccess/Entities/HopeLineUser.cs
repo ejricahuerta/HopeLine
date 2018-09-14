@@ -25,7 +25,10 @@ namespace HopeLine.DataAccess.Entities
         public HopeLineUser()
         {
             DateAdded = DateTime.UtcNow;
-
+            if (AccountType == Account.Guest)
+            {
+                Profile = null;
+            }
         }
 
         public Account AccountType { get; set; }
@@ -33,5 +36,7 @@ namespace HopeLine.DataAccess.Entities
         [Required]
         [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
+
+        public Profile Profile { get; set; }
     }
 }
