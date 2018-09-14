@@ -8282,11 +8282,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "projectName": "HopeLine.Service",
-      "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8305,8 +8305,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             }
           }
         }

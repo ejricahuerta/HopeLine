@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using System;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -9,6 +10,10 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Schedule : BaseEntity
     {
-        //TODO : need to decide about this class func - Eduardo
+        public DateTime StartPeriod { get; set; }
+        public DateTime EndPeriod { get; set; }
+        public DateTime TimeStart { get; set; }
+        public DateTime EndTime { get; set; }
+        public TimeSpan MyProperty { get; set; }
     }
 }

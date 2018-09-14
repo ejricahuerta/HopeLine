@@ -12302,11 +12302,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
       "projectName": "HopeLine.API",
-      "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
       "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12325,17 +12325,17 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             },
-            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
+            "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
             },
-            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
-              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
+            "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
             },
-            "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
-              "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
+            "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
+              "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
             }
           }
         }
