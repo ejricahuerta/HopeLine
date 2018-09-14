@@ -73,14 +73,14 @@ namespace HopeLine.Service.CoreServices
         /// <returns> all activities of mentor </returns>
         public IEnumerable<ActivityModel> GetMentorActivities(string mentorId)
         {
-            var all = (_repository.GetAll().Where(u => u.AccountType == HopeLineUser.Account.Mentor && u.Id == mentorId) as MentorAccount)
-                .Activities
+            var activities = (_repository.Get(mentorId) as MentorAccount)
+               .Activities
                 .Select(n => new ActivityModel
                 {
                     DateOfActivity = n.DateAdded.ToShortDateString(),
                     Description = n.Description
                 });
-            return all;
+            return activities;
         }
 
         /// <summary>
@@ -92,18 +92,19 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var mentors = _repository.GetAll().Where(u => u.Id == mentorId && u.AccountType == HopeLineUser.Account.Mentor);
-                return (mentors as MentorAccount).Conversations.Select(c => new ConversationModel
-                {
-                    Id = c.Id,
-                    MentorId = c.Mentor.Id,
-                    UserId = c.UserId,
-                    UserName = c.UserName,
-                    DateOfConversation = c.DateOfConversation,
-                    Minutes = c.Minutes,
-                    PIN = c.PIN
+                var conversations = (_repository.Get(mentorId) as MentorAccount)
+                    .Conversations.Select(c => new ConversationModel
+                    {
+                        Id = c.Id,
+                        MentorId = c.Mentor.Id,
+                        UserId = c.UserId,
+                        UserName = c.UserName,
+                        DateOfConversation = c.DateOfConversation,
+                        Minutes = c.Minutes,
+                        PIN = c.PIN
 
-                });
+                    });
+                return conversations;
             }
             catch (System.Exception ex)
             {
@@ -121,7 +122,31 @@ namespace HopeLine.Service.CoreServices
         /// <returns>IEnumerable<ScheduleModel></returns>
         public IEnumerable<ScheduleModel> GetMentorSchedules(string mentorId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var schedules = (_repository.Get(mentorId) as MentorAccount)
+                    .Schedules
+                    .Select(s => new ScheduleModel
+                    {
+
+
+                        // TODO :  needed to be refactored
+                        Id = s.Id,
+                        StarTime = s.StarTime,
+                        StartPeriod = s.StartPeriod,
+                        EndPeriod = s.EndPeriod,
+                        EndTime = s.EndTime,
+                        LogoutTime = s.LogoutTime,
+                        TotalHours = s.TotalHours
+                    });
+                return schedules;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception("Unable to Process User Service: ", ex);
+            }
+
         }
 
         public IEnumerable<SpecializationModel> GetMentorSpecializations(string mentorId)

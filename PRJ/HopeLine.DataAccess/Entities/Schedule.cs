@@ -3,7 +3,7 @@ using System;
 
 namespace HopeLine.DataAccess.Entities
 {
-    //TODO : add props
+    //TODO : needs refactoring and annotaions
 
     /// <summary>
     /// 
@@ -12,8 +12,10 @@ namespace HopeLine.DataAccess.Entities
     {
         public DateTime StartPeriod { get; set; }
         public DateTime EndPeriod { get; set; }
-        public DateTime TimeStart { get; set; }
+        public DateTime StarTime { get; set; }
         public DateTime EndTime { get; set; }
-        public TimeSpan MyProperty { get; set; }
+
+        public DateTime LogoutTime { get; set; }
+        public float TotalHours { get; set; }
     }
 }
