@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using System.Collections.Generic;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -11,5 +12,6 @@ namespace HopeLine.DataAccess.Entities
     {
         public string Url { get; set; }
 
+        public ICollection<string> LocationNames { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class CommunityModel : BaseModel
     {
+
     }
 }
