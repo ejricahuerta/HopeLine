@@ -29,3 +29,17 @@ PRJ/WebTemplate/obj/Debug/netcoreapp2.1/WebTemplate.RazorAssemblyInfo.cs
 *.cache
 *.json
 *.txt
+/PRJ
+*.cache
+PRJ/HopeLine.API/obj/Debug/netcoreapp2.1/HopeLine.API.assets.cache
+PRJ/HopeLine.API/obj/Debug/netcoreapp2.1/HopeLine.API.csproj.CoreCompileInputs.cache
+PRJ/HopeLine.API/obj/Debug/netcoreapp2.1/HopeLine.API.csprojAssemblyReference.cache
+PRJ/HopeLine.API/obj/HopeLine.API.csproj.nuget.cache
+PRJ/HopeLine.API/obj/HopeLine.API.csproj.nuget.g.props
+PRJ/HopeLine.API/obj/project.assets.json
+PRJ/HopeLine.DataAccess/obj/Debug/netcoreapp2.1/HopeLine.DataAccess.assets.cache
+PRJ/HopeLine.DataAccess/obj/Debug/netcoreapp2.1/HopeLine.DataAccess.csproj.CoreCompileInputs.cache
+PRJ/HopeLine.DataAccess/obj/HopeLine.DataAccess.csproj.nuget.cache
+PRJ/HopeLine.DataAccess/obj/HopeLine.DataAccess.csproj.nuget.g.props
+PRJ/HopeLine.DataAccess/obj/project.assets.json
+PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.assets.cache

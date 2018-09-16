@@ -3,7 +3,11 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+<<<<<<< HEAD
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.API\obj\project.assets.json</ProjectAssetsFile>
+=======
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">C:\Users\osori\Source\Repos\HopeLine_\PRJ\HopeLine.API\obj\project.assets.json</ProjectAssetsFile>
+>>>>>>> serivces
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\eosorio1\.nuget\packages\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>

@@ -1,4 +1,5 @@
 ﻿using HopeLine.Service.Models.Base;
+using System.Collections.Generic;
 
 namespace HopeLine.Service.Models
 {
@@ -12,5 +13,8 @@ namespace HopeLine.Service.Models
         public string Region { get; set; }
 
         public string LanguageName { get; set; }
+
+        public ICollection<ProfileModel> ProfileModels { get; set; }
+
     }
 }
