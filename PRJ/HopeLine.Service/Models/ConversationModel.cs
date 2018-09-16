@@ -17,8 +17,6 @@ namespace HopeLine.Service.Models
 
         public string UserName { get; set; }
 
-        public string UserId { get; set; }
-
         public float Minutes { get; set; }
 
         public DateTime DateOfConversation { get; set; }

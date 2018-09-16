@@ -43,7 +43,7 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public HopeLineUser Get(object id)
         {
-            throw new NotImplementedException();
+            return _entities.Include(p=>p.Profile).SingleOrDefault(u=> u.Id == id as string);
         }
 
         /// <summary>

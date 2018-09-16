@@ -99,7 +99,6 @@ namespace HopeLine.Service.CoreServices
                     {
                         Id = c.Id,
                         MentorId = c.Mentor.Id,
-                        UserId = c.UserId,
                         UserName = c.UserName,
                         DateOfConversation = c.DateOfConversation,
                         Minutes = c.Minutes,
@@ -160,7 +159,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-            var activities = (_userRepo.Get(mentorId) as UserAccount)
+            var activities = (_userRepo.Get(userId) as UserAccount)
                .Activities
                 .Select(n => new ActivityModel
                 {
@@ -179,14 +178,34 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<ConversationModel> GetUserConversations(string username)
         {
-            return _convoRepo.GetAll().Where(u=> u.Username == username)
-            .Select(c=>  new ConversationModel {
-            });
+            return _convoRepo.GetAll()
+                            .Where(u=> u.UserName == username)
+                            .Select(c=> new ConversationModel {
+                                Id  = c.Id,
+                                UserName = c.UserName,
+                                DateOfConversation = c.DateOfConversation,
+                                PIN = c.PIN,
+                                MentorId = c.Mentor.Id,
+                                Minutes = c.Minutes
+                            } );
         }
-        
+
         public bool UpdateUserProfile(UserModel model)
         {
-            throw new System.NotImplementedException();
+        try
+        {
+            var user = _userRepo.Get(model.Id);
+            if(model.Username != null
+                && model.FirstName != null 
+                && model.LastName != null && user != null) {
+                    
+                }
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
         }
     }
 }
