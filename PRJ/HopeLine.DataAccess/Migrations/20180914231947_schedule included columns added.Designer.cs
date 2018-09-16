@@ -4,14 +4,16 @@ using HopeLine.DataAccess.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    partial class HopeLineDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180914231947_schedule included columns added")]
+    partial class scheduleincludedcolumnsadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,7 +171,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("SpecializationId");
 
-                    b.ToTable("MentorSpecializations");
+                    b.ToTable("MentorSpecialization");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Profile", b =>
@@ -190,7 +192,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profiles");
+                    b.ToTable("Profile");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
@@ -203,7 +205,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("LanguageId");
 
-                    b.ToTable("ProfileLanguages");
+                    b.ToTable("ProfileLanguage");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Schedule", b =>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace HopeLine.DataAccess.Entities
 {
-    //TODO : add props
+    //TODO : needs refactoring and annotaions
 
     /// <summary>
     /// This class will hold the schedule of time and details

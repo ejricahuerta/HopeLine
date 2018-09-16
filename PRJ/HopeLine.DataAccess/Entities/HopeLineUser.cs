@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
@@ -19,12 +20,11 @@ namespace HopeLine.DataAccess.Entities
         public enum Account
         {
             Admin, Mentor, User, Guest
-
-
         }
         public HopeLineUser()
         {
             DateAdded = DateTime.UtcNow;
+            Activities = new List<Activity>();
             if (AccountType == Account.Guest)
             {
                 Profile = null;
@@ -38,5 +38,6 @@ namespace HopeLine.DataAccess.Entities
         public DateTime DateAdded { get; set; }
 
         public Profile Profile { get; set; }
+        public ICollection<Activity> Activities { get; set; }
     }
 }

@@ -31,8 +31,11 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
 
-
+        public DbSet<ProfileLanguage> ProfileLanguages { get; set; }
+        public DbSet<MentorSpecialization> MentorSpecializations { get; set; }
         /// <summary>
         /// Override constructor with options
         /// </summary>

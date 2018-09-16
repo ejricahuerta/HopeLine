@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HopeLine.Service.Models
 {
-    //TODO  :   add props
+    //TODO  :   add props and refactor
 
     /// <summary>
     /// 

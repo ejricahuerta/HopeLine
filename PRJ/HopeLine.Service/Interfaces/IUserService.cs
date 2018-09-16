@@ -23,6 +23,5 @@ namespace HopeLine.Service.Interfaces
         #endregion
 
         bool UpdateUserProfile(UserModel model);
-        bool UpdateUserLogin(UserModel model, string password);
     }
 }
