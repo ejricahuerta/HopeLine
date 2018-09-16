@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
@@ -12,7 +13,8 @@ namespace HopeLine.DataAccess.Entities
     {
         public Resource()
         {
-            //TODO : add the static place holder imagelink here
+            //TODO : add the static place holder imagelink here,
+            //TODO : add a default pic of our application logo to all ImgUrl tags
             //ImgUrl = "";
         }
 
@@ -21,6 +23,7 @@ namespace HopeLine.DataAccess.Entities
         [MaxLength(40)]
         public string Name { get; set; }
 
+        //Should we just use a list of urls instead of one? @Edmel
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
@@ -30,5 +33,7 @@ namespace HopeLine.DataAccess.Entities
         [MinLength(2)]
         [MaxLength(500)]
         public string ImgUrl { get; set; }
+
+        public ICollection<string> Urls { get; set; }
     }
 }

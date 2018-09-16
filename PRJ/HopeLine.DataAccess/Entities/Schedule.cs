@@ -14,6 +14,8 @@ namespace HopeLine.DataAccess.Entities
     {
         //TODO : need to decide about this class func - Eduardo
 
+        public bool Availible { get; set; }
+
         public ICollection<Shift> Shifts { get; set; }
 
         public string Notes { get; set; }
