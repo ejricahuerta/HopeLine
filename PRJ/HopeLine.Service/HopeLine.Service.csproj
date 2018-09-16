@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
 
     <Compile Remove="SignalR\**" />
     <EmbeddedResource Remove="SignalR\**" />
@@ -25,9 +24,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.3" />
     <Folder Include="SignalR\" />
 
-=======
     <Folder Include="SignalR\" />
->>>>>>> serivces
   </ItemGroup>
 
   <!--Dependencies-->
