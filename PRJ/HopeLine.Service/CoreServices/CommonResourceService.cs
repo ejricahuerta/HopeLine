@@ -42,25 +42,73 @@ namespace HopeLine.Service.CoreServices
         //           });
         //        return conversations;
 
-        public bool AddResources(ResourceModel resource)
-        {
-            if(resource.Id != null &&
-                resource.Name != null &&
-                resource.Url != null)
-            {
-            }
+            // try
+            //{
+            //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+            //        .Conversations.Select(c => new ConversationModel
+            //        {
+            //            Id = c.Id,
+            //            MentorId = c.Mentor.Id,
+            //            UserName = c.UserName,
+            //            DateOfConversation = c.DateOfConversation,
+            //            Minutes = c.Minutes,
+            //            PIN = c.PIN
 
-            return true; 
+            //        });
+            //    return conversations;
+            //}
+            //catch (System.Exception ex)
+            //{
+
+            //    throw new System.Exception("Unable to process user service : ", ex);
+            //}
+
+
+public bool AddResources(ResourceModel resource)
+        {
+            try
+            {
+                var _resource = new Resource
+                {
+                    Id = resource.Id,
+                    Name = resource.Name,
+                    Url = resource.Url
+                };
+                _resourceRepo.Insert(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+
+                return false;
+            }
         }
 
         public bool AddResources(CommunityModel resource)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _resource = new Community
+                {
+                    Id = resource.Id,
+                    Name = resource.Name,
+                    URL = resource.URL,
+                    ImageURL = resource.ImageURL
+                };
+                _communityRepo.Insert(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                // TODO : Log error
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public Map DefaultMap()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public bool EditDefaultMap(MapModel map)
