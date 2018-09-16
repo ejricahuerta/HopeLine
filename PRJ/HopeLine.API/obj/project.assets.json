@@ -2287,7 +2287,21 @@
           "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Logging/5.2.0": {
+      "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Tokens": "5.2.4",
+          "NETStandard.Library": "1.6.1",
+          "Newtonsoft.Json": "10.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.dll": {}
+        }
+      },
+      "Microsoft.IdentityModel.Logging/5.2.4": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -2352,14 +2366,15 @@
           "lib/netstandard1.4/Microsoft.IdentityModel.Protocols.WsFederation.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Tokens/5.2.0": {
+      "Microsoft.IdentityModel.Tokens/5.2.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "5.2.0",
+          "Microsoft.IdentityModel.Logging": "5.2.4",
           "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "10.0.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
+          "System.Reflection": "4.3.0",
           "System.Runtime": "4.3.0",
           "System.Runtime.Extensions": "4.3.0",
           "System.Runtime.InteropServices": "4.3.0",
@@ -3439,10 +3454,11 @@
           }
         }
       },
-      "System.IdentityModel.Tokens.Jwt/5.2.0": {
+      "System.IdentityModel.Tokens.Jwt/5.2.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "5.2.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "5.2.4",
+          "Microsoft.IdentityModel.Tokens": "5.2.4",
           "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "10.0.1"
         },
@@ -4660,7 +4676,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "HopeLine.DataAccess": "1.0.0"
+          "HopeLine.DataAccess": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "5.2.4"
         },
         "compile": {
           "bin/placeholder/HopeLine.Service.dll": {}
@@ -6642,18 +6659,41 @@
         "microsoft.extensions.webencoders.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Logging/5.2.0": {
-      "sha512": "OgiaeDGsuTpXrx77a4gyN6Flp4y7jro4La92UtVEEVxnRb+TnRxawVYY3Z5EVme5fSwvE31vo2iNAwI/jBKjPg==",
+    "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
+      "sha512": "dz0b6+wYxvWeTj5jIBrNM7PqyPMxws5kBjnbacpRySePD6pEBxikGK9qblGgOzWsahlnpKDjoiunlqSFmXFLNQ==",
       "type": "package",
-      "path": "microsoft.identitymodel.logging/5.2.0",
+      "path": "microsoft.identitymodel.jsonwebtokens/5.2.4",
       "files": [
+        ".signature.p7s",
+        "lib/net45/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net45/Microsoft.IdentityModel.JsonWebTokens.pdb",
+        "lib/net45/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/net451/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/net451/Microsoft.IdentityModel.JsonWebTokens.pdb",
+        "lib/net451/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.pdb",
+        "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.xml",
+        "microsoft.identitymodel.jsonwebtokens.5.2.4.nupkg.sha512",
+        "microsoft.identitymodel.jsonwebtokens.nuspec"
+      ]
+    },
+    "Microsoft.IdentityModel.Logging/5.2.4": {
+      "sha512": "ftwC4hEI/LpKxgyXPvwWMSbd/GbhliWDIA90niq8SY8RtFw1hnJJ9f/7YiMQ96c0ibwGT2WEbS4IzvVFmhaiwA==",
+      "type": "package",
+      "path": "microsoft.identitymodel.logging/5.2.4",
+      "files": [
+        ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Logging.dll",
+        "lib/net45/Microsoft.IdentityModel.Logging.pdb",
         "lib/net45/Microsoft.IdentityModel.Logging.xml",
         "lib/net451/Microsoft.IdentityModel.Logging.dll",
+        "lib/net451/Microsoft.IdentityModel.Logging.pdb",
         "lib/net451/Microsoft.IdentityModel.Logging.xml",
         "lib/netstandard1.4/Microsoft.IdentityModel.Logging.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Logging.pdb",
         "lib/netstandard1.4/Microsoft.IdentityModel.Logging.xml",
-        "microsoft.identitymodel.logging.5.2.0.nupkg.sha512",
+        "microsoft.identitymodel.logging.5.2.4.nupkg.sha512",
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
@@ -6702,18 +6742,22 @@
         "microsoft.identitymodel.protocols.wsfederation.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Tokens/5.2.0": {
-      "sha512": "Uz1Dk5Gw/jgIHEzac9cXhq7pH0Hf5P73vf23hR6QJn0IamLbPG4qoHnGyPMn9qQXc+jDb/j3fWOhvWGrteJXtA==",
+    "Microsoft.IdentityModel.Tokens/5.2.4": {
+      "sha512": "rM/youDq83z+n1M4EojYLt++yZ4eOgs0vbkpZTufi+xNS0PS78SIyYve3KJq2++p9BLDFSx7zRr6/qsvI+gEjw==",
       "type": "package",
-      "path": "microsoft.identitymodel.tokens/5.2.0",
+      "path": "microsoft.identitymodel.tokens/5.2.4",
       "files": [
+        ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net45/Microsoft.IdentityModel.Tokens.pdb",
         "lib/net45/Microsoft.IdentityModel.Tokens.xml",
         "lib/net451/Microsoft.IdentityModel.Tokens.dll",
+        "lib/net451/Microsoft.IdentityModel.Tokens.pdb",
         "lib/net451/Microsoft.IdentityModel.Tokens.xml",
         "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.dll",
+        "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.pdb",
         "lib/netstandard1.4/Microsoft.IdentityModel.Tokens.xml",
-        "microsoft.identitymodel.tokens.5.2.0.nupkg.sha512",
+        "microsoft.identitymodel.tokens.5.2.4.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
@@ -9001,18 +9045,22 @@
         "system.globalization.extensions.nuspec"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/5.2.0": {
-      "sha512": "E8tNMfMWPvlSF5fvmMIVZZHlGuIZzE5uktuR+GN2gFdngh0k6xoZquxfjKC02d0NqfsshNQVTCdSKXD5e9/lpA==",
+    "System.IdentityModel.Tokens.Jwt/5.2.4": {
+      "sha512": "pZ9xqpsL5yT5Yl+rBj9iHm2K++gKEqsQ+1vLQU9aFKDIc9ELZsaxApVqkujH62TG0oFLt8gFPH12n/zjaVWgYA==",
       "type": "package",
-      "path": "system.identitymodel.tokens.jwt/5.2.0",
+      "path": "system.identitymodel.tokens.jwt/5.2.4",
       "files": [
+        ".signature.p7s",
         "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net45/System.IdentityModel.Tokens.Jwt.pdb",
         "lib/net45/System.IdentityModel.Tokens.Jwt.xml",
         "lib/net451/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net451/System.IdentityModel.Tokens.Jwt.pdb",
         "lib/net451/System.IdentityModel.Tokens.Jwt.xml",
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.pdb",
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.5.2.0.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.5.2.4.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -11934,14 +11982,14 @@
       "type": "package",
       "path": "system.valuetuple/4.3.0",
       "files": [
-        "System.ValueTuple.4.3.0.nupkg.sha512",
-        "System.ValueTuple.nuspec",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/.xml",
         "lib/netstandard1.0/System.ValueTuple.dll",
         "lib/portable-net40+sl4+win8+wp8/.xml",
-        "lib/portable-net40+sl4+win8+wp8/System.ValueTuple.dll"
+        "lib/portable-net40+sl4+win8+wp8/System.ValueTuple.dll",
+        "system.valuetuple.4.3.0.nupkg.sha512",
+        "system.valuetuple.nuspec"
       ]
     },
     "System.Xml.ReaderWriter/4.3.0": {
@@ -12295,39 +12343,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\eosorio1\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\osori\\.nuget\\packages\\": {},
->>>>>>> serivces
+    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
       "projectName": "HopeLine.API",
-      "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
-      "packagesPath": "C:\\Users\\eosorio1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
-=======
-      "projectUniqueName": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
-      "projectName": "HopeLine.API",
-      "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
-      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.API\\obj\\",
->>>>>>> serivces
+      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
+      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\eosorio1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> serivces
+        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12340,31 +12372,17 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             },
-            "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
+            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
+              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
             },
-            "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
-              "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
+            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
+              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
             },
-            "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
-              "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
-=======
-            "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-            },
-            "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
-            },
-            "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
-              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
-            },
-            "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
-              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine_\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
->>>>>>> serivces
+            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
+              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
             }
           }
         }

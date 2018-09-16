@@ -14,7 +14,5 @@ namespace HopeLine.Service.Models
 
         public string LanguageName { get; set; }
 
-        public ICollection<ProfileModel> ProfileModels { get; set; }
-
     }
 }
