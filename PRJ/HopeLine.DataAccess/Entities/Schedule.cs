@@ -16,6 +16,6 @@ namespace HopeLine.DataAccess.Entities
 
         public ICollection<Shift> Shifts { get; set; }
 
-        public int MyProperty { get; set; }
+        public string Notes { get; set; }
     }
 }
