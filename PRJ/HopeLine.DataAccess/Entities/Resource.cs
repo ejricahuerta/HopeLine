@@ -7,7 +7,9 @@ namespace HopeLine.DataAccess.Entities
     //TODO : add props
 
     /// <summary>
-    /// 
+    /// This is per resource link
+    /// Every link will have the link to go to the site, the name of the site and a picture of the site's logo
+    /// The link also has an optional description
     /// </summary>
     public class Resource : CommonEntity
     {
@@ -18,12 +20,14 @@ namespace HopeLine.DataAccess.Entities
             //ImgUrl = "";
         }
 
+        [MaxLength(200)]
+        public string Description { get; set; }
+
         [Required]
         [MinLength(2)]
         [MaxLength(40)]
         public string Name { get; set; }
-
-        //Should we just use a list of urls instead of one? @Edmel
+        
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
@@ -34,6 +38,5 @@ namespace HopeLine.DataAccess.Entities
         [MaxLength(500)]
         public string ImgUrl { get; set; }
 
-        public ICollection<string> Urls { get; set; }
     }
 }
