@@ -9,17 +9,19 @@ namespace HopeLine.Service.CoreServices
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<HopeLineUser> _repository;
+        private readonly IRepository<HopeLineUser> _userRepo;
+        private readonly IRepository<Conversation> _convoRepo;
 
-        public UserService(IRepository<HopeLineUser> repository)
+        public UserService(IRepository<HopeLineUser> userRepo, IRepository<Conversation> convoRepo)
         {
-            _repository = repository;
+            _userRepo = userRepo;
+            convoRepo = convoRepo;
         }
         public IEnumerable<UserModel> GetAllUsers()
         {
             try
             {
-                return _repository.GetAll().Select(u =>
+                return _userRepo.GetAll().Select(u =>
 
                      new UserModel
                      {
@@ -44,7 +46,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                return _repository.GetAll()
+                return _userRepo.GetAll()
                     .Where(a => a.AccountType.ToString().Contains(userType))
                     .Select(u =>
                            new UserModel
@@ -73,7 +75,7 @@ namespace HopeLine.Service.CoreServices
         /// <returns> all activities of mentor </returns>
         public IEnumerable<ActivityModel> GetMentorActivities(string mentorId)
         {
-            var activities = (_repository.Get(mentorId) as MentorAccount)
+            var activities = (_userRepo.Get(mentorId) as MentorAccount)
                .Activities
                 .Select(n => new ActivityModel
                 {
@@ -92,7 +94,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_repository.Get(mentorId) as MentorAccount)
+                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
@@ -124,7 +126,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var schedules = (_repository.Get(mentorId) as MentorAccount)
+                var schedules = (_userRepo.Get(mentorId) as MentorAccount)
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
@@ -156,19 +158,32 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<ActivityModel> GetUserActivities(string userId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+            var activities = (_userRepo.Get(mentorId) as UserAccount)
+               .Activities
+                .Select(n => new ActivityModel
+                {
+                    DateOfActivity = n.DateAdded.ToShortDateString(),
+                    Description = n.Description
+                });
+            return activities;
+                
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw new System.Exception("Unable to Process UserService", ex);
+            }
         }
 
         public IEnumerable<ConversationModel> GetUserConversations(string username)
         {
-            throw new System.NotImplementedException();
+            return _convoRepo.GetAll().Where(u=> u.Username == username)
+            .Select(c=>  new ConversationModel {
+            });
         }
-
-        public bool UpdateUserLogin(UserModel model, string password)
-        {
-            throw new System.NotImplementedException();
-        }
-
+        
         public bool UpdateUserProfile(UserModel model)
         {
             throw new System.NotImplementedException();
