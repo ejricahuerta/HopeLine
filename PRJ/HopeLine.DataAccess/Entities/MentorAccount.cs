@@ -22,5 +22,7 @@ namespace HopeLine.DataAccess.Entities
         public ICollection<Schedule> Schedules { get; set; }
         public ICollection<Conversation> Conversations { get; set; }
         public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
+
+        public Schedule Schedule { get; set; }
     }
 }

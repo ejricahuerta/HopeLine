@@ -1,4 +1,5 @@
 ﻿using HopeLine.Service.Models.Base;
+using System.Collections.Generic;
 
 namespace HopeLine.Service.Models
 {
@@ -9,6 +10,7 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class MapModel : BaseModel
     {
-
+        public ICollection<string> LocationNames { get; set; }
+        
     }
 }
