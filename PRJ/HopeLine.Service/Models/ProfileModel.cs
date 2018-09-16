@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HopeLine.Service.Models
 {
-    class ProfileModel : BaseModel
+    public class ProfileModel : BaseModel
     {
 
     }
