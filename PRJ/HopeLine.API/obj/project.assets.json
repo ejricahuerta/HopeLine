@@ -4646,8 +4646,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+<<<<<<< HEAD
           "HopeLine.DataAccess": "1.0.0",
           "HopeLine.Service": "1.0.0"
+=======
+          "HopeLine.DataAccess": "1.0.0"
+>>>>>>> api-controller
         },
         "compile": {
           "bin/placeholder/HopeLine.Security.dll": {}
@@ -12296,23 +12300,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\osori\\.nuget\\packages\\": {},
+>>>>>>> api-controller
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
       "projectName": "HopeLine.API",
       "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
       "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "projectName": "HopeLine.API",
+      "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\HopeLine.API.csproj",
+      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.API\\obj\\",
+>>>>>>> api-controller
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> api-controller
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12325,6 +12345,7 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
               "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             },
@@ -12336,6 +12357,19 @@
             },
             "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
               "projectPath": "C:\\Users\\ejricahuerta\\source\\repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
+=======
+            "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            },
+            "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
+            },
+            "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
+              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
+            },
+            "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
+              "projectPath": "C:\\Users\\osori\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
+>>>>>>> api-controller
             }
           }
         }

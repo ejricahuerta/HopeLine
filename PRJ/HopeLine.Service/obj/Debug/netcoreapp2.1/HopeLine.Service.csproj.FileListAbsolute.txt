@@ -1,0 +1,12 @@
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.deps.json
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.dll
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.Service.pdb
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csprojAssemblyReference.cache
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csproj.CoreCompileInputs.cache
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfoInputs.cache
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfo.cs
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csproj.CopyComplete
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.dll
+C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.pdb
