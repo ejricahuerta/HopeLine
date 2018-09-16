@@ -7,6 +7,10 @@ using System.Linq;
 
 namespace HopeLine.Service.CoreServices
 {
+
+    /// <summary>
+    /// This class is all user related functionalities and services
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly IRepository<HopeLineUser> _userRepo;
@@ -15,14 +19,21 @@ namespace HopeLine.Service.CoreServices
         public UserService(IRepository<HopeLineUser> userRepo, IRepository<Conversation> convoRepo)
         {
             _userRepo = userRepo;
-            convoRepo = convoRepo;
+            _convoRepo = convoRepo;
         }
+
+        /// <summary>
+        /// This function returns a list of user model class mapped from user entities repo
+        /// </summary>
+        /// <returns>A list of UserModel</returns>
         public IEnumerable<UserModel> GetAllUsers()
         {
             try
             {
-                return _userRepo.GetAll().Select(u =>
-
+                // For each user return a value
+                return _userRepo.GetAll()
+                    .Select(u =>
+                     //for each value map to user model
                      new UserModel
                      {
                          Id = u.Id,
@@ -37,18 +48,24 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-
+                //if any error, throw this
                 throw new System.Exception("Unable to process Service :", ex);
             }
         }
-
+        /// <summary>
+        ///  This function returns a list of user model class mapped from user entities repo for specified user type
+        /// </summary>
+        /// <param name="userType"></param>
+        /// <returns>a list of usermodel</returns>
         public IEnumerable<UserModel> GetAllUsersByAccountType(string userType)
         {
             try
             {
+                // for each value that has property value of this function param - userType
                 return _userRepo.GetAll()
-                    .Where(a => a.AccountType.ToString().Contains(userType))
-                    .Select(u =>
+                        .Where(a => a.AccountType.ToString().Contains(userType))
+                        .Select(u =>
+                           //for each value map to usermodel
                            new UserModel
                            {
                                Id = u.Id,
@@ -155,57 +172,70 @@ namespace HopeLine.Service.CoreServices
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public IEnumerable<ActivityModel> GetUserActivities(string userId)
         {
             try
             {
-            var activities = (_userRepo.Get(userId) as UserAccount)
-               .Activities
-                .Select(n => new ActivityModel
-                {
-                    DateOfActivity = n.DateAdded.ToShortDateString(),
-                    Description = n.Description
-                });
-            return activities;
-                
+                var activities = (_userRepo.Get(userId) as UserAccount)
+                   .Activities
+                    .Select(n => new ActivityModel
+                    {
+                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        Description = n.Description
+                    });
+                return activities;
+
             }
             catch (System.Exception ex)
             {
-                
-                throw new System.Exception("Unable to Process UserService", ex);
+
+                throw new System.Exception("Unable to Process UserService: ", ex);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public IEnumerable<ConversationModel> GetUserConversations(string username)
         {
             return _convoRepo.GetAll()
-                            .Where(u=> u.UserName == username)
-                            .Select(c=> new ConversationModel {
-                                Id  = c.Id,
+                            .Where(u => u.UserName == username)
+                            .Select(c => new ConversationModel
+                            {
+                                Id = c.Id,
                                 UserName = c.UserName,
                                 DateOfConversation = c.DateOfConversation,
                                 PIN = c.PIN,
                                 MentorId = c.Mentor.Id,
                                 Minutes = c.Minutes
-                            } );
+                            });
         }
 
         public bool UpdateUserProfile(UserModel model)
         {
-        try
-        {
-            var user = _userRepo.Get(model.Id);
-            if(model.Username != null
-                && model.FirstName != null 
-                && model.LastName != null && user != null) {
-                    
+            try
+            {
+                var user = _userRepo.Get(model.Id);
+                if (model.Username != null
+                    && model.FirstName != null
+                    && model.LastName != null && user != null)
+                {
+
                 }
-        }
-        catch (System.Exception)
-        {
-            
-            throw;
-        }
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+
+                //return false;
+                throw new System.Exception("Unable to Process User Service: ", ex);
+            }
         }
     }
 }
