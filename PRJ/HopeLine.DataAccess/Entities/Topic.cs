@@ -12,6 +12,11 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Topic : BaseEntity
     {
+        public Topic()
+        {
+            Name = "";
+            Description = "";
+        }
 
         [Required]
         public string Name { get; set; }

@@ -1,5 +1,5 @@
 ﻿using HopeLine.Service.Models.Base;
-using System;
+using System.Collections.Generic;
 
 namespace HopeLine.Service.Models
 {
@@ -10,12 +10,8 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class ScheduleModel : BaseModel
     {
-        public DateTime StartPeriod { get; set; }
-        public DateTime EndPeriod { get; set; }
-        public DateTime StarTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public ICollection<ShiftModel> ShiftModels { get; set; }
 
-        public DateTime LogoutTime { get; set; }
-        public float TotalHours { get; set; }
+        public string Notes { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace HopeLine.DataAccess.Entities
         [Required]
         public ICollection<Topic> Topics { get; set; }
 
+        [Required]
         public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
     }
 

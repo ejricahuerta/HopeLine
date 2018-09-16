@@ -1,7 +1,8 @@
 ﻿namespace HopeLine.DataAccess.Entities
 {
     /// <summary>
-    /// Admin account 
+    /// Admin account
+    /// Testing
     /// </summary>
     public class AdminAccount : HopeLineUser
     {
