@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+
     <Compile Remove="SignalR\**" />
     <EmbeddedResource Remove="SignalR\**" />
     <None Remove="SignalR\**" />
@@ -22,9 +22,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="2.1.3" />
-=======
     <Folder Include="SignalR\" />
->>>>>>> api-controller
+
   </ItemGroup>
 
   <!--Dependencies-->

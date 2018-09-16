@@ -9,3 +9,14 @@ C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreap
 C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs
 C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
 C:\Users\osori\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.deps.json
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.runtimeconfig.json
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.runtimeconfig.dev.json
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csprojAssemblyReference.cache
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfoInputs.cache
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\eosorio1\Source\Repos\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
