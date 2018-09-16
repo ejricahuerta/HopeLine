@@ -42,29 +42,29 @@ namespace HopeLine.Service.CoreServices
         //           });
         //        return conversations;
 
-            // try
-            //{
-            //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)
-            //        .Conversations.Select(c => new ConversationModel
-            //        {
-            //            Id = c.Id,
-            //            MentorId = c.Mentor.Id,
-            //            UserName = c.UserName,
-            //            DateOfConversation = c.DateOfConversation,
-            //            Minutes = c.Minutes,
-            //            PIN = c.PIN
+        // try
+        //{
+        //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+        //        .Conversations.Select(c => new ConversationModel
+        //        {
+        //            Id = c.Id,
+        //            MentorId = c.Mentor.Id,
+        //            UserName = c.UserName,
+        //            DateOfConversation = c.DateOfConversation,
+        //            Minutes = c.Minutes,
+        //            PIN = c.PIN
 
-            //        });
-            //    return conversations;
-            //}
-            //catch (System.Exception ex)
-            //{
+        //        });
+        //    return conversations;
+        //}
+        //catch (System.Exception ex)
+        //{
 
-            //    throw new System.Exception("Unable to process user service : ", ex);
-            //}
+        //    throw new System.Exception("Unable to process user service : ", ex);
+        //}
 
 
-public bool AddResources(ResourceModel resource)
+        public bool AddResources(ResourceModel resource)
         {
             try
             {
@@ -77,7 +77,7 @@ public bool AddResources(ResourceModel resource)
                 _resourceRepo.Insert(_resource);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
 
                 return false;
@@ -108,7 +108,7 @@ public bool AddResources(ResourceModel resource)
 
         public Map DefaultMap()
         {
-
+            throw new System.NotImplementedException();
         }
 
         public bool EditDefaultMap(MapModel map)
