@@ -29,9 +29,28 @@ namespace HopeLine.Service.CoreServices
 
         }
 
+        //var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+        //           .Conversations.Select(c => new ConversationModel
+        //           {
+        //               Id = c.Id,
+        //               MentorId = c.Mentor.Id,
+        //               UserName = c.UserName,
+        //               DateOfConversation = c.DateOfConversation,
+        //               Minutes = c.Minutes,
+        //               PIN = c.PIN
+
+        //           });
+        //        return conversations;
+
         public bool AddResources(ResourceModel resource)
         {
-            throw new System.NotImplementedException();
+            if(resource.Id != null &&
+                resource.Name != null &&
+                resource.Url != null)
+            {
+            }
+
+            return true; 
         }
 
         public bool AddResources(CommunityModel resource)
