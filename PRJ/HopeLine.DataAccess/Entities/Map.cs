@@ -1,6 +1,4 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -17,13 +15,13 @@ namespace HopeLine.DataAccess.Entities
             Radius = 0;
             YCoordinate = 0;
             XCoordinate = 0;
-            LocationNames = new List<string>();
+            // LocationNames = new List<string>();
         }
 
-        [Required]
-        [MinLength(2)]
-        [MaxLength(500)]
-        public ICollection<string> LocationNames { get; set; }
+        //[Required]
+        //[MinLength(2)]
+        //[MaxLength(500)]
+        //public ICollection<string> LocationNames { get; set; }
 
         public float XCoordinate { get; set; }
 
