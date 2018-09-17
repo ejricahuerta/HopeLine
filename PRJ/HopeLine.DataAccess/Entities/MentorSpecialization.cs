@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using HopeLine.DataAccess.Entities.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -6,8 +7,14 @@ namespace HopeLine.DataAccess.Entities
     /// <summary>
     /// this class allows the many to many rel for mentor and specialization
     /// </summary>
-    public class MentorSpecialization
+    public class MentorSpecialization : BaseEntity
+
+
     {
+
+        public MentorSpecialization()
+        {
+        }
         [Required]
         public string MentorAccountId { get; set; }
 

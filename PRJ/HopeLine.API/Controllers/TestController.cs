@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HopeLine.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HopeLine.API.Controllers
@@ -47,8 +42,14 @@ namespace HopeLine.API.Controllers
             }
             return BadRequest("Enter your api key");
 
+
         }
 
+        [HttpGet("mentorSpecializations")]
+        public IActionResult MentorSpecializations([FromQuery] string mentorId)
+        {
+            return Ok(_userService.GetMentorSpecializations(mentorId));
+        }
 
     }
 }
