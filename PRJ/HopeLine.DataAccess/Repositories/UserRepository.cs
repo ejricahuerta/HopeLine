@@ -43,17 +43,17 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public HopeLineUser Get(object id)
         {
-            return _entities.Include(p=>p.Profile).SingleOrDefault(u=> u.Id == id as string);
+            return _entities.Include(p => p.Profile).SingleOrDefault(u => u.Id == id as string);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<HopeLineUser> GetAll()
+        public IEnumerable<HopeLineUser> GetAll(string include = null)
         {
 
-            return _entities.Include(p => p.Profile).ToList();
+            return _entities.Include(p => p.Profile);
         }
 
         /// <summary>

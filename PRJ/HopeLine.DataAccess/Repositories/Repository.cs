@@ -51,9 +51,9 @@ namespace HopeLine.DataAccess.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string include = null)
         {
-            throw new System.NotImplementedException();
+            return _entities.Include(include);
         }
 
         /// <summary>
