@@ -19,6 +19,57 @@ namespace HopeLine.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("HopeLineUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HopeLineUserId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<DateTime>("DateOfConversation");
+
+                    b.Property<string>("MentorId")
+                        .IsRequired();
+
+                    b.Property<float>("Minutes");
+
+                    b.Property<string>("PIN")
+                        .IsRequired()
+                        .HasMaxLength(10);
+
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MentorId");
+
+                    b.ToTable("Conversations");
+                });
+
             modelBuilder.Entity("HopeLine.DataAccess.Entities.HopeLineUser", b =>
                 {
                     b.Property<string>("Id")
@@ -26,27 +77,20 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("AccountType")
-                        .IsRequired()
-                        .HasMaxLength(10);
+                    b.Property<int>("AccountType");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
                     b.Property<DateTime>("DateAdded");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -63,6 +107,8 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<int?>("ProfileId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -81,7 +127,156 @@ namespace HopeLine.DataAccess.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users");
+                    b.HasIndex("ProfileId");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("HopeLineUser");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ConversationId");
+
+                    b.Property<string>("CountryOrigin")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
+                {
+                    b.Property<string>("MentorAccountId");
+
+                    b.Property<int>("SpecializationId");
+
+                    b.HasKey("MentorAccountId", "SpecializationId");
+
+                    b.HasIndex("SpecializationId");
+
+                    b.ToTable("MentorSpecializations");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Profile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Profiles");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
+                {
+                    b.Property<int>("ProfileId");
+
+                    b.Property<int>("LanguageId");
+
+                    b.HasKey("ProfileId", "LanguageId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("ProfileLanguages");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Schedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<DateTime>("EndPeriod");
+
+                    b.Property<DateTime>("EndTime");
+
+                    b.Property<DateTime>("LogoutTime");
+
+                    b.Property<string>("MentorAccountId");
+
+                    b.Property<DateTime>("StarTime");
+
+                    b.Property<DateTime>("StartPeriod");
+
+                    b.Property<float>("TotalHours");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MentorAccountId");
+
+                    b.ToTable("Schedules");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Specialization", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specializations");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<int?>("SpecializationId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecializationId");
+
+                    b.ToTable("Topics");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -105,7 +300,7 @@ namespace HopeLine.DataAccess.Migrations
                         .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Roles");
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -125,7 +320,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -145,7 +340,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -163,7 +358,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -176,7 +371,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -191,7 +386,116 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.AdminAccount", b =>
+                {
+                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
+
+
+                    b.ToTable("AdminAccount");
+
+                    b.HasDiscriminator().HasValue("AdminAccount");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.GuestAccount", b =>
+                {
+                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
+
+
+                    b.ToTable("GuestAccount");
+
+                    b.HasDiscriminator().HasValue("GuestAccount");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>
+                {
+                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
+
+
+                    b.ToTable("MentorAccount");
+
+                    b.HasDiscriminator().HasValue("MentorAccount");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.UserAccount", b =>
+                {
+                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
+
+
+                    b.ToTable("UserAccount");
+
+                    b.HasDiscriminator().HasValue("UserAccount");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Activity", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.HopeLineUser")
+                        .WithMany("Activities")
+                        .HasForeignKey("HopeLineUserId");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.MentorAccount", "Mentor")
+                        .WithMany("Conversations")
+                        .HasForeignKey("MentorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.HopeLineUser", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
+                        .WithMany()
+                        .HasForeignKey("ProfileId");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Conversation")
+                        .WithMany("LanguageUsed")
+                        .HasForeignKey("ConversationId");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.MentorAccount", "MentorAccount")
+                        .WithMany("MentorSpecializations")
+                        .HasForeignKey("MentorAccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HopeLine.DataAccess.Entities.Specialization", "Specialization")
+                        .WithMany("MentorSpecializations")
+                        .HasForeignKey("SpecializationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.ProfileLanguage", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Language", "Language")
+                        .WithMany("ProfileLanguages")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
+                        .WithMany("ProfileLanguages")
+                        .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Schedule", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.MentorAccount")
+                        .WithMany("Schedules")
+                        .HasForeignKey("MentorAccountId");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Specialization")
+                        .WithMany("Topics")
+                        .HasForeignKey("SpecializationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

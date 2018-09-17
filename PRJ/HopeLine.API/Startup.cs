@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HopeLine.API.Hubs;
+using HopeLine.Security.Interfaces;
+using HopeLine.Security.Services;
+using HopeLine.Service.Configurations;
+using HopeLine.Service.CoreServices;
+using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace HopeLine.API
 {
-    public class Startup
+    public class
+        Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -25,15 +26,19 @@ namespace HopeLine.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureServiceExtension.AddConfiguration(services);
+
+
+            services.AddCors();
+            services.AddLogging();
+            services.AddSignalR();
+
+            services.AddSingleton<ITokenService, TokenService>();
+            services.AddTransient<IUserService, UserService>();
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //TODO : Add Dependency Injections
-
-            //services.AddTransient<interface,implementationClass>();
-
-            //TODO : Add SignalR
-
-            //TODO : Add JWT Config
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,8 +53,31 @@ namespace HopeLine.API
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseStatusCodePages(async context =>
+                {
+                    context.HttpContext.Response.ContentType = "application/json";
+                    await context.HttpContext.Response.WriteAsync(
+                        "Status code page, status code: " +
+                        context.HttpContext.Response.StatusCode);
+                });
+
+            app.UseCors(opt =>
+                opt.AllowAnyHeader()
+                    .AllowCredentials()
+                    .AllowAnyOrigin());
+
+            app.UseAuthentication();
             app.UseMvc();
+
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/chat");
+            });
+
+
+            ConfigureServiceExtension.UseConfiguration(app);
+
+
         }
     }
 }

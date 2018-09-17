@@ -1,15 +1,51 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+
+    <Compile Remove="SignalR\**" />
+    <EmbeddedResource Remove="SignalR\**" />
+    <None Remove="SignalR\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Configurations\SeedDatabase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configurations\ConfigureServiceExtension.cs~RF23f959.TMP" />
+    <None Remove="CoreServices\UserService.cs~RF1fdcdc.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SignalR\" />
+
     <Folder Include="SignalR\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.4" />
+  </ItemGroup>
+
+  <!--Dependencies-->
+  <ItemGroup>
     <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Authentication.JwtBearer">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authentication.jwtbearer\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.identitymodel.tokens\5.2.0\lib\netstandard1.4\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.identitymodel.tokens.jwt\5.2.0\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
