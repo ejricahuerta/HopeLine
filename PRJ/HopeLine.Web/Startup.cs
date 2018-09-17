@@ -50,11 +50,11 @@ namespace HopeLine.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
             app.UseAuthentication();
+            app.UseHttpsRedirection();
+            app.UseCookiePolicy();
+            app.UseStaticFiles();
+
 
             app.UseMvc();
             ConfigureServiceExtension.UseConfiguration(app);
