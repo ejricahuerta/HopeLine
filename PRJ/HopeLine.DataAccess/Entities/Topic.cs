@@ -14,14 +14,12 @@ namespace HopeLine.DataAccess.Entities
     {
         public Topic()
         {
-            Name = "";
-            Description = "";
         }
 
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        [StringLength(500)]
         public string Description { get; set; }
     }
 }

@@ -270,7 +270,7 @@ namespace HopeLine.Service.CoreServices
                     user.Profile.FirstName = model.FirstName;
                     user.Profile.LastName = model.LastName;
                     _userRepo.Update(user);
-                    _unitOfWork.Save();
+                    _unitOfWork.SaveAsync();
                 }
                 return true;
             }

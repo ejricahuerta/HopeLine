@@ -259,7 +259,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(200);
 
                     b.Property<string>("Name")
@@ -280,7 +279,7 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
                         .IsRequired();

@@ -79,7 +79,12 @@ namespace HopeLine.Service.Configurations
                     };
 
                 });
+
+
+            //all interface and implementation
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         }
 

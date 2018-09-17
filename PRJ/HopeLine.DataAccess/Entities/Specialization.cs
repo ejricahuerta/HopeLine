@@ -20,7 +20,6 @@ namespace HopeLine.DataAccess.Entities
         [StringLength(40)]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(200)]
         public string Description { get; set; }
 
