@@ -2,7 +2,6 @@
 using HopeLine.DataAccess.Entities.Base;
 using HopeLine.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 
 namespace HopeLine.DataAccess.Repositories
@@ -55,7 +54,7 @@ namespace HopeLine.DataAccess.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CommonEntity> GetAll()
+        public IEnumerable<CommonEntity> GetAll(string include = null)
         {
             return _entities;
         }

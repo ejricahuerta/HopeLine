@@ -40,6 +40,27 @@ namespace HopeLine.DataAccess.Migrations
                     b.ToTable("Activities");
                 });
 
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Base.Shift", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<DateTime>("EndTime");
+
+                    b.Property<int?>("ScheduleId");
+
+                    b.Property<DateTime>("StartTime");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScheduleId");
+
+                    b.ToTable("Shift");
+                });
+
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
                 {
                     b.Property<int>("Id")
@@ -165,6 +186,10 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<int>("SpecializationId");
 
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<int>("Id");
+
                     b.HasKey("MentorAccountId", "SpecializationId");
 
                     b.HasIndex("SpecializationId");
@@ -212,21 +237,11 @@ namespace HopeLine.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Available");
+
                     b.Property<DateTime>("DateAdded");
 
-                    b.Property<DateTime>("EndPeriod");
-
-                    b.Property<DateTime>("EndTime");
-
-                    b.Property<DateTime>("LogoutTime");
-
                     b.Property<string>("MentorAccountId");
-
-                    b.Property<DateTime>("StarTime");
-
-                    b.Property<DateTime>("StartPeriod");
-
-                    b.Property<float>("TotalHours");
 
                     b.HasKey("Id");
 
@@ -413,6 +428,9 @@ namespace HopeLine.DataAccess.Migrations
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
 
+                    b.Property<int?>("ScheduleId");
+
+                    b.HasIndex("ScheduleId");
 
                     b.ToTable("MentorAccount");
 
@@ -434,6 +452,13 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasOne("HopeLine.DataAccess.Entities.HopeLineUser")
                         .WithMany("Activities")
                         .HasForeignKey("HopeLineUserId");
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.Base.Shift", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Schedule")
+                        .WithMany("Shifts")
+                        .HasForeignKey("ScheduleId");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
@@ -541,6 +566,13 @@ namespace HopeLine.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>
+                {
+                    b.HasOne("HopeLine.DataAccess.Entities.Schedule", "Schedule")
+                        .WithMany()
+                        .HasForeignKey("ScheduleId");
                 });
 #pragma warning restore 612, 618
         }

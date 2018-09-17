@@ -1,5 +1,4 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
-using System;
 using System.Collections.Generic;
 
 namespace HopeLine.DataAccess.Entities
@@ -14,10 +13,9 @@ namespace HopeLine.DataAccess.Entities
     {
         //TODO : need to decide about this class func - Eduardo
 
-        public bool Availible { get; set; }
+        public bool Available { get; set; }
 
         public ICollection<Shift> Shifts { get; set; }
 
-        public string Notes { get; set; }
     }
 }

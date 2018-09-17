@@ -13,13 +13,19 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class UserService : IUserService
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _convoRepo;
+        private readonly IRepository<MentorSpecialization> _specializationRepo;
 
-        public UserService(IRepository<HopeLineUser> userRepo, IRepository<Conversation> convoRepo)
+        public UserService(IUnitOfWork unitOfWork, IRepository<HopeLineUser> userRepo,
+                            IRepository<Conversation> convoRepo,
+                            IRepository<MentorSpecialization> specializationRepo)
         {
+            _unitOfWork = unitOfWork;
             _userRepo = userRepo;
             _convoRepo = convoRepo;
+            _specializationRepo = specializationRepo;
         }
 
         /// <summary>
@@ -49,7 +55,9 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
                 //if any error, throw this
-                throw new System.Exception("Unable to process Service :", ex);
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
             }
         }
         /// <summary>
@@ -81,7 +89,9 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
 
-                throw new System.Exception("Unable to process Service :", ex);
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
             }
 
         }
@@ -92,14 +102,24 @@ namespace HopeLine.Service.CoreServices
         /// <returns> all activities of mentor </returns>
         public IEnumerable<ActivityModel> GetMentorActivities(string mentorId)
         {
-            var activities = (_userRepo.Get(mentorId) as MentorAccount)
-               .Activities
-                .Select(n => new ActivityModel
-                {
-                    DateOfActivity = n.DateAdded.ToShortDateString(),
-                    Description = n.Description
-                });
-            return activities;
+            try
+            {
+                var activities = (_userRepo.Get(mentorId) as MentorAccount)
+                   .Activities
+                    .Select(n => new ActivityModel
+                    {
+                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        Description = n.Description
+                    });
+                return activities;
+
+            }
+            catch (System.Exception ex)
+            {
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
+            }
         }
 
         /// <summary>
@@ -127,7 +147,9 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
 
-                throw new System.Exception("Unable to process user service : ", ex);
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
             }
 
         }
@@ -146,8 +168,8 @@ namespace HopeLine.Service.CoreServices
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
-                        // TODO :  needed to be refactored
-                       
+                        //
+
                     });
                 return schedules;
             }
@@ -161,7 +183,23 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<SpecializationModel> GetMentorSpecializations(string mentorId)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var specializations = _specializationRepo.GetAll("Specialization").Where(m => m.MentorAccountId == mentorId).Select(s => new SpecializationModel
+                {
+                    Id = s.SpecializationId,
+                    Description = s.Specialization.Description,
+                    Name = s.Specialization.Name
+                });
+
+                return specializations;
+            }
+            catch (System.Exception ex)
+            {
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
+            }
         }
 
         /// <summary>
@@ -185,8 +223,9 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-
-                throw new System.Exception("Unable to Process UserService: ", ex);
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
             }
         }
         /// <summary>
@@ -196,17 +235,27 @@ namespace HopeLine.Service.CoreServices
         /// <returns></returns>
         public IEnumerable<ConversationModel> GetUserConversations(string username)
         {
-            return _convoRepo.GetAll()
-                            .Where(u => u.UserName == username)
-                            .Select(c => new ConversationModel
-                            {
-                                Id = c.Id,
-                                UserName = c.UserName,
-                                DateOfConversation = c.DateOfConversation,
-                                PIN = c.PIN,
-                                MentorId = c.Mentor.Id,
-                                Minutes = c.Minutes
-                            });
+            try
+            {
+
+                return _convoRepo.GetAll()
+                                .Where(u => u.UserName == username)
+                                .Select(c => new ConversationModel
+                                {
+                                    Id = c.Id,
+                                    UserName = c.UserName,
+                                    DateOfConversation = c.DateOfConversation,
+                                    PIN = c.PIN,
+                                    MentorId = c.Mentor.Id,
+                                    Minutes = c.Minutes
+                                });
+            }
+            catch (System.Exception ex)
+            {
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return null;
+            }
         }
 
         public bool UpdateUserProfile(UserModel model)
@@ -218,15 +267,19 @@ namespace HopeLine.Service.CoreServices
                     && model.FirstName != null
                     && model.LastName != null && user != null)
                 {
-
+                    user.Profile.FirstName = model.FirstName;
+                    user.Profile.LastName = model.LastName;
+                    _userRepo.Update(user);
+                    _unitOfWork.Save();
                 }
                 return true;
             }
             catch (System.Exception ex)
             {
 
-                //return false;
-                throw new System.Exception("Unable to Process User Service: ", ex);
+                //throw new System.Exception("Unable to process Service :", ex);
+                System.Console.WriteLine("Unable to process Service :", ex);
+                return false;
             }
         }
     }

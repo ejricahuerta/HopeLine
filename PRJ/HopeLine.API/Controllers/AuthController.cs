@@ -3,9 +3,6 @@ using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -58,13 +55,14 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new UserAccount
+                var user = new MentorAccount
                 {
                     Profile = new Profile
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName
                     },
+
 
                     UserName = model.Username,
                     Email = model.Username

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace HopeLine.DataAccess.Interfaces
 {
@@ -7,7 +6,7 @@ namespace HopeLine.DataAccess.Interfaces
     //TODO : add implementation
     public interface IRepository<T>
     {
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string include = null);
         void Insert(T obj);
         void Update(T obj);
 
