@@ -3,6 +3,7 @@ using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 namespace HopeLine.DataAccess.DatabaseContexts
 {
 
@@ -101,6 +102,11 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public void Save()
         {
             SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await SaveAsync();
         }
     }
 }
