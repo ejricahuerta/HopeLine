@@ -1,9 +1,7 @@
 ﻿
 using HopeLine.DataAccess.Entities;
-using HopeLine.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 namespace HopeLine.DataAccess.DatabaseContexts
 {
 
@@ -12,7 +10,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
     /// <summary>
     /// 
     /// </summary>
-    public class HopeLineDbContext : IdentityDbContext<HopeLineUser>, IUnitOfWork
+    public class HopeLineDbContext : IdentityDbContext<HopeLineUser>
     {
         public HopeLineDbContext()
         {
@@ -97,16 +95,6 @@ namespace HopeLine.DataAccess.DatabaseContexts
                 HasForeignKey(s => s.SpecializationId);
 
             #endregion
-        }
-
-        public void Save()
-        {
-            SaveChanges();
-        }
-
-        public async Task SaveAsync()
-        {
-            await SaveAsync();
         }
     }
 }

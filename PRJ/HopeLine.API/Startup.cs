@@ -38,7 +38,7 @@ namespace HopeLine.API
             services.AddSingleton<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IUnitOfWork>();
+
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
