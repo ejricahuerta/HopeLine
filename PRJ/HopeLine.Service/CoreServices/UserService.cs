@@ -146,16 +146,8 @@ namespace HopeLine.Service.CoreServices
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
-
-
                         // TODO :  needed to be refactored
-                        Id = s.Id,
-                        StarTime = s.StarTime,
-                        StartPeriod = s.StartPeriod,
-                        EndPeriod = s.EndPeriod,
-                        EndTime = s.EndTime,
-                        LogoutTime = s.LogoutTime,
-                        TotalHours = s.TotalHours
+                       
                     });
                 return schedules;
             }

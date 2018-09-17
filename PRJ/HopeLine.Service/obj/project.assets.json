@@ -61,22 +61,6 @@
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/2.1.2": {
-<<<<<<< HEAD
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Authentication": "2.1.2",
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.2.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Authorization/2.1.1": {
-=======
->>>>>>> master
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication": "2.1.2",
@@ -559,8 +543,6 @@
           "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
-<<<<<<< HEAD
-=======
       "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
         "type": "package",
         "dependencies": {
@@ -575,7 +557,6 @@
           "lib/netstandard1.4/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         }
       },
->>>>>>> master
       "Microsoft.IdentityModel.Logging/5.2.4": {
         "type": "package",
         "dependencies": {
@@ -1207,11 +1188,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-<<<<<<< HEAD
-          "ref/netstandard1.3/_._": {}
-=======
           "ref/netstandard1.3/System.Collections.NonGeneric.dll": {}
->>>>>>> master
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
@@ -1235,8 +1212,6 @@
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
         }
       },
-<<<<<<< HEAD
-=======
       "System.ComponentModel/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1249,7 +1224,6 @@
           "lib/netstandard1.3/System.ComponentModel.dll": {}
         }
       },
->>>>>>> master
       "System.ComponentModel.Annotations/4.5.0": {
         "type": "package",
         "compile": {
@@ -1325,21 +1299,6 @@
         }
       },
       "System.Diagnostics.Contracts/4.3.0": {
-<<<<<<< HEAD
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.0/System.Diagnostics.Contracts.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/System.Diagnostics.Contracts.dll": {}
-        }
-      },
-      "System.Diagnostics.Debug/4.3.0": {
-=======
->>>>>>> master
         "type": "package",
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -1470,44 +1429,6 @@
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "5.2.4",
           "Microsoft.IdentityModel.Tokens": "5.2.4",
-          "NETStandard.Library": "1.6.1",
-          "Newtonsoft.Json": "10.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
-        }
-      },
-      "System.Globalization.Extensions/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "1.1.0",
-          "System.Globalization": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Runtime.InteropServices": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/_._": {}
-        },
-        "runtimeTargets": {
-          "runtimes/unix/lib/netstandard1.3/System.Globalization.Extensions.dll": {
-            "assetType": "runtime",
-            "rid": "unix"
-          },
-          "runtimes/win/lib/netstandard1.3/System.Globalization.Extensions.dll": {
-            "assetType": "runtime",
-            "rid": "win"
-          }
-        }
-      },
-      "System.IdentityModel.Tokens.Jwt/5.2.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "5.2.0",
           "NETStandard.Library": "1.6.1",
           "Newtonsoft.Json": "10.0.1"
         },
@@ -1956,8 +1877,6 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
-<<<<<<< HEAD
-=======
       "System.Runtime.Serialization.Formatters/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1974,7 +1893,6 @@
           "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
         }
       },
->>>>>>> master
       "System.Runtime.Serialization.Primitives/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2494,37 +2412,6 @@
         }
       },
       "System.Xml.XmlSerializer/4.3.0": {
-<<<<<<< HEAD
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Emit": "4.3.0",
-          "System.Reflection.Emit.ILGeneration": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Reflection.Primitives": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0",
-          "System.Text.RegularExpressions": "4.3.0",
-          "System.Threading": "4.3.0",
-          "System.Xml.ReaderWriter": "4.3.0",
-          "System.Xml.XmlDocument": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.3/_._": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
-        }
-      },
-      "System.Xml.XPath/4.3.0": {
-=======
->>>>>>> master
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -2571,21 +2458,6 @@
     }
   },
   "libraries": {
-<<<<<<< HEAD
-    "Microsoft.AspNetCore.Antiforgery/2.1.1": {
-      "sha512": "BKDp2thf1k3Q2XBSIxC0TvHLvGFOr3ga3DdsxOJNTQ2MEvCuqlNFAoBxXIXWtvP9EHNfLbmKA0+VF7nBqXTlYg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.antiforgery/2.1.1",
-      "files": [
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Antiforgery.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Antiforgery.xml",
-        "microsoft.aspnetcore.antiforgery.2.1.1.nupkg.sha512",
-        "microsoft.aspnetcore.antiforgery.nuspec"
-      ]
-    },
-=======
->>>>>>> master
     "Microsoft.AspNetCore.Authentication/2.1.2": {
       "sha512": "MXbDTincCKqkrrMF5P8nhjvmXA1yL1mHj8yPJ32wfBkfkLZfV0EhIp/MGKupiVyqsAhjAk0NL9cPslcyvBsQkg==",
       "type": "package",
@@ -2636,45 +2508,6 @@
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/2.1.2": {
       "sha512": "vgcgF9LTaFX3NmHwJ1otE21uUeXAgmNzGu6FCbTclJuxXAN0+B1USvqW+M3eaDKq+KbP7EYtzYgrSXZJnBRUyg==",
-<<<<<<< HEAD
-      "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/2.1.2",
-      "files": [
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.2.1.2.nupkg.sha512",
-        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Authorization/2.1.1": {
-      "sha512": "z/5haIkI/G2NcCMO288l6l7Jy3BDqzZjHLb2VxjCfj4NKRVv6KlsDD7nGIyAtAbDVKnbOsGBXF6xwhyo4aFGBw==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.authorization/2.1.1",
-      "files": [
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
-        "microsoft.aspnetcore.authorization.2.1.1.nupkg.sha512",
-        "microsoft.aspnetcore.authorization.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Authorization.Policy/2.1.1": {
-      "sha512": "ipuhLj35k90+q6GbBuJaouPDLGwaJilBUUE+y0rtGL+yncCtA1gYFrs3jZ+tRX/zNqlVtlAb1u7wXm5NJ/TkQw==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.authorization.policy/2.1.1",
-      "files": [
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.Policy.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.Policy.xml",
-        "microsoft.aspnetcore.authorization.policy.2.1.1.nupkg.sha512",
-        "microsoft.aspnetcore.authorization.policy.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Cors/2.1.1": {
-      "sha512": "ajz3/gjo4OYDFId5nJUrBAYJhKW3sJrK5+dLJ3ynTuVyGwY5me3QICukzMeADSKNV+JapSrPKLXIythHwDrQjA==",
-=======
->>>>>>> master
       "type": "package",
       "path": "microsoft.aspnetcore.authentication.jwtbearer/2.1.2",
       "files": [
@@ -3193,8 +3026,6 @@
         "microsoft.extensions.webencoders.nuspec"
       ]
     },
-<<<<<<< HEAD
-=======
     "Microsoft.IdentityModel.JsonWebTokens/5.2.4": {
       "sha512": "dz0b6+wYxvWeTj5jIBrNM7PqyPMxws5kBjnbacpRySePD6pEBxikGK9qblGgOzWsahlnpKDjoiunlqSFmXFLNQ==",
       "type": "package",
@@ -3214,7 +3045,6 @@
         "microsoft.identitymodel.jsonwebtokens.nuspec"
       ]
     },
->>>>>>> master
     "Microsoft.IdentityModel.Logging/5.2.4": {
       "sha512": "ftwC4hEI/LpKxgyXPvwWMSbd/GbhliWDIA90niq8SY8RtFw1hnJJ9f/7YiMQ96c0ibwGT2WEbS4IzvVFmhaiwA==",
       "type": "package",
@@ -4258,11 +4088,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
-=======
       "sha512": "T6cNz6qLH67PH9TTbUnSUVuIvWSTNMNaAs16lvnalnPBFOPutRi2tBvLPbcotkWEIi2v+OOdtcEiddtHfn7Z1A==",
->>>>>>> master
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -4299,11 +4125,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
-=======
       "sha512": "fPw//Z779nZA9XlKBG2fpM23PP4XVJWvqoE6Be7P1Zim4sWWSM6PWrZM2v5m52uz27OzFuOW577WXmuHP9JPvA==",
->>>>>>> master
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -4339,8 +4161,6 @@
         "system.collections.specialized.nuspec"
       ]
     },
-<<<<<<< HEAD
-=======
     "System.ComponentModel/4.3.0": {
       "sha512": "DE8LHrsH1nNOaevz/j2plJxGKKjGsfUGpkSUew4pxhn9r12/huDY0th+J+7fXCQogSugWQAoLcp6xRksgta26g==",
       "type": "package",
@@ -4398,7 +4218,6 @@
         "system.componentmodel.nuspec"
       ]
     },
->>>>>>> master
     "System.ComponentModel.Annotations/4.5.0": {
       "sha512": "IjDa643EO77A4CL9dhxfZ6zzGu+pM8Ar0NYPRMN3TvDiga4uGDzFHOj/ArpyNxxKyO5IFT2LZ0rK3kUog7g3jA==",
       "type": "package",
@@ -4649,11 +4468,7 @@
       ]
     },
     "System.Diagnostics.Contracts/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
-=======
       "sha512": "FepSdsKw8W8PjoiwgI0VKztSKpHX8MEWcLYs1ONZJ+vSuuweQbwVRSL6qU++YEX3BXCZehiKIbn4Velt7hQQ2g==",
->>>>>>> master
       "type": "package",
       "path": "system.diagnostics.contracts/4.3.0",
       "files": [
@@ -5115,11 +4930,7 @@
       ]
     },
     "System.Globalization.Extensions/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
-=======
       "sha512": "bqohc981OwpDRcO914ylL+hj+5lkauuBesE1PYANEy7lh7XdhVMP3eOyQFCpwaZmFRWMkVvyudbGUj6noHPmPA==",
->>>>>>> master
       "type": "package",
       "path": "system.globalization.extensions/4.3.0",
       "files": [
@@ -5157,20 +4968,6 @@
         "system.globalization.extensions.nuspec"
       ]
     },
-<<<<<<< HEAD
-    "System.IdentityModel.Tokens.Jwt/5.2.0": {
-      "sha512": "E8tNMfMWPvlSF5fvmMIVZZHlGuIZzE5uktuR+GN2gFdngh0k6xoZquxfjKC02d0NqfsshNQVTCdSKXD5e9/lpA==",
-      "type": "package",
-      "path": "system.identitymodel.tokens.jwt/5.2.0",
-      "files": [
-        "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/net45/System.IdentityModel.Tokens.Jwt.xml",
-        "lib/net451/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/net451/System.IdentityModel.Tokens.Jwt.xml",
-        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll",
-        "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.5.2.0.nupkg.sha512",
-=======
     "System.IdentityModel.Tokens.Jwt/5.2.4": {
       "sha512": "pZ9xqpsL5yT5Yl+rBj9iHm2K++gKEqsQ+1vLQU9aFKDIc9ELZsaxApVqkujH62TG0oFLt8gFPH12n/zjaVWgYA==",
       "type": "package",
@@ -5187,7 +4984,6 @@
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.pdb",
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml",
         "system.identitymodel.tokens.jwt.5.2.4.nupkg.sha512",
->>>>>>> master
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -5594,11 +5390,7 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
-=======
       "sha512": "pXXlXr8MURkBY+1QVNXWQ0N5oojDSJlm+SuTPS75MkmHALCTir9HwMD42ue8Hg+e31qsNoLBxWfXflT5J2Tzdw==",
->>>>>>> master
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
@@ -5678,11 +5470,7 @@
       ]
     },
     "System.Net.Primitives/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "qOu+hDwFwoZPbzPvwut2qATe3ygjeQBDQj91xlsaqGFQUI5i4ZnZb8yyQuLGpDGivEPIt8EJkd1BVzVoP31FXA==",
-=======
       "sha512": "YaUeun3fm6mQ0NARRC9JZz2RFagSG3JS5mTfZNIv3dSZvLqqKmNN4AhxUyjigC9SFEC3ZMl6KgDJS54XhbEjWg==",
->>>>>>> master
       "type": "package",
       "path": "system.net.primitives/4.3.0",
       "files": [
@@ -6577,11 +6365,7 @@
       ]
     },
     "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "cbz4YJMqRDR7oLeMRbdYv7mYzc++17lNhScCX0goO2XpGWdvAt60CGN+FHdePUEHCe/Jy9jUlvNAiNdM+7jsOw==",
-=======
       "sha512": "fAa5fm9Chb2XaAbGMtifXKKI+NuR9+KT4FV6bJK9PiwVsbXA9ASyjEO/6levkF5uMEGN7KUF/rr88808fIyaQg==",
->>>>>>> master
       "type": "package",
       "path": "system.runtime.interopservices.runtimeinformation/4.3.0",
       "files": [
@@ -6668,10 +6452,6 @@
         "system.runtime.numerics.nuspec"
       ]
     },
-<<<<<<< HEAD
-    "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
-=======
     "System.Runtime.Serialization.Formatters/4.3.0": {
       "sha512": "KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
       "type": "package",
@@ -6701,7 +6481,6 @@
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
       "sha512": "camvIKI9Kc+k4Ep5h4V3ADDAM5t97g/dJU/ZHT3v+Dbd61grN/b/npOTsO0xuHuClBfCP2APZYN2KgFLjVckPw==",
->>>>>>> master
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
@@ -6883,11 +6662,7 @@
       ]
     },
     "System.Security.Claims/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "P/+BR/2lnc4PNDHt/TPBAWHVMLMRHsyYZbU1NphW4HIWzCggz8mJbTQQ3MKljFE7LS3WagmVFuBgoLcFzYXlkA==",
-=======
       "sha512": "Tx4UwyBszUzy4ML/sDtrC9nZFnRj2ThBLPoWdCXVpUkUJT+9Jzxzt6gn8wciUOnk5ruowhcG/BAZ5TCbWN2S8Q==",
->>>>>>> master
       "type": "package",
       "path": "system.security.claims/4.3.0",
       "files": [
@@ -7261,11 +7036,7 @@
       ]
     },
     "System.Security.Principal/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "I1tkfQlAoMM2URscUtpcRo/hX0jinXx6a/KUtEQoz3owaYwl3qwsO8cbzYVVnjxrzxjHo3nJC+62uolgeGIS9A==",
-=======
       "sha512": "sb/Q5N+EpYh4kLQB+Po9R2XhkBN/TsBonwCyAImQsLxG7fhQkkg4BHC9KpzHWz0V/BqvNP8MiyovwuFQC8xAvA==",
->>>>>>> master
       "type": "package",
       "path": "system.security.principal/4.3.0",
       "files": [
@@ -7969,78 +7740,6 @@
     },
     "System.Xml.XmlSerializer/4.3.0": {
       "sha512": "MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
-<<<<<<< HEAD
-      "type": "package",
-      "path": "system.xml.xmlserializer/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/_._",
-        "lib/netcore50/System.Xml.XmlSerializer.dll",
-        "lib/netstandard1.3/System.Xml.XmlSerializer.dll",
-        "lib/portable-net45+win8+wp8+wpa81/_._",
-        "lib/win8/_._",
-        "lib/wp80/_._",
-        "lib/wpa81/_._",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/_._",
-        "ref/netcore50/System.Xml.XmlSerializer.dll",
-        "ref/netcore50/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/de/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/es/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/fr/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/it/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/ja/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/ko/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/ru/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/zh-hans/System.Xml.XmlSerializer.xml",
-        "ref/netcore50/zh-hant/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/System.Xml.XmlSerializer.dll",
-        "ref/netstandard1.0/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/de/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/es/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/fr/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/it/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/ja/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/ko/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/ru/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/zh-hans/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.0/zh-hant/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/System.Xml.XmlSerializer.dll",
-        "ref/netstandard1.3/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/de/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/es/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/fr/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/it/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/ja/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/ko/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/ru/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/zh-hans/System.Xml.XmlSerializer.xml",
-        "ref/netstandard1.3/zh-hant/System.Xml.XmlSerializer.xml",
-        "ref/portable-net45+win8+wp8+wpa81/_._",
-        "ref/win8/_._",
-        "ref/wp80/_._",
-        "ref/wpa81/_._",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll",
-        "system.xml.xmlserializer.4.3.0.nupkg.sha512",
-        "system.xml.xmlserializer.nuspec"
-      ]
-    },
-    "System.Xml.XPath/4.3.0": {
-      "sha512": "v1JQ5SETnQusqmS3RwStF7vwQ3L02imIzl++sewmt23VGygix04pEH+FCj1yWb+z4GDzKiljr1W7Wfvrx0YwgA==",
-=======
->>>>>>> master
       "type": "package",
       "path": "system.xml.xmlserializer/4.3.0",
       "files": [
@@ -8117,18 +7816,6 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "HopeLine.DataAccess >= 1.0.0",
-<<<<<<< HEAD
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 2.1.2",
-      "Microsoft.AspNetCore.Identity.UI >= 2.1.3",
-      "Microsoft.IdentityModel.Tokens >= 5.2.4",
-      "Microsoft.NETCore.App >= 2.1.0"
-    ]
-  },
-  "packageFolders": {
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
-=======
       "Microsoft.AspNetCore.Authentication >= 2.1.2",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0",
@@ -8138,27 +7825,10 @@
   "packageFolders": {
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
->>>>>>> master
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "projectName": "HopeLine.Service",
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
       "projectName": "HopeLine.Service",
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
@@ -8170,7 +7840,6 @@
       ],
       "configFilePaths": [
         "/home/exd/.nuget/NuGet/NuGet.Config"
->>>>>>> master
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -8181,13 +7850,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-=======
             "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj": {
               "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj"
->>>>>>> master
             }
           }
         }
@@ -8201,25 +7865,13 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
-<<<<<<< HEAD
-          "Microsoft.AspNetCore.Authentication.JwtBearer": {
-            "target": "Package",
-            "version": "[2.1.2, )"
-          },
-          "Microsoft.AspNetCore.Identity.UI": {
-=======
           "Microsoft.AspNetCore.Authentication": {
->>>>>>> master
             "target": "Package",
             "version": "[2.1.2, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[2.1.2, )"
-          },
-          "Microsoft.IdentityModel.Tokens": {
-            "target": "Package",
-            "version": "[5.2.4, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
