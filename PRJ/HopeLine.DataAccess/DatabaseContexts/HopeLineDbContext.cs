@@ -1,6 +1,5 @@
 ﻿
 using HopeLine.DataAccess.Entities;
-using HopeLine.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 namespace HopeLine.DataAccess.DatabaseContexts
@@ -11,7 +10,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
     /// <summary>
     /// 
     /// </summary>
-    public class HopeLineDbContext : IdentityDbContext<HopeLineUser>, IUnitOfWork
+    public class HopeLineDbContext : IdentityDbContext<HopeLineUser>
     {
         public HopeLineDbContext()
         {
@@ -97,6 +96,5 @@ namespace HopeLine.DataAccess.DatabaseContexts
 
             #endregion
         }
-
     }
 }
