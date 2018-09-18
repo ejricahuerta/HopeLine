@@ -28,7 +28,7 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Username.Length < 5)
+                if (model.Username.Length < 6)
                 {
                     return UnprocessableEntity("Username Invalid...");
                 }
