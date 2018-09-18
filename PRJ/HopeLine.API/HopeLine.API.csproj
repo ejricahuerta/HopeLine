@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Controllers\AuthController.cs~RF11aedb.TMP" />
     <None Remove="Controllers\AuthController.cs~RF15de63.TMP" />
     <None Remove="Controllers\AuthController.cs~RF1f20ee.TMP" />
@@ -12,10 +19,6 @@
     <None Remove="Startup.cs~RF15559b.TMP" />
     <None Remove="Startup.cs~RF247be7.TMP" />
     <None Remove="Startup.cs~RF2834a9.TMP" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>

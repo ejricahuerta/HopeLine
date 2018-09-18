@@ -28,6 +28,16 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (model.Username.Length < 5)
+                {
+                    return UnprocessableEntity("Username Invalid...");
+                }
+
+                if (model.IsGuest == false && model.Password.Length < 6)
+                {
+                    return UnprocessableEntity("Password Invalid...");
+                }
+
                 var token = await _tokenService.SignInUser(model.Username, model.Password, model.IsGuest);
 
                 if (token != null)
@@ -38,12 +48,20 @@ namespace HopeLine.API.Controllers
             return BadRequest("Unable to Login...");
         }
 
-
         [HttpPost]
         public IActionResult Register([FromBody] RegisterModel model)
         {
             if (ModelState.IsValid)
             {
+
+                if (model.FirstName == null &&
+                    model.LastName == null &&
+                    model.FirstName.Length < 2 &&
+                    model.LastName.Length < 2)
+                {
+                    return UnprocessableEntity("Invalid Name...");
+                }
+
                 return Ok(_tokenService.RegisterUser(model));
             }
             return BadRequest("Unable to Process Registration...");
