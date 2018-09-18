@@ -8,16 +8,18 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/main.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,47 +39,137 @@
                 <partial name="_LoginPartial" />
             </div>
         </div>
+    </nav>-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div id="headerMenu" class="container">
+            
+                
+                <a asp-page="/Index" class="navbar-brand">HopeLine</a>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="TalkToMentor/TalkToMentor.html">Talk to Mentor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="Map/Map.html">Map</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="Resources/Resources.html">Resources</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="Community/Community.html">Community</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            
+        </div>
     </nav>
 
     <partial name="_CookieConsentPartial" />
 
+
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2018 - HopeLine.Web</p>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 footer-col">
+                        <div class="logofooter"> Contact</div>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                            the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
+                        </p>
+                        <p>
+                            <i class="fa fa-map-pin"></i> #228, Tiruvannamalai, Tamilnadu, India
+                        </p>
+                        <p>
+                            <i class="fa fa-phone"></i> Phone : +91 9999 999 999
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope"></i> E-mail : info@prabuuideveloper.com
+                        </p>
+
+                    </div>
+                    <div class="col-md-4 col-sm-6 footer-col">
+                        <h6 class="heading7">About Us</h6>
+                        <div class="post">
+                            <p>
+                                facebook crack the movie advertisment code:what it means for you
+                                <span>August 3,2015</span>
+                            </p>
+                            <p>
+                                facebook crack the movie advertisment code:what it means for you
+                                <span>August 3,2015</span>
+                            </p>
+                            <p>
+                                facebook crack the movie advertisment code:what it means for you
+                                <span>August 3,2015</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 footer-col">
+                        <h6 class="heading7">Social Media</h6>
+                        <ul class="footer-social">
+                            <li>
+                                <a href="www.linkedin.com"><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i>
+                            </li>
+                            <li>
+                                <i class="fa fa-google-plus social-icon google" aria-hidden="true"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p id="demo" class="copyright"></p>
+                </div>
+            </div>
         </footer>
     </div>
 
-  <!--   <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    <!--   <environment include="Development">
+          <script src="~/lib/jquery/dist/jquery.js"></script>
+          <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+          <script src="~/js/site.js" asp-append-version="true"></script>
+      </environment>
+      <environment exclude="Development">
+          <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                  asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                  asp-fallback-test="window.jQuery"
+                  crossorigin="anonymous"
+                  integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+          </script>
+          <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                  asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                  asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                  crossorigin="anonymous"
+                  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+          </script>
+          <script src="~/js/site.min.js" asp-append-version="true"></script>
+      </environment> -->
+
+    <environment include="Development">
+        <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment> -->
-
-  <environment include="Development">
-    <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-</environment>
-<environment exclude="Development">
-    <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-</environment>
+        <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    </environment>
 
 
     @RenderSection("Scripts", required: false)
