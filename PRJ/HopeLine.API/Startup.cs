@@ -30,16 +30,13 @@ namespace HopeLine.API
         {
             ConfigureServiceExtension.AddConfiguration(services);
 
-
             services.AddCors();
             services.AddLogging();
             services.AddSignalR();
 
-            services.AddSingleton<ITokenService, TokenService>();
+            services.AddTransient<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -77,7 +74,7 @@ namespace HopeLine.API
             {
                 route.MapHub<ChatHub>("/chat");
             });
-            
+
             app.UseMvc();
 
         }
