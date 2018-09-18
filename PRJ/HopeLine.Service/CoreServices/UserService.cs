@@ -185,12 +185,14 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var specializations = _specializationRepo.GetAll("Specialization").Where(m => m.MentorAccountId == mentorId).Select(s => new SpecializationModel
-                {
-                    Id = s.SpecializationId,
-                    Description = s.Specialization.Description,
-                    Name = s.Specialization.Name
-                });
+                var specializations = _specializationRepo.GetAll("Specialization")
+                    .Where(m => m.MentorAccountId == mentorId)
+                    .Select(s => new SpecializationModel
+                    {
+                        Id = s.SpecializationId,
+                        Description = s.Specialization.Description,
+                        Name = s.Specialization.Name
+                    });
 
                 return specializations;
             }
