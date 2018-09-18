@@ -42,7 +42,7 @@ namespace HopeLine.Service.Configurations
                     {
                         ValidIssuer = APIConstant.URL,
                         ValidAudience = APIConstant.URL,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(APIConstant.SecretKey)),
                         ClockSkew = TimeSpan.Zero
                     };
                     config.Events = new JwtBearerEvents
@@ -77,15 +77,14 @@ namespace HopeLine.Service.Configurations
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 4;
-                options.Password.RequiredUniqueChars = 1;
+
+                options.User.RequireUniqueEmail = true;
             });
 
             //all interface and implementation
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
         }
 
         /// <summary>

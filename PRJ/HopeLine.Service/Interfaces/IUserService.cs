@@ -1,6 +1,5 @@
 ﻿using HopeLine.Service.Models;
 using System.Collections.Generic;
-using static HopeLine.DataAccess.Entities.HopeLineUser;
 
 namespace HopeLine.Service.Interfaces
 {
@@ -23,5 +22,7 @@ namespace HopeLine.Service.Interfaces
         #endregion
 
         bool UpdateUserProfile(UserModel model);
+
+
     }
 }
