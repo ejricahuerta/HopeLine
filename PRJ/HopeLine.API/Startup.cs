@@ -56,6 +56,7 @@ namespace HopeLine.API
             {
                 app.UseHsts();
             }
+            ConfigureServiceExtension.UseConfiguration(app);
 
             app.UseStatusCodePages(async context =>
                 {
@@ -71,16 +72,13 @@ namespace HopeLine.API
                     .AllowAnyOrigin());
 
             app.UseAuthentication();
-            app.UseMvc();
 
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/chat");
             });
-
-
-            ConfigureServiceExtension.UseConfiguration(app);
-
+            
+            app.UseMvc();
 
         }
     }

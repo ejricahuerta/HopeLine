@@ -24,7 +24,7 @@ namespace HopeLine.Service.Configurations
         /// <param name="services"></param>
         public static void AddConfiguration(IServiceCollection services)
         {
-          
+
             //JWT Authentication
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
@@ -62,8 +62,8 @@ namespace HopeLine.Service.Configurations
 
                 });
 
-  services.AddDbContext<ResourcesDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                                                          .UseSqlServer(APIConstant.ConnectionString));
             services.AddDbContext<HopeLineDbContext>(opt => opt
                                                 .UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
