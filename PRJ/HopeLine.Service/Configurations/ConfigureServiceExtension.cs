@@ -24,24 +24,6 @@ namespace HopeLine.Service.Configurations
         /// <param name="services"></param>
         public static void AddConfiguration(IServiceCollection services)
         {
-            services.AddDbContext<ResourcesDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
-            services.AddIdentity<HopeLineUser, IdentityRole>()
-                .AddEntityFrameworkStores<HopeLineDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Default Password settings.
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 4;
-                options.Password.RequiredUniqueChars = 1;
-            });
 
             //JWT Authentication
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -79,7 +61,30 @@ namespace HopeLine.Service.Configurations
                     };
 
                 });
+
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                                                          .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => opt
+                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddIdentity<HopeLineUser, IdentityRole>()
+                .AddEntityFrameworkStores<HopeLineDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+            //all interface and implementation
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
         }
 

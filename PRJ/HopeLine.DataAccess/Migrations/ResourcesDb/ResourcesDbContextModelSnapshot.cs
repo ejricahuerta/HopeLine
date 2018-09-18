@@ -54,7 +54,11 @@ namespace HopeLine.DataAccess.Migrations.ResourcesDb
 
                     b.Property<DateTime>("DateAdded");
 
-                    b.Property<string>("Url");
+                    b.Property<float>("Radius");
+
+                    b.Property<float>("XCoordinate");
+
+                    b.Property<float>("YCoordinate");
 
                     b.HasKey("Id");
 
@@ -68,6 +72,9 @@ namespace HopeLine.DataAccess.Migrations.ResourcesDb
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200);
 
                     b.Property<string>("ImgUrl")
                         .IsRequired()

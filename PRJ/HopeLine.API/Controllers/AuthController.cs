@@ -1,11 +1,9 @@
 ﻿using HopeLine.DataAccess.Entities;
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
+using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,17 +35,25 @@ namespace HopeLine.API.Controllers
 
         //TODO : needs to separate token builder and create new action for sending tokens
         [HttpPost]
-
         public async Task<object> Login([FromBody] LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
-
-                if (result.Succeeded)
+                if (model.IsGuest)
                 {
-                    var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
-                    return _tokenService.GenerateToken(model.Username, user);
+                    var temp = _userManager.Users.SingleOrDefault(u => u.UserName == APIConstant.UniversalEmail);
+                    return _tokenService.GenerateToken(model.Username, temp);
+                }
+                else
+                {
+
+                    var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
+
+                    if (result.Succeeded)
+                    {
+                        var user = _userManager.Users.SingleOrDefault(u => u.Email == model.Username);
+                        return _tokenService.GenerateToken(model.Username, user);
+                    }
                 }
             }
             return BadRequest("Unable to Login...");
@@ -58,14 +64,13 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new UserAccount
+                var user = new GuestAccount
                 {
                     Profile = new Profile
                     {
                         FirstName = model.FirstName,
                         LastName = model.LastName
                     },
-
                     UserName = model.Username,
                     Email = model.Username
                 };

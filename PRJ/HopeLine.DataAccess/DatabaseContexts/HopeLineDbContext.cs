@@ -96,6 +96,5 @@ namespace HopeLine.DataAccess.DatabaseContexts
 
             #endregion
         }
-
     }
 }

@@ -1,4 +1,6 @@
 ﻿using HopeLine.API.Hubs;
+using HopeLine.DataAccess.Interfaces;
+using HopeLine.DataAccess.Repositories;
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
@@ -35,6 +37,8 @@ namespace HopeLine.API
 
             services.AddSingleton<ITokenService, TokenService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -52,6 +56,7 @@ namespace HopeLine.API
             {
                 app.UseHsts();
             }
+            ConfigureServiceExtension.UseConfiguration(app);
 
             app.UseStatusCodePages(async context =>
                 {
@@ -67,16 +72,13 @@ namespace HopeLine.API
                     .AllowAnyOrigin());
 
             app.UseAuthentication();
-            app.UseMvc();
 
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/chat");
             });
-
-
-            ConfigureServiceExtension.UseConfiguration(app);
-
+            
+            app.UseMvc();
 
         }
     }

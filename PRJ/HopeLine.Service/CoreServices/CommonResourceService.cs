@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using HopeLine.DataAccess.Entities;
+﻿using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using System.Collections.Generic;
 
 namespace HopeLine.Service.CoreServices
 {

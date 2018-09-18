@@ -27,9 +27,9 @@ namespace HopeLine.Security.Services
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup"));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expires = DateTime.Now.AddDays(Convert.ToDouble(30));
+       
 
-
+            var expires = DateTime.Now.AddDays(Convert.ToDouble((30)));
             var claims = this.CreateClaims(user);
             // TODO : string const must be inside appsettings
             var token = new JwtSecurityToken(
@@ -65,7 +65,6 @@ namespace HopeLine.Security.Services
 
             return claimsPrincipal;
         }
-
 
         /// <summary>
         /// create claims for user
