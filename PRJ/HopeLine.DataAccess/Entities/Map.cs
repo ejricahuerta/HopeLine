@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using HopeLine.DataAccess.Repositories;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -10,6 +11,10 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Map : CommonEntity
     {
+        public Map(UnitOfWork unitOfWork)
+        {
+
+        }
         public Map()
         {
             Radius = 0;

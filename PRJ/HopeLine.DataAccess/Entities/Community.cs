@@ -13,6 +13,10 @@ namespace HopeLine.DataAccess.Entities
 
         public Community()
         {
+            Name = "";
+            Description = "";
+            URL = "";
+            ImageURL = "";
             //TODO: add the placeholder image here
             //ImageURL = "somestatic.file.link.png here";
         }

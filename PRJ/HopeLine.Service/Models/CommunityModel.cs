@@ -14,6 +14,7 @@ namespace HopeLine.Service.Models
         public string Description { get; set; }
         
         public string URL { get; set; }
+
         public string ImageURL { get; set; }
     }
 }

@@ -7823,27 +7823,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Users\\osori\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "projectName": "HopeLine.Service",
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
+      "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -7855,8 +7852,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             }
           }
         }

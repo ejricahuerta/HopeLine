@@ -31,12 +31,12 @@ namespace HopeLine.DataAccess.Entities
         [Required]
         [MinLength(2)]
         [MaxLength(100)]
-        public string Url { get; set; }
+        public string URL { get; set; }
 
         [Required]
         [MinLength(2)]
         [MaxLength(500)]
-        public string ImgUrl { get; set; }
+        public string ImageURL { get; set; }
 
     }
 }

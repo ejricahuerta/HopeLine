@@ -28,13 +28,23 @@ namespace HopeLine.DataAccess.Repositories
 
         }
 
+        //public object Select => throw new System.NotImplementedException();
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
         public void Delete(T obj)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _hopeLineDb.Remove(obj);
+                _entities.Remove(obj);
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+            }
         }
 
         /// <summary>
@@ -44,7 +54,7 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public T Get(object id)
         {
-            throw new System.NotImplementedException();
+            return null;
         }
 
         /// <summary>
@@ -78,6 +88,11 @@ namespace HopeLine.DataAccess.Repositories
         /// </summary>
         /// <param name="obj"></param>
         public void Update(T obj)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        object IRepository<T>.Select(System.Func<object, HopeLine.Service.Models.CommunityModel> p)
         {
             throw new System.NotImplementedException();
         }

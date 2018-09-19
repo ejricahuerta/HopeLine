@@ -3,6 +3,7 @@ using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HopeLine.Service.CoreServices
 {
@@ -140,15 +141,23 @@ namespace HopeLine.Service.CoreServices
 
         public bool EditResource(ResourceModel resource)
         {
-            var _resource = new Resource
+            try
             {
-                Name = resource.Name,
-                Description = resource.Description,
-                ImgUrl = resource.ImgUrl,
-                Url = resource.Url
-            };
-            _resourceRepo.Update(_resource);
-            return true;
+                var _resource = new Resource
+                {
+                    Name = resource.Name,
+                    Description = resource.Description,
+                    ImgUrl = resource.ImgUrl,
+                    Url = resource.Url
+                };
+                _resourceRepo.Update(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool EditResource(CommunityModel resource)
@@ -173,19 +182,30 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public IEnumerable<Community> GetCommunities()
+        public IEnumerable<CommunityModel> GetCommunities()
         {
-            return _communityRepo.GetAll();
+            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel {
+                Name = c.Name,
+                Description = c.Description,
+                URL = c.URL,
+                ImageURL = c.ImageURL
+            });
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            return GetLanguages();
+            return 
         }
-
-        public IEnumerable<Resource> GetResources()
+        //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
+        public IEnumerable<ResourceModel> GetResources()
         {
-            return _resourceRepo.GetAll();
+            return (_resourceRepo as IEnumerable<Resource>).Select(c => new ResourceModel
+            {
+                Name = c.Name,
+                Description = c.Description,
+                URL = c.URL,
+                ImageURL = c.ImageURL
+            });
         }
 
         public bool RemoveCommunity(int id)

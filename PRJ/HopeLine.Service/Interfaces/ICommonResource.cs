@@ -9,7 +9,7 @@ namespace HopeLine.Service.Interfaces
     /// </summary>
     public interface ICommonResource
     {
-        IEnumerable<Community> GetCommunities();
+        IEnumerable<CommunityModel> GetCommunities();
         IEnumerable<Resource> GetResources();
 
         IEnumerable<LanguageModel> GetLanguages();
