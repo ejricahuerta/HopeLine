@@ -87,6 +87,7 @@ namespace HopeLine.Service.Configurations
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICommunication, CommunicationService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 

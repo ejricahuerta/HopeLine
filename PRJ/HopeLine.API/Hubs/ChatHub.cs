@@ -53,7 +53,7 @@ namespace HopeLine.API.Hubs
             return Clients.User(mentor).SendAsync(message);
         }
 
-        public async Task AddToGroup(string groupName)
+        public async Task AddUserToRoom(string groupName)
         {
             Console.WriteLine("Created new group: Room ID");
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
@@ -61,6 +61,11 @@ namespace HopeLine.API.Hubs
 
         }
 
+        public async Task RemoveUserFromRoom(string groupName) {
+
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+            await Clients.Group(groupName).SendAsync("Send", "User Left.");
+        }
 
     }
 }
