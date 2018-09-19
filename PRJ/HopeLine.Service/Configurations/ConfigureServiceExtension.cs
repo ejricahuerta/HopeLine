@@ -24,24 +24,6 @@ namespace HopeLine.Service.Configurations
         /// <param name="services"></param>
         public static void AddConfiguration(IServiceCollection services)
         {
-            services.AddDbContext<ResourcesDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
-            services.AddIdentity<HopeLineUser, IdentityRole>()
-                .AddEntityFrameworkStores<HopeLineDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Default Password settings.
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequiredLength = 4;
-                options.Password.RequiredUniqueChars = 1;
-            });
 
             //JWT Authentication
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
@@ -60,7 +42,7 @@ namespace HopeLine.Service.Configurations
                     {
                         ValidIssuer = APIConstant.URL,
                         ValidAudience = APIConstant.URL,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SomeSecretofGroup")),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(APIConstant.SecretKey)),
                         ClockSkew = TimeSpan.Zero
                     };
                     config.Events = new JwtBearerEvents
@@ -80,12 +62,29 @@ namespace HopeLine.Service.Configurations
 
                 });
 
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                                                          .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => opt
+                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddIdentity<HopeLineUser, IdentityRole>()
+                .AddEntityFrameworkStores<HopeLineDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+
+                options.User.RequireUniqueEmail = true;
+            });
 
             //all interface and implementation
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
         }
 
         /// <summary>

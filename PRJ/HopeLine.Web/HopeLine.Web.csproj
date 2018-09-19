@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-HopeLine.Web-2A475D5A-1AE3-4BA3-AFE5-3C8F7DBB2691</UserSecretsId>
   </PropertyGroup>
 
+<ItemGroup>
+  <None Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml.cs~RF1d4393.TMP" />
+  <None Remove="Areas\Identity\Pages\Account\Register.cshtml.cs~RF261e1e.TMP" />
+</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
@@ -16,10 +21,6 @@
     <ProjectReference Include="..\HopeLine.Infrastructure\HopeLine.Infrastructure.csproj" />
     <ProjectReference Include="..\HopeLine.Security\HopeLine.Security.csproj" />
     <ProjectReference Include="..\HopeLine.Service\HopeLine.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\" />
   </ItemGroup>
 
 </Project>

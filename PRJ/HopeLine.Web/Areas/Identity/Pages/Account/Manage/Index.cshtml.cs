@@ -16,16 +16,17 @@ namespace HopeLine.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
-        private readonly IEmailSender _emailSender;
+       // private readonly IEmailSender _emailSender;
 
         public IndexModel(
             UserManager<HopeLineUser> userManager,
-            SignInManager<HopeLineUser> signInManager,
-            IEmailSender emailSender)
+            SignInManager<HopeLineUser> signInManager
+           // ,IEmailSender emailSender
+           )
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
+           // _emailSender = emailSender;
         }
 
         public string Username { get; set; }
@@ -136,10 +137,11 @@ namespace HopeLine.Web.Areas.Identity.Pages.Account.Manage
                 pageHandler: null,
                 values: new { userId = userId, code = code },
                 protocol: Request.Scheme);
-            await _emailSender.SendEmailAsync(
-                email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+            //await _emailsender.sendemailasync(
+            //    email,
+            //    "confirm your email",
+            //    $"please confirm your account by <a href='{htmlencoder.default.encode(callbackurl)}'>clicking here</a>.");
 
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToPage();
