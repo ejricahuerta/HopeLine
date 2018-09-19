@@ -25,6 +25,7 @@ D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\Hop
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.runtimeconfig.dev.json
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csprojAssemblyReference.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csproj.CoreCompileInputs.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfoInputs.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs

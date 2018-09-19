@@ -11,11 +11,11 @@
         <link rel="stylesheet" href="~/css/main.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/vendor.min.css" />
     </environment>
 </head>
 <body>
@@ -163,12 +163,13 @@
       </environment> -->
 
     <environment include="Development">
-        <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     </environment>
     <environment exclude="Development">
-        <script src="~/lib/bootstrap/dist/js/jquery-3.3.1.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/vendor.min.js"></script>
     </environment>
 
 

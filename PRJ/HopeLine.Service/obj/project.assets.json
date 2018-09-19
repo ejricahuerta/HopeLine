@@ -7823,18 +7823,12 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\zshi1\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
->>>>>>> master
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "projectName": "HopeLine.Service",
       "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
@@ -7847,22 +7841,6 @@
       "configFilePaths": [
         "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-=======
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "projectName": "HopeLine.Service",
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
->>>>>>> master
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -7874,13 +7852,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-<<<<<<< HEAD
             "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
               "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-=======
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
->>>>>>> master
             }
           }
         }
@@ -7920,5 +7893,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\HopeLine.Service.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
