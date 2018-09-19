@@ -2,6 +2,8 @@
 using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.DataAccess.Repositories;
+using HopeLine.Service.CoreServices;
+using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -83,7 +85,8 @@ namespace HopeLine.Service.Configurations
 
             //all interface and implementation
             services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
-
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 
