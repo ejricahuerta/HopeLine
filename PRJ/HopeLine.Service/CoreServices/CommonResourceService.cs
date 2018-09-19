@@ -108,47 +108,111 @@ namespace HopeLine.Service.CoreServices
 
         public Map DefaultMap()
         {
-            throw new System.NotImplementedException();
+            // Default location is Seneca College
+            var map = new Map
+            {
+                XCoordinate = 43.771539,
+                YCoordinate = -79.498708,
+                Radius = 50
+            };
+            return map;
         }
 
         public bool EditDefaultMap(MapModel map)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _map = new Map
+                {
+                    XCoordinate = map.XCoordinate,
+                    YCoordinate = map.YCoordinate,
+                    Radius = map.Radius
+                };
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                // TODO : Log error
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool EditResource(ResourceModel resource)
         {
-            throw new System.NotImplementedException();
+            var _resource = new Resource
+            {
+                Name = resource.Name,
+                Description = resource.Description,
+                ImgUrl = resource.ImgUrl,
+                Url = resource.Url
+            };
+            _resourceRepo.Update(_resource);
+            return true;
         }
 
         public bool EditResource(CommunityModel resource)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _resource = new Community
+                {
+                    Name = resource.Name,
+                    Description = resource.Description,
+                    URL = resource.URL,
+                    ImageURL = resource.ImageURL
+                };
+                _communityRepo.Update(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                // TODO: Error
+                System.Console.WriteLine("Error:" + e);
+                return false;
+            }
         }
 
         public IEnumerable<Community> GetCommunities()
         {
-            throw new System.NotImplementedException();
+            return _communityRepo.GetAll();
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            throw new System.NotImplementedException();
+            return GetLanguages();
         }
 
         public IEnumerable<Resource> GetResources()
         {
-            throw new System.NotImplementedException();
+            return _resourceRepo.GetAll();
         }
 
         public bool RemoveCommunity(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _communityRepo.Remove(id);
+                return true;
+            }catch(System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool RemoveResource(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _resourceRepo.Remove(id);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
     }
 }

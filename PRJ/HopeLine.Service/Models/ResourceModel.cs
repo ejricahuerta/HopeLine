@@ -10,6 +10,8 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class ResourceModel : BaseModel
     {
+        public string Description { get; set; }
+
         public string Name { get; set; }
         
         public string Url { get; set; }
