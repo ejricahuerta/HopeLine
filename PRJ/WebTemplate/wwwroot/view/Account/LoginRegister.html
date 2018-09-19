@@ -5,148 +5,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HopeLine</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/Site.css">
-    <link rel="stylesheet" href="../../css/Account/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
 </head>
 
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div id="headerMenu" class="container">
-            <a class="navbar-brand" href="./index.html" style="font-size: 30px">HopeLine</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../TalkToMentor/TalkToMentor.html">Talk to Mentor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Map/Map.html">Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Resources/Resources.html">Resources</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Community/Community.html">Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Account/LoginRegister.html">Login/Register</a>
-                    </li>
-
-
-                </ul>
+<body class="container">
+    <div class="row justify-content-center mt-5 ">
+        <form class="form-account col-10  col-md-6 col-lg-4 mt-5  shadow-lg rounded">
+            <img class="mb-4" src="#" alt="LOGO" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Login with HopeLine</h1>
+            <hr />
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <br />
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
             </div>
-        </div>
-    </nav>
-
-    <form class="form-account">
-        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Login with HopeLine Account</h1>
-        <hr />
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <br />
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <div class="mb-2">
-            <label>
-                <a href="ForgotPassword.html" type="button" value="ForgotPassword" class="btn btn-sm btn-warning btn-block">Forgot
-                    Password</a>
-            </label>
-        </div>
-        <br />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <hr />
-        <div class="mb-2">
-            <label>
-                <a href="GuestLogin.html" type="button" value="Login as Guest" class="btn btn-outline-secondary">Login
-                    as Guest</a>
-            </label>
-            <label class="pull-right">
-                <a href="Register.html" type="button" value="Sign-up" class="btn btn-outline-secondary">Sign-up</a>
-            </label>
-        </div>
-    </form>
-
-
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <div class="logofooter"> Contact</div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-                    <p>
-                        <i class="fa fa-map-pin"></i> #228, Tiruvannamalai, Tamilnadu, India</p>
-                    <p>
-                        <i class="fa fa-phone"></i> Phone (India) : +91 9999 999 999</p>
-                    <p>
-                        <i class="fa fa-envelope"></i> E-mail : info@prabuuideveloper.com</p>
-
-                </div>
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <h6 class="heading7">About Us</h6>
-                    <div class="post">
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <h6 class="heading7">Social Media</h6>
-                    <ul class="footer-social">
-                        <li>
-                            <i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-google-plus social-icon google" aria-hidden="true"></i>
-                        </li>
-                    </ul>
-                </div>
+            <div class="mb-2">
+                <label>
+                    <a href="ForgotPassword.html" type="button" value="ForgotPassword" class="btn btn-sm btn-warning btn-block">Forgot
+                        Password</a>
+                </label>
             </div>
-        </div>
-    </footer>
-    <div class="copyright">
-        <div class="container">
-            <div class="col-md-6">
-                <p id="demo" class="copyright"></p>
+            <br />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <hr />
+            <div class="mb-2">
+                <label>
+                    <a href="GuestLogin.html" type="button" value="Login as Guest" class="btn btn-outline-secondary">Login
+                        as Guest</a>
+                </label>
+                <label class="pull-right">
+                    <a href="Register.html" type="button" value="Sign-up" class="btn btn-outline-secondary">Sign-up</a>
+                </label>
             </div>
-        </div>
+        </form>
+
     </div>
-    <script src="../../js/Site.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-
-    <script src="../../jquery/jquery.min.js"></script>
-    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
