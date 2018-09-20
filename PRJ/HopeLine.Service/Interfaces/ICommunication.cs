@@ -20,6 +20,7 @@ namespace HopeLine.Service.Interfaces
 
         //For all kind of users
         ConversationModel GetConversationById(int id);
+        ConversationModel GetConversationByPIN(string pin);
 
         //For Application and Admin Only
         bool AddConversation(ConversationModel conversation, bool isGuestUser);
@@ -28,5 +29,9 @@ namespace HopeLine.Service.Interfaces
         bool EditConversation(ConversationModel conversation);
 
 
+        string GenerateConnectionId();
+
+        bool AddConversation(ConversationModel conversation);
+        
     }
 }

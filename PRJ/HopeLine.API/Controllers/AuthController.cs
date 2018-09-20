@@ -24,11 +24,11 @@ namespace HopeLine.API.Controllers
 
         //TODO : needs to separate token builder and create new action for sending tokens
         [HttpPost]
-        public async Task<object> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             if (ModelState.IsValid)
             {
-                if (model.Username.Length < 5)
+                if (model.Username.Length < 6)
                 {
                     return UnprocessableEntity("Username Invalid...");
                 }
@@ -42,7 +42,7 @@ namespace HopeLine.API.Controllers
 
                 if (token != null)
                 {
-                    return token;
+                    return Ok(token);
                 }
             }
             return BadRequest("Unable to Login...");
@@ -53,7 +53,6 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 if (model.FirstName == null &&
                     model.LastName == null &&
                     model.FirstName.Length < 2 &&
