@@ -21,6 +21,7 @@ namespace HopeLine.DataAccess.Repositories
 
         public async Task SaveAsync()
         {
+            System.Console.WriteLine("Saving Async...");
             await _hopeLineDb.SaveChangesAsync();
         }
     }

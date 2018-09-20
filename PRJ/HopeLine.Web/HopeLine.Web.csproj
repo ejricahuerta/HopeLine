@@ -5,7 +5,30 @@
     <UserSecretsId>aspnet-HopeLine.Web-2A475D5A-1AE3-4BA3-AFE5-3C8F7DBB2691</UserSecretsId>
   </PropertyGroup>
 
+<ItemGroup>
+  <Compile Remove="wwwroot\lib\%40aspnet\**" />
+  <Content Remove="wwwroot\lib\%40aspnet\**" />
+  <EmbeddedResource Remove="wwwroot\lib\%40aspnet\**" />
+  <None Remove="wwwroot\lib\%40aspnet\**" />
+</ItemGroup>
+
+<ItemGroup>
+  <Content Remove="wwwroot\js\signalr.js" />
+  <Content Remove="wwwroot\js\signalr.min.js" />
+</ItemGroup>
+
+<ItemGroup>
+  <None Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml.cs~RF1d4393.TMP" />
+  <None Remove="Areas\Identity\Pages\Account\Register.cshtml.cs~RF261e1e.TMP" />
+</ItemGroup>
+
+<ItemGroup>
+  <None Include="wwwroot\js\signalr.js" />
+  <None Include="wwwroot\js\signalr.min.js" />
+</ItemGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.SignalR.JS" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
@@ -13,13 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HopeLine.API\HopeLine.API.csproj" />
     <ProjectReference Include="..\HopeLine.Infrastructure\HopeLine.Infrastructure.csproj" />
     <ProjectReference Include="..\HopeLine.Security\HopeLine.Security.csproj" />
     <ProjectReference Include="..\HopeLine.Service\HopeLine.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\" />
   </ItemGroup>
 
 </Project>
