@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/PRJ/.vs/PRJ/v15/Server/sqlite3
+/PRJ/WebTemplate/obj/Debug/netcoreapp2.1
+/PRJ/HopeLine.Web/obj
+/PRJ/HopeLine.Web/bin/Debug/netcoreapp2.1
+/PRJ/HopeLine.Service/obj/Debug/netcoreapp2.1
+/PRJ/HopeLine.DataAccess/obj/Debug/netcoreapp2.1
+/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csprojResolveAssemblyReference.cache
