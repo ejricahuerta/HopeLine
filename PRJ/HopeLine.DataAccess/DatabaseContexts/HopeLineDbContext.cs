@@ -34,6 +34,11 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Profile> Profiles { get; set; }
 
+        public DbSet<MentorAccount> Mentors { get; set; }
+
+        public DbSet<AdminAccount> Admins { get; set; }
+        public DbSet<UserAccount> RegisteredUsers { get; set; }
+        public DbSet<GuestAccount> Guests { get; set; }
         public DbSet<ProfileLanguage> ProfileLanguages { get; set; }
         public DbSet<MentorSpecialization> MentorSpecializations { get; set; }
         /// <summary>

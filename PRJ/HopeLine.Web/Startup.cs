@@ -33,6 +33,11 @@ namespace HopeLine.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("RegisteredOnly", policy => policy.RequireClaim("Registered"));
+            });
+
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
            {
@@ -66,6 +71,8 @@ namespace HopeLine.Web
 
             app.UseMvc();
             ConfigureServiceExtension.UseConfiguration(app);
+
+
         }
     }
 }
