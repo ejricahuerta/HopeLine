@@ -1,11 +1,7 @@
 ﻿using HopeLine.API.Hubs;
-using HopeLine.DataAccess.Interfaces;
-using HopeLine.DataAccess.Repositories;
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
-using HopeLine.Service.CoreServices;
-using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,10 +26,18 @@ namespace HopeLine.API
         {
             ConfigureServiceExtension.AddConfiguration(services);
 
-            services.AddCors();
             services.AddLogging();
             services.AddSignalR();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:33061", "http://localhost:5000")
+                       .AllowCredentials();
+            }));
             services.AddTransient<ITokenService, TokenService>();
         }
 
@@ -57,17 +61,13 @@ namespace HopeLine.API
                         "Status code page, status code: " +
                         context.HttpContext.Response.StatusCode);
                 });
-
-            app.UseCors(opt =>
-                opt.AllowAnyHeader()
-                    .AllowCredentials()
-                    .AllowAnyOrigin());
-
             app.UseAuthentication();
+
+            app.UseCors("CorsPolicy");
 
             app.UseSignalR(route =>
             {
-                route.MapHub<ChatHub>("/chat");
+                route.MapHub<ChatHub>("/chatHub");
             });
 
             app.UseMvc();
