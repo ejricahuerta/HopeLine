@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Pages\TalkToMentor\" />
   </ItemGroup>
 
 </Project>

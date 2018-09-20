@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.Security", "HopeLi
 		{C628554F-D151-4B53-9709-A86D618626F1} = {C628554F-D151-4B53-9709-A86D618626F1}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HopeLine.Web", "HopeLine.Web\HopeLine.Web.csproj", "{8F573532-B41E-4D91-9794-EF64118397A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HopeLine.Web", "HopeLine.Web\HopeLine.Web.csproj", "{8F573532-B41E-4D91-9794-EF64118397A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
