@@ -1,0 +1,10 @@
+[
+  {
+    "outputFileName": "wwwroot/js/bundle.js",
+    "inputFiles": [
+      "wwwroot/js/chat.js",
+      "wwwroot/js/signalr.js",
+      "wwwroot/js/signalr.min.js"
+    ]
+  }
+]
