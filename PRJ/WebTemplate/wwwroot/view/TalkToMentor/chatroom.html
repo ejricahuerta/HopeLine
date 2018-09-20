@@ -17,8 +17,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -39,71 +39,39 @@
     </div>
   </nav>
   <div style="margin-top:100px"></div>
-  <div class="row justify-content-between mt-5">
-    <section class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
+
+  <section class="row justify-content-between mt-5">
+    <div class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
       <div class="card">
         <div class="card-header">
           <h3>
-
-          </h3>
-          <h3>
             Chat
           </h3>
+          <div class="form-group">
+              <input type="text" class="form-control" id="userInput" placeholder="Name">
+            </div>
         </div>
-        <div class="card-body bg-white" style="height:600px;  overflow-y: scroll;">
-          <label>You</label>
-          <div class=" bg-success col-11 mb-1 rounded">
-            <p class="p-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a blandit mauris.
-              Proin laoreet molestie libero, consequat laoreet eros aliquet non.
-              Nunc venenatis elit eu velit laoreet, in ultricies tortor ullamcorper.
-              Nam luctus efficitur rhoncus. Pellentesque tempus ex eget rutrum pretium.
-              Suspendisse iaculis, nunc quis dapibus luctus, eros nunc iaculis metus, et suscipit eros elit eu mi.
-              Ut et ante nec dolor faucibus congue nec sit amet urna. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
-              Ut varius maximus leo. Proin convallis in enim eu consequat. Quisque tristique ornare dictum.
-            </p>
-          </div>
-          <label>Him</label>
-          <div class=" bg-primary col-11 mb-1 rounded">
-            <p class="p-lead p-1">
-              Some Message...
-            </p>
-          </div>
-          <label>You</label>
-          <div class=" bg-success col-11 mb-1 rounded">
-            <p class="p-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a blandit mauris.
-              Proin laoreet molestie libero, consequat laoreet eros aliquet non.
-              Nunc venenatis elit eu velit laoreet, in ultricies tortor ullamcorper.
-              Nam luctus efficitur rhoncus. Pellentesque tempus ex eget rutrum pretium.
-              Suspendisse iaculis, nunc quis dapibus luctus, eros nunc iaculis metus, et suscipit eros elit eu mi.
-              Ut et ante nec dolor faucibus congue nec sit amet urna. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit.
-              Ut varius maximus leo. Proin convallis in enim eu consequat. Quisque tristique ornare dictum.
-            </p>
-          </div>
+        <div class="card-body bg-white" id="chatbox" style="height:600px;  overflow-y: scroll;">
         </div>
         <div class="card-footer text-muted">
           <div class="form-row">
-
             <div class="col-9">
-              <textarea class="form-control" id="chat-text" rows="1"></textarea>
+            
+              <textarea class="form-control" id="messageInput" rows="1"></textarea>
             </div>
             <div class="col-3">
-              <button type="button" class="btn btn-success">Success</button>
+              <input type="button" id="sendButton" class="btn btn-success" value="Send" />
             </div>
           </div>
         </div>
       </div>
-    </section>
+  </section>
 
-    <section class="call col-sm-12 col-md-7 shadow-sm bg-secondary p-2 rounded" style="height:800px;">
-      <div class="bg-dark shadow-lg rounded m-2" style="right:20px;bottom:20px; height: 150px; width: 200px;position:absolute">
+  <section class="call col-sm-12 col-md-7 shadow-sm bg-secondary p-2 rounded" style="height:800px;">
+    <div class="bg-dark shadow-lg rounded m-2" style="right:20px;bottom:20px; height: 150px; width: 200px;position:absolute">
 
-      </div>
-    </section>
-  </div>
+    </div>
+  </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
