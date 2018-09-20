@@ -23,4 +23,8 @@
     <ProjectReference Include="..\HopeLine.Service\HopeLine.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\%40aspnet\signalr\dist\browser\" />
+  </ItemGroup>
+
 </Project>
