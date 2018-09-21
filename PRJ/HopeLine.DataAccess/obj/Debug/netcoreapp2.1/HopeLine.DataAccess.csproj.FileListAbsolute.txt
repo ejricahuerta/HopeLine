@@ -30,3 +30,14 @@ D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\Hop
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.deps.json
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.runtimeconfig.json
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.runtimeconfig.dev.json
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csprojAssemblyReference.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfoInputs.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.AssemblyInfo.cs
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.DataAccess\obj\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb

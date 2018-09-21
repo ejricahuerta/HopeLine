@@ -681,23 +681,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
+    "C:\\Users\\egiang1\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
       "projectName": "HopeLine.Infrastructure",
-      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
-      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\egiang1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\egiang1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

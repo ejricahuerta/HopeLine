@@ -48,3 +48,17 @@ D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeL
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.pdb
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csprojAssemblyReference.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.deps.json
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.pdb
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.pdb
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csprojAssemblyReference.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CoreCompileInputs.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfoInputs.cache
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfo.cs
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CopyComplete
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.dll
+C:\Users\egiang1\Desktop\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.pdb
