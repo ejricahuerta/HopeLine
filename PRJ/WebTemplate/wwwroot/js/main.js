@@ -16,6 +16,7 @@ let localStream;
 function gotLocalMediaStream(mediaStream) {
   localStream = mediaStream;
   localVideo.srcObject = mediaStream;
+  
 }
 
 // Handles error by logging a message to the console with the error message.
@@ -26,3 +27,5 @@ function handleLocalMediaStreamError(error) {
 // Initializes media stream.
 navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
   .then(gotLocalMediaStream).catch(handleLocalMediaStreamError);
+
+  localstream.getVideoTracks()[0].stop();
