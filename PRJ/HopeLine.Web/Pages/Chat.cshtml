@@ -1,6 +1,10 @@
 ﻿@page
+@model HopeLine.Web.Pages.ChatModel
+@{
+    ViewData["Title"] = "Chat";
+}
 
-<input id="room" value="room" hidden>
+<input id="pin" value="@Model.PIN" hidden>
 <section class="row justify-content-between mt-5">
     <div class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
         <div class="card">
@@ -9,7 +13,10 @@
                     Chat
                 </h3>
                 <div class="form-group">
+                    <label>@Model.PIN</label>
                     <input type="text" class="form-control" id="userInput" placeholder="Name">
+
+
                 </div>
             </div>
             <div class="card-body bg-white" id="chatbox" style="height:600px;  overflow-y: auto; ">

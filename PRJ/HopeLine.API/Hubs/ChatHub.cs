@@ -1,5 +1,4 @@
-﻿using HopeLine.Service.Interfaces;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Hubs
@@ -12,16 +11,18 @@ namespace HopeLine.API.Hubs
 
     public class ChatHub : Hub
     {
-        private readonly ICommunication _communicationService;
+        //private readonly ICommunication _communicationService;
 
-        public ChatHub(ICommunication communicationService)
+        public ChatHub(
+            //ICommunication communicationService
+            )
         {
 
-            _communicationService = communicationService;
+            //_communicationService = communicationService;
         }
-    
+
         public async Task AddUserToRoom(string room)
-        {   
+        {
             await Groups.AddToGroupAsync(Context.ConnectionId, room);
             System.Console.WriteLine("Added User");
         }

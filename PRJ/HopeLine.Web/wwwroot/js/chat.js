@@ -1,48 +1,56 @@
 ﻿"use strict";
 var currentuser = "";
-var isConnected = false;
-var connection = new signalR.HubConnectionBuilder()
+var connection;
+var isconnected = false;
+
+var room = $('#pin').val();
+connection = new signalR.HubConnectionBuilder()
     .withUrl("http://localhost:5000/chatHub")
     .build();
 
-var room = document.getElementById("room").value;
+connection.start().catch(function (err) {
+    return console.error(err.toString());
+
+
+});
 
 connection.on("Receivemessage", function (user, message) {
-    var classId = (currentuser != user) ? 'bg-success' : 'bg-secondary';
-    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    $('#chatbox').append('<div id="message"><label>' + user + '</label>' +
+
+
+     var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
+
+    $('#chatbox').append('<div id="message"><span class= "badge">'+ user+'</span>' +
         ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
-        msg +
+        message +
         '</p></div></div>');
 
 });
 
-connection.start().catch(function (err) {
-    return console.error(err.toString());
-});
 
-document.getElementById("sendButton")
-    .addEventListener("click", function (event) {
-        currentuser = document.getElementById("userInput").value;
-        var message = document.getElementById("messageInput").value;
-        document.getElementById("messageInput").value = "";
+$('#userInput').click(function () {
 
-        if (!isConnected) {
-            connection.invoke("AddUserToRoom", "room")
-                .catch(function (err) {
-                    return console.error(err.toString());
-                });
-            isConnected = true;
-        }
-
-        // connection.invoke("SendMessage", currentuser, message)
-        //     .catch(function (err) {
-        //     return console.error(err.toString());
-        // });
-
-        connection.invoke("SendMessage",currentuser, message,"room")
+    if (!isconnected) {
+        connection.invoke("AddUserToRoom", room)
             .catch(function (err) {
                 return console.error(err.toString());
+
             });
-        event.preventDefault();
-    });
+        isconnected = true;
+    }
+
+});
+
+
+$('#sendButton').click(function () {
+
+    currentuser = $('#userInput').val()
+    var message = $('#messageInput').val();
+    $('#messageInput').val(' ');
+
+    connection.invoke("SendMessage", currentuser, message, room)
+        .catch(function (err) {
+            return console.error(err.toString());
+        });
+
+    event.preventDefault();
+});
