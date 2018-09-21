@@ -16,54 +16,25 @@ namespace HopeLine.API.Hubs
 
         public ChatHub(ICommunication communicationService)
         {
+
             _communicationService = communicationService;
         }
-        //public override Task OnConnectedAsync()
-        //{
+    
+        public async Task AddUserToRoom(string room)
+        {   
+            await Groups.AddToGroupAsync(Context.ConnectionId, room);
+            System.Console.WriteLine("Added User");
+        }
 
-        //    Console.WriteLine("Mentor Connected");
-        //    _communicationService.AddConversation(new ConversationModel
-        //    {
-        //        DateOfConversation = DateTime.UtcNow,
-        //        // connection ID
-        //        //
-        //    });
-
-        //    return base.OnConnectedAsync();
-        //}
-
-        //public override Task OnDisconnectedAsync(Exception exception)
-        //{
-        //    return base.OnDisconnectedAsync(exception);
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    base.Dispose(disposing);
-        //}
-
-        //public Task SendToMentor(string mentor, string message)
-        //{
-        //    return Clients.User(mentor).SendAsync(message);
-        //}
-
-        //public async Task AddUserToRoom(string groupName)
-        //{
-        //    Console.WriteLine("Created new group: Room ID");
-        //    await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
-        //    await Clients.Group(groupName).SendAsync("Send", "User Joined");
-
-        //}
-
-        //public async Task RemoveUserFromRoom(string groupName)
-        //{
-
-        //    await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
-        //    await Clients.Group(groupName).SendAsync("Send", "User Left.");
-        //}
-        public async Task SendMessage(string user, string message)
+        public async Task RemoveUserFromRoom(string room)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
+        }
+
+
+        public async Task SendMessage(string user, string message, string room)
+        {
+            await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
     }
 }
