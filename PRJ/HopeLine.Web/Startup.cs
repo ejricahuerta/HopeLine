@@ -42,7 +42,7 @@ namespace HopeLine.Web
            builder =>
            {
                builder.AllowAnyMethod().AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061", "http://localhost:5000")
+                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000")
                       .AllowCredentials();
            }));
         }
