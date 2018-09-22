@@ -7942,37 +7942,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\egiang1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\zshi13\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "projectUniqueName": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "projectName": "HopeLine.Service",
-      "projectPath": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\egiang1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
+      "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "packagesPath": "C:\\Users\\zshi13\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\egiang1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\egiang1\\Desktop\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+            "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
             }
           }
         }
