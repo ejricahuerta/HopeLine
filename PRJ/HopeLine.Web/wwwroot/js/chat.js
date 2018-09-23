@@ -8,6 +8,8 @@ connection = new signalR.HubConnectionBuilder()
     .withUrl("http://localhost:5000/chatHub")
     .build();
 
+
+//Register all Method here.
 connection.on("ReceiveMessage", function (user, message) {
     var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
 
@@ -26,9 +28,13 @@ connection.on("Load", function (user, message) {
         message +
         '</p></div></div>');
 });
+//End of Registrations
 
 
 
+
+
+//Start the connection
 connection.start().catch(function (err) {
     return console.error(err.toString());
 
