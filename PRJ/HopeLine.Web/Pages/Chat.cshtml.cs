@@ -7,9 +7,11 @@ namespace HopeLine.Web.Pages
     public class ChatModel : PageModel
     {
         private readonly ICommunication _communication;
+        private readonly ICommonResource _commonResource;
 
-        public ChatModel(ICommunication communication)
+        public ChatModel(ICommunication communication, ICommonResource commonResource)
         {
+            _commonResource = commonResource;
             _communication = communication;
         }
 
@@ -28,7 +30,5 @@ namespace HopeLine.Web.Pages
                 PIN = pin;
             }
         }
-
-
     }
 }
