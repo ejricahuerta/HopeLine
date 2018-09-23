@@ -11506,22 +11506,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
       "projectName": "WebTemplate",
-      "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
       "packagesPath": "C:\\Users\\zshi13\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+      "outputPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\WebTemplate\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

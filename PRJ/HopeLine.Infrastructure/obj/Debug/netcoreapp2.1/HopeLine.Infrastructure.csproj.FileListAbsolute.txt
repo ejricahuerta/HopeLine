@@ -43,3 +43,12 @@ C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfo.cs
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.deps.json
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csprojAssemblyReference.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfo.cs
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
+C:\Users\zshi13\Desktop\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb

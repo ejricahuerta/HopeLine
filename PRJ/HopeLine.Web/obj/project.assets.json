@@ -12471,35 +12471,37 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Web\\HopeLine.Web.csproj",
+      "projectUniqueName": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Web\\HopeLine.Web.csproj",
       "projectName": "HopeLine.Web",
-      "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Web\\HopeLine.Web.csproj",
+      "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Web\\HopeLine.Web.csproj",
       "packagesPath": "C:\\Users\\zshi13\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Web\\obj\\",
+      "outputPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
+            "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj"
             },
-            "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
-              "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
+            "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj": {
+              "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Security\\HopeLine.Security.csproj"
             },
-            "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
-              "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
+            "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj": {
+              "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj"
             }
           }
         }

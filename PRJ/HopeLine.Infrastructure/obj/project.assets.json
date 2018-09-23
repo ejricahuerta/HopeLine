@@ -687,22 +687,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
       "projectName": "HopeLine.Infrastructure",
-      "projectPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\zshi13\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zshi13\\Documents\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
