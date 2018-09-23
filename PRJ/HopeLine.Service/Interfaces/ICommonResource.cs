@@ -11,7 +11,6 @@ namespace HopeLine.Service.Interfaces
     {
         IEnumerable<CommunityModel> GetCommunities();
         IEnumerable<Resource> GetResources();
-
         IEnumerable<LanguageModel> GetLanguages();
 
         Map DefaultMap();

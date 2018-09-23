@@ -14,6 +14,7 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class CommonResourceService : ICommonResource
     {
+        private readonly IRepository<Language> _languageRepo;
         private readonly IRepository<Resource> _resourceRepo;
         private readonly IRepository<Community> _communityRepo;
 
@@ -23,11 +24,12 @@ namespace HopeLine.Service.CoreServices
         /// <param name="resourceRepo"></param>
         /// <param name="communityRepo"></param>
         public CommonResourceService(IRepository<Resource> resourceRepo,
-                                    IRepository<Community> communityRepo)
+                                    IRepository<Community> communityRepo,
+                                    IRepository<Language> languageRepo)
         {
+            _languageRepo = languageRepo;
             _resourceRepo = resourceRepo;
             _communityRepo = communityRepo;
-
         }
 
         //var conversations = (_userRepo.Get(mentorId) as MentorAccount)
@@ -73,7 +75,7 @@ namespace HopeLine.Service.CoreServices
                 {
                     Id = resource.Id,
                     Name = resource.Name,
-                    Url = resource.Url
+                    URL = resource.URL
                 };
                 _resourceRepo.Insert(_resource);
                 return true;
@@ -147,8 +149,8 @@ namespace HopeLine.Service.CoreServices
                 {
                     Name = resource.Name,
                     Description = resource.Description,
-                    ImgUrl = resource.ImgUrl,
-                    Url = resource.Url
+                    ImageURL = resource.ImageURL,
+                    URL = resource.URL
                 };
                 _resourceRepo.Update(_resource);
                 return true;
@@ -194,7 +196,12 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            return 
+            return (_languageRepo as IEnumerable<Language>).Select(c => new LanguageModel
+            {
+                Name = c.Name,
+                CountryOrigin = c.CountryOrigin,
+                ProfileLanguages = c.ProfileLanguages
+            });
         }
         //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
         public IEnumerable<ResourceModel> GetResources()
