@@ -33,11 +33,16 @@ namespace HopeLine.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("RegisteredOnly", policy => policy.RequireClaim("Registered"));
+            });
+
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
            {
                builder.AllowAnyMethod().AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061", "http://localhost:5000")
+                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000")
                       .AllowCredentials();
            }));
         }
@@ -66,6 +71,8 @@ namespace HopeLine.Web
 
             app.UseMvc();
             ConfigureServiceExtension.UseConfiguration(app);
+
+
         }
     }
 }
