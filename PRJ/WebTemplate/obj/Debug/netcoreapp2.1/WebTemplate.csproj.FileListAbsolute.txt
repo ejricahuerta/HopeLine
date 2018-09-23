@@ -68,3 +68,17 @@ C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorTargetAssemblyInfo.cache
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.dll
 C:\Users\zshi13\Documents\GitHub\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.pdb
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.deps.json
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.runtimeconfig.json
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.runtimeconfig.dev.json
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.dll
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\bin\Debug\netcoreapp2.1\WebTemplate.pdb
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.csprojAssemblyReference.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.csproj.CoreCompileInputs.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorAssemblyInfo.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorAssemblyInfo.cs
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.AssemblyInfoInputs.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.AssemblyInfo.cs
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.RazorTargetAssemblyInfo.cache
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.dll
+C:\Users\zshi13\Desktop\HopeLine\PRJ\WebTemplate\obj\Debug\netcoreapp2.1\WebTemplate.pdb
