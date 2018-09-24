@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model HopeLine.Web.Pages.ChatModel
 @{
     ViewData["Title"] = "Chat";
@@ -14,7 +14,7 @@
                 </h3>
                 <div class="form-group">
                     <label>@Model.PIN</label>
-                    <input type="text" class="form-control" id="userInput" placeholder="Name">
+                    <input type="text" class="form-control" id="userInput" placeholder="Name" value="@Model.UserName" />
                 <button  id="connectButton" type="button" class="btn btn-outline-info text-black-50">Connect</button> 
                 </div>
             </div>

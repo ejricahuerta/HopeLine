@@ -17,9 +17,11 @@ namespace HopeLine.Web.Pages
 
         [BindProperty]
         public string PIN { get; set; }
+        
+        [BindProperty]
+        public string UserName { get; set; }
 
-
-        public void OnGet(string pin = null)
+        public void OnGet(string pin = null,string user = null)
         {
             if (pin == null)
             {
@@ -28,6 +30,14 @@ namespace HopeLine.Web.Pages
             else
             {
                 PIN = pin;
+            }
+
+            if(user == null){
+                UserName = "Test";
+
+            }
+            else{
+                UserName = user;
             }
         }
     }

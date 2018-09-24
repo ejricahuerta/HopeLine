@@ -20,7 +20,7 @@ connection.on("ReceiveMessage", function (user, message) {
 });
 
 connection.on("Load", function (user, message) {
-    currentuser = $('userInput').val();
+    currentuser = $('#userInput').val();
     var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
 
     $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
