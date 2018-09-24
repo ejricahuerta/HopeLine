@@ -68,10 +68,12 @@ namespace HopeLine.Service.Configurations
             services.AddDbContext<ChatDbContext>(opt =>
                             opt.UseInMemoryDatabase("chatdb"));
 
-            services.AddDbContext<ResourcesDbContext>(opt => opt
-                                                          .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt
-                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<ResourcesDbContext>(opt => 
+                                                          opt.UseInMemoryDatabase("chatdb"));
+                                                        //  .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => 
+                                                    opt.UseInMemoryDatabase("chatdb"));
+                                                //.UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
                 .AddDefaultTokenProviders();
