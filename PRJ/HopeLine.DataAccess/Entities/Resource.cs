@@ -11,7 +11,7 @@ namespace HopeLine.DataAccess.Entities
     /// Every link will have the link to go to the site, the name of the site and a picture of the site's logo
     /// The link also has an optional description
     /// </summary>
-    public class Resource : CommonEntity
+    public class Resource : BaseEntity
     {
         public Resource()
         {

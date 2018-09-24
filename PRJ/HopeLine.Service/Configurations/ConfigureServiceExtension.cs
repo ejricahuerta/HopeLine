@@ -1,5 +1,6 @@
 ﻿using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities;
+using HopeLine.DataAccess.Entities.Base;
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.DataAccess.Repositories;
 using HopeLine.Service.CoreServices;
@@ -87,12 +88,12 @@ namespace HopeLine.Service.Configurations
             });
 
             //all interface and implementation
-            services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IRepository<HopeLineUser>, UserRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICommunication, CommunicationService>();
             services.AddTransient<IMessage, MessageService>();
-
+            services.AddTransient<ICommonResource, CommonResourceService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
 

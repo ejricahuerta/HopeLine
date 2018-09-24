@@ -8,7 +8,7 @@ namespace HopeLine.DataAccess.Entities
     /// this class will hold saved maps of what the user's last 5 saved searches were
     ///
     /// </summary>
-    public class Map : CommonEntity
+    public class Map : BaseEntity
     {
         public Map()
         {
