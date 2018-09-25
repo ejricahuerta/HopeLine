@@ -1,0 +1,68 @@
+﻿@page
+@model PagesModel
+@{
+    Layout = "~/Areas/Shared/_Layout.cshtml";
+}
+ <section style="height:700px;">
+    <div class="card shadow-lg">
+      <div class="card-header bg-success">
+        <h1 class="">
+          HopeLine Chat
+        </h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-sm-12 bg-success p-2 mb-3" style="height:600px;overflow-y:auto;">
+            <form class="form">
+              <input id="inputSearch" class="form-control bg-success mb-1 text-light border-white" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Topics, Topic</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+        
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-8 border ml-2 " style="height:600px">
+            <div class="row justify-content-end p-2">
+              <div class="col-12 border m-1"style="height:500px;">
+                
+              </div>
+
+              <div class="col-12">
+                <form class="form-row justify-content-end">
+                  <textarea class="form-control col-10 mr-1 mb-2" type="text" placeholder="Type a message" aria-label="Send" rows="1"></textarea>
+                  <button id="inputMessage" class="btn btn-outline-white mb-2" type="submit">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+
