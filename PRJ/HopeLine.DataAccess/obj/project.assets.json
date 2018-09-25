@@ -4387,23 +4387,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zshi13\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj",
+      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj",
       "projectName": "HopeLine.DataAccess",
-      "projectPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj",
-      "packagesPath": "C:\\Users\\zshi13\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zshi13\\Desktop\\HopeLine\\PRJ\\HopeLine.DataAccess\\obj\\",
+      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj",
+      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
+      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi13\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
