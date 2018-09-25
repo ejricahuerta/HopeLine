@@ -73,7 +73,7 @@ using HopeLine.DataAccess;
             WriteLiteral("\r\n<hr />\r\n\r\n<div class=\"container\">\r\n\r\n    <h1>Please Select the Topics for the Conversation</h1>\r\n\r\n    ");
             EndContext();
             BeginContext(219, 3487, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c4b3f181b4d544e7886ab4bcb2648ccb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e7c82c8c0a444fab343f31bf2752508", async() => {
                 BeginContext(265, 3136, true);
                 WriteLiteral(@"
         <table class=""table table-striped"">
@@ -123,7 +123,7 @@ using HopeLine.DataAccess;
                 WriteLiteral("wn-menu\" aria-labelledby=\"dropdownMenuButton\">\r\n                ");
                 EndContext();
                 BeginContext(3401, 72, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8b1c3f528dbf4272802507748239c174", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d65fdcdf57bd431498ce4ca357119bbb", async() => {
                     BeginContext(3460, 9, true);
                     WriteLiteral("Live Chat");
                     EndContext();
@@ -147,7 +147,7 @@ using HopeLine.DataAccess;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(3491, 74, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9f1986569ff5486eb3eb4272e4b43d06", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e682366b653d4046ac800d0dcf542ba3", async() => {
                     BeginContext(3551, 10, true);
                     WriteLiteral("Audio Chat");
                     EndContext();
@@ -171,7 +171,7 @@ using HopeLine.DataAccess;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(3583, 74, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "be6f8d8064a246d297cec4d172865790", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9e578986a8004b6eade88ae4670c80db", async() => {
                     BeginContext(3643, 10, true);
                     WriteLiteral("Video Chat");
                     EndContext();

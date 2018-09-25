@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-HopeLine.Web-2A475D5A-1AE3-4BA3-AFE5-3C8F7DBB2691</UserSecretsId>
   </PropertyGroup>
 
+<ItemGroup>
+  <Compile Remove="Pages\Communication\**" />
+  <Content Remove="Pages\Communication\**" />
+  <EmbeddedResource Remove="Pages\Communication\**" />
+  <None Remove="Pages\Communication\**" />
+</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
@@ -19,8 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Pages\Communication\" />
+    <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 
 </Project>
