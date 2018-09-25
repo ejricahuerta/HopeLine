@@ -1,0 +1,34 @@
+﻿@page
+@model HopeLine.Web.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<br/>
+
+<div class="row" style=" width: 100%; align-items: center; justify-content: space-around; display: flex; float: none;">
+    <div class="col-md-4">
+        <form method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label >Email Address</label>
+                <input class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >Paaword</label>
+                <input class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label >Confirm Password</label>
+                <input class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success pull-left">Register</button>
+        </form>
+    </div>
+</div>
