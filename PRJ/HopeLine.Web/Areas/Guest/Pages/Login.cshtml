@@ -1,5 +1,5 @@
 @page
-
+@model HopeLine.Web.Areas.Guest.Pages.LoginModel
 @{
     <!--/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Web/Areas/Shared/_Layout.cshtml-->
     Layout = "~/Areas/Shared/_Layout.cshtml";
@@ -7,14 +7,34 @@
 
 <section class="admin-login justify-content-center">
     <div class="row justify-content-center">
-    <form class=" col-xs-12 shadow-lg border-rounded p-3 m-0">
-        <h1 class="display-5">Login as Guest</h1>
-        <hr />
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <br />
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+        <form class="col-xs-12 shadow-lg rounded  p-5 m-0" asp-form>
+            <h1 class="display-5">Login as Guest</h1>
+            <hr />
+            <input type="text" id="username" class="form-control" placeholder="Username" required autofocus value=@Model.Username>
+            <br />
+            <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+            <input type="button" id="randomName" class="btn btn-lg btn-light btn-block" value="Random"/>
         </form>
+        <script>
+          $('#randomName').click(function (e) {
+            console.log('click')
+            $.ajax({
+                type: "GET",
+                url: "https://uinames.com/api/?region=canada",
+                dataType: "jsonp",
+                 headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                success: function (response) {
+                    $('#username').val(response["name"]+response["surname"]);
+                },
+                failure: function (response) {
+                    console.log('Unable to Get Name.');
+                }
+            });
+            e.preventDefault();
+        });
+    </script>
+
     </div>
-
-
 </section>

@@ -41,8 +41,9 @@ namespace HopeLine.Web
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
            {
-               builder.AllowAnyMethod().AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000")
+               builder.AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000","https://uinames.com/*")
                       .AllowCredentials();
            }));
         }
