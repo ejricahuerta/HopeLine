@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/2430f1e4-3499-4dc1-bb47-4f2a986b3137/resourceGroups/HopeLine/providers/Microsoft.Web/sites/HopeLine",
+    "appService.deploySubpath": "PRJ/HopeLine.Web"
+}
