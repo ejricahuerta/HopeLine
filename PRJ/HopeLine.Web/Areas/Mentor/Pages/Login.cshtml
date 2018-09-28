@@ -1,0 +1,25 @@
+﻿@page
+
+@{
+    Layout = "~/Areas/Shared/_Layout.cshtml";
+}
+
+<section class="mentor-login justify-content-center">
+    <div class="row justify-content-center">
+    <form class=" col-xs-12 shadow-lg border-rounded p-3 m-0">
+        <h1 class="display-5">Mentor Access</h1>
+        <hr />
+        <input type="text" id="inputId" class="form-control" placeholder="Username / ID" required autofocus>
+        <br />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required>
+        <div class="checkbox mb-2">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <br />
+        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</section>

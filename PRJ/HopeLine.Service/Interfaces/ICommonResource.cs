@@ -11,15 +11,11 @@ namespace HopeLine.Service.Interfaces
     {
         IEnumerable<Community> GetCommunities();
         IEnumerable<Resource> GetResources();
-
         IEnumerable<LanguageModel> GetLanguages();
-
         Map DefaultMap();
         bool EditDefaultMap(MapModel map);
-
         bool AddResources(ResourceModel resource);
         bool EditResource(ResourceModel resource);
-
         bool AddResources(CommunityModel resource);
         bool EditResource(CommunityModel resource);
 

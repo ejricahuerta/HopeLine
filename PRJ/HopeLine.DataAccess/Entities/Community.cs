@@ -8,7 +8,7 @@ namespace HopeLine.DataAccess.Entities
     /// <summary>
     /// This class will hold links for all community that user can join and interact with
     /// </summary>
-    public class Community : CommonEntity
+    public class Community : BaseEntity
     {
 
         public Community()
