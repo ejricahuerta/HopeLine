@@ -34,6 +34,11 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Activity> Activities { get; set; }
         public DbSet<Profile> Profiles { get; set; }
 
+        public DbSet<MentorAccount> Mentors { get; set; }
+
+        public DbSet<AdminAccount> Admins { get; set; }
+        public DbSet<UserAccount> RegisteredUsers { get; set; }
+        public DbSet<GuestAccount> Guests { get; set; }
         public DbSet<ProfileLanguage> ProfileLanguages { get; set; }
         public DbSet<MentorSpecialization> MentorSpecializations { get; set; }
         /// <summary>
@@ -49,11 +54,11 @@ namespace HopeLine.DataAccess.DatabaseContexts
         /// 
         /// </summary>
         /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //TODO : move to appsettings.json file
-            optionsBuilder.UseSqlServer("Server=tcp:prj.database.windows.net,1433;Initial Catalog=HopeLineDB;Persist Security Info=False;User ID=hopeline;Password=Prjgroup7;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     //TODO : move to appsettings.json file
+        //     optionsBuilder.UseSqlServer("Server=tcp:prj.database.windows.net,1433;Initial Catalog=HopeLineDB;Persist Security Info=False;User ID=hopeline;Password=Prjgroup7;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

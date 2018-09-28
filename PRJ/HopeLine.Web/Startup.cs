@@ -1,5 +1,4 @@
 using HopeLine.Service.Configurations;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,16 +29,19 @@ namespace HopeLine.Web
 
             ConfigureServiceExtension.AddConfiguration(services);
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
            {
-               builder.AllowAnyMethod().AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061", "http://localhost:5000")
+               builder.AllowAnyMethod()
+                      .AllowAnyHeader()
+                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000","https://uinames.com/*")
                       .AllowCredentials();
            }));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +62,6 @@ namespace HopeLine.Web
             app.UseHttpsRedirection();
             app.UseCookiePolicy();
             app.UseStaticFiles();
-
-            app.UseCors("CorsPolicy");
 
 
             app.UseMvc();

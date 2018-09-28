@@ -1,10 +1,11 @@
 ﻿//using HopeLine.Service.Interfaces;
 
-using System.Collections.Generic;
 using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using System;
+using System.Collections.Generic;
 
 namespace HopeLine.Service.CoreServices
 {
@@ -38,7 +39,7 @@ namespace HopeLine.Service.CoreServices
 
         public string GenerateConnectionId()
         {
-            throw new System.NotImplementedException();
+            return Guid.NewGuid().ToString("N");
         }
 
         public ConversationModel GetConversationById(int id)

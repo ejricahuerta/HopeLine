@@ -11,10 +11,10 @@ namespace HopeLine.DataAccess.Repositories
     /// This class gets the information from the database and is a layer before hitting the real database
     /// 
     /// </summary>
-    public class ResourceRepository : IRepository<CommonEntity>
+    public class ResourceRepository<T> : IRepository<T> where T : BaseEntity
     {
         private readonly ResourcesDbContext _resourcesDb; // 
-        private readonly DbSet<CommonEntity> _entities; // These are the objects from the mapped table of type CommonEntity
+        private readonly DbSet<T> _entities; // These are the objects from the mapped table of type CommonEntity
 
 
         /// <summary>
@@ -24,14 +24,14 @@ namespace HopeLine.DataAccess.Repositories
         public ResourceRepository(ResourcesDbContext resourcesDb)
         {
             _resourcesDb = resourcesDb;
-            _entities = _resourcesDb.Set<CommonEntity>();
+            _entities = _resourcesDb.Set<T>();
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="obj"></param>
-        public void Delete(CommonEntity obj)
+        public void Delete(T obj)
         {
             //TODO : Do try/catches for error handling
             _resourcesDb.Remove(obj);
@@ -45,7 +45,7 @@ namespace HopeLine.DataAccess.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public CommonEntity Get(object id)
+        public T Get(object id)
         {
             return _entities.Find(id);
         }
@@ -54,7 +54,7 @@ namespace HopeLine.DataAccess.Repositories
         /// 
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<CommonEntity> GetAll(string include = null)
+        public IEnumerable<T> GetAll(string include = null)
         {
             return _entities;
         }
@@ -63,7 +63,7 @@ namespace HopeLine.DataAccess.Repositories
         /// 
         /// </summary>
         /// <param name="obj"></param>
-        public void Insert(CommonEntity obj)
+        public void Insert(T obj)
         {
             //TODO : 
             _entities.Add(obj);
@@ -83,7 +83,7 @@ namespace HopeLine.DataAccess.Repositories
         /// 
         /// </summary>
         /// <param name="obj"></param>
-        public void Update(CommonEntity obj)
+        public void Update(T obj)
         {
             _entities.Update(obj);
             _resourcesDb.Update(obj);

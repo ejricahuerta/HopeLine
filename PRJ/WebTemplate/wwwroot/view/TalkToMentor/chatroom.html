@@ -7,9 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
-
   <title>Hello, world!</title>
 </head>
 
@@ -17,8 +16,8 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-      aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,37 +39,66 @@
   </nav>
   <div style="margin-top:100px"></div>
 
-  <section class="row justify-content-between mt-5">
-    <div class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
-      <div class="card">
-        <div class="card-header">
-          <h3>
-            Chat
-          </h3>
-          <div class="form-group">
-              <input type="text" class="form-control" id="userInput" placeholder="Name">
-            </div>
+  <section style="height:700px;">
+    <div class="card shadow-lg">
+      <div class="card-header bg-success">
+        <h1 class="">
+          Mentor Messaging
+        </h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+
         </div>
-        <div class="card-body bg-white" id="chatbox" style="height:600px;  overflow-y: scroll;">
-        </div>
-        <div class="card-footer text-muted">
-          <div class="form-row">
-            <div class="col-9">
-            
-              <textarea class="form-control" id="messageInput" rows="1"></textarea>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-sm-12 bg-success p-2 mb-3" style="height:600px;overflow-y:auto;">
+            <form class="form">
+              <input id="inputSearch" class="form-control bg-success mb-1 text-light border-white" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Topics, Topic</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+        
             </div>
-            <div class="col-3">
-              <input type="button" id="sendButton" class="btn btn-success" value="Send" />
+          </div>
+          <div class="col-sm-12 col-lg-8 border ml-2 " style="height:600px">
+            <div class="row justify-content-end p-2">
+              <div class="col-12 border m-1"style="height:500px;">
+                
+              </div>
+
+              <div class="col-12">
+                <form class="form-row justify-content-end">
+                  <textarea class="form-control col-10 mr-1 mb-2" type="text" placeholder="Type a message" aria-label="Send" rows="1"></textarea>
+                  <button id="inputMessage" class="btn btn-outline-white mb-2" type="submit">Send</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-  </section>
-
-  <section class="call col-sm-12 col-md-7 shadow-sm bg-secondary p-2 rounded" style="height:800px;">
-    <div class="bg-dark shadow-lg rounded m-2" style="right:20px;bottom:20px; height: 150px; width: 200px;position:absolute">
-
-    </div>
   </section>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

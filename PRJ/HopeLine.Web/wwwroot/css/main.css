@@ -1,0 +1,457 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+body {
+    padding-top: 50px;
+	font-size: 16px;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#headerMenu {
+    color: white;
+
+}
+
+.header{
+	overflow: hidden;
+}
+
+
+.well .well{
+    background-color: white;
+   }
+ 
+/* Set padding to keep content from hitting the edges */
+.body-content {
+  padding-left: 15px; 
+  padding-right: 15px; 
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*Navbar Settings*/
+
+.fixed-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+}
+
+.bg-dark{
+    background-color: white;
+
+}
+
+.navbar {
+    background-color: lightgreen;
+
+}
+
+.navbar-inverse {
+    background-color: lightgreen;
+	border-color: lightgreen;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+
+
+.nav-link {
+display: block;
+padding: .5rem 4rem;
+
+}
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler {
+    color: white;
+    border-color: white;
+}
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+ button, select {
+    text-transform: none;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button {
+    border-radius: 0;
+}
+ 
+
+
+/*********************/
+/********************************/
+/*       Fade Bs-carousel       */
+/********************************/
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+
+    .fade-carousel .carousel-inner .item {
+        height: 100vh;
+    }
+
+    .fade-carousel .carousel-indicators > li {
+        margin: 0 2px;
+        background-color: #f39c12;
+        border-color: #f39c12;
+        opacity: .7;
+    }
+
+        .fade-carousel .carousel-indicators > li.active {
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+        }
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+    -webkit-transform: translate3d(-50%,-50%,0);
+    -moz-transform: translate3d(-50%,-50%,0);
+    -ms-transform: translate3d(-50%,-50%,0);
+    -o-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+}
+
+    .hero h1 {
+        font-size: 6em;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+
+.fade-carousel .carousel-inner .item .hero {
+    opacity: 0;
+    -webkit-transition: 2s all ease-in-out .1s;
+    -moz-transition: 2s all ease-in-out .1s;
+    -ms-transition: 2s all ease-in-out .1s;
+    -o-transition: 2s all ease-in-out .1s;
+    transition: 2s all ease-in-out .1s;
+}
+
+.fade-carousel .carousel-inner .item.active .hero {
+    opacity: 1;
+    -webkit-transition: 2s all ease-in-out .1s;
+    -moz-transition: 2s all ease-in-out .1s;
+    -ms-transition: 2s all ease-in-out .1s;
+    -o-transition: 2s all ease-in-out .1s;
+    transition: 2s all ease-in-out .1s;
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #080d15;
+    opacity: .7;
+}
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {
+    padding: 10px 40px;
+}
+
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+}
+
+.btn-success{
+	display: block! important;
+	margin-left:auto !important;
+	margin-right: auto !important;
+	
+}
+
+
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1,
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.fade-carousel .slides .slide-1 {
+    background-image: url(https://ununsplash.imgix.net/photo-1416339134316-0e91dc9ded92?q=75&fm=jpg&s=883a422e10fc4149893984019f63c818);
+}
+
+.fade-carousel .slides .slide-2 {
+    background-image: url(https://ununsplash.imgix.net/photo-1416339684178-3a239570f315?q=75&fm=jpg&s=c39d9a3bf66d6566b9608a9f1f3765af);
+}
+
+.fade-carousel .slides .slide-3 {
+    background-image: url(https://ununsplash.imgix.net/photo-1416339276121-ba1dfa199912?q=75&fm=jpg&s=9bf9f2ef5be5cb5eee5255e7765cb327);
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px) {
+    .hero {
+        width: 980px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hero h1 {
+        font-size: 4em;
+    }
+}
+
+/*  FOOTER CSS BEGIN  */
+footer {
+    background-color: lightgreen;
+    min-height: 350px;
+    font-family: 'Open Sans', sans-serif;
+    width:100%;
+
+    
+}
+
+.footer-col {
+    margin-top: 50px;
+}
+
+.logofooter {
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.footer-col p {
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 15px;
+}
+
+    .footer-col p i {
+        width: 20px;
+        color: #999;
+    }
+
+.footer-ul {
+    list-style-type: none;
+    padding-left: 0; 
+    margin-left: 2px;
+}
+
+    .footer-ul li {
+        line-height: 29px;
+        font-size: 12px;
+    }
+
+        .footer-ul li a {
+            color: #a0a3a4;
+            transition: color 0.2s linear 0s, background 0.2s linear 0s;
+        }
+
+    .footer-ul i {
+        margin-right: 10px;
+    }
+
+    .footer-ul li a:hover {
+        transition: color 0.2s linear 0s, background 0.2s linear 0s;
+        color: #ff670f;
+    }
+
+.copyright {
+    min-height: 40px;
+    background-color: lightgreen;
+    
+
+}
+
+    .copyright p {
+        text-align: left; 
+        color: #FFF;
+        padding: 10px 0;
+        margin-bottom: 0;
+    }
+
+.heading7 {
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 22px;
+}
+
+.post p {
+    font-size: 12px;
+    color: #FFF;
+    line-height: 20px;
+}
+
+    .post p span {
+        display: block;
+        color: #8f8f8f;
+    }
+
+.bottom_ul {
+    list-style-type: none;
+    float: right;
+    margin-bottom: 0;
+}
+
+    .bottom_ul li {
+        float: left;
+        line-height: 40px;
+    }
+
+        .bottom_ul li:after {
+            content: "/";
+            color: #FFF;
+            margin-right: 8px;
+            margin-left: 8px;
+        }
+
+        .bottom_ul li a {
+            color: #FFF;
+            font-size: 12px;
+        }
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    background-color: blue;
+    color: #fff;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 7px;
+    border-radius: 50%;
+}
+
+.footer-social li {
+    float: left;
+}
+
+.linked-in {
+    background-color: #007bb6;
+}
+
+.facebook {
+    background-color: #3b5998;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.google {
+    background-color: #f63e28;
+}
+
+/*Padding and adjustments to properly align elements for class py-5*/
+.py-5, .py-6{
+ 
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important;
+  background: no-repeat center center scroll;
+  
+}
+
+
+
+.d-block{
+	display: block !important;
+}
+
+.d-block {
+	display: block !important;
+}
+
+
+
+.submit{
+	
+	color:white;
+	background-color:lightgreen;
+}
+
+
+
+/*map elements*/
+
+#map{
+	margin: auto;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+/*  FOOTER CSS END  */
