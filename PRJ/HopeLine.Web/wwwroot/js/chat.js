@@ -59,7 +59,7 @@ $('#connectButton').click(function () {
         });
 });
 
-$('#sendButton').click(function () {
+$('#sendButton').click(function (event) {
 
     currentuser = $('#userInput').val()
     var message = $('#messageInput').val();
