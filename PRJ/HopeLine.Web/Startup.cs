@@ -44,12 +44,16 @@ namespace HopeLine.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                              .AddSessionStateTempDataProvider();
 
+
+            services.AddDistributedMemoryCache();
+
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(240);
                 options.Cookie.HttpOnly = true;
             });
 
+            services.AddHttpContextAccessor();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
@@ -85,6 +89,7 @@ namespace HopeLine.Web
             app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseSession();
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
