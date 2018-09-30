@@ -5,6 +5,7 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Web\obj\project.assets.json</ProjectAssetsFile>
 ||||||| merged common ancestors
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">C:\Users\ejricahuerta\source\repos\HopeLine\PRJ\HopeLine.Web\obj\project.assets.json</ProjectAssetsFile>
@@ -30,6 +31,15 @@
 =======
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\zshi1\.nuget\packages\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
 >>>>>>> web-app-bootstrap
+||||||| merged common ancestors
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Web/obj/project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/home/exd/.nuget/packages/</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/home/exd/.nuget/packages/;/usr/share/dotnet/sdk/NuGetFallbackFolder</NuGetPackageFolders>
+=======
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Web\obj\project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\zshi1\.nuget\packages\;C:\Program Files\dotnet\sdk\NuGetFallbackFolder</NuGetPackageFolders>
+>>>>>>> web-rtc
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
 <<<<<<< HEAD
 <<<<<<< HEAD

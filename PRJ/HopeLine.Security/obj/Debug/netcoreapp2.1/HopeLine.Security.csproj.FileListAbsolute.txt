@@ -34,6 +34,7 @@ C:/Users/eosorio1/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcorea
 C:/Users/eosorio1/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfoInputs.cache
 C:/Users/eosorio1/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfo.cs
 C:/Users/eosorio1/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csproj.CopyComplete
+<<<<<<< HEAD
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.deps.json
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.pdb
@@ -48,3 +49,36 @@ D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeL
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CopyComplete
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.pdb
+||||||| merged common ancestors
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.deps.json
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.dll
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.pdb
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.DataAccess.dll
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Service.dll
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.DataAccess.pdb
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Service.pdb
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csprojAssemblyReference.cache
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csproj.CoreCompileInputs.cache
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfoInputs.cache
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfo.cs
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csproj.CopyComplete
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.dll
+D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.pdb
+=======
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csprojAssemblyReference.cache
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CoreCompileInputs.cache
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfoInputs.cache
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.AssemblyInfo.cs
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.dll
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.deps.json
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.dll
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Security.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.dll
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.dll
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.DataAccess.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\bin\Debug\netcoreapp2.1\HopeLine.Service.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Security\obj\Debug\netcoreapp2.1\HopeLine.Security.csproj.CopyComplete
+>>>>>>> web-rtc

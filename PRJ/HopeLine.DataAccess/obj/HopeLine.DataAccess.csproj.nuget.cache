@@ -2,6 +2,7 @@
   "version": 1,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "7BiufUX+64kDeZ6FSzIHvjHUGm0r7t76+CNrRwVOGDye4XXauwAa1p7ohOLnuNZ/7LHKDCwduyqsYq7U9chSnQ==",
 ||||||| merged common ancestors
   "dgSpecHash": "wLWZ6Tg3qd1U0uBAfokS5JoLcwjpMP46gV9fu+TH0i1Yux7LA8PiG5aXKO7cA7kma4QNfGRUul7Bg/6HiL2iAg==",
@@ -13,5 +14,10 @@
 =======
   "dgSpecHash": "ImrnlaT2CZfVC533jWFEzrq1/OOjTnb40HQwVHw9v6P0HWx5klyjk/gXm7v6Vh/6VGebRFgpZkJ1dwwPtUQkeQ==",
 >>>>>>> web-app-bootstrap
+||||||| merged common ancestors
+  "dgSpecHash": "KpX9r3tn+3lRmjgLpQvYwJCJPfFCApgChCdHYcdTYOtnYEI3SnpFOaZOnbP2mEzmz0PegTPlUr+wAYwhMMGY+g==",
+=======
+  "dgSpecHash": "PtUsJnY1TqQNZ1gxHWlLKphfcN6dSPEUjQ0rKiJsf5hfaFbX9b7kLRqpb0MiaBuemVzhtzQ+GgiJk9RdJKgivg==",
+>>>>>>> web-rtc
   "success": true
 }
