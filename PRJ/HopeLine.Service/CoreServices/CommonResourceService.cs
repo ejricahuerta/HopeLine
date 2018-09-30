@@ -32,19 +32,6 @@ namespace HopeLine.Service.CoreServices
             _communityRepo = communityRepo;
         }
 
-        //var conversations = (_userRepo.Get(mentorId) as MentorAccount)
-        //           .Conversations.Select(c => new ConversationModel
-        //           {
-        //               Id = c.Id,
-        //               MentorId = c.Mentor.Id,
-        //               UserName = c.UserName,
-        //               DateOfConversation = c.DateOfConversation,
-        //               Minutes = c.Minutes,
-        //               PIN = c.PIN
-
-        //           });
-        //        return conversations;
-
         // try
         //{
         //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)

@@ -24,7 +24,27 @@ namespace HopeLine.Service.CoreServices
 
         public bool AddConversation(ConversationModel conversation, bool isGuestUser)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                if (isGuestUser)
+                {
+                    var _conversation = new Conversation
+                    {
+                        PIN = conversation.PIN,
+                        Minutes = conversation.Minutes,
+                        Mentor = conversation.Mentor,
+                        DateOfConversation = conversation.DateOfConversation,
+                        LanguageUsed = conversation.LanguageUsed
+                    };
+                    _conversationRepo.Insert(_conversation);
+                    return true;
+                }
+            }
+            catch(SystemException e)
+            {
+                Console.WriteLine("Error: " + e);
+            }
+            return false;
         }
 
         public bool AddConversation(ConversationModel conversation)
