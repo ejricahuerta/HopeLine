@@ -22,18 +22,21 @@ namespace HopeLine.Web.Areas.Guest.Pages
         [MinLength(5)]
         public string Username { get; set; }
 
-        public void OnGet()
+        public void OnGet(string returnUrl = null)
         {
+            returnUrl = returnUrl ?? Url.Content("~/");
+            
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(string returnUrl = null)
         {
-
+            returnUrl = returnUrl ?? Url.Content("~/");
+            
             if (Username != null)
             {
                 HttpContext.Session.SetString("_guest", Username);
                 TempData["user"] = Username;
-                return RedirectToPage("./Index");
+                return RedirectToPage(returnUrl);
             }
             return Page();
         }

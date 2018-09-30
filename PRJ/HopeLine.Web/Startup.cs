@@ -37,12 +37,15 @@ namespace HopeLine.Web
                                 policy => policy.RequireClaim("AccountType", "Admin"));
                 opt.AddPolicy("RegisteredOnly",
                                 policy => policy.RequireClaim("AccountType", "Mentor", "RegisteredUser"));
+            
             });
+
 
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                              .AddSessionStateTempDataProvider();
+                             
 
 
             services.AddDistributedMemoryCache();
@@ -85,7 +88,7 @@ namespace HopeLine.Web
             }
 
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseSession();
