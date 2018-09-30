@@ -6,5 +6,4 @@ namespace HopeLine.Web.Areas.User.Pages
     {
 
     }
-
 }
