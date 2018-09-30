@@ -1,4 +1,5 @@
-﻿using HopeLine.Service.Models.Base;
+﻿using HopeLine.DataAccess.Entities;
+using HopeLine.Service.Models.Base;
 using System.Collections.Generic;
 
 namespace HopeLine.Service.Models
@@ -10,9 +11,11 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class LanguageModel : BaseModel
     {
-        public string Region { get; set; }
+        public string Name { get; set; }
+        
+        public string CountryOrigin { get; set; }
 
-        public string LanguageName { get; set; }
+        public ICollection<ProfileLanguage> ProfileLanguages { get; set; }
 
     }
 }

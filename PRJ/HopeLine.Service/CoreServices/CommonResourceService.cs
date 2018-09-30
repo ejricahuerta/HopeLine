@@ -3,6 +3,7 @@ using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HopeLine.Service.CoreServices
 {
@@ -13,6 +14,7 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class CommonResourceService : ICommonResource
     {
+        private readonly IRepository<Language> _languageRepo;
         private readonly IRepository<Resource> _resourceRepo;
         private readonly IRepository<Community> _communityRepo;
 
@@ -22,11 +24,12 @@ namespace HopeLine.Service.CoreServices
         /// <param name="resourceRepo"></param>
         /// <param name="communityRepo"></param>
         public CommonResourceService(IRepository<Resource> resourceRepo,
-                                    IRepository<Community> communityRepo)
+                                    IRepository<Community> communityRepo,
+                                    IRepository<Language> languageRepo)
         {
+            _languageRepo = languageRepo;
             _resourceRepo = resourceRepo;
             _communityRepo = communityRepo;
-
         }
 
         //var conversations = (_userRepo.Get(mentorId) as MentorAccount)
@@ -72,7 +75,7 @@ namespace HopeLine.Service.CoreServices
                 {
                     Id = resource.Id,
                     Name = resource.Name,
-                    Url = resource.Url
+                    URL = resource.URL
                 };
                 _resourceRepo.Insert(_resource);
                 return true;
@@ -108,47 +111,135 @@ namespace HopeLine.Service.CoreServices
 
         public Map DefaultMap()
         {
-            throw new System.NotImplementedException();
+            // Default location is Seneca College
+            var map = new Map
+            {
+                XCoordinate = 43.771539,
+                YCoordinate = -79.498708,
+                Radius = 50
+            };
+            return map;
         }
 
         public bool EditDefaultMap(MapModel map)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _map = new Map
+                {
+                    XCoordinate = map.XCoordinate,
+                    YCoordinate = map.YCoordinate,
+                    Radius = map.Radius
+                };
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                // TODO : Log error
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool EditResource(ResourceModel resource)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _resource = new Resource
+                {
+                    Name = resource.Name,
+                    Description = resource.Description,
+                    ImageURL = resource.ImageURL,
+                    URL = resource.URL
+                };
+                _resourceRepo.Update(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool EditResource(CommunityModel resource)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var _resource = new Community
+                {
+                    Name = resource.Name,
+                    Description = resource.Description,
+                    URL = resource.URL,
+                    ImageURL = resource.ImageURL
+                };
+                _communityRepo.Update(_resource);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                // TODO: Error
+                System.Console.WriteLine("Error:" + e);
+                return false;
+            }
         }
 
-        public IEnumerable<Community> GetCommunities()
+        public IEnumerable<CommunityModel> GetCommunities()
         {
-            throw new System.NotImplementedException();
+            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel {
+                Name = c.Name,
+                Description = c.Description,
+                URL = c.URL,
+                ImageURL = c.ImageURL
+            });
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            throw new System.NotImplementedException();
+            return (_languageRepo as IEnumerable<Language>).Select(c => new LanguageModel
+            {
+                Name = c.Name,
+                CountryOrigin = c.CountryOrigin,
+                ProfileLanguages = c.ProfileLanguages
+            });
         }
-
-        public IEnumerable<Resource> GetResources()
+        //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
+        public IEnumerable<ResourceModel> GetResources()
         {
-            throw new System.NotImplementedException();
+            return (_resourceRepo as IEnumerable<Resource>).Select(c => new ResourceModel
+            {
+                Name = c.Name,
+                Description = c.Description,
+                URL = c.URL,
+                ImageURL = c.ImageURL
+            });
         }
 
         public bool RemoveCommunity(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _communityRepo.Remove(id);
+                return true;
+            }catch(System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
 
         public bool RemoveResource(int id)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _resourceRepo.Remove(id);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
         }
     }
 }

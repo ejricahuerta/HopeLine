@@ -11500,23 +11500,55 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+||||||| merged common ancestors
+    "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+=======
+    "C:\\Users\\osori\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+>>>>>>> services
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/WebTemplate/WebTemplate.csproj",
+||||||| merged common ancestors
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+=======
+      "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\WebTemplate\\WebTemplate.csproj",
+>>>>>>> services
       "projectName": "WebTemplate",
+<<<<<<< HEAD
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/WebTemplate/WebTemplate.csproj",
       "packagesPath": "/home/exd/.nuget/packages/",
       "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/WebTemplate/obj/",
+||||||| merged common ancestors
+      "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+=======
+      "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\WebTemplate\\obj\\",
+>>>>>>> services
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "/home/exd/.nuget/NuGet/NuGet.Config"
+||||||| merged common ancestors
+        "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+=======
+        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> services
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

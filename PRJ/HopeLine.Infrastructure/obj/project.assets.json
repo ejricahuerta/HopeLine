@@ -681,23 +681,64 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
+||||||| merged common ancestors
+    "C:\\Users\\EXD\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+=======
+    "C:\\Users\\osori\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+>>>>>>> services
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
+||||||| merged common ancestors
+      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+=======
+      "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+>>>>>>> services
       "projectName": "HopeLine.Infrastructure",
+<<<<<<< HEAD
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
       "packagesPath": "/home/exd/.nuget/packages/",
       "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/",
+||||||| merged common ancestors
+      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
+=======
+      "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\obj\\",
+>>>>>>> services
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+<<<<<<< HEAD
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+||||||| merged common ancestors
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+=======
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+>>>>>>> services
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "/home/exd/.nuget/NuGet/NuGet.Config"
+||||||| merged common ancestors
+        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+=======
+        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> services
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"

@@ -1,5 +1,11 @@
 {
   "version": 1,
+<<<<<<< HEAD
   "dgSpecHash": "3WcmS1s1HpbM9VvGo0wB7NWERV6ZoaKPAOdfh/r9M84+qJxDGBJCKKCzz0xNZ6ZJqbAoqyn1J9fumOh8QFHo7Q==",
+||||||| merged common ancestors
+  "dgSpecHash": "Y07aT5V0L0EPPWH/U8zUexR96NKzjdX4B+K8mUY5aBYUR5At3dnUAYuVdx/9amI/nPXZgUXcvgj9herLSJGF1w==",
+=======
+  "dgSpecHash": "WvlQBvIWRYv4ozOjYk3eJY75LDc+A1lCwFAuFQzeeKHikQQAqNVmeOaeEBtMcQCkXQvoRubuWPjQuGu2/EOUdw==",
+>>>>>>> services
   "success": true
 }

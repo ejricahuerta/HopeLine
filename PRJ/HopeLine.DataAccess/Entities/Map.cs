@@ -1,4 +1,5 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
+using HopeLine.DataAccess.Repositories;
 
 namespace HopeLine.DataAccess.Entities
 {
@@ -10,6 +11,10 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Map : BaseEntity
     {
+        public Map(UnitOfWork unitOfWork)
+        {
+
+        }
         public Map()
         {
             Radius = 0;
@@ -23,10 +28,10 @@ namespace HopeLine.DataAccess.Entities
         //[MaxLength(500)]
         //public ICollection<string> LocationNames { get; set; }
 
-        public float XCoordinate { get; set; }
+        public double XCoordinate { get; set; }
 
-        public float YCoordinate { get; set; }
+        public double YCoordinate { get; set; }
 
-        public float Radius { get; set; }
+        public double Radius { get; set; }
     }
 }
