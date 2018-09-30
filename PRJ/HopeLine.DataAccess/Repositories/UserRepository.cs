@@ -27,6 +27,8 @@ namespace HopeLine.DataAccess.Repositories
             _entities = _hopeLineDb.Set<HopeLineUser>();
         }
 
+        public object Select => throw new NotImplementedException();
+
         /// <summary>
         /// 
         /// </summary>

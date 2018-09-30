@@ -10,7 +10,7 @@ namespace HopeLine.Service.Interfaces
     public interface ICommonResource
     {
         IEnumerable<CommunityModel> GetCommunities();
-        IEnumerable<Resource> GetResources();
+        IEnumerable<ResourceModel> GetResources();
         IEnumerable<LanguageModel> GetLanguages();
         Map DefaultMap();
         bool EditDefaultMap(MapModel map);
@@ -20,7 +20,6 @@ namespace HopeLine.Service.Interfaces
         bool EditResource(CommunityModel resource);
 
         bool RemoveResource(int id);
-
         bool RemoveCommunity(int id);
 
     }

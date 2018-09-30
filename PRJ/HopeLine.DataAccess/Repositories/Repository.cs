@@ -27,8 +27,7 @@ namespace HopeLine.DataAccess.Repositories
             _entities = _hopeLineDb.Set<T>();
 
         }
-
-        //public object Select => throw new System.NotImplementedException();
+        
 
         /// <summary>
         /// 
@@ -88,11 +87,6 @@ namespace HopeLine.DataAccess.Repositories
         /// </summary>
         /// <param name="obj"></param>
         public void Update(T obj)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        object IRepository<T>.Select(System.Func<object, HopeLine.Service.Models.CommunityModel> p)
         {
             throw new System.NotImplementedException();
         }
