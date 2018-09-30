@@ -1,11 +1,17 @@
 {
   "version": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "BOoNeCUrxoB3lcUOgmqpxJY60Lh1zMSFN0EcqQkHRoEbsnW7zR4fSlXIV5E7Luzet8UU0A0X9CWTSx6nGB5BGQ==",
 ||||||| merged common ancestors
   "dgSpecHash": "yWn3GfAVeEGjPTRlbRoHr5hBOqTWeTrCFmE6Uku/6CFf+M5299gAdx4ITDzsFz2IbNWq7MCc2eR1yhcgiA+ZzA==",
 =======
   "dgSpecHash": "S8FRJGfwJZpp3scJhcZlZk3E7C3TU748x37cOLP9pePo5rGuQun6eysOIoZL/gT1aFrg+sK32oZkZ0Qeomkl6A==",
 >>>>>>> services
+||||||| merged common ancestors
+  "dgSpecHash": "yWn3GfAVeEGjPTRlbRoHr5hBOqTWeTrCFmE6Uku/6CFf+M5299gAdx4ITDzsFz2IbNWq7MCc2eR1yhcgiA+ZzA==",
+=======
+  "dgSpecHash": "TjhAFO8qJ7PrwZ2u1ifbRoIljLLTdmCVUj+iA7PhMnzQxkoxCiaMLyAS13XNn3yx0N+936nn+oj1rYPwVNv1rw==",
+>>>>>>> web-app-bootstrap
   "success": true
 }

@@ -7849,11 +7849,18 @@
   },
   "packageFolders": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
 ||||||| merged common ancestors
     "C:\\Users\\EXD\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+||||||| merged common ancestors
+    "C:\\Users\\EXD\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
+=======
+    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
+>>>>>>> web-app-bootstrap
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
 =======
     "C:\\Users\\osori\\.nuget\\packages\\": {},
@@ -7864,13 +7871,20 @@
     "version": "1.0.0",
     "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
 ||||||| merged common ancestors
       "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
 =======
       "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
 >>>>>>> services
+||||||| merged common ancestors
+      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+=======
+      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+>>>>>>> web-app-bootstrap
       "projectName": "HopeLine.Service",
+<<<<<<< HEAD
 <<<<<<< HEAD
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
       "packagesPath": "/home/exd/.nuget/packages/",
@@ -7884,18 +7898,33 @@
       "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\obj\\",
 >>>>>>> services
+||||||| merged common ancestors
+      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
+=======
+      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
+      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
+      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
+>>>>>>> web-app-bootstrap
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+<<<<<<< HEAD
 <<<<<<< HEAD
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
 ||||||| merged common ancestors
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+||||||| merged common ancestors
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
+=======
+>>>>>>> web-app-bootstrap
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
 =======
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
 >>>>>>> services
       ],
       "configFilePaths": [
+<<<<<<< HEAD
 <<<<<<< HEAD
         "/home/exd/.nuget/NuGet/NuGet.Config"
 ||||||| merged common ancestors
@@ -7906,6 +7935,14 @@
         "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
 >>>>>>> services
+||||||| merged common ancestors
+        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+=======
+        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> web-app-bootstrap
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -7917,6 +7954,7 @@
         "netcoreapp2.1": {
           "projectReferences": {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj": {
               "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj"
 ||||||| merged common ancestors
@@ -7926,6 +7964,13 @@
             "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
               "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
 >>>>>>> services
+||||||| merged common ancestors
+            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+=======
+            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
+              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
+>>>>>>> web-app-bootstrap
             }
           }
         }
@@ -7969,5 +8014,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\HopeLine.Service.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

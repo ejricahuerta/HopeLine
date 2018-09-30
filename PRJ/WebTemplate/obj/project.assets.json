@@ -11501,10 +11501,16 @@
   },
   "packageFolders": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
 ||||||| merged common ancestors
     "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
+||||||| merged common ancestors
+    "C:\\Users\\ejricahuerta\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
+>>>>>>> web-app-bootstrap
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
 =======
     "C:\\Users\\osori\\.nuget\\packages\\": {},
@@ -11515,13 +11521,20 @@
     "version": "1.0.0",
     "restore": {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/WebTemplate/WebTemplate.csproj",
 ||||||| merged common ancestors
       "projectUniqueName": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
 =======
       "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\WebTemplate\\WebTemplate.csproj",
 >>>>>>> services
+||||||| merged common ancestors
+      "projectUniqueName": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+=======
+      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+>>>>>>> web-app-bootstrap
       "projectName": "WebTemplate",
+<<<<<<< HEAD
 <<<<<<< HEAD
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/WebTemplate/WebTemplate.csproj",
       "packagesPath": "/home/exd/.nuget/packages/",
@@ -11535,15 +11548,30 @@
       "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\WebTemplate\\obj\\",
 >>>>>>> services
+||||||| merged common ancestors
+      "projectPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "packagesPath": "C:\\Users\\ejricahuerta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ejricahuerta\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+=======
+      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
+      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+>>>>>>> web-app-bootstrap
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
 <<<<<<< HEAD
+<<<<<<< HEAD
         "/home/exd/.nuget/NuGet/NuGet.Config"
 ||||||| merged common ancestors
         "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+||||||| merged common ancestors
+        "C:\\Users\\ejricahuerta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> web-app-bootstrap
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
 =======
         "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11589,5 +11617,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\obj\\WebTemplate.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
