@@ -30,8 +30,4 @@
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
-
-  <Target Name="RunGulp" BeforeTargets="Build">
-  <Exec Command="node_modules\.bin\gulp.cmd" />
-</Target>
 </Project>
