@@ -4112,17 +4112,7 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "T6cNz6qLH67PH9TTbUnSUVuIvWSTNMNaAs16lvnalnPBFOPutRi2tBvLPbcotkWEIi2v+OOdtcEiddtHfn7Z1A==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
-=======
-      "sha512": "T6cNz6qLH67PH9TTbUnSUVuIvWSTNMNaAs16lvnalnPBFOPutRi2tBvLPbcotkWEIi2v+OOdtcEiddtHfn7Z1A==",
->>>>>>> master
-=======
-      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
@@ -4159,17 +4149,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "fPw//Z779nZA9XlKBG2fpM23PP4XVJWvqoE6Be7P1Zim4sWWSM6PWrZM2v5m52uz27OzFuOW577WXmuHP9JPvA==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
-=======
-      "sha512": "fPw//Z779nZA9XlKBG2fpM23PP4XVJWvqoE6Be7P1Zim4sWWSM6PWrZM2v5m52uz27OzFuOW577WXmuHP9JPvA==",
->>>>>>> master
-=======
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -4512,17 +4492,7 @@
       ]
     },
     "System.Diagnostics.Contracts/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "FepSdsKw8W8PjoiwgI0VKztSKpHX8MEWcLYs1ONZJ+vSuuweQbwVRSL6qU++YEX3BXCZehiKIbn4Velt7hQQ2g==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
-=======
-      "sha512": "FepSdsKw8W8PjoiwgI0VKztSKpHX8MEWcLYs1ONZJ+vSuuweQbwVRSL6qU++YEX3BXCZehiKIbn4Velt7hQQ2g==",
->>>>>>> master
-=======
-      "sha512": "eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.diagnostics.contracts/4.3.0",
       "files": [
@@ -4984,17 +4954,7 @@
       ]
     },
     "System.Globalization.Extensions/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "bqohc981OwpDRcO914ylL+hj+5lkauuBesE1PYANEy7lh7XdhVMP3eOyQFCpwaZmFRWMkVvyudbGUj6noHPmPA==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
-=======
-      "sha512": "bqohc981OwpDRcO914ylL+hj+5lkauuBesE1PYANEy7lh7XdhVMP3eOyQFCpwaZmFRWMkVvyudbGUj6noHPmPA==",
->>>>>>> master
-=======
-      "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.globalization.extensions/4.3.0",
       "files": [
@@ -5454,17 +5414,7 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "pXXlXr8MURkBY+1QVNXWQ0N5oojDSJlm+SuTPS75MkmHALCTir9HwMD42ue8Hg+e31qsNoLBxWfXflT5J2Tzdw==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
-=======
-      "sha512": "pXXlXr8MURkBY+1QVNXWQ0N5oojDSJlm+SuTPS75MkmHALCTir9HwMD42ue8Hg+e31qsNoLBxWfXflT5J2Tzdw==",
->>>>>>> master
-=======
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
@@ -5544,17 +5494,7 @@
       ]
     },
     "System.Net.Primitives/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "YaUeun3fm6mQ0NARRC9JZz2RFagSG3JS5mTfZNIv3dSZvLqqKmNN4AhxUyjigC9SFEC3ZMl6KgDJS54XhbEjWg==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "qOu+hDwFwoZPbzPvwut2qATe3ygjeQBDQj91xlsaqGFQUI5i4ZnZb8yyQuLGpDGivEPIt8EJkd1BVzVoP31FXA==",
-=======
-      "sha512": "YaUeun3fm6mQ0NARRC9JZz2RFagSG3JS5mTfZNIv3dSZvLqqKmNN4AhxUyjigC9SFEC3ZMl6KgDJS54XhbEjWg==",
->>>>>>> master
-=======
-      "sha512": "qOu+hDwFwoZPbzPvwut2qATe3ygjeQBDQj91xlsaqGFQUI5i4ZnZb8yyQuLGpDGivEPIt8EJkd1BVzVoP31FXA==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.net.primitives/4.3.0",
       "files": [
@@ -6449,17 +6389,7 @@
       ]
     },
     "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "fAa5fm9Chb2XaAbGMtifXKKI+NuR9+KT4FV6bJK9PiwVsbXA9ASyjEO/6levkF5uMEGN7KUF/rr88808fIyaQg==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "cbz4YJMqRDR7oLeMRbdYv7mYzc++17lNhScCX0goO2XpGWdvAt60CGN+FHdePUEHCe/Jy9jUlvNAiNdM+7jsOw==",
-=======
-      "sha512": "fAa5fm9Chb2XaAbGMtifXKKI+NuR9+KT4FV6bJK9PiwVsbXA9ASyjEO/6levkF5uMEGN7KUF/rr88808fIyaQg==",
->>>>>>> master
-=======
-      "sha512": "cbz4YJMqRDR7oLeMRbdYv7mYzc++17lNhScCX0goO2XpGWdvAt60CGN+FHdePUEHCe/Jy9jUlvNAiNdM+7jsOw==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.runtime.interopservices.runtimeinformation/4.3.0",
       "files": [
@@ -6574,14 +6504,7 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "camvIKI9Kc+k4Ep5h4V3ADDAM5t97g/dJU/ZHT3v+Dbd61grN/b/npOTsO0xuHuClBfCP2APZYN2KgFLjVckPw==",
-||||||| merged common ancestors
-      "sha512": "camvIKI9Kc+k4Ep5h4V3ADDAM5t97g/dJU/ZHT3v+Dbd61grN/b/npOTsO0xuHuClBfCP2APZYN2KgFLjVckPw==",
->>>>>>> master
-=======
       "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
@@ -6763,17 +6686,7 @@
       ]
     },
     "System.Security.Claims/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "Tx4UwyBszUzy4ML/sDtrC9nZFnRj2ThBLPoWdCXVpUkUJT+9Jzxzt6gn8wciUOnk5ruowhcG/BAZ5TCbWN2S8Q==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "P/+BR/2lnc4PNDHt/TPBAWHVMLMRHsyYZbU1NphW4HIWzCggz8mJbTQQ3MKljFE7LS3WagmVFuBgoLcFzYXlkA==",
-=======
-      "sha512": "Tx4UwyBszUzy4ML/sDtrC9nZFnRj2ThBLPoWdCXVpUkUJT+9Jzxzt6gn8wciUOnk5ruowhcG/BAZ5TCbWN2S8Q==",
->>>>>>> master
-=======
-      "sha512": "P/+BR/2lnc4PNDHt/TPBAWHVMLMRHsyYZbU1NphW4HIWzCggz8mJbTQQ3MKljFE7LS3WagmVFuBgoLcFzYXlkA==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.security.claims/4.3.0",
       "files": [
@@ -7147,17 +7060,7 @@
       ]
     },
     "System.Security.Principal/4.3.0": {
-<<<<<<< HEAD
-      "sha512": "sb/Q5N+EpYh4kLQB+Po9R2XhkBN/TsBonwCyAImQsLxG7fhQkkg4BHC9KpzHWz0V/BqvNP8MiyovwuFQC8xAvA==",
-||||||| merged common ancestors
-<<<<<<< HEAD
       "sha512": "I1tkfQlAoMM2URscUtpcRo/hX0jinXx6a/KUtEQoz3owaYwl3qwsO8cbzYVVnjxrzxjHo3nJC+62uolgeGIS9A==",
-=======
-      "sha512": "sb/Q5N+EpYh4kLQB+Po9R2XhkBN/TsBonwCyAImQsLxG7fhQkkg4BHC9KpzHWz0V/BqvNP8MiyovwuFQC8xAvA==",
->>>>>>> master
-=======
-      "sha512": "I1tkfQlAoMM2URscUtpcRo/hX0jinXx6a/KUtEQoz3owaYwl3qwsO8cbzYVVnjxrzxjHo3nJC+62uolgeGIS9A==",
->>>>>>> web-rtc
       "type": "package",
       "path": "system.security.principal/4.3.0",
       "files": [
@@ -7945,154 +7848,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "/home/exd/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
-||||||| merged common ancestors
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-||||||| merged common ancestors
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-=======
-    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
->>>>>>> web-app-bootstrap
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
-=======
-    "C:\\Users\\osori\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> services
-||||||| merged common ancestors
-    "/home/exd/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
->>>>>>> master
-=======
     "C:\\Users\\zshi1\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> web-rtc
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
-||||||| merged common ancestors
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-=======
-      "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
->>>>>>> services
-||||||| merged common ancestors
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-=======
       "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-=======
-      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
->>>>>>> web-rtc
       "projectName": "HopeLine.Service",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-      "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
-      "packagesPath": "/home/exd/.nuget/packages/",
-      "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/obj/",
-||||||| merged common ancestors
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
-=======
-      "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Service\\obj\\",
->>>>>>> services
-||||||| merged common ancestors
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
-=======
       "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
       "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
       "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
-=======
-      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\HopeLine.Service.csproj",
-      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
-      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Service\\obj\\",
->>>>>>> web-rtc
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-||||||| merged common ancestors
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-||||||| merged common ancestors
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-=======
->>>>>>> web-app-bootstrap
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-=======
-||||||| merged common ancestors
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-=======
->>>>>>> web-rtc
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
->>>>>>> services
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "/home/exd/.nuget/NuGet/NuGet.Config"
-||||||| merged common ancestors
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
-        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> services
-||||||| merged common ancestors
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
         "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
-      "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
-      "projectName": "HopeLine.Service",
-      "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/HopeLine.Service.csproj",
-      "packagesPath": "/home/exd/.nuget/packages/",
-      "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Service/obj/",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "/home/exd/.nuget/NuGet/NuGet.Config"
->>>>>>> master
-=======
-        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> web-rtc
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -8104,37 +7877,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj": {
-              "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj"
-||||||| merged common ancestors
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-=======
-            "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
->>>>>>> services
-||||||| merged common ancestors
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-=======
             "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
               "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-<<<<<<< HEAD
-            "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
-=======
-            "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj": {
-              "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.DataAccess/HopeLine.DataAccess.csproj"
->>>>>>> master
-=======
-            "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj": {
-              "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.DataAccess\\HopeLine.DataAccess.csproj"
->>>>>>> web-rtc
             }
           }
         }
@@ -8156,18 +7900,10 @@
             "target": "Package",
             "version": "[2.1.2, )"
           },
-<<<<<<< HEAD
           "Microsoft.EntityFrameworkCore.InMemory": {
             "target": "Package",
             "version": "[2.1.3, )"
           },
-||||||| merged common ancestors
-          "Microsoft.IdentityModel.Tokens": {
-            "target": "Package",
-            "version": "[5.2.4, )"
-          },
-=======
->>>>>>> web-rtc
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
