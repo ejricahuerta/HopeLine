@@ -42,9 +42,3 @@ D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Service/obj/Debug/netcoreapp2.1/HopeLi
 D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Service/obj/Debug/netcoreapp2.1/HopeLine.Service.csproj.CopyComplete
 D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Service/obj/Debug/netcoreapp2.1/HopeLine.Service.dll
 D:/StudyWork/GitHub/HopeLine/PRJ/HopeLine.Service/obj/Debug/netcoreapp2.1/HopeLine.Service.pdb
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csprojAssemblyReference.cache
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.csproj.CoreCompileInputs.cache
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfoInputs.cache
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.AssemblyInfo.cs
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.dll
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Service\obj\Debug\netcoreapp2.1\HopeLine.Service.pdb

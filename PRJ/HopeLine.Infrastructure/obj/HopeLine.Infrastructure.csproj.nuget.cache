@@ -1,23 +1,5 @@
 {
   "version": 1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   "dgSpecHash": "JBsYWoENNPndKaJRWvcw0veXURq4F8a0xvXPAblxEN4VWVtt3ilMZoFZHsKgdZYt0Pzha8bxi5srwBjnJmaIlw==",
-||||||| merged common ancestors
-  "dgSpecHash": "klACyggMSnWM5JYGRM5G5Xm810Y8YFuu5BntnA/qgW1JJVYdg9ALP8KOZKMUTPEcQZ6iSsdHhwHM+RGrHicMSw==",
-=======
-  "dgSpecHash": "e8SJZOO0oRTfG8ZfX2M3MzlfA333sfhOFrguuSP5O6xUIj2XFltAFFC2UOLPYLGXxGHppNTQEgpS2TkR9xyKgQ==",
->>>>>>> services
-||||||| merged common ancestors
-  "dgSpecHash": "klACyggMSnWM5JYGRM5G5Xm810Y8YFuu5BntnA/qgW1JJVYdg9ALP8KOZKMUTPEcQZ6iSsdHhwHM+RGrHicMSw==",
-=======
-  "dgSpecHash": "tl5C9DDWVJrBi6SS4fIEWYaq7xjFoptUhmfdgXBvu1YcUrgoeoAMeFAEuLX4OTlPqRT6sweY+csNn17ZQCURGQ==",
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-  "dgSpecHash": "JBsYWoENNPndKaJRWvcw0veXURq4F8a0xvXPAblxEN4VWVtt3ilMZoFZHsKgdZYt0Pzha8bxi5srwBjnJmaIlw==",
-=======
-  "dgSpecHash": "tl5C9DDWVJrBi6SS4fIEWYaq7xjFoptUhmfdgXBvu1YcUrgoeoAMeFAEuLX4OTlPqRT6sweY+csNn17ZQCURGQ==",
->>>>>>> web-rtc
   "success": true
 }
