@@ -28,6 +28,7 @@ namespace HopeLine.Web.Pages
 
             UserName = HttpContext.Session.GetString("_guest");
             System.Console.WriteLine("User = " + UserName);
+            
             if (UserName != null)
             {
 
@@ -43,7 +44,6 @@ namespace HopeLine.Web.Pages
             }
             else
             {
-                UserName = "reached here... ERROR";
                 string url = Url.Page("/Login", new { area = "Guest",returnUrl = "chat" });
                 return LocalRedirect(url);
             }

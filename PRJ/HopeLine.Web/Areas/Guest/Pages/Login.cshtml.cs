@@ -11,8 +11,10 @@ namespace HopeLine.Web.Areas.Guest.Pages
 {
     public class LoginModel : PageModel
     {
-        public LoginModel()
+        private readonly ICommunication _communicationService;
+        public LoginModel(ICommunication communicationService)
         {
+            _communicationService = communicationService;
         }
 
         public string SessionId = "_guest";
@@ -21,22 +23,30 @@ namespace HopeLine.Web.Areas.Guest.Pages
         [StringLength(40)]
         [MinLength(5)]
         public string Username { get; set; }
-
+        public string ReturnUrl { get; set; }
         public void OnGet(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
-            
+            ReturnUrl = returnUrl != null ? Url.Content("~/" + returnUrl) : Url.Content("~/");
+
         }
 
         public IActionResult OnPost(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
-            
+            ReturnUrl = returnUrl != null? Url.Content("~/" + returnUrl) : Url.Content("~/");
+
+            string pin = "";
+            if (ReturnUrl.ToLower().Contains("chat"))
+            {
+                pin = _communicationService.GenerateConnectionId();
+            }
+
+            ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
+
             if (Username != null)
             {
                 HttpContext.Session.SetString("_guest", Username);
                 TempData["user"] = Username;
-                return RedirectToPage(returnUrl);
+                return Redirect(ReturnUrl);
             }
             return Page();
         }

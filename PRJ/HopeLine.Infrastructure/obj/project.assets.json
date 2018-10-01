@@ -681,144 +681,28 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     "/home/exd/.nuget/packages/": {},
     "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
-||||||| merged common ancestors
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-||||||| merged common ancestors
-    "C:\\Users\\EXD\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-=======
-    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
->>>>>>> web-app-bootstrap
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
-=======
-    "C:\\Users\\osori\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> services
-||||||| merged common ancestors
-    "/home/exd/.nuget/packages/": {},
-    "/usr/share/dotnet/sdk/NuGetFallbackFolder": {}
-=======
-    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> web-rtc
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
-||||||| merged common ancestors
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-=======
-      "projectUniqueName": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
->>>>>>> services
-||||||| merged common ancestors
-      "projectUniqueName": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-=======
-      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-      "projectUniqueName": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
-=======
-      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
->>>>>>> web-rtc
       "projectName": "HopeLine.Infrastructure",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
       "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
       "packagesPath": "/home/exd/.nuget/packages/",
       "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/",
-||||||| merged common ancestors
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
-=======
-      "projectPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\osori\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\osori\\source\\repos\\HopeLine2\\PRJ\\HopeLine.Infrastructure\\obj\\",
->>>>>>> services
-||||||| merged common ancestors
-      "projectPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\EXD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\EXD\\Source\\Repos\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
-=======
-      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
-      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-      "projectPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/HopeLine.Infrastructure.csproj",
-      "packagesPath": "/home/exd/.nuget/packages/",
-      "outputPath": "/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/",
-=======
-      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\HopeLine.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
-      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\",
->>>>>>> web-rtc
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-||||||| merged common ancestors
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-||||||| merged common ancestors
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-=======
->>>>>>> web-app-bootstrap
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-=======
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
->>>>>>> services
-||||||| merged common ancestors
-        "/usr/share/dotnet/sdk/NuGetFallbackFolder"
-=======
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
->>>>>>> web-rtc
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
         "/home/exd/.nuget/NuGet/NuGet.Config"
-||||||| merged common ancestors
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
-        "C:\\Users\\osori\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> services
-||||||| merged common ancestors
-        "C:\\Users\\EXD\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
-=======
-        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> web-app-bootstrap
-||||||| merged common ancestors
-        "/home/exd/.nuget/NuGet/NuGet.Config"
-=======
-        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> web-rtc
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -849,13 +733,5 @@
         "warn": true
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\HopeLine.Infrastructure\\obj\\HopeLine.Infrastructure.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
