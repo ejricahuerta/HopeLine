@@ -19,7 +19,6 @@ C:/Users/eosorio1/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/ne
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.deps.json
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\bin\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
-D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csprojAssemblyReference.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csproj.CoreCompileInputs.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfoInputs.cache
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfo.cs

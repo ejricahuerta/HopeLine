@@ -8,27 +8,40 @@ connection = new signalR.HubConnectionBuilder()
     .withUrl("http://localhost:5000/chatHub")
     .build();
 
-connection.start().catch(function (err) {
-    return console.error(err.toString());
 
+//Register all Method here.
+connection.on("ReceiveMessage", function (user, message) {
+    var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
 
-});
-
-connection.on("Receivemessage", function (user, message) {
-
-
-     var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
-
-    $('#chatbox').append('<div id="message"><span class= "badge">'+ user+'</span>' +
+    $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
         ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
         message +
         '</p></div></div>');
+});
+
+connection.on("Load", function (user, message) {
+    currentuser = $('#userInput').val();
+    var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
+
+    $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
+        ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
+        message +
+        '</p></div></div>');
+});
+//End of Registrations
+
+
+
+
+
+//Start the connection
+connection.start().catch(function (err) {
+    return console.error(err.toString());
 
 });
 
 
-$('#userInput').click(function () {
-
+$('#connectButton').click(function () {
     if (!isconnected) {
         connection.invoke("AddUserToRoom", room)
             .catch(function (err) {
@@ -36,23 +49,34 @@ $('#userInput').click(function () {
 
             });
         isconnected = true;
+        console.log('Id :' + room);
+        connection.invoke("LoadMessage", room)
+            .catch(function (err) {
+                return console.error(err.toString());
+
+            });
     }
 
 });
 
-
-$('#sendButton').click(function () {
+$('#sendButton').click(function (event) {
 
     currentuser = $('#userInput').val()
-    var message = $('#messageInput').val();
-    $('#messageInput').val(' ');
+    var message = $('#messageInput').val().trim();
 
-    connection.invoke("SendMessage", currentuser, message, room)
-        .catch(function (err) {
-            return console.error(err.toString());
-        });
+    console.log('user: ' + currentuser);
+    console.log('message: ' + message);
 
-    event.preventDefault();
+    if (message && isconnected) {
+
+        connection.invoke("SendMessage", currentuser, message, room)
+            .catch(function (err) {
+                return console.error(err.toString());
+            });
+
+        event.preventDefault();
+        $('#messageInput').val(' ');
+    }
 });
 /** 
  * @overview ASP.NET Core SignalR JavaScript Client.
