@@ -1,6 +1,4 @@
 ﻿using HopeLine.DataAccess.Entities.Base;
-using HopeLine.DataAccess.Repositories;
-
 namespace HopeLine.DataAccess.Entities
 {
     //TODO : add props
@@ -11,10 +9,6 @@ namespace HopeLine.DataAccess.Entities
     /// </summary>
     public class Map : BaseEntity
     {
-        public Map(UnitOfWork unitOfWork)
-        {
-
-        }
         public Map()
         {
             Radius = 0;
