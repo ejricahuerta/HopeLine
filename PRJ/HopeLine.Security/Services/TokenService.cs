@@ -117,7 +117,7 @@ namespace HopeLine.Security.Services
 
         public async Task<object> RegisterUser(RegisterModel model)
         {
-            var user = new UserAccount
+            var user = new MentorAccount
             {
                 Profile = new Profile
                 {
@@ -130,7 +130,6 @@ namespace HopeLine.Security.Services
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, false);
                 return GenerateToken(model.Username, user);
             }
             return null;
