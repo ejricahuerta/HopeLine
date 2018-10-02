@@ -14,6 +14,8 @@ namespace HopeLine.DataAccess.Entities
     {
         public Topic()
         {
+            Name = "";
+            Description = "";
         }
 
         [Required]

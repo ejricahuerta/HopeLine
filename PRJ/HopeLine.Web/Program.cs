@@ -19,6 +19,6 @@ namespace HopeLine.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>().UseUrls("http://localhost:8000");
+                .UseStartup<Startup>();
     }
 }

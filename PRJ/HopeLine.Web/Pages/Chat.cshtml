@@ -1,11 +1,10 @@
-﻿@page 
+﻿@page "{pin?}"
 @model HopeLine.Web.Pages.ChatModel
 @{
     ViewData["Title"] = "Chat";
 }
-
 <input id="pin" value="@Model.PIN" hidden>
-<section class="row justify-content-between mt-5">
+<section class="container justify-content-between mt-5">
     <div class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
         <div class="card">
             <div class="card-header">
@@ -24,7 +23,7 @@
                 <div class="form-row">
                     <div class="col-9">
 
-                        <textarea class="form-control" id="messageInput" rows="1"></textarea>
+                        <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
                     </div>
                     <div class="col-3">
                         <input type="button" id="sendButton" class="btn btn-success" value="Send" />
@@ -35,11 +34,3 @@
     </div>
 </section>
 
-<section class="call col-sm-12 col-md-7 shadow-sm bg-secondary p-2 rounded" style="height:800px;">
-    <div class="bg-dark shadow-lg rounded m-2" style="right:20px;bottom:20px; height: 150px; width: 200px;position:absolute">
-    </div>
-</section>
-<!-- Optional JavaScript -->
-<script src="~/js/jquery-3.3.1.js"></script>
-<script src="~/js/signalr.js"></script>
-<script src="~/js/chat.js"></script>

@@ -6,6 +6,7 @@ namespace HopeLine.DataAccess.Interfaces
     //TODO : add implementation
     public interface IRepository<T>
     {
+
         IEnumerable<T> GetAll(string include = null);
         void Insert(T obj);
         void Update(T obj);

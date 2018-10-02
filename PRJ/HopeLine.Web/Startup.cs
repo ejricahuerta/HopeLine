@@ -1,7 +1,9 @@
+using System;
 using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,15 +31,42 @@ namespace HopeLine.Web
 
             ConfigureServiceExtension.AddConfiguration(services);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("AdminOnly",
+                                policy => policy.RequireClaim("AccountType", "Admin"));
+                opt.AddPolicy("RegisteredOnly",
+                                policy => policy.RequireClaim("AccountType", "Mentor", "RegisteredUser"));
+            
+            });
 
+
+
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                             .AddSessionStateTempDataProvider();
+                             
+
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(240);
+                options.Cookie.HttpOnly = true;
+            });
+
+            services.AddHttpContextAccessor();
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
            builder =>
            {
                builder.AllowAnyMethod()
                       .AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000","https://uinames.com/*")
+                      .WithOrigins("http://localhost:33061",
+                                   "http://localhost:5000",
+                                   "http://localhost:8000",
+                                   "https://uinames.com/*")
                       .AllowCredentials();
            }));
 
@@ -59,12 +88,18 @@ namespace HopeLine.Web
             }
 
             app.UseAuthentication();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCookiePolicy();
             app.UseStaticFiles();
+            app.UseSession();
 
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseMvc();
+
             ConfigureServiceExtension.UseConfiguration(app);
         }
     }

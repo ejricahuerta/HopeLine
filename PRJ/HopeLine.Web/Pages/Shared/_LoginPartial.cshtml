@@ -1,35 +1,41 @@
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@using HopeLine.Web.Areas.Guest.Pages
+
+@inject IHttpContextAccessor HttpContextAccessor
 @inject SignInManager<HopeLine.DataAccess.Entities.HopeLineUser> SignInManager
 @inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <!--
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
-            </li>
-        </ul>
-    </form>
-    -->
-
+@if(@HttpContextAccessor.HttpContext.Session.GetString("_guest")!= null){
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <p>
+                @HttpContextAccessor.HttpContext.Session.GetString("_guest")
+            </p>
+        </li>
+    </ul>
 }
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" asp-page="/Account/Register">Register</a></li>
-        <li><a class="nav-link" asp-page="/Account/Login">Login</a></li>
-    </ul>
+else{
 
-    <!--
-    <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>
-    -->
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                </li>
+            </ul>
+        </form>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="nav-link" asp-page="/Account/Register">Register</a></li>
+            <li><a class="nav-link" asp-page="/Account/Login">Login</a></li>
+        </ul>   
+    }
 
 }

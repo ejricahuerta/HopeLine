@@ -10,7 +10,10 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class MapModel : BaseModel
     {
-        public ICollection<string> LocationNames { get; set; }
-        
+        public double XCoordinate { get; set; }
+
+        public double YCoordinate { get; set; }
+
+        public double Radius { get; set; }
     }
 }

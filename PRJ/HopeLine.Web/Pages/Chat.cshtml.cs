@@ -1,4 +1,6 @@
 ﻿using HopeLine.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,27 +19,33 @@ namespace HopeLine.Web.Pages
 
         [BindProperty]
         public string PIN { get; set; }
-        
+
         [BindProperty]
         public string UserName { get; set; }
 
-        public void OnGet(string pin = null,string user = null)
+        public IActionResult OnGet(string pin = null, string user = null)
         {
-            if (pin == null)
+
+            UserName = HttpContext.Session.GetString("_guest");
+            System.Console.WriteLine("User = " + UserName);
+            
+            if (UserName != null)
             {
-                PIN = _communication.GenerateConnectionId();
+
+                if (pin == null)
+                {
+                    PIN = _communication.GenerateConnectionId();
+                }
+                else
+                {
+                    PIN = pin;
+                }
+                return Page();
             }
             else
             {
-                PIN = pin;
-            }
-
-            if(user == null){
-                UserName = "Test";
-
-            }
-            else{
-                UserName = user;
+                string url = Url.Page("/Login", new { area = "Guest",returnUrl = "chat" });
+                return LocalRedirect(url);
             }
         }
     }

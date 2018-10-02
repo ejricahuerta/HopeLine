@@ -49,26 +49,32 @@ $('#connectButton').click(function () {
 
             });
         isconnected = true;
+        console.log('Id :' + room);
+        connection.invoke("LoadMessage", room)
+            .catch(function (err) {
+                return console.error(err.toString());
+
+            });
     }
 
-    console.log('Id :' + room);
-    connection.invoke("LoadMessage", room)
-        .catch(function (err) {
-            return console.error(err.toString());
-
-        });
 });
 
-$('#sendButton').click(function () {
+$('#sendButton').click(function (event) {
 
     currentuser = $('#userInput').val()
-    var message = $('#messageInput').val();
-    $('#messageInput').val(' ');
+    var message = $('#messageInput').val().trim();
 
-    connection.invoke("SendMessage", currentuser, message, room)
-        .catch(function (err) {
-            return console.error(err.toString());
-        });
+    console.log('user: ' + currentuser);
+    console.log('message: ' + message);
 
-    event.preventDefault();
+    if (message && isconnected) {
+
+        connection.invoke("SendMessage", currentuser, message, room)
+            .catch(function (err) {
+                return console.error(err.toString());
+            });
+
+        event.preventDefault();
+        $('#messageInput').val(' ');
+    }
 });
