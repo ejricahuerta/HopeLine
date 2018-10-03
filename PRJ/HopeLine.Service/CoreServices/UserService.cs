@@ -37,7 +37,7 @@ namespace HopeLine.Service.CoreServices
             try
             {
                 // For each user return a value
-                return _userRepo.GetAll()
+                return _userRepo.Get()
                     .Select(u =>
                      //for each value map to user model
                      new UserModel
@@ -70,7 +70,7 @@ namespace HopeLine.Service.CoreServices
             try
             {
                 // for each value that has property value of this function param - userType
-                return _userRepo.GetAll()
+                return _userRepo.Get()
                         .Where(a => a.AccountType.ToString().Contains(userType))
                         .Select(u =>
                            //for each value map to usermodel
@@ -104,7 +104,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(mentorId) as MentorAccount)
+                var activities = (_userRepo.Get((object)mentorId) as MentorAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
@@ -131,7 +131,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+                var conversations = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
@@ -164,7 +164,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var schedules = (_userRepo.Get(mentorId) as MentorAccount)
+                var schedules = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
@@ -185,7 +185,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var specializations = _specializationRepo.GetAll("Specialization")
+                var specializations = _specializationRepo.Get("Specialization")
                     .Where(m => m.MentorAccountId == mentorId)
                     .Select(s => new SpecializationModel
                     {
@@ -213,7 +213,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(userId) as UserAccount)
+                var activities = (_userRepo.Get((object)userId) as UserAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
@@ -240,7 +240,7 @@ namespace HopeLine.Service.CoreServices
             try
             {
 
-                return _convoRepo.GetAll()
+                return _convoRepo.Get()
                                 .Where(u => u.UserName == username)
                                 .Select(c => new ConversationModel
                                 {
@@ -264,7 +264,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var user = _userRepo.Get(model.Id);
+                var user = _userRepo.Get((object)model.Id);
                 if (model.Username != null
                     && model.FirstName != null
                     && model.LastName != null && user != null)

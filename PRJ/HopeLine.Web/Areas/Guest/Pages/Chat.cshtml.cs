@@ -14,6 +14,9 @@ namespace HopeLine.Web.Areas.Guest.Pages
     {
         private readonly ICommonResource _commonResource;
         private readonly ICommunication _communication;
+
+        public ConversationModel _conversation;
+
         public ChatModel(ICommunication communication, ICommonResource commonResource)
         {
             _commonResource = commonResource;
@@ -21,6 +24,7 @@ namespace HopeLine.Web.Areas.Guest.Pages
         }
         public void OnGet()
         {
+            _communication.AddConversation(_conversation);
         }
     }
 }
