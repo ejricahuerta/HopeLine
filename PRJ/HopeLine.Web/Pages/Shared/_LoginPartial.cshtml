@@ -6,12 +6,24 @@
 @inject SignInManager<HopeLine.DataAccess.Entities.HopeLineUser> SignInManager
 @inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
  
-@if (SignInManager.IsSignedIn(User) || @HttpContextAccessor.HttpContext.Session.GetString("_guest")!= null)
+@{
+
+    if(@HttpContextAccessor.HttpContext.Session.GetString("_guest") != null){
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </a>
+                </li>
+            </ul>
+        </form>
+    }
+
+    else if(SignInManager.IsSignedIn(User))        
     {
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User</a>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello (@SignInManager.GetUserName(User)==null)?@UserManager.GetUserName(User):@HttpContextAccessor.HttpContext.Session.GetString("_guest"))  </a>
                 </li>
                 <li>
                     <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>

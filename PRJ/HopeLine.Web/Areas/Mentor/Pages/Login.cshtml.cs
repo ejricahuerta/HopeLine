@@ -37,10 +37,8 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             }
 
             var user = await _userManager.FindByEmailAsync(LoginInput.Username);
-
             if (user != null)
             {
-
                 var result = await _signInManager.CheckPasswordSignInAsync(user, LoginInput.Password, false);
                 if (result.Succeeded)
                 {
