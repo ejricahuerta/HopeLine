@@ -5,10 +5,11 @@ namespace HopeLine.Web.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [StringLength(40)]
+        [MaxLength(40)]
+        [MinLength(5)]
         public string Username { get; set; }
         
-        [MinLength(6)]
+        [MinLength(5)]
         [MaxLength(25)]
         [Required]
         public string  Password { get; set; }

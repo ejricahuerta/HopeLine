@@ -12,10 +12,10 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<MentorAccount> _signInManager;
-        private readonly UserManager<MentorAccount> _userManager;
+        private readonly SignInManager<HopeLineUser> _signInManager;
+        private readonly UserManager<HopeLineUser> _userManager;
 
-        public LoginModel(SignInManager<MentorAccount> signInManager, UserManager<MentorAccount> userManager)
+        public LoginModel(SignInManager<HopeLineUser> signInManager, UserManager<HopeLineUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -27,23 +27,23 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         }
 
-        public async Task<IActionResult> OnPostAsync(LoginViewModel model)
+        public async Task<IActionResult> OnPostAsync()
         {
 
             if (!ModelState.IsValid)
             {
+                ViewData["Error"] = "Invalid Login!";
                 return Page();
             }
 
-            var user = await _userManager.FindByEmailAsync(model.Username);
-
+            var user = await _userManager.FindByEmailAsync(LoginInput.Username);
             if (user != null)
             {
-
-                var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+                var result = await _signInManager.CheckPasswordSignInAsync(user, LoginInput.Password, false);
                 if (result.Succeeded)
                 {
-                    return RedirectToPage("~/");
+                    System.Console.WriteLine("Logged In...");
+                    return Redirect( Url.Content("~/Index"));
                 }
             }
 
