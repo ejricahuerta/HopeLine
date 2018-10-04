@@ -12,8 +12,12 @@
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </a>
+                    <span class="nav-link" asp-area="Identity">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </span>
                 </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
+                </li>
+            
             </ul>
         </form>
     }
@@ -23,10 +27,10 @@
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello (@SignInManager.GetUserName(User)==null)?@UserManager.GetUserName(User):@HttpContextAccessor.HttpContext.Session.GetString("_guest"))  </a>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello (@UserManager.GetUserName(User)==null)?@UserManager.GetUserName(User):@HttpContextAccessor.HttpContext.Session.GetString("_guest"))  </a>
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
                 </li>
             </ul>
         </form>
