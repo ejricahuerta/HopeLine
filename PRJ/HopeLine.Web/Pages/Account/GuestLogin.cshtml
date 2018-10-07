@@ -6,22 +6,85 @@
 }
 
 <br/>
-<div class="row">
-    <div class="col-md-12" style=" width: 100%; align-items: center; justify-content: space-around; display: flex; float: none;">
-        <section>
-            <form method="post">
-                <h4>Anonymous Login</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label>Please Enter a Anonymous Name</label>
-                    <input class="form-control" placeholder="Anonymous Name"  required autofocus/>
-                    <!--<span asp-validation-for="Input.Email" class="text-danger"></span>-->
+
+<p></p>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 bg-light m-40 p-40">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Topics</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Depression</td>
+                        <td class="form-group">
+                            <input type="checkbox" value="depression" style="width: 20px; height: 20px;" class="pull-right">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Bullying</td>
+                        <td class="form-group">
+                            <input type="checkbox" value="bullying" style="width: 20px; height: 20px;" class="pull-right">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Phonbia</td>
+                        <td class="form-group">
+                            <input type="checkbox" value="phonbia" style="width: 20px; height: 20px;" class="pull-right" checked>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            <div class="main col-md-9">
+                <div class="row">
+                    <div class="well">
+                        <input id="pin" value="@Model.PIN" hidden>
+                        <section class="container justify-content-between mt-5">
+                            <div class="chat col-sm-12 col-md-5 shadow-sm mb-2 ">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>
+                                            Chat
+                                        </h3>
+                                        <div class="form-group">
+                                            <label>@Model.PIN</label>
+                    <input type="text" class="form-control" id="userInput" placeholder="Name" value="@Model.UserName" />
+                <button  id="connectButton" type="button" class="btn btn-outline-info text-black-50">Connect</button> 
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Login</button>
+            </div>
+            <div class="card-body bg-white" id="chatbox" style="height:600px;  overflow-y: auto; ">
+            </div>
+            <div class="card-footer text-muted">
+                <div class="form-row">
+                    <div class="col-9">
+
+                        <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
+                    </div>
+                    <div class="col-3">
+                        <input type="button" id="sendButton" class="btn btn-success" value="Send" />
+                    </div>
                 </div>
-            </form>
-        </section>
+            </div>
+        </div>
     </div>
+</section>
+                    </div>
+                </div>
+            </div>
+ 
+       
 </div>
+    </div>
+
+
