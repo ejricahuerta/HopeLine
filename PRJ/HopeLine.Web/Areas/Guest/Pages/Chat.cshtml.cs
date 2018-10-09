@@ -7,6 +7,8 @@ using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace HopeLine.Web.Areas.Guest.Pages
 {
@@ -19,8 +21,32 @@ namespace HopeLine.Web.Areas.Guest.Pages
             _commonResource = commonResource;
             _communication = communication;
         }
-        public void OnGet()
+
+        [BindProperty]
+        public string PIN { get; set; }
+
+        [BindProperty]
+        public string UserName { get; set; }
+
+        public IActionResult OnGet(string pin = null, string user = null)
         {
+            UserName = HttpContext.Session.GetString("_guest");
+            System.Console.WriteLine("User = " + UserName);
+
+            if (UserName != null)
+            {
+                if(pin == null)
+                    PIN = _communication.GenerateConnectionId();
+
+                else
+                    PIN = pin;
+                return Page();
+            }
+            else
+            {
+                string url = Url.Page("/Login", new { area = "Guest", returnUrl = "chat"});
+                return LocalRedirect(url);
+            }
         }
     }
 }

@@ -117,21 +117,29 @@ namespace HopeLine.Security.Services
 
         public async Task<object> RegisterUser(RegisterModel model)
         {
-            var user = new UserAccount
+            try
             {
-                Profile = new Profile
+                var user = new MentorAccount
                 {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                },
-                UserName = model.Username,
-                Email = model.Username
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
+                    Profile = new Profile
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    },
+                    UserName = model.Username,
+                    Email = model.Username
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    return GenerateToken(model.Username, user);
+
+                }
+            }
+            catch (System.Exception ex)
             {
-                await _signInManager.SignInAsync(user, false);
-                return GenerateToken(model.Username, user);
+
+                throw new Exception("Unable to Create User: ", ex);
             }
             return null;
         }
