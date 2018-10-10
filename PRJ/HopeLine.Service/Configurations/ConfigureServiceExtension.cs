@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -68,12 +69,24 @@ namespace HopeLine.Service.Configurations
             services.AddDbContext<ChatDbContext>(opt =>
                             opt.UseInMemoryDatabase("chatdb"));
 
-            services.AddDbContext<ResourcesDbContext>(opt => opt 
-                                                          //.UseInMemoryDatabase("chatdb"));
-                                                         .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt 
-                                                    //.UseInMemoryDatabase("chatdb"));
-                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                    .UseMySql("server=zenit.senecac.on.ca;database=prj566_182a07;user=prj566_182a07;password=hfAJ9737",
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            // .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => opt
+                                                    .UseMySql("server=zenit.senecac.on.ca;database=prj566_182a07;user=prj566_182a07;password=hfAJ9737",
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            //.UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
                 .AddDefaultTokenProviders();

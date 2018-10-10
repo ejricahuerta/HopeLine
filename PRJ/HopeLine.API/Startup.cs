@@ -5,6 +5,7 @@ using HopeLine.Service.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,10 +36,9 @@ namespace HopeLine.API
             builder =>
             {
                 builder.AllowAnyMethod().AllowAnyHeader()
-                       .WithOrigins("http://localhost:33061", "http://localhost:5000", "http://localhost:8000")
+                        .AllowAnyOrigin()
                        .AllowCredentials();
             }));
-            services.AddTransient<ITokenService, TokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,9 +61,16 @@ namespace HopeLine.API
                         "Status code page, status code: " +
                         context.HttpContext.Response.StatusCode);
                 });
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseAuthentication();
 
             app.UseCors("CorsPolicy");
+
+
 
             app.UseSignalR(route =>
             {

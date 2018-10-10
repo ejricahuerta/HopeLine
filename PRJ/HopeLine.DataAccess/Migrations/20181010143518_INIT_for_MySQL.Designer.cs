@@ -3,31 +3,28 @@ using System;
 using HopeLine.DataAccess.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    [Migration("20180920210907_add new tables")]
-    partial class addnewtables
+    [Migration("20181010143518_INIT_for_MySQL")]
+    partial class INIT_for_MySQL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.2-rtm-30932")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Activity", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -45,16 +42,15 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Base.Shift", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
-                    b.Property<DateTime>("EndTime");
+                    b.Property<string>("EndTime");
 
                     b.Property<int?>("ScheduleId");
 
-                    b.Property<DateTime>("StartTime");
+                    b.Property<string>("StartTime");
 
                     b.HasKey("Id");
 
@@ -66,12 +62,11 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
-                    b.Property<DateTime>("DateOfConversation");
+                    b.Property<string>("DateOfConversation");
 
                     b.Property<string>("MentorId")
                         .IsRequired();
@@ -105,7 +100,8 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded")
+                        .IsRequired();
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
@@ -147,8 +143,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasName("UserNameIndex");
 
                     b.HasIndex("ProfileId");
 
@@ -160,8 +155,7 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int?>("ConversationId");
 
@@ -169,7 +163,7 @@ namespace HopeLine.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -188,7 +182,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<int>("SpecializationId");
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<int>("Id");
 
@@ -202,10 +196,9 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Profile", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -236,12 +229,11 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Schedule", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Available");
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("MentorAccountId");
 
@@ -255,10 +247,9 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Specialization", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("Description")
                         .HasMaxLength(200);
@@ -275,10 +266,9 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateAdded");
+                    b.Property<string>("DateAdded");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500);
@@ -313,8 +303,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -322,8 +311,7 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
@@ -342,8 +330,7 @@ namespace HopeLine.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
