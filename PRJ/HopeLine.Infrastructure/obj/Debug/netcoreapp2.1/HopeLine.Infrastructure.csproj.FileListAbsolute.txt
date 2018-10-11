@@ -6,3 +6,4 @@ D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.AssemblyInfo.cs
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.dll
 D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.pdb
+D:\StudyWork\GitHub\HopeLine\PRJ\HopeLine.Infrastructure\obj\Debug\netcoreapp2.1\HopeLine.Infrastructure.csprojAssemblyReference.cache
