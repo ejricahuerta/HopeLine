@@ -104,7 +104,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(mentorId) as MentorAccount)
+                var activities = (_userRepo.Get((object)mentorId) as MentorAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
@@ -131,7 +131,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+                var conversations = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
@@ -164,7 +164,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var schedules = (_userRepo.Get(mentorId) as MentorAccount)
+                var schedules = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
@@ -213,7 +213,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(userId) as UserAccount)
+                var activities = (_userRepo.Get((object)userId) as UserAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
@@ -264,7 +264,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var user = _userRepo.Get(model.Id);
+                var user = _userRepo.Get((object)model.Id);
                 if (model.Username != null
                     && model.FirstName != null
                     && model.LastName != null && user != null)
