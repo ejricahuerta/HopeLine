@@ -70,7 +70,7 @@ namespace HopeLine.Service.Configurations
                             opt.UseInMemoryDatabase("chatdb"));
 
             services.AddDbContext<ResourcesDbContext>(opt => opt
-                    .UseMySql("server=zenit.senecac.on.ca;database=prj566_182a07;user=prj566_182a07;password=hfAJ9737",
+                    .UseMySql(APIConstant.ConnectionString,
                         mysqlOptions =>
                         {
                             mysqlOptions
@@ -79,7 +79,7 @@ namespace HopeLine.Service.Configurations
             //.UseInMemoryDatabase("chatdb"));
             // .UseSqlServer(APIConstant.ConnectionString));
             services.AddDbContext<HopeLineDbContext>(opt => opt
-                                                    .UseMySql("server=zenit.senecac.on.ca;database=prj566_182a07;user=prj566_182a07;password=hfAJ9737",
+                                                    .UseMySql(APIConstant.ConnectionString,
                         mysqlOptions =>
                         {
                             mysqlOptions
@@ -110,6 +110,7 @@ namespace HopeLine.Service.Configurations
             services.AddTransient<IMessage, MessageService>();
             services.AddTransient<ICommonResource, CommonResourceService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
         }
 
         /// <summary>
@@ -118,14 +119,14 @@ namespace HopeLine.Service.Configurations
         /// <param name="app"></param>
         public static void UseConfiguration(IApplicationBuilder app)
         {
-            //implement additional config when the app runs HERE
-            // using (var scope = app.ApplicationServices.CreateScope())
-            // {
-            //     using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
-            //         context.Database.EnsureCreated();
+           // implement additional config when the app runs HERE
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
+                    context.Database.EnsureCreated();
 
-            //     //TODO : do populate data HERE!
-            // }
+                //TODO : do populate data HERE!
+            }
         }
     }
 }

@@ -25,11 +25,14 @@ namespace HopeLine.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             ConfigureServiceExtension.AddConfiguration(services);
+
+            services.AddTransient<ITokenService,TokenService>();
 
             services.AddLogging();
             services.AddSignalR();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
@@ -39,6 +42,7 @@ namespace HopeLine.API
                         .AllowAnyOrigin()
                        .AllowCredentials();
             }));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,10 +70,10 @@ namespace HopeLine.API
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
             app.UseAuthentication();
 
             app.UseCors("CorsPolicy");
-
 
 
             app.UseSignalR(route =>
