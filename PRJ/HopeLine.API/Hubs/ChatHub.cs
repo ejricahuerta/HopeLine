@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace HopeLine.API.Hubs
 {
-
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
@@ -18,7 +17,9 @@ namespace HopeLine.API.Hubs
         public ChatHub(IMessage messageService)
         {
             _messageService = messageService;
+
         }
+
 
         public async Task AddUserToRoom(string room)
         {
@@ -45,12 +46,12 @@ namespace HopeLine.API.Hubs
             {
                 System.Console.WriteLine(room);
                 var allMessages = _messageService.GetAllMessages(room);
-                System.Console.WriteLine(" Count: " +allMessages.Count());
+                System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
                     foreach (var m in allMessages)
                     {
-                         await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
+                        await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
                     }
                 }
             }
@@ -71,6 +72,18 @@ namespace HopeLine.API.Hubs
             };
             _messageService.NewMessage(newmsg);
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
+        }
+
+        public async Task AddMentor()
+        {
+            try
+            {
+                await _messageService.NewMentorAvailable(Context.ConnectionId);
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to Process New Mentor: ", ex);
+            }
         }
     }
 }

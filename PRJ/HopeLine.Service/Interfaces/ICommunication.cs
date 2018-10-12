@@ -32,6 +32,6 @@ namespace HopeLine.Service.Interfaces
         string GenerateConnectionId();
 
         bool AddConversation(ConversationModel conversation);
-        
+                
     }
 }
