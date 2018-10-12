@@ -15,6 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using static HopeLine.DataAccess.Entities.HopeLineUser;
 
 namespace HopeLine.Security.Services
 {
@@ -108,32 +109,17 @@ namespace HopeLine.Security.Services
 
                 if (result.Succeeded)
                 {
-                    var user = _userManager.Users.SingleOrDefault(u => u.Email == username);
+                    var user = await _userManager.FindByEmailAsync(username);
                     return GenerateToken(username, user);
                 }
             }
             return null;
+        
         }
 
-        public async Task<object> RegisterUser(RegisterModel model)
+        public Task<object> RegisterUser(RegisterModel model)
         {
-            var user = new UserAccount
-            {
-                Profile = new Profile
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                },
-                UserName = model.Username,
-                Email = model.Username
-            };
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, false);
-                return GenerateToken(model.Username, user);
-            }
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

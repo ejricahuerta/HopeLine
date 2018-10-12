@@ -5,27 +5,32 @@
 @inject IHttpContextAccessor HttpContextAccessor
 @inject SignInManager<HopeLine.DataAccess.Entities.HopeLineUser> SignInManager
 @inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
+ 
+@{
 
-@if(@HttpContextAccessor.HttpContext.Session.GetString("_guest")!= null){
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <p>
-                @HttpContextAccessor.HttpContext.Session.GetString("_guest")
-            </p>
-        </li>
-    </ul>
-}
-else{
+    if(@HttpContextAccessor.HttpContext.Session.GetString("_guest") != null){
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <span class="nav-link" asp-area="Identity">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </span>
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
+                </li>
+            
+            </ul>
+        </form>
+    }
 
-    @if (SignInManager.IsSignedIn(User))
+    else if(SignInManager.IsSignedIn(User))        
     {
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)  </a>
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
                 </li>
             </ul>
         </form>
@@ -34,8 +39,7 @@ else{
     {
         <ul class="nav navbar-nav navbar-right">
             <li><a class="nav-link" asp-page="/Account/Register">Register</a></li>
-            <li><a class="nav-link" asp-page="/Account/Login">Login</a></li>
+            <li><a class="nav-link" asp-page="/Authenticate">Login</a></li>
         </ul>   
     }
-
 }

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -28,52 +29,27 @@ namespace HopeLine.Service.Configurations
         public static void AddConfiguration(IServiceCollection services)
         {
 
-            //JWT Authentication
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(
-                config =>
-                {
-                    config.RequireHttpsMetadata = false;
-                    config.SaveToken = true;
-                    config.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidIssuer = APIConstant.URL,
-                        ValidAudience = APIConstant.URL,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(APIConstant.SecretKey)),
-                        ClockSkew = TimeSpan.Zero
-                    };
-                    config.Events = new JwtBearerEvents
-                    {
-
-                        //Letting the client know that token is expired
-                        //further validation needs for token on client side
-                        OnAuthenticationFailed = context =>
-                        {
-                            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-                            {
-                                context.Response.Headers.Add("Token-Expired", "true");
-                            }
-                            return Task.CompletedTask;
-                        }
-                    };
-
-                });
-
             services.AddDbContext<ChatDbContext>(opt =>
                             opt.UseInMemoryDatabase("chatdb"));
 
-            services.AddDbContext<ResourcesDbContext>(opt => opt 
-                                                          //.UseInMemoryDatabase("chatdb"));
-                                                         .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt 
-                                                    //.UseInMemoryDatabase("chatdb"));
-                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                    .UseMySql(APIConstant.ConnectionString,
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            // .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => opt
+                                                    .UseMySql(APIConstant.ConnectionString,
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            //.UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
                 .AddDefaultTokenProviders();
@@ -97,6 +73,7 @@ namespace HopeLine.Service.Configurations
             services.AddTransient<IMessage, MessageService>();
             services.AddTransient<ICommonResource, CommonResourceService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
         }
 
         /// <summary>
@@ -105,7 +82,7 @@ namespace HopeLine.Service.Configurations
         /// <param name="app"></param>
         public static void UseConfiguration(IApplicationBuilder app)
         {
-            //implement additional config when the app runs HERE
+           // implement additional config when the app runs HERE
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())

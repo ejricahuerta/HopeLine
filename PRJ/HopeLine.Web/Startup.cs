@@ -1,9 +1,13 @@
 using System;
+using HopeLine.Security.Interfaces;
+using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,33 +26,15 @@ namespace HopeLine.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             ConfigureServiceExtension.AddConfiguration(services);
 
-            services.AddAuthorization(opt =>
-            {
-                opt.AddPolicy("AdminOnly",
-                                policy => policy.RequireClaim("AccountType", "Admin"));
-                opt.AddPolicy("RegisteredOnly",
-                                policy => policy.RequireClaim("AccountType", "Mentor", "RegisteredUser"));
-            
-            });
+        services.AddAuthentication().AddCookie("Cookies", opt=> {
+            opt.LoginPath = new PathString("/Authenticate");
 
-
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                             .AddSessionStateTempDataProvider();
-                             
-
-
-            services.AddDistributedMemoryCache();
+        });
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddSessionStateTempDataProvider();
 
             services.AddSession(options =>
             {
@@ -63,13 +49,9 @@ namespace HopeLine.Web
            {
                builder.AllowAnyMethod()
                       .AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061",
-                                   "http://localhost:5000",
-                                   "http://localhost:8000",
-                                   "https://uinames.com/*")
+                      .AllowAnyOrigin()
                       .AllowCredentials();
            }));
-
 
         }
 
@@ -86,17 +68,20 @@ namespace HopeLine.Web
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
-            app.UseAuthentication();
-            //app.UseHttpsRedirection();
-            app.UseCookiePolicy();
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
+            app.UseCookiePolicy(cookiePolicyOptions);
             app.UseStaticFiles();
             app.UseSession();
-
+            app.UseAuthentication();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
 

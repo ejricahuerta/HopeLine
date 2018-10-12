@@ -2,6 +2,7 @@
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -104,11 +105,11 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(mentorId) as MentorAccount)
+                var activities = (_userRepo.Get((object)mentorId) as MentorAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -131,13 +132,13 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+                var conversations = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
                         MentorId = c.Mentor.Id,
                         UserName = c.UserName,
-                        DateOfConversation = c.DateOfConversation,
+                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
                         Minutes = c.Minutes,
                         PIN = c.PIN
 
@@ -164,7 +165,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var schedules = (_userRepo.Get(mentorId) as MentorAccount)
+                var schedules = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
@@ -213,11 +214,11 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(userId) as UserAccount)
+                var activities = (_userRepo.Get((object)userId) as UserAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -246,7 +247,7 @@ namespace HopeLine.Service.CoreServices
                                 {
                                     Id = c.Id,
                                     UserName = c.UserName,
-                                    DateOfConversation = c.DateOfConversation,
+                                    DateOfConversation = DateTime.Parse(c.DateOfConversation),
                                     PIN = c.PIN,
                                     MentorId = c.Mentor.Id,
                                     Minutes = c.Minutes
@@ -264,7 +265,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var user = _userRepo.Get(model.Id);
+                var user = _userRepo.Get((object)model.Id);
                 if (model.Username != null
                     && model.FirstName != null
                     && model.LastName != null && user != null)

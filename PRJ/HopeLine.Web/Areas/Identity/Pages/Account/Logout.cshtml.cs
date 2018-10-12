@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 namespace HopeLine.Web.Areas.Identity.Pages.Account
 {
@@ -29,10 +30,13 @@ namespace HopeLine.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
+
+            HttpContext.Session.Clear();
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             if (returnUrl != null)
             {
+                returnUrl = Url.Content("~/");
                 return LocalRedirect(returnUrl);
             }
             else
