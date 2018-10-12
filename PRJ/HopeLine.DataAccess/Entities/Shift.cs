@@ -6,8 +6,8 @@ namespace HopeLine.DataAccess.Entities.Base
 {
     public class Shift : BaseEntity
     {
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
 
-        public DateTime EndTime { get; set; }
+        public string EndTime { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
@@ -68,12 +69,24 @@ namespace HopeLine.Service.Configurations
             services.AddDbContext<ChatDbContext>(opt =>
                             opt.UseInMemoryDatabase("chatdb"));
 
-            services.AddDbContext<ResourcesDbContext>(opt => opt 
-                                                          //.UseInMemoryDatabase("chatdb"));
-                                                         .UseSqlServer(APIConstant.ConnectionString));
-            services.AddDbContext<HopeLineDbContext>(opt => opt 
-                                                    //.UseInMemoryDatabase("chatdb"));
-                                                .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<ResourcesDbContext>(opt => opt
+                    .UseMySql(APIConstant.ConnectionString,
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            // .UseSqlServer(APIConstant.ConnectionString));
+            services.AddDbContext<HopeLineDbContext>(opt => opt
+                                                    .UseMySql(APIConstant.ConnectionString,
+                        mysqlOptions =>
+                        {
+                            mysqlOptions
+                                .ServerVersion(new Version(3, 23), ServerType.MySql);
+                        }));
+            //.UseInMemoryDatabase("chatdb"));
+            //.UseSqlServer(APIConstant.ConnectionString));
             services.AddIdentity<HopeLineUser, IdentityRole>()
                 .AddEntityFrameworkStores<HopeLineDbContext>()
                 .AddDefaultTokenProviders();
@@ -97,6 +110,7 @@ namespace HopeLine.Service.Configurations
             services.AddTransient<IMessage, MessageService>();
             services.AddTransient<ICommonResource, CommonResourceService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
         }
 
         /// <summary>
@@ -105,14 +119,14 @@ namespace HopeLine.Service.Configurations
         /// <param name="app"></param>
         public static void UseConfiguration(IApplicationBuilder app)
         {
-            //implement additional config when the app runs HERE
-            // using (var scope = app.ApplicationServices.CreateScope())
-            // {
-            //     using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
-            //         context.Database.EnsureCreated();
+           // implement additional config when the app runs HERE
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
+                    context.Database.EnsureCreated();
 
-            //     //TODO : do populate data HERE!
-            // }
+                //TODO : do populate data HERE!
+            }
         }
     }
 }

@@ -6,9 +6,9 @@ namespace HopeLine.DataAccess.Entities.Base
     {
         public BaseEntity()
         {
-            DateAdded = DateTime.UtcNow;
+            DateAdded = DateTime.UtcNow.ToString();
         }
         public int Id { get; set; }
-        public DateTime DateAdded { get; set; }
+        public string DateAdded { get; set; }
     }
 }

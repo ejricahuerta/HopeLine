@@ -63,10 +63,7 @@ namespace HopeLine.Web
            {
                builder.AllowAnyMethod()
                       .AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061",
-                                   "http://localhost:5000",
-                                   "http://localhost:8000",
-                                   "https://uinames.com/*")
+                      .AllowAnyOrigin()
                       .AllowCredentials();
            }));
 
@@ -97,6 +94,8 @@ namespace HopeLine.Web
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
 

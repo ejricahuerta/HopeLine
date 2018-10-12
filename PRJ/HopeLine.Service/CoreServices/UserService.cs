@@ -2,6 +2,7 @@
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -108,7 +109,7 @@ namespace HopeLine.Service.CoreServices
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -137,7 +138,7 @@ namespace HopeLine.Service.CoreServices
                         Id = c.Id,
                         MentorId = c.Mentor.Id,
                         UserName = c.UserName,
-                        DateOfConversation = c.DateOfConversation,
+                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
                         Minutes = c.Minutes,
                         PIN = c.PIN
 
@@ -217,7 +218,7 @@ namespace HopeLine.Service.CoreServices
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -246,7 +247,7 @@ namespace HopeLine.Service.CoreServices
                                 {
                                     Id = c.Id,
                                     UserName = c.UserName,
-                                    DateOfConversation = c.DateOfConversation,
+                                    DateOfConversation = DateTime.Parse(c.DateOfConversation),
                                     PIN = c.PIN,
                                     MentorId = c.Mentor.Id,
                                     Minutes = c.Minutes

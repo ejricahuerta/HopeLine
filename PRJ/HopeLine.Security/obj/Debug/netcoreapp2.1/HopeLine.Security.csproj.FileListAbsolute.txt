@@ -1,0 +1,14 @@
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.deps.json
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.dll
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Security.pdb
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.DataAccess.dll
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Service.dll
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.DataAccess.pdb
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/bin/Debug/netcoreapp2.1/HopeLine.Service.pdb
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csprojAssemblyReference.cache
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csproj.CoreCompileInputs.cache
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfoInputs.cache
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.AssemblyInfo.cs
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.csproj.CopyComplete
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.dll
+/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Security/obj/Debug/netcoreapp2.1/HopeLine.Security.pdb
