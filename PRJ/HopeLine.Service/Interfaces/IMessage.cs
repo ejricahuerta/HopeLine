@@ -8,11 +8,12 @@ namespace HopeLine.Service.Interfaces
     {
         void NewMessage(MessageModel model);
 
-        Task NewMentorAvailable(string connectionId);
+        Task NewMentorAvailable(string MentorId);
         Task RemoveMentor(string connectionId);
         void DeleteAllMessages(string connectionId);
         IEnumerable<MessageModel> GetAllMessages(string connectionId);
         IEnumerable<OnlineMentorModel> ListAvailableMentor();
-        void SetMentorOnCall(string connectionId);
+        Task SetMentorOnCall(string mentorId,string connectionId);
+        
     }
 }

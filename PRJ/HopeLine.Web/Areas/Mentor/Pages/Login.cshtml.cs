@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using HopeLine.DataAccess.Entities;
+using HopeLine.Service.Interfaces;
 using HopeLine.Web.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -17,12 +18,15 @@ namespace HopeLine.Web.Areas.Mentor.Pages
     {
         private readonly SignInManager<HopeLineUser> _signInManager;
         private readonly UserManager<HopeLineUser> _userManager;
+        private readonly IMessage _messageService;
 
-        public LoginModel(SignInManager<HopeLineUser> signInManager, UserManager<HopeLineUser> userManager)
+        public LoginModel(SignInManager<HopeLineUser> signInManager, UserManager<HopeLineUser> userManager, IMessage messageService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _messageService = messageService;
         }
+        
         [BindProperty]
         public LoginViewModel LoginInput { get; set; }
         public void OnGet()
@@ -75,14 +79,16 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, false, false);
                 if (res.Succeeded)
                 {
+                    var mentor = await _userManager.FindByEmailAsync(LoginInput.Username);
+                    await _messageService.NewMentorAvailable(mentor.Id);       
                     await HttpContext.SignInAsync(
                         "Cookies",
                         new ClaimsPrincipal(claimsIdentity),
                         authProperties);
-
                     return Redirect(returnUrl);
                 }
             }
+
             return Page();
         }
     }

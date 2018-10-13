@@ -32,15 +32,15 @@ namespace HopeLine.Web.Areas.Guest.Pages
 
         public IActionResult OnPost(string returnUrl = null)
         {
-            ReturnUrl = returnUrl != null? Url.Content("~/" + returnUrl) : Url.Content("~/");
+            ReturnUrl = returnUrl != null ? Url.Content("~/" + returnUrl) : Url.Content("~/");
 
             string pin = "";
             if (ReturnUrl.ToLower().Contains("chat"))
             {
                 pin = _communicationService.GenerateConnectionId();
+                ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
             }
 
-            ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
 
             if (Username != null)
             {

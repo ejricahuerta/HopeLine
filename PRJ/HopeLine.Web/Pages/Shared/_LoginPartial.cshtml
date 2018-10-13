@@ -7,7 +7,6 @@
 @inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
  
 @{
-
     if(@HttpContextAccessor.HttpContext.Session.GetString("_guest") != null){
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
@@ -20,9 +19,11 @@
             
             </ul>
         </form>
+
+        <input id="userId" type="text" hidden value=@HttpContextAccessor.HttpContext.Session.GetString("_guest") />
     }
 
-    else if(SignInManager.IsSignedIn(User))        
+    else if(@SignInManager.IsSignedIn(User))        
     {
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
@@ -34,6 +35,7 @@
                 </li>
             </ul>
         </form>
+        <input id="userId" type="text" hidden value="@UserManager.GetUserId(User)" />
     }
     else
     {

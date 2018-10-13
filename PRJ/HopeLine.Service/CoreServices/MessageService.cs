@@ -75,13 +75,13 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public async Task NewMentorAvailable(string connectionId)
+        public async Task NewMentorAvailable(string mentorId)
         {
             try
             {
                 var newOnline = new OnlineMentor
                 {
-                    ConnectionId = connectionId,
+                    MentorId = mentorId,
                     Available = true
                 };
                 await _chatDb.OnlineMentors.AddAsync(newOnline);
@@ -127,14 +127,16 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public void SetMentorOnCall(string connectionId)
+
+        public async Task SetMentorOnCall(string mentorId, string connectionId)
         {
             try
             {
-                var mentor = _chatDb.OnlineMentors.SingleOrDefault(i => i.ConnectionId == connectionId);
+                var mentor = _chatDb.OnlineMentors.SingleOrDefault(i => i.MentorId == mentorId);
                 mentor.Available = false;
+                mentor.ConnectionId = connectionId;
                 _chatDb.Update(mentor);
-                _chatDb.SaveChanges();
+                await _chatDb.SaveChangesAsync();
             }
             catch (System.Exception ex)
             {
