@@ -34,6 +34,17 @@ if (userId != null) {
             message +
             '</p></div></div>');
     });
+
+    connection.onclose("ReceiveMessage", function (user, message) {
+        var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
+
+        $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
+            ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
+            message +
+            '</p></div></div>');
+
+    });
+
     //End of Registrations
 
 
@@ -87,4 +98,6 @@ if (userId != null) {
             $('#messageInput').val(' ');
         }
     });
+
+
 }
