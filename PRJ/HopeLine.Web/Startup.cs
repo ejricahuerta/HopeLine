@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +48,6 @@ namespace HopeLine.Web
                              .AddSessionStateTempDataProvider();
                              
 
-
             services.AddDistributedMemoryCache();
 
             services.AddSession(options =>
@@ -69,6 +69,8 @@ namespace HopeLine.Web
                                    "https://uinames.com/*")
                       .AllowCredentials();
            }));
+
+            //services.AddScoped<IEmailSender>(x => new IEmailSender(EmailSender));
 
 
         }
