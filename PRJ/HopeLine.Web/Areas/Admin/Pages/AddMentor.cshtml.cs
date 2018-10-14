@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MyApp.Namespace
+namespace HopeLine.Web.Areas.Admin.Pages
 {
-    public class PagesModel : PageModel
+    public class AddMentorModel : PageModel
     {
         public void OnGet()
         {
