@@ -82,7 +82,7 @@ namespace HopeLine.API
                 builder.AllowAnyMethod()
                         .AllowAnyHeader()
                         .WithOrigins("https://hopeline.azurewebsites.net/")
-                       .DisallowCredentials();
+                       .AllowCredentials();
             }));
 
         }
