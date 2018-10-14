@@ -74,16 +74,7 @@ namespace HopeLine.API
 
             services.AddLogging();
 
-
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-            builder =>
-            {
-                builder
-                        .AllowAnyOrigin()
-                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                       .AllowCredentials();
-            }));
+            services.AddCors();
 
             services.AddSignalR();
         }
@@ -116,7 +107,11 @@ namespace HopeLine.API
 
             app.UseAuthentication();
 
-            app.UseCors("CorsPolicy");
+
+            app.UseCors(opt => opt.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
 
 
             app.UseSignalR(route =>

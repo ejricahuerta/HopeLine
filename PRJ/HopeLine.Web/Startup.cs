@@ -63,15 +63,7 @@ namespace HopeLine.Web
             services.AddHttpContextAccessor();
 
             //For Web Api CORS
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-                            builder =>
-                            {
-                                builder.WithOrigins("https://hopelineapi.azurewebsites.net/")
-                                .AllowAnyMethod()
-                                    .AllowAnyHeader()
-                                    .AllowCredentials();
-                            }
-            ));
+            services.AddCors();
 
         }
 
@@ -102,7 +94,10 @@ namespace HopeLine.Web
             });
 
 
-            app.UseCors("CorsPolicy");
+            app.UseCors(opt => opt.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
 
             app.UseMvc();
 
