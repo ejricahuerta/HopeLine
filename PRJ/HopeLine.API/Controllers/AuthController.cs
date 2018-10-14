@@ -3,6 +3,7 @@ using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Controllers
@@ -18,14 +19,13 @@ namespace HopeLine.API.Controllers
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
 
-        public AuthController(ITokenService tokenService,UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
+        public AuthController(ITokenService tokenService, UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
         {
             _tokenService = tokenService;
             _userManager = userManager;
             _signInManager = signInManager;
 
         }
-
 
         //TODO : needs to separate token builder and create new action for sending tokens
         [HttpPost]
@@ -64,12 +64,11 @@ namespace HopeLine.API.Controllers
                     Email = model.Username
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
-
                 if (result.Succeeded)
                 {
                     var newuser = await _userManager.FindByEmailAsync(model.Username);
-                   return Ok( _tokenService.GenerateToken(model.Username, newuser));
-
+                    var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "User"));
+                    return Ok(_tokenService.GenerateToken(model.Username, newuser));
                 }
 
             }

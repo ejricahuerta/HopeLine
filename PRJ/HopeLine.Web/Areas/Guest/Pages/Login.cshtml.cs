@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
@@ -24,23 +25,26 @@ namespace HopeLine.Web.Areas.Guest.Pages
         [MinLength(5)]
         public string Username { get; set; }
         public string ReturnUrl { get; set; }
-        public void OnGet(string returnUrl = null)
+        public IActionResult OnGet(string returnUrl = null)
         {
-            ReturnUrl = returnUrl != null ? Url.Content("~/" + returnUrl) : Url.Content("~/");
+            if(HttpContext.Session.GetString("_guest")!= null){
+                return Redirect(Url.Content("~/"));
+            }
 
+            ReturnUrl = returnUrl != null ? Url.Content("~/" + returnUrl) : Url.Content("~/");
+            return Page();
         }
 
         public IActionResult OnPost(string returnUrl = null)
         {
-            ReturnUrl = returnUrl != null? Url.Content("~/" + returnUrl) : Url.Content("~/");
+            ReturnUrl = returnUrl != null ? Url.Content("~/" + returnUrl) : Url.Content("~/");
 
             string pin = "";
             if (ReturnUrl.ToLower().Contains("chat"))
             {
                 pin = _communicationService.GenerateConnectionId();
+                ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
             }
-
-            ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
 
             if (Username != null)
             {

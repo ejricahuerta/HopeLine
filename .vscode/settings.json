@@ -1,4 +1,6 @@
 {
     "appService.deploySubpath": "PRJ/HopeLine.Web",
-    "appService.defaultWebAppToDeploy": "/subscriptions/273d2a8a-84e8-4ec1-893b-3377a14101f7/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/hopeline"
+    "appService.defaultWebAppToDeploy": "/subscriptions/273d2a8a-84e8-4ec1-893b-3377a14101f7/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/hopeline",
+    "editor.formatOnSave": true,
+    "html.format.indentInnerHtml": true
 }

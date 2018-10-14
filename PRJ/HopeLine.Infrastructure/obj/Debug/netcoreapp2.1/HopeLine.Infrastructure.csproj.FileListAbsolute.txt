@@ -1,8 +1,0 @@
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/bin/Debug/netcoreapp2.1/HopeLine.Infrastructure.deps.json
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/bin/Debug/netcoreapp2.1/HopeLine.Infrastructure.dll
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/bin/Debug/netcoreapp2.1/HopeLine.Infrastructure.pdb
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.csproj.CoreCompileInputs.cache
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.AssemblyInfoInputs.cache
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.AssemblyInfo.cs
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.dll
-/home/exd/Source/Repos/HopeLine/PRJ/HopeLine.Infrastructure/obj/Debug/netcoreapp2.1/HopeLine.Infrastructure.pdb
