@@ -80,7 +80,7 @@ namespace HopeLine.API
             builder =>
             {
                 builder
-                        .WithOrigins("https://hopeline.azurewebsites.net/")
+                        .AllowAnyOrigin()
                          .AllowAnyMethod()
                         .AllowAnyHeader()
                        .AllowCredentials();
