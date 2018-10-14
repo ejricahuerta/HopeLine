@@ -73,7 +73,6 @@ namespace HopeLine.API
             services.AddTransient<ITokenService, TokenService>();
 
             services.AddLogging();
-            services.AddSignalR();
 
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
@@ -86,6 +85,7 @@ namespace HopeLine.API
                        .AllowCredentials();
             }));
 
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
