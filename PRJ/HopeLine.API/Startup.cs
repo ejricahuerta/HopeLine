@@ -18,8 +18,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace HopeLine.API
 {
-    public class
-        Startup
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {

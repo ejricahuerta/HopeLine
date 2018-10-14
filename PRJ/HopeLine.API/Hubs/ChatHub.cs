@@ -1,6 +1,7 @@
 ﻿using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +20,19 @@ namespace HopeLine.API.Hubs
             _messageService = messageService;
 
         }
+        // public override async Task OnConnectedAsync()
+        // {
+        //     await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
+        //     await base.OnConnectedAsync();
+        // }
 
+        // public override async Task OnDisconnectedAsync(Exception exception)
+        // {
+
+        //     await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+
+        //     await base.OnDisconnectedAsync(exception);
+        // }
 
         public async Task AddUserToRoom(string room)
         {
@@ -79,7 +92,7 @@ namespace HopeLine.API.Hubs
             System.Console.WriteLine("Adding Mentor to Online Mentors...");
             try
             {
-                await _messageService.SetMentorOnCall(mentorId,Context.ConnectionId);
+                await _messageService.SetMentorOnCall(mentorId, Context.ConnectionId);
                 System.Console.WriteLine("finished adding mentor...");
             }
             catch (System.Exception ex)

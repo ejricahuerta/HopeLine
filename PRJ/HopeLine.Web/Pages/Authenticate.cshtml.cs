@@ -10,10 +10,15 @@ namespace HopeLine.Web.Pages
 {
     public class AuthenticateModel : PageModel
     {
-        public IActionResult OnGet()
+        public IActionResult OnGet(string returnUrl = null)
         {
-            if(HttpContext.Session.GetString("_guest") != null){
-                return Redirect(Url.Content("~/"));
+
+
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (HttpContext.Session.GetString("_guest") != null)
+            {
+                return Redirect(returnUrl);
             }
             return Page();
         }
