@@ -261,6 +261,11 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
+        public IEnumerable<string> ListMentorIdByAvailability(bool available)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateUserProfile(UserModel model)
         {
             try

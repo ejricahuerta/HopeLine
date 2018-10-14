@@ -22,7 +22,6 @@ namespace HopeLine.Service.Interfaces
         #endregion
 
         bool UpdateUserProfile(UserModel model);
-
-
+        IEnumerable<string> ListMentorIdByAvailability(bool available);
     }
 }

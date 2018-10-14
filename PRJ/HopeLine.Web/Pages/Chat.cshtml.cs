@@ -26,11 +26,11 @@ namespace HopeLine.Web.Pages
         public IActionResult OnGet(string pin = null, string user = null)
         {
 
-            UserName = HttpContext.Session.GetString("_guest");
-            System.Console.WriteLine("User = " + UserName);
-            
-            if (UserName != null)
-            {
+            // UserName = HttpContext.Session.GetString("_guest");
+            // System.Console.WriteLine("User = " + UserName);
+              
+            // if (UserName != null)
+            // {
 
                 if (pin == null)
                 {
@@ -40,13 +40,14 @@ namespace HopeLine.Web.Pages
                 {
                     PIN = pin;
                 }
-                return Page();
-            }
-            else
-            {
-                string url = Url.Page("/Login", new { area = "Guest",returnUrl = "chat" });
-                return LocalRedirect(url);
-            }
+            //     return Page();
+            // }
+            // else
+            // {
+            //     string url = Url.Page("/Login", new { area = "Guest",returnUrl = "chat" });
+            //     return LocalRedirect(url);
+            // }
+            return Page();
         }
     }
 }
