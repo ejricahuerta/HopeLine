@@ -6,11 +6,9 @@
       Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<div style="margin-top:100px;"></div>
-<section class="mentor-login justify-content-center mb-5">
+<div class="mentor-login justify-content-center mb-5" style="margin-top:200px;">
     <div class="row justify-content-center">
     <form  method="POST" class=" col-xs-12 shadow-lg rounded p-5 m-0">
-        <div>@ViewData["Error"]</div>
         <h1 class="display-5">Mentor Access</h1>
         <hr />
         <input type="text"  asp-for="LoginInput.Username" class="form-control" placeholder="Username / ID" required autofocus>
@@ -21,4 +19,4 @@
         <button id="loginbutton" class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         </form>
     </div>
-</section>
+</div>

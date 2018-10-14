@@ -26,7 +26,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             _userManager = userManager;
             _messageService = messageService;
         }
-        
+
         [BindProperty]
         public LoginViewModel LoginInput { get; set; }
         public void OnGet()
@@ -37,58 +37,18 @@ namespace HopeLine.Web.Areas.Mentor.Pages
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
 
-            returnUrl = returnUrl ?? Url.Content("~/");
-
+            returnUrl = returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Email, LoginInput.Username),
-                    new Claim(ClaimTypes.Email, LoginInput.Username),
-                    new Claim(ClaimTypes.Role, "Mentor"),
-                };
-
-                var claimsIdentity = new ClaimsIdentity(
-                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                var authProperties = new AuthenticationProperties
-                {
-                    //AllowRefresh = <bool>,
-                    // Refreshing the authentication session should be allowed.
-
-                    ExpiresUtc = DateTimeOffset.UtcNow.AddDays(30),
-                    // The time at which the authentication ticket expires. A 
-                    // value set here overrides the ExpireTimeSpan option of 
-                    // CookieAuthenticationOptions set with AddCookie.
-
-                    IsPersistent = true,
-                    // Whether the authentication session is persisted across 
-                    // multiple requests. Required when setting the 
-                    // ExpireTimeSpan option of CookieAuthenticationOptions 
-                    // set with AddCookie. Also required when setting 
-                    // ExpiresUtc.
-
-                    //IssuedUtc = <DateTimeOffset>,
-                    // The time at which the authentication ticket was issued.
-
-                    //RedirectUri = <string>
-                    // The full path or absolute URI to be used as an http 
-                    // redirect response value.
-                };
-
-                var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, false, false);
+                var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, true, false);
                 if (res.Succeeded)
                 {
-                    var mentor = await _userManager.FindByEmailAsync(LoginInput.Username);
-                    await _messageService.NewMentorAvailable(mentor.Id);       
-                    await HttpContext.SignInAsync(
-                        "Cookies",
-                        new ClaimsPrincipal(claimsIdentity),
-                        authProperties);
-                    return Redirect(returnUrl);
+                    
+                    System.Console.WriteLine("User has logged in.");
+                    return LocalRedirect(returnUrl);
                 }
+                ModelState.AddModelError(string.Empty, "Invalid Login...");
             }
-
             return Page();
         }
     }
