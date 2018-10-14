@@ -67,10 +67,10 @@ namespace HopeLine.API
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
             ConfigureServiceExtension.AddConfiguration(services);
 
-            services.AddTransient<ITokenService,TokenService>();
+            services.AddTransient<ITokenService, TokenService>();
 
             services.AddLogging();
             services.AddSignalR();
@@ -79,8 +79,9 @@ namespace HopeLine.API
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder =>
             {
-                builder.AllowAnyMethod().AllowAnyHeader()
-                        .AllowAnyOrigin()
+                builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins("https://hopeline.azurewebsites.net/")
                        .AllowCredentials();
             }));
 

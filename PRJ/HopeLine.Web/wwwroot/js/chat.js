@@ -49,7 +49,9 @@ if (userId != null) {
 
 
     //Start the connection
-    connection.start()
+    connection.start({
+            withCredentials: false
+        })
         .catch(function (err) {
             return console.error(err.toString());
         })
