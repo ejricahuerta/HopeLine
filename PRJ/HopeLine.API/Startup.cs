@@ -79,9 +79,10 @@ namespace HopeLine.API
             services.AddCors(options => options.AddPolicy("CorsPolicy",
             builder =>
             {
-                builder.AllowAnyMethod()
-                        .AllowAnyHeader()
+                builder
                         .WithOrigins("https://hopeline.azurewebsites.net/")
+                         .AllowAnyMethod()
+                        .AllowAnyHeader()
                        .AllowCredentials();
             }));
 
