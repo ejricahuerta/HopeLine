@@ -69,7 +69,7 @@ namespace HopeLine.Web
                                 builder.WithOrigins("https://hopelineapi.azurewebsites.net/")
                                 .AllowAnyMethod()
                                     .AllowAnyHeader()
-                                    .DisallowCredentials();
+                                    .AllowCredentials();
                             }
             ));
 
