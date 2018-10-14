@@ -30,21 +30,25 @@ namespace HopeLine.Web
 
             services.ConfigureApplicationCookie(options =>
                {
-                    options.Cookie.HttpOnly = true;
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                   options.Cookie.HttpOnly = true;
+                   options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
 
-                    options.LoginPath = "/Authenticate";
-                    options.AccessDeniedPath = "/Account/AccessDenied";
-                    options.SlidingExpiration = true;
+                   options.LoginPath = "/Authenticate";
+                   options.AccessDeniedPath = "/Account/AccessDenied";
+                   options.SlidingExpiration = true;
                });
-            services.AddAuthorization(opt=> 
+
+            //Register all Require Claims for auth
+            services.AddAuthorization(opt =>
             {
-                opt.AddPolicy("MentorOnly", policy=> policy.RequireClaim("Account", "Mentor"));
-                opt.AddPolicy("UserOnly", policy=> policy.RequireClaim("Account", "User"));
-                opt.AddPolicy("AdminOnly", policy=> policy.RequireClaim("Account", "Admin"));
-                opt.AddPolicy("SuperUser", policy=> policy.RequireClaim("Account", "Super"));
-                
+                opt.AddPolicy("MentorOnly", policy => policy.RequireClaim("Account", "Mentor"));
+                opt.AddPolicy("UserOnly", policy => policy.RequireClaim("Account", "User"));
+                opt.AddPolicy("AdminOnly", policy => policy.RequireClaim("Account", "Admin"));
+                opt.AddPolicy("SuperUser", policy => policy.RequireClaim("Account", "Super"));
+
             });
+
+            //Session Enable for Guest User
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                     .AddSessionStateTempDataProvider();
@@ -55,16 +59,18 @@ namespace HopeLine.Web
                 options.Cookie.HttpOnly = true;
             });
 
+            //Required for accessing  hhttpcontext
             services.AddHttpContextAccessor();
 
+            //For Web Api CORS
             services.AddCors(options => options.AddPolicy("CorsPolicy",
                             builder =>
                             {
-                            builder.AllowAnyMethod()
-                                .AllowAnyHeader()
-                                .AllowAnyOrigin()
-                                .AllowCredentials();
-                           }
+                                builder.AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowAnyOrigin()
+                                    .AllowCredentials();
+                            }
             ));
 
         }
@@ -88,11 +94,13 @@ namespace HopeLine.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            
+
+            //Required to proxy when deployed to apache or nginx
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
 
             app.UseCors("CorsPolicy");
 
