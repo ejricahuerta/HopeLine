@@ -43,6 +43,9 @@
                     <p>
                         <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
                     </p>
+                    <p>
+                        <a asp-area="Guest" asp-page="/Chat" asp-route-returnUrl="@Model.ReturnUrl">Login as a guest</a>
+                    </p>
                 </div>
             </form>
         </section>

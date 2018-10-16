@@ -1,5 +1,51 @@
 @page
-
+@using HopeLine.Web.Areas.Guest.Pages
+@model LoginModel
 @{
-           Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
+
+<div class="row">
+    <div class="col-md-12" style=" width: 100%; align-items: center; justify-content: space-around; display: flex; float: none;">
+        <section>
+            <form method="POST">
+                <h4>Login with HopeLine Account</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" asp-for="Username" id="username" type="text" value="@Model.Username" placeholder="Username" required autofocus/>
+                    <!--<span asp-validation-for="Input.Email" class="text-danger"></span>-->
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" />
+                    <!--<span asp-validation-for="Input.Password" class="text-danger"></span>-->
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            Remember me?
+                            <input type="checkbox" style="width:15px; height:15px;" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Log in</button>
+                </div>
+                <div class="form-group">
+                    <p>
+                        <a asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a asp-page="./GuestLogin">Want an Anonymous Account?</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
