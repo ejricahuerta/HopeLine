@@ -107,11 +107,10 @@ namespace HopeLine.API
 
             app.UseAuthentication();
 
-
-            app.UseCors(opt => opt.AllowAnyOrigin()
-                                .AllowAnyMethod()
-                                    .AllowAnyHeader()
-                                    .AllowCredentials());
+            app.UseCors(opt => opt.AllowAnyMethod()
+                                .AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowCredentials());
 
 
             app.UseSignalR(route =>

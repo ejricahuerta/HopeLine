@@ -37,7 +37,7 @@
             @if(@HttpContextAccessor.HttpContext.Request.QueryString.Value != null){
                 <a href=@Url.Page("Login", new {area="User",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-primary btn-block">Sign in</a>
                 <a href=@Url.Page("Login", new {area="Guest",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-secondary btn-block">Login as Guest</a>
-                <a asp-page="~/Register" class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
+                <a href=@Url.Page("Register", new {area="User",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
                 <div class="mb-2">
                     <label class="float-right">
                         <a href=@Url.Page("Login",new {area="Admin",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]})  class="btn btn-white text-black-50">Admin Access</a>
@@ -49,7 +49,7 @@
             }else{
                 <a href=@Url.Page("Login", new {area="User"}) class="btn btn-lg btn-primary btn-block">Sign in</a>
                 <a href=@Url.Page("Login", new {area="Guest"}) class="btn btn-lg btn-secondary btn-block">Login as Guest</a>
-                <a asp-page="~/Register" class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
+                <a href=@Url.Page("Register", new {area="User"})  class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
                 <div class="mb-2">
                     <label class="float-right">
                         <a href=@Url.Page("Login", new {area="Admin"})  class="btn btn-white text-black-50">Admin Access</a>
