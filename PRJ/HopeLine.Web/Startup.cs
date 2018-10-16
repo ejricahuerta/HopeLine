@@ -63,16 +63,7 @@ namespace HopeLine.Web
             services.AddHttpContextAccessor();
 
             //For Web Api CORS
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-                            builder =>
-                            {
-                                builder.AllowAnyMethod()
-                                    .AllowAnyHeader()
-                                    .AllowAnyOrigin()
-                                    .AllowCredentials();
-                            }
-            ));
-
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,7 +93,10 @@ namespace HopeLine.Web
             });
 
 
-            app.UseCors("CorsPolicy");
+            app.UseCors(opt => opt.AllowAnyMethod()
+                                .AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowCredentials());
 
             app.UseMvc();
 
