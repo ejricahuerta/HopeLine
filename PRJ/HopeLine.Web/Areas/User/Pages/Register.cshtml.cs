@@ -39,7 +39,20 @@ namespace HopeLine.Web.Areas.User.Pages
                     return Page();
                 }
 
-                var user = new UserAccount { UserName = RegisterViewModel.Username, Email = RegisterViewModel.Username };
+
+                //TODO: include language
+                var user = new UserAccount
+                {
+                    UserName = RegisterViewModel.Username,
+                    Email = RegisterViewModel.Username,
+                    Profile = new Profile
+                    {
+                        FirstName = RegisterViewModel.FirstName,
+                        LastName = RegisterViewModel.LastName
+                    }
+
+                };
+
                 var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
