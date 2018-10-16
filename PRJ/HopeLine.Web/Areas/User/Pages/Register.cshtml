@@ -16,15 +16,25 @@
     <div class="form-group">
         <label for="email">Email address</label>
         <input asp-for="RegisterViewModel.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required autofocus>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <small id="emailHelp" class="form-text text-muted"> We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="form-group">
+        <label  for="fname">First Name</label>
+        <input asp-for="RegisterViewModel.FirstName" type="text" class="form-control" id="fname" placeholder="Enter First Name" required>
     </div>
     <div class="form-group">
-        <label asp-for="RegisterViewModel.Password" for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
+        <label  for="lname">First Name</label>
+        <input asp-for="RegisterViewModel.LastName" type="text" class="form-control" id="lname" placeholder="Enter Lasst Name" required>
     </div>
     <div class="form-group">
-        <label asp-for="RetypePassword" for="retype-password">Password</label>
-        <input type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
+        <label for="password">Password</label>
+        <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+        <label for="retype-password"> Re-type Password</label>
+        <input asp-for="RetypePassword"  type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
