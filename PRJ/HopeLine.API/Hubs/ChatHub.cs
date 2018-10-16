@@ -1,12 +1,12 @@
 ﻿using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Hubs
 {
-
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
@@ -18,7 +18,21 @@ namespace HopeLine.API.Hubs
         public ChatHub(IMessage messageService)
         {
             _messageService = messageService;
+
         }
+        // public override async Task OnConnectedAsync()
+        // {
+        //     await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
+        //     await base.OnConnectedAsync();
+        // }
+
+        // public override async Task OnDisconnectedAsync(Exception exception)
+        // {
+
+        //     await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+
+        //     await base.OnDisconnectedAsync(exception);
+        // }
 
         public async Task AddUserToRoom(string room)
         {
@@ -45,12 +59,12 @@ namespace HopeLine.API.Hubs
             {
                 System.Console.WriteLine(room);
                 var allMessages = _messageService.GetAllMessages(room);
-                System.Console.WriteLine(" Count: " +allMessages.Count());
+                System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
                     foreach (var m in allMessages)
                     {
-                         await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
+                        await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
                     }
                 }
             }
@@ -71,6 +85,20 @@ namespace HopeLine.API.Hubs
             };
             _messageService.NewMessage(newmsg);
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
+        }
+
+        public async Task AddMentor(string mentorId)
+        {
+            System.Console.WriteLine("Adding Mentor to Online Mentors...");
+            try
+            {
+                await _messageService.SetMentorOnCall(mentorId, Context.ConnectionId);
+                System.Console.WriteLine("finished adding mentor...");
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to Process New Mentor: ", ex);
+            }
         }
     }
 }

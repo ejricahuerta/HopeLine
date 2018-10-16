@@ -1,0 +1,69 @@
+﻿@page
+@using HopeLine.Web.Areas.Mentor.Pages
+@model ChatModel
+@{
+      Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<section class="container" style="height:700px;">
+    <div class="card shadow-lg">
+      <div class="card-header bg-success">
+        <h1 class="">
+          Mentor Messaging
+        </h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-sm-12 bg-success p-2 mb-3" style="height:600px;overflow-y:auto;">
+            <form class="form">
+              <input id="inputSearch" class="form-control bg-success mb-1 text-light border-white" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <div class="list-group">
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Topics, Topic</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Name</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Messages</p>
+                <small>Status</small>
+              </a>
+        
+            </div>
+          </div>
+          <div class="col-sm-12 col-lg-8">
+            <div class="row justify-content-end">
+              <div class="col-12 border"style="min-height:400px;">
+                <div class="card-body bg-white" id="chatbox" style="overflow-y: auto;">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <form class="row justify-content-between">
+                  <textarea class="form-control col-8 m-1"type="text" placeholder="Type a message" aria-label="Send" rows="1"></textarea>
+                  <button id="inputMessage" class="btn btn-success btn-lg m-1 col-3" type="submit">Send</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  

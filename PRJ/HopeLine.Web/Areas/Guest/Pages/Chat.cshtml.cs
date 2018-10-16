@@ -27,6 +27,7 @@ namespace HopeLine.Web.Areas.Guest.Pages
 
         [BindProperty]
         public string UserName { get; set; }
+        public string ReturnUrl { get; set; }
 
         public IActionResult OnGet(string pin = null, string user = null)
         {
@@ -35,7 +36,7 @@ namespace HopeLine.Web.Areas.Guest.Pages
 
             if (UserName != null)
             {
-                if(pin == null)
+                if (pin == null)
                     PIN = _communication.GenerateConnectionId();
 
                 else
@@ -44,7 +45,7 @@ namespace HopeLine.Web.Areas.Guest.Pages
             }
             else
             {
-                string url = Url.Page("/Login", new { area = "Guest", returnUrl = "chat"});
+                string url = Url.Page("/Login", new { area = "Guest", returnUrl = "chat" });
                 return LocalRedirect(url);
             }
         }

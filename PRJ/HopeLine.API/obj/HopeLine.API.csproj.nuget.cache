@@ -1,5 +1,9 @@
 {
   "version": 1,
+<<<<<<< HEAD
   "dgSpecHash": "mT5GgYPShbYEPjdAV5jsLlQLqflEgOOmFU5PfE9wfQrJ1stPb3YIMqjWKqTe0yUVEeDB6Y+CKfOVY36LHC1Cgg==",
+=======
+  "dgSpecHash": "F56i+xvwb7iAlwARfi6Gc26f6vMU4P7hpUZAH1/19u+7YEU79oVBvr7d9+XnutHSekHAY3VUjvVGAQC8pzOE4g==",
+>>>>>>> development-env
   "success": true
 }

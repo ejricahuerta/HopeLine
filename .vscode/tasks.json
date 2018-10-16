@@ -1,15 +1,13 @@
 {
     "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/PRJ/HopeLine.API/HopeLine.API.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+    "tasks": [{
+        "label": "build",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/PRJ/HopeLine.Web/HopeLine.Web.csproj"
+        ],
+        "problemMatcher": "$msCompile"
+    }]
 }

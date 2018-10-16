@@ -1,6 +1,9 @@
-﻿using HopeLine.Security.Interfaces;
+﻿using HopeLine.DataAccess.Entities;
+using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Controllers
@@ -13,14 +16,16 @@ namespace HopeLine.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ITokenService _tokenService;
+        private readonly UserManager<HopeLineUser> _userManager;
+        private readonly SignInManager<HopeLineUser> _signInManager;
 
-
-        public AuthController(ITokenService tokenService)
+        public AuthController(ITokenService tokenService, UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
         {
             _tokenService = tokenService;
+            _userManager = userManager;
+            _signInManager = signInManager;
 
         }
-
 
         //TODO : needs to separate token builder and create new action for sending tokens
         [HttpPost]
@@ -49,19 +54,23 @@ namespace HopeLine.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register([FromBody] RegisterModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-                if (model.FirstName == null &&
-                    model.LastName == null &&
-                    model.FirstName.Length < 2 &&
-                    model.LastName.Length < 2)
+                var user = new MentorAccount
                 {
-                    return UnprocessableEntity("Invalid Name...");
+                    UserName = model.Username,
+                    Email = model.Username
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    var newuser = await _userManager.FindByEmailAsync(model.Username);
+                    var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "User"));
+                    return Ok(_tokenService.GenerateToken(model.Username, newuser));
                 }
 
-                return Ok(_tokenService.RegisterUser(model));
             }
             return BadRequest("Unable to Process Registration...");
         }

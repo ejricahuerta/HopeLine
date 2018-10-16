@@ -1,17 +1,16 @@
-using HopeLine.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.Web.Areas.User.Pages
 {
+
+    [AllowAnonymous]
     class LoginModel : PageModel
     {
-        private readonly ICommunication _communicationService;
-        public LoginModel(ICommunication communicationService)
+        public LoginModel()
         {
-            _communicationService = communicationService;
+
         }
 
         public string SessionId = "_guest";

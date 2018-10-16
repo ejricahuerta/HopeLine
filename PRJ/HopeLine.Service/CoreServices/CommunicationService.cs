@@ -34,7 +34,7 @@ namespace HopeLine.Service.CoreServices
                         PIN = conversation.PIN,
                         Minutes = conversation.Minutes,
                         Mentor = conversation.Mentor,
-                        DateOfConversation = conversation.DateOfConversation,
+                        DateOfConversation = conversation.DateOfConversation.ToString(),
                         LanguageUsed = conversation.LanguageUsed
                     };
                     _conversationRepo.Insert(_conversation);
@@ -57,7 +57,7 @@ namespace HopeLine.Service.CoreServices
                     PIN = conversation.PIN,
                     Minutes = conversation.Minutes,
                     Mentor = conversation.Mentor,
-                    DateOfConversation = conversation.DateOfConversation,
+                    DateOfConversation = conversation.DateOfConversation.ToString(),
                     LanguageUsed = conversation.LanguageUsed
                 };
                 _conversationRepo.Insert(_conversation);
@@ -80,7 +80,7 @@ namespace HopeLine.Service.CoreServices
                     PIN = conversation.PIN,
                     Minutes = conversation.Minutes,
                     Mentor = conversation.Mentor,
-                    DateOfConversation = conversation.DateOfConversation,
+                    DateOfConversation = conversation.DateOfConversation.ToString(),
                     LanguageUsed = conversation.LanguageUsed
                 };
                 _conversationRepo.Update(_conversation);
@@ -110,7 +110,7 @@ namespace HopeLine.Service.CoreServices
                              PIN = c.PIN,
                              Minutes = c.Minutes,
                              Mentor = c.Mentor,
-                             DateOfConversation = c.DateOfConversation,
+                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
                              LanguageUsed = c.LanguageUsed
 
                          }
@@ -137,7 +137,7 @@ namespace HopeLine.Service.CoreServices
                         {
                             Minutes = c.Minutes,
                             Mentor = c.Mentor,
-                            DateOfConversation = c.DateOfConversation,
+                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
                             LanguageUsed = c.LanguageUsed
 
                         }
@@ -163,7 +163,7 @@ namespace HopeLine.Service.CoreServices
                         PIN = c.PIN,
                         Minutes = c.Minutes,
                         Mentor = c.Mentor,
-                        DateOfConversation = c.DateOfConversation,
+                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
                         LanguageUsed = c.LanguageUsed
                     });
 
@@ -190,7 +190,7 @@ namespace HopeLine.Service.CoreServices
                             PIN = c.PIN,
                             Minutes = c.Minutes,
                             Mentor = c.Mentor,
-                            DateOfConversation = c.DateOfConversation,
+                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
                             LanguageUsed = c.LanguageUsed
 
                         }
@@ -218,7 +218,7 @@ namespace HopeLine.Service.CoreServices
                             PIN = c.PIN,
                             Minutes = c.Minutes,
                             Mentor = c.Mentor,
-                            DateOfConversation = c.DateOfConversation,
+                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
                             LanguageUsed = c.LanguageUsed
 
                         }

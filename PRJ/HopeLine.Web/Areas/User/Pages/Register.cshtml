@@ -1,0 +1,33 @@
+﻿@page
+@using HopeLine.Web.Areas.User.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RegisterModel
+@{
+      Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
+   <form class="col-xs-12 shadow-lg rounded p-5 m-0" method="POST" class="">
+    @if(@ViewData["error"] != null){
+        <div class="alert alert-danger" role="alert">
+            @ViewData["error"]
+        </div>
+    }
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input asp-for="RegisterViewModel.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required autofocus>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label asp-for="RegisterViewModel.Password" for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <label asp-for="RetypePassword" for="retype-password">Password</label>
+        <input type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
