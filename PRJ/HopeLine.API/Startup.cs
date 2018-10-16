@@ -67,23 +67,16 @@ namespace HopeLine.API
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
+
             ConfigureServiceExtension.AddConfiguration(services);
 
-            services.AddTransient<ITokenService,TokenService>();
+            services.AddTransient<ITokenService, TokenService>();
 
             services.AddLogging();
+
+            services.AddCors();
+
             services.AddSignalR();
-
-
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-            builder =>
-            {
-                builder.AllowAnyMethod().AllowAnyHeader()
-                        .AllowAnyOrigin()
-                       .AllowCredentials();
-            }));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,7 +107,11 @@ namespace HopeLine.API
 
             app.UseAuthentication();
 
-            app.UseCors("CorsPolicy");
+
+            app.UseCors(opt => opt.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                    .AllowAnyHeader()
+                                    .AllowCredentials());
 
 
             app.UseSignalR(route =>
