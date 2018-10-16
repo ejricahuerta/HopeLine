@@ -12,7 +12,7 @@ if (userId != null) {
 
     var room = $('#pin').val();
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:5000/chatHub")
+        .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
         .build();
 
     //Register all Method here.
@@ -49,7 +49,9 @@ if (userId != null) {
 
 
     //Start the connection
-    connection.start()
+    connection.start({
+            withCredentials: false
+        })
         .catch(function (err) {
             return console.error(err.toString());
         })
