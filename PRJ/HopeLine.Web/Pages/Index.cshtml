@@ -4,7 +4,9 @@
     ViewData["Title"] = "Home page";
 }
 
-
+<head>
+    <link rel="stylesheet" href="~/css/map.css"/>
+</head>
 <section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
     <a class="btn btn-success" style="width:200px;height:40px;" href="TalkToMentor/TalkToMentor.html">
         Talk to a
@@ -70,8 +72,18 @@
 <!-- <section class="Map-section container"> -->
 <section class="Map-section container">
     <h1>Check out our Map</h1>
-    <div id="map" style="width:auto;height:400px;background:yellow"></div>
 
+
+
+    <div id="map" style="width:auto;height:400px;"></div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+    <!--
+
+    <div id="map" style="width:auto;height:400px;background:yellow"></div>
     <script>
             function myMap() {
                 var mapOptions = {
@@ -84,7 +96,7 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-
+    -->
 </section>
 
 
@@ -112,3 +124,5 @@
         id vitae ex. Aenean ac interdum ipsum.
     </p>
 </section>
+
+<script src="~/js/map.js"></script>
