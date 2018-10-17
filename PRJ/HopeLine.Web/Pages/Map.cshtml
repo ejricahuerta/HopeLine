@@ -11,43 +11,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <title>Map Page</title>
+    <link rel="stylesheet" href="~/css/map.css" />
+
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-
-    <link rel="stylesheet" href="~/css/map.css" />
-    <style>
-        
-    </style>
+    
 </head>
 
 <div class="container map">
 
     <h1 class="container position:center">Map</h1>
 
-    <input id="map-input" class="controls" type="text" placeholder="Search Box">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
+
+    <script>
+        
+    </script>
 
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
             async defer></script>
 
-    <input name="locationType" type="checkbox" id="hospital" onclick="searchType('hospital')"> Hospital <br>
-    <input name="locationType" type="checkbox" id="pharmacy" onclick="searchType('pharmacy')"> pharmacy <br>
-    <input name="locationType" type="checkbox" id="health" onclick="searchType('health')"> health <br>
-    <input name="locationType" type="checkbox" id="doctor" onclick="searchType('doctor')"> doctor <br>
+    <input name="locationType" type="button" value="Show Nearby Hospitals" onclick="searchType('hospital')">
+    <input name="locationType" type="button" value="Show nearby pharmacies" onclick="searchType('pharmacy')">
+    <input name="locationType" type="button" value="Show Nearby health institutions" onclick="searchType('health')">
+    <input name="locationType" type="button" value="Show Nearby doctors" onclick="searchType('doctor')">
     <input type="button" value="clear map" onClick="window.location.reload()">
 
-    <br /><br /><br />
+
     <script src="~/js/map.js"></script>
 
+
 </div>
-
-
-
-
-
-
-
-
-
