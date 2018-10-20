@@ -3,174 +3,253 @@
 @{
     ViewData["Title"] = "Resources";
 }
+
+<head>
+    <link rel="stylesheet" , href="~/css/resources.css" />
+</head>
+
 <p></p>
-<hr/>
-<h2>Resources</h2>
+<hr />
+
 
 <section>
+    <div class="accordion" id="resources">
+        <!-- The sidebar -->
+        <div class="sidebar bg-dark sticky-top">
+            <!-- Welcome -->
+            <div hidden>
+                <div class="card bg-dark">
+                    <div class="card-header" id="welcomeHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link mt-5 dropdown" data-toggle="collapse" data-target="#welcome">
+                                Welcome
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Depression -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="depressionHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link mt-5 dropdown" data-toggle="collapse" data-target="#depression">
+                                Depression
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+            </div>
 
 
-    <h2>Useful articles and information about mental health and suicide.</h2>
-    <p>
-        <a href="http://www.health.gov.on.ca/en/ms/ecfa/healthy_change/healthlinks.aspx">
-            Ontario Ministry of health
-            and Long-Term care:
-        </a>
-    </p>
+            <!-- Anxiety -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="anxietyHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link dropdown" data-toggle="collapse" data-target="#anxiety">
+                                Anxiety
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+            </div>
 
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
+            <!-- Bullying -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="bullyingHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link dropdown" data-toggle="collapse" data-target="#bullying">
+                                Bullying
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+            </div>
 
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <h2>Links on Depression</h2>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <h2>Links on Bullying</h2>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <h2>Links on Anxiety</h2>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <h2>Links on Suicide</h2>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
-    <p>
-        <a href="https://www.canada.ca/en/public-health/topics/mental-health-wellness.html">
-            Learn about mental
-            health and how to improve it to benefit you. Also get information on mental illness, its risk factors,
-            symptoms, treatment and suicide prevention.
-        </a>
-    </p>
+            <!-- Suicide -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="suicideHeader">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link dropdown" data-toggle="collapse" data-target="#suicide">
+                                Suicide
+                            </button>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Page content -->
+        <div class="content accordion-group">
+            
+
+            <div id="welcome" class="collapse show card mb-3" data-parent="#resources" style="margin:0 auto; float:none; margin-bottom: 10px">
+                <h2 class="text-center">Welcome</h2>
+                <div class="card-body">
+                    <h3 class="card-title">Welcome to Resources</h3>
+                    <p class="card-text">In our resources, you will find the articles that help you.</p>
+                    <p class="card-text">Please check out our category for details</p>
+                </div>
+            </div>
+
+            <div id="depression" class="collapse" data-parent="#resources">
+                <h2 class="text-center">Depression</h2>
+                <hr />
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/depression1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">A Self-Help Guide to Dealing with Depression</h5>
+                            <p class="card-text">
+                                While treating major depressive disorder will generally require professional intervention, there are ways for you to take some control over your condition.
+
+                                Here are eight self-help techniques or alternative therapies that can help you cope with depression, get a handle on your symptoms, and beat the disease altogether.
+                            </p>
+                            <p class="card-text"><a href="https://www.healthline.com/health/depression/self-help-guide-to-depression#1" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/depression2.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Depression: 7 Powerful Tips to Help You Overcome Bad Moods</h5>
+                            <p class="card-text">There is no health without mental health.</p>
+                            <p class="card-text"><a href="https://www.psychologytoday.com/us/blog/anxiety-zen/201605/depression-7-powerful-tips-help-you-overcome-bad-moods" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/depression3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">8 Tips for Living With Depression</h5>
+                            <p class="card-text">
+                                Everything feels more challenging when you're dealing with depression. Going to work, socializing with friends, or even just getting out of bed can feel like a struggle.
+
+                                But there are some things you can do to cope with your symptoms and improve your quality of life. Here are eight tips for living with depression.
+                            </p>
+                            <p class="card-text"><a href="https://www.verywellmind.com/tips-for-living-with-depression-1066834" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div id="anxiety" class="collapse" data-parent="#resources">
+                <h2 class="text-center">Anxiety</h2>
+                <hr />
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/anxiety1.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">How to Stop Worrying</h5>
+                            <p class="card-text">Everyone worries. Worrying can even be helpful when it spurs you to take action and solve a problem. But if you're preoccupied with "what ifs" and worst-case scenarios, worry becomes a problem. Unrelenting anxious thoughts and fears can be paralyzing. They can sap your emotional energy, send your anxiety levels soaring, and interfere with your daily life. But chronic worrying is a mental habit that can be broken. You can train your brain to stay calm and look at life from a more balanced, less fearful perspective.</p>
+                            <p class="card-text"><a href="https://www.helpguide.org/articles/anxiety/how-to-stop-worrying.htm" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/anxiety2.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Generalized Anxiety Disorder (GAD)</h5>
+                            <p class="card-text">Symptoms, Treatment, and Self-Help for Chronic Anxiety</p>
+                            <p class="card-text"><a href="https://www.helpguide.org/articles/anxiety/generalized-anxiety-disorder-gad.htm" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/anxiety3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">How To Deal with Anxiety and Worry</h5>
+                            <p class="card-text">Worry is a normal part of life, and can even be helpful in some instances. We often worry about things that are present in our lives, such as finances, work, and family, and this worry has the potential to help us make good decisions in these areas.</p>
+                            <p class="card-text"><a href="https://thiswayup.org.au/how-do-you-feel/worried/" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="bullying" class="collapse" data-parent="#resources">
+                <h2 class="text-center">Bullying</h2>
+                <hr />
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/bullying1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">How to Stop Bullying Yourself: Get Rid of Labels</h5>
+                            <p class="card-text">Stand up to self-criticism</p>
+                            <p class="card-text"><a href="https://www.psychologytoday.com/us/blog/the-adaptive-mind/201810/how-stop-bullying-yourself-get-rid-labels" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/bullying2.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Bullying and Cyberbullying</h5>
+                            <p class="card-text">How to Deal with a Bully and Overcome Bullying</p>
+                            <p class="card-text"><a href="https://www.helpguide.org/articles/abuse/bullying-and-cyberbullying.htm" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/bullying3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">The Psychological Effects of Bullying on Kids & Teens</h5>
+                            <p class="card-text">We’ve all been there. The playground, where one girl grabs another’s hair and yanks her backwards off the swing. The lunchroom, where “the mean kid” smacks down a smaller boy’s tray, spilling his food. The classroom, where a group of kids repeatedly taunt the youngest child in the class for being stupid.</p>
+                            <p class="card-text"><a href="https://mastersinpsychologyguide.com/articles/psychological-effects-bullying-kids-teens/" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="suicide" class="collapse" data-parent="#resources">
+                <h2 class="text-center">Suicide</h2>
+                <hr />
+                <div class="card-deck">
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/suicide1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Are You Feeling Suicidal?</h5>
+                            <p class="card-text">
+                                How to Deal with Suicidal Thoughts and Feelings and Overcome the Pain
+                            </p>
+                            <p class="card-text"><a href="https://www.helpguide.org/articles/suicide-prevention/are-you-feeling-suicidal.htm" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/suicide2.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Coping With Suicidal Thoughts</h5>
+                            <p class="card-text">
+                                If you are experiencing a mental health crisis, please call 9-1-1, contact your local crisis centre, or go to the nearest hospital.
+                                Call the National Suicide Prevention Lifeline at 1-800-273-TALK (8255) or the National Hopeline Network at 1-800-SUICIDE (1-800-784-2433).
+                            </p>
+                            <p class="card-text"><a href="https://badgeoflifecanada.org/coping-suicidal-thoughts/" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/images/resources/suicide3.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Suicide Prevention</h5>
+                            <p class="card-text">How to Help Someone who is Suicidal and Save a Life</p>
+                            <p class="card-text"><a href="https://www.helpguide.org/articles/suicide-prevention/suicide-prevention.htm" class="btn btn-primary">Go</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 </section>
+
+<!--
+<script>
+    var $group = $('#resourceGroup');
+    $group.on('show', '.collapse', function () {
+        $group.find('.collapse.in').collapse('hide');
+
+    });
+</script>
+    -->
