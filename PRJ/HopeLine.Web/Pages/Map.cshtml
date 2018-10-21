@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Map";
 }
-<br /><br />
 
 <head>
 
@@ -12,34 +11,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <title>Map Page</title>
     <link rel="stylesheet" href="~/css/map.css" />
-
+    <link rel="stylesheet" href="~/css/resources.css" />
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     
 </head>
 
-<div class="container map">
+<div class="container-fluid pl-0 pr-0 pt-0 mt-0 map">
 
-    <h1 class="container position:center">Map</h1>
+    <!-- The sidebar -->
+    <div class="sidebar bg-dark sticky-top">
+        
+        <!-- Depression -->
+        <div>
+            <div class="card bg-dark">
+                <div class="card-header" id="depressionHeader">
+                    <h5 class="mb-0">
+                        <a class="mt-5 btn" name="locationType" value="Show Nearby Hospitals" onclick="searchType('hospital')" style="color:rgba(255,255,255,.5)">
+                             Hospitals
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Anxiety -->
+        <div>
+            <div class="card bg-dark">
+                <div class="card-header" id="anxietyHeader">
+                    <h5 class="mb-0">
+                        <a class="mt-5 btn" name="locationType" value="Show Nearby Hospitals" onclick="searchType('pharmacy')" style="color:rgba(255,255,255,.5)">
+                            Pharmacys
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bullying -->
+        <div>
+            <div class="card bg-dark">
+                <div class="card-header" id="bullyingHeader">
+                    <h5 class="mb-0">
+                        <a class="mt-5 btn" name="locationType" value="Show Nearby Hospitals" onclick="searchType('health')" style="color:rgba(255,255,255,.5)">
+                            Health Institutions
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suicide -->
+        <div>
+            <div class="card bg-dark">
+                <div class="card-header" id="suicideHeader">
+                    <h5 class="mb-0">
+                        <a class="mt-5 btn" name="locationType" value="Show Nearby Hospitals" onclick="searchType('doctor')" style="color:rgba(255,255,255,.5)">
+                            Doctors
+                        </a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="map"></div>
 
     <script>
-        
+
     </script>
 
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
             async defer></script>
-
+    <!--
     <input name="locationType" type="button" value="Show Nearby Hospitals" onclick="searchType('hospital')">
     <input name="locationType" type="button" value="Show nearby pharmacies" onclick="searchType('pharmacy')">
     <input name="locationType" type="button" value="Show Nearby health institutions" onclick="searchType('health')">
     <input name="locationType" type="button" value="Show Nearby doctors" onclick="searchType('doctor')">
     <input type="button" value="clear map" onClick="window.location.reload()">
-
+    -->
 
     <script src="~/js/map.js"></script>
 
