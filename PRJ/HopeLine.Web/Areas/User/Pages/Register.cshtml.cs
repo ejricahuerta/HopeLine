@@ -33,23 +33,18 @@ namespace HopeLine.Web.Areas.User.Pages
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                if (RetypePassword != RegisterViewModel.Password)
+
+                var profile = new Profile
                 {
-
-                    return Page();
-                }
-
-
+                    FirstName = RegisterViewModel.FirstName,
+                    LastName = RegisterViewModel.LastName
+                };
                 //TODO: include language
                 var user = new UserAccount
                 {
                     UserName = RegisterViewModel.Username,
                     Email = RegisterViewModel.Username,
-                    Profile = new Profile
-                    {
-                        FirstName = RegisterViewModel.FirstName,
-                        LastName = RegisterViewModel.LastName
-                    }
+                    Profile = profile
 
                 };
 
@@ -71,6 +66,7 @@ namespace HopeLine.Web.Areas.User.Pages
                     //     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    System.Console.WriteLine("Redirectin to Index..");
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
@@ -78,7 +74,7 @@ namespace HopeLine.Web.Areas.User.Pages
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
+            System.Console.WriteLine("Unable to Add User...");
             return Page();
         }
     }

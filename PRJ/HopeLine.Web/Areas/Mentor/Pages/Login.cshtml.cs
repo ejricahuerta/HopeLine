@@ -29,9 +29,14 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         [BindProperty]
         public LoginViewModel LoginInput { get; set; }
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            if (_signInManager.IsSignedIn(User))
+            {
+                var url = Url.Content("~/");
+                return Redirect(url);
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -43,7 +48,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, true, false);
                 if (res.Succeeded)
                 {
-                    
+
                     System.Console.WriteLine("User has logged in.");
                     return LocalRedirect(returnUrl);
                 }

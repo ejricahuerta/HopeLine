@@ -11,11 +11,20 @@
     <form  method="POST" class=" col-xs-12 shadow-lg rounded p-5 m-0">
         <h1 class="display-5">Mentor Access</h1>
         <hr />
-        <input type="text"  asp-for="LoginInput.Username" class="form-control" placeholder="Username / ID" required autofocus>
-        <br />
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" asp-for="LoginInput.Password" class="form-control mb-2" placeholder="Password" required>
-        <br />
+         <div class="form-group">
+            <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
+            <input asp-for="LoginInput.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
+            <small>
+                <span asp-validation-for="LoginInput.Username" class="text-danger"></span>
+            </small>
+        </div>
+         <div class="form-group">
+        <label for="password"><small class="text-muted">Password</small><span class="text-danger"> *</span></label>
+        <input asp-for="LoginInput.Password" type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter Password" autofocus>
+        <small>
+        <span asp-validation-for="LoginInput.Password" class="text-danger"></span>
+        </small>
+    </div>
         <button id="loginbutton" class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         </form>
     </div>

@@ -8,28 +8,59 @@
 
 <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
    <form class="col-xs-12 shadow-lg rounded p-5 m-0" method="POST">
-     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       <h3 class="text-success">Register with HopeLine</h3>
+       <br/>
+        @{
+            if(!ModelState.IsValid){
+            <div class="form-group alert alert-danger" role="alert">
+                    Ops! Invalid Input. Please try again...
+            </div>
+            }
+            else{
+            <div class="alert alert-info" role="alert">
+                    Please fill all required textfields.
+            </div>
+            }
+        }
     <div class="form-group">
-        <label for="email"><small class="text-muted">Email address</small></label>
+        <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
         <input asp-for="RegisterViewModel.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
-        <small id="emailHelp" class="form-text text-muted"> We'll never share your email with anyone else.</small>
+        <small>
+        <span asp-validation-for="RegisterViewModel.Username" class="text-danger"></span>
+        </small>
     </div>
+    <div class="row">
+        <div class="form-group col-6">
+            <label  for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
+            <input asp-for="RegisterViewModel.FirstName" type="text" class="form-control required" id="fname" placeholder="Enter First Name" >
+            <small>
+            <span asp-validation-for="RegisterViewModel.FirstName" class="text-danger"></span>
+            </small>
+        </div>
+        <div class="form-group col-6">
+            <label  for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
+            <input asp-for="RegisterViewModel.LastName" type="text" class="form-control  required" id="lname" placeholder="Enter Last Name" >
+            <small>
+            <span asp-validation-for="RegisterViewModel.LastName" class="text-danger"></span>
+            </small>
+        </div>
+    </div>
+    <div class="row">
 
-    <div class="form-group">
-        <label  for="fname"><small class="text-muted">First Name</small></label>
-        <input asp-for="RegisterViewModel.FirstName" type="text" class="form-control required" id="fname" placeholder="Enter First Name" >
-    </div>
-    <div class="form-group">
-        <label  for="lname"><small class="text-muted">Last Name</small></label>
-        <input asp-for="RegisterViewModel.LastName" type="text" class="form-control  required" id="lname" placeholder="Enter Last Name" >
-    </div>
-    <div class="form-group">
-        <label for="password"><small class="text-muted">Password</small></label>
-        <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <label for="retype-password"><small class="text-muted">Re-type Password</small></label>
-        <input asp-for="RetypePassword"  type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
+        <div class="form-group col-6">
+            <label for="password"><small class="text-muted">Password</small><span class="text-danger"> *</span></label>
+            <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password">
+            <small>
+            <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>  
+            </small>
+        </div>
+        <div class="form-group col-6">
+            <label for="retype-password"><small class="text-muted">Re-type Password</small><span class="text-danger"> *</span></label>
+            <input asp-for="RegisterViewModel.RetypePassword"  type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
+            <small>
+                <span asp-validation-for="RegisterViewModel.RetypePassword" class="text-danger"></span>
+            </small> 
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

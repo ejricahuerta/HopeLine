@@ -23,15 +23,13 @@ namespace HopeLine.Web.ViewModels
         public string Phone { get; set; }
 
 
-        [Required(ErrorMessage = "Invalid Password")]
         [MinLength(6)]
-        [StringLength(20)]
+        [MaxLength(20)]
         public string Password { get; set; }
 
         [Compare("Password")]
-        [Required(ErrorMessage = "Invalid Password")]
         [MinLength(6)]
-        [StringLength(20)]
+        [MaxLength(20)]
         public string RetypePassword { get; set; }
     }
 }
