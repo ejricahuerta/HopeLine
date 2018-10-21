@@ -7,11 +7,12 @@ namespace HopeLine.Web.ViewModels
         [Required]
         [MaxLength(40)]
         [MinLength(5)]
+        [DataType(DataType.EmailAddress)]
         public string Username { get; set; }
-        
-        [MinLength(5)]
-        [MaxLength(25)]
+
         [Required]
-        public string  Password { get; set; }
+        [MinLength(8)]
+        [MaxLength(25)]
+        public string Password { get; set; }
     }
 }
