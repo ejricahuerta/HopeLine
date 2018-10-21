@@ -1,5 +1,6 @@
 ﻿namespace HopeLine.Service.Configurations
 {
+    //TODO: this should be in app settings on Aazure App settings
     public class APIConstant
     {
         public static string UniversalEmail = "universal@email.com";
