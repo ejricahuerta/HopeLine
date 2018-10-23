@@ -16,8 +16,8 @@ namespace HopeLine.Service.Interfaces
         bool EditDefaultMap(MapModel map);
         bool AddResources(ResourceModel resource);
         bool EditResource(ResourceModel resource);
-        bool AddResources(CommunityModel resource);
-        bool EditResource(CommunityModel resource);
+        bool AddCommunity(CommunityModel resource);
+        bool EditCommunity(CommunityModel resource);
 
         bool RemoveResource(int id);
         bool RemoveCommunity(int id);
