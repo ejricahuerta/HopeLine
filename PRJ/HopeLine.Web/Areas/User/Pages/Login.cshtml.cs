@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static HopeLine.DataAccess.Entities.HopeLineUser;
 
-namespace HopeLine.Web.Areas.Mentor.Pages
+namespace HopeLine.Web.Areas.User.Pages
 {
     public class LoginModel : PageModel
     {
@@ -42,11 +42,12 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+
             returnUrl = returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(LoginInput.Username);
-                if (user.AccountType == Account.Mentor)
+                if (user.AccountType == Account.User)
                 {
                     var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, true, false);
                     if (res.Succeeded)
