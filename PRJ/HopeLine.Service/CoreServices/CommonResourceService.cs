@@ -74,7 +74,7 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public bool AddResources(CommunityModel resource)
+        public bool AddCommunity(CommunityModel resource)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public bool EditResource(CommunityModel resource)
+        public bool EditCommunity(CommunityModel resource)
         {
             try
             {

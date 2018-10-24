@@ -1,7 +1,7 @@
 ﻿/* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
 #map {
-    height: 60%;
+    height: 100%;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body, .map {
@@ -53,12 +53,25 @@ html, body, .map {
         font-weight: 300;
     }
 
+<<<<<<< HEAD
+#pac-input {
+=======
 #map-input {
+>>>>>>> 1a9f0f80846109c7133afd67b2d75e6466beb51e
     background-color: #fff;
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
     margin-left: 12px;
+<<<<<<< HEAD
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+    margin-top: 20px;
+}
+
+    #pac-input:focus {
+=======
     text-overflow: ellipsis;
     width: 400px;
     margin-top: 20px;
@@ -66,6 +79,7 @@ html, body, .map {
 }
 
     #map-input:focus {
+>>>>>>> 1a9f0f80846109c7133afd67b2d75e6466beb51e
         border-color: #4d90fe;
     }
 

@@ -89,6 +89,14 @@ padding: .5rem 4rem;
 
 }
 
+.performer {
+    background-image: url('https://unsplash.it/1900/1080?image=791');
+    background-attachment: fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+
 .navbar-toggler:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
