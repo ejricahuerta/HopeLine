@@ -1,0 +1,124 @@
+﻿#fh5co-home {
+    min-height: 700px;
+    background: #fff url(../images/loader.gif) no-repeat center center;
+}
+
+    #fh5co-home .flexslider {
+        border: none;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0;
+    }
+
+        #fh5co-home .flexslider .fh5co-text {
+            position: absolute;
+            z-index: 3;
+            width: 100%;
+            top: 50%;
+            margin-top: -212px;
+            text-align: center;
+        }
+
+            #fh5co-home .flexslider .fh5co-text h1 {
+                margin: 0;
+                padding: 0;
+                font-family: "Playfair Display", serif;
+                font-size: 300px;
+                font-weight: 700;
+                font-style: italic;
+                color: #fff;
+                -webkit-transition: 0.3s;
+                -o-transition: 0.3s;
+                transition: 0.3s;
+            }
+
+@media screen and (max-width: 992px) {
+    #fh5co-home .flexslider .fh5co-text h1 {
+        font-size: 100px;
+    }
+}
+
+#fh5co-home .flexslider .fh5co-text h2 {
+    margin: 0;
+    padding: 0;
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #fff;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+    #fh5co-home .flexslider .fh5co-text h2 {
+        font-size: 20px;
+    }
+}
+
+#fh5co-home .flexslider .fh5co-text h2 span {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    text-transform: none;
+}
+
+#fh5co-home .flexslider .fh5co-text h2 a {
+    color: #fb6e14;
+}
+
+#fh5co-home .flexslider .slides li {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#fh5co-home .flexslider .fh5co-overlay {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: .5;
+    background: #000;
+}
+
+#fh5co-home .flexslider .flex-control-nav,
+#fh5co-home .flexslider .flex-direction-nav {
+    display: none;
+}
+
+
+
+#fh5co-sayings .flexslider .flex-control-paging {
+    position: relative;
+}
+
+    #fh5co-sayings .flexslider .flex-control-paging.flex-control-nav {
+        bottom: -70px;
+    }
+
+@media screen and (max-width: 768px) {
+    #fh5co-sayings .flexslider .flex-control-paging.flex-control-nav {
+        bottom: -60px;
+    }
+}
+
+#fh5co-sayings .flexslider .flex-control-paging li a {
+    width: 14px;
+    height: 14px;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
+}
+
+    #fh5co-sayings .flexslider .flex-control-paging li a:active, #fh5co-sayings .flexslider .flex-control-paging li a:focus {
+        outline: none;
+    }
+
+    #fh5co-sayings .flexslider .flex-control-paging li a.flex-active {
+        top: 2px;
+        position: relative;
+        background: transparent;
+        box-shadow: none;
+        border: 2px solid #fb6e14;
+    }
