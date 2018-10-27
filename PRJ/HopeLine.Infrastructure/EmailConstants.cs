@@ -5,7 +5,7 @@ namespace HopeLine.Infrastructure
         public static string host = "smtp.office365.com";
         public static int port = 587;
         public static bool enableSSL = false;
-        public static string userName = "";
-        public static string password;
+        public static string userName = "prj56607@outlook.com";
+        public static string password = "prjgroup7";
     }
 }
