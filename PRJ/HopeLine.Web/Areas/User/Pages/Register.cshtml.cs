@@ -7,6 +7,7 @@ using HopeLine.DataAccess.Entities;
 using HopeLine.Web.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,16 +18,18 @@ namespace HopeLine.Web.Areas.User.Pages
     {
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
+        private readonly IEmailSender _emailsender;
 
         [BindProperty]
         public RegisterViewModel RegisterViewModel { get; set; }
 
         [BindProperty]
         public string RetypePassword { get; set; }
-        public RegisterModel(UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
+        public RegisterModel(UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager, IEmailSender emailsender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailsender = emailsender;
         }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
@@ -39,6 +42,7 @@ namespace HopeLine.Web.Areas.User.Pages
                     FirstName = RegisterViewModel.FirstName,
                     LastName = RegisterViewModel.LastName
                 };
+
                 //TODO: include language
                 var user = new UserAccount
                 {
@@ -51,19 +55,18 @@ namespace HopeLine.Web.Areas.User.Pages
                 var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
-
                     /// IEmailSender neeeded
-                    // System.Console.WriteLine("New Account Created");
-                    // var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    System.Console.WriteLine("New Account Created");
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-                    // var callbackUrl = Url.Page(
-                    //     "/Account/ConfirmEmail",
-                    //     pageHandler: null,   
-                    //     values: new { userId = user.Id, code = code },
-                    //     protocol: Request.Scheme);
+                    var callbackUrl = Url.Page(
+                         "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { userId = user.Id, code = code },
+                        protocol: Request.Scheme);
 
-                    // await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailsender.SendEmailAsync(RegisterViewModel.Username, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     System.Console.WriteLine("Redirectin to Index..");

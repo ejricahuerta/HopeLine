@@ -73,7 +73,6 @@ namespace HopeLine.API
 
             ConfigureServiceExtension.AddConfiguration(services);
 
-
             services.AddTransient<IEmailSender, EmailSender>(i =>
                 new EmailSender(
                     EmailConstants.host,
@@ -82,7 +81,6 @@ namespace HopeLine.API
                     EmailConstants.userName,
                     EmailConstants.password
                 ));
-
 
             services.AddTransient<ITokenService, TokenService>();
 
@@ -126,14 +124,12 @@ namespace HopeLine.API
                                 .AllowAnyOrigin()
                                 .AllowCredentials());
 
-
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/chatHub");
             });
 
             app.UseMvc();
-
         }
     }
 }
