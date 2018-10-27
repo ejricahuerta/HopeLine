@@ -1,6 +1,7 @@
+using System.Net;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Threading.Tasks;
-using HopeLine.Infrastructure.Interfaces;
-
 namespace HopeLine.Infrastructure.Services
 {
     public class EmailSender : IEmailSender
@@ -22,9 +23,16 @@ namespace HopeLine.Infrastructure.Services
             this.password = password;
         }
 
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public Task SendEmailAsync(string email, string subject, string message)
         {
-
+            var client = new SmtpClient(host, port)
+            {
+                Credentials = new NetworkCredential(userName, password),
+                EnableSsl = enableSSL
+            };
+            return client.SendMailAsync(
+                new MailMessage(userName, email, subject, message) { IsBodyHtml = true }
+            );
         }
     }
 }
