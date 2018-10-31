@@ -14,7 +14,7 @@
                     <span class="nav-link" asp-area="Identity">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </span>
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
+                    <button type="submit" class=" btn na" >Logout</button>
                 </li>
             </ul>
         </form>
@@ -26,11 +26,11 @@
     {
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)  </a>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User) </a>
                 </li>
-                <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link" >Logout</button>
+                <li class="nav-item">
+                    <button type="submit" class="btn" >Logout</button>
                 </li>
             </ul>
         </form>
@@ -39,8 +39,8 @@
     else
     {
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="nav-link" href=@Url.Page("Register", new {area="User"})>Register</a></li>
-            <li><a class="nav-link" asp-page="/Authenticate">Sign in</a></li>
+            <li><a class="nav-link" href=@Url.Page("/Register", new {area="User"})>Register</a></li>
+            <li><a class="nav-link" href=@Url.Page("/Login", new {area="User"})>Sign in</a></li>
         </ul>   
     }
 }
