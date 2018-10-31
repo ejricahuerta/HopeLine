@@ -1,4 +1,6 @@
 using System;
+using HopeLine.Infrastructure.Services;
+
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
@@ -11,6 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using HopeLine.Infrastructure;
 
 namespace HopeLine.Web
 {
@@ -27,6 +31,15 @@ namespace HopeLine.Web
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureServiceExtension.AddConfiguration(services);
+
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+                new EmailSender(
+                    EmailConstants.host,
+                    EmailConstants.port,
+                    EmailConstants.enableSSL,
+                    EmailConstants.userName,
+                    EmailConstants.password
+                ));
 
             services.ConfigureApplicationCookie(options =>
                {

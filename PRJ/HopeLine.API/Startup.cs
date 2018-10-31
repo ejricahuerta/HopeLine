@@ -3,6 +3,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
 using HopeLine.API.Hubs;
+using HopeLine.Infrastructure;
+using HopeLine.Infrastructure.Services;
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -70,6 +73,15 @@ namespace HopeLine.API
 
             ConfigureServiceExtension.AddConfiguration(services);
 
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+                new EmailSender(
+                    EmailConstants.host,
+                    EmailConstants.port,
+                    EmailConstants.enableSSL,
+                    EmailConstants.userName,
+                    EmailConstants.password
+                ));
+
             services.AddTransient<ITokenService, TokenService>();
 
             services.AddLogging();
@@ -112,14 +124,12 @@ namespace HopeLine.API
                                 .AllowAnyOrigin()
                                 .AllowCredentials());
 
-
             app.UseSignalR(route =>
             {
                 route.MapHub<ChatHub>("/chatHub");
             });
 
             app.UseMvc();
-
         }
     }
 }

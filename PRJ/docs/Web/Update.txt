@@ -1,0 +1,38 @@
+### Web Application
+
+**Application Login:**
+*Mentor*
+-user: edmel.ricahuerta@gmail.com
+-pass: password
+
+*User*
+-user: jasper.zhi@gmail.com
+-pass: password
+
+**Active links:**
+Home - https://hopeline.azurewebsites.net/
+User Login - https://hopeline.azurewebsites.net/User/Login
+Mentor Login - https://hopeline.azurewebsites.net/Mentor/Login
+Map - https://hopeline.azurewebsites.net/Map
+Resources  - https://hopeline.azurewebsites.net/Resources
+Community - https://hopeline.azurewebsites.net/Community (no data yet)
+
+
+**Temporary Chat space:**
+https://hopeline.azurewebsites.net/chat
+
+Note: 
+-To test the  chat, open to two different browser and login for user and mentor using credentials above.
+(e.g Chrome and FireFox)
+-Once Mentor is authenticated, go to https://hopeline.azurewebsites.net/chat and copy the ID under CHAT header 
+(e.g. 5b4448d231654adeb077dc581be6cdb5)
+-Reload the page with param "pin" 
+(e.g. https://hopeline.azurewebsites.net/chat?pin=5b4448d231654adeb077dc581be6cdb5)
+-Copy the link and paste it to users browser.
+-Normally the name is generated based on the users profile,
+but this is a temp chat space for testing. So for now, Enter any name
+(e.g. User - John, Mentor - Mentor)
+-Click connect for both and type a message and send.
+
+**Video and Voice Calling**
+-https://hopeline.azurewebsites.net/videochat
