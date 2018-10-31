@@ -19,15 +19,16 @@ namespace HopeLine.Web.ViewModels
         [MinLength(2)]
         [MaxLength(20)]
         public string LastName { get; set; }
-
+    
         public string Phone { get; set; }
 
-
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,15}$", ErrorMessage ="Password must contain atleast an uppercase, a symbol, and a number.")]
         [MinLength(6)]
         [MaxLength(20)]
         public string Password { get; set; }
 
-        [Compare("Password")]
+        [Compare("Password",ErrorMessage = "Password does not Match.")]
+        
         [MinLength(6)]
         [MaxLength(20)]
         public string RetypePassword { get; set; }

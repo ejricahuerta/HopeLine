@@ -52,7 +52,6 @@ namespace HopeLine.Web.Areas.User.Pages
                     var res = await _signInManager.PasswordSignInAsync(LoginInput.Username, LoginInput.Password, true, false);
                     if (res.Succeeded)
                     {
-
                         System.Console.WriteLine("User has logged in.");
                         return LocalRedirect(returnUrl);
                     }
