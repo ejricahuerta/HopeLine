@@ -73,7 +73,6 @@ namespace HopeLine.Service.Configurations
             services.AddTransient<IMessage, MessageService>();
             services.AddTransient<ICommonResource, CommonResourceService>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace HopeLine.Service.Configurations
         /// <param name="app"></param>
         public static void UseConfiguration(IApplicationBuilder app)
         {
-           // implement additional config when the app runs HERE
+            // implement additional config when the app runs HERE
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 using (var context = scope.ServiceProvider.GetRequiredService<HopeLineDbContext>())
