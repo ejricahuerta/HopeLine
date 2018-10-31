@@ -2,10 +2,10 @@ namespace HopeLine.Infrastructure
 {
     public static class EmailConstants
     {
-        public static string host = "smtp.office365.com";
+        public static string host = "smtp.gmail.com";
         public static int port = 587;
-        public static bool enableSSL = false;
-        public static string userName = "prj56607@outlook.com";
+        public static bool enableSSL = true;
+        public static string userName = "hopeline.main@gmail.com";
         public static string password = "prjgroup7";
     }
 }

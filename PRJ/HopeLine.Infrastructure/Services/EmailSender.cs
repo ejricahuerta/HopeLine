@@ -30,6 +30,7 @@ namespace HopeLine.Infrastructure.Services
                 Credentials = new NetworkCredential(userName, password),
                 EnableSsl = enableSSL
             };
+
             return client.SendMailAsync(
                 new MailMessage(userName, email, subject, message) { IsBodyHtml = true }
             );

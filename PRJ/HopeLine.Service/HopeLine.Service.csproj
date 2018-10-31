@@ -31,6 +31,6 @@
   <!--Dependencies-->
   <ItemGroup>
     <ProjectReference Include="..\HopeLine.DataAccess\HopeLine.DataAccess.csproj" />
-    <ProjectReference Include="..\HopeLine.Infastructure\HopeLine.Infastructure.csproj" />
+    <ProjectReference Include="..\HopeLine.Infrastructure\HopeLine.Infrastructure.csproj" />
   </ItemGroup>
   </Project>

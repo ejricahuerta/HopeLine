@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EmailSender\" />
+    <Compile Remove="EmailSender\**" />
+    <EmbeddedResource Remove="EmailSender\**" />
+    <None Remove="EmailSender\**" />
   </ItemGroup>
 
   <ItemGroup>
