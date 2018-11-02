@@ -17,7 +17,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Community> Communities { get; set; }
 
         public DbSet<Resource> Resources { get; set; }
-
+        public DbSet<Topic> Topics { get; set; }
         public ResourcesDbContext()
         {
 

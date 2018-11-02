@@ -53,6 +53,10 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public IEnumerable<T> GetAll(string include = null)
         {
+            if (include == null)
+            {
+                return _entities;
+            }
             return _entities.Include(include);
         }
 

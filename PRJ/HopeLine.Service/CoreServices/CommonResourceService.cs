@@ -17,6 +17,8 @@ namespace HopeLine.Service.CoreServices
         private readonly IRepository<Language> _languageRepo;
         private readonly IRepository<Resource> _resourceRepo;
         private readonly IRepository<Community> _communityRepo;
+        private readonly IRepository<Topic> _topicRepo;
+
 
         /// <summary>
         /// 
@@ -25,11 +27,13 @@ namespace HopeLine.Service.CoreServices
         /// <param name="communityRepo"></param>
         public CommonResourceService(IRepository<Resource> resourceRepo,
                                     IRepository<Community> communityRepo,
-                                    IRepository<Language> languageRepo)
+                                    IRepository<Language> languageRepo,
+                                    IRepository<Topic> topicRepo)
         {
             _languageRepo = languageRepo;
             _resourceRepo = resourceRepo;
             _communityRepo = communityRepo;
+            _topicRepo = topicRepo;
         }
 
         // try
@@ -173,7 +177,8 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<CommunityModel> GetCommunities()
         {
-            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel {
+            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel
+            {
                 Name = c.Name,
                 Description = c.Description,
                 URL = c.URL,
@@ -208,7 +213,8 @@ namespace HopeLine.Service.CoreServices
             {
                 _communityRepo.Remove(id);
                 return true;
-            }catch(System.Exception e)
+            }
+            catch (System.Exception e)
             {
                 System.Console.WriteLine("Error: " + e);
                 return false;
@@ -226,6 +232,23 @@ namespace HopeLine.Service.CoreServices
             {
                 System.Console.WriteLine("Error: " + e);
                 return false;
+            }
+        }
+
+        public IEnumerable<TopicModel> GetTopics()
+        {
+            try
+            {
+                return _topicRepo.GetAll(null).Select(t => new TopicModel
+                {
+                    Name = t.Name,
+                    Id = t.Id,
+                    Description = t.Description
+                });
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to Fetch Data:", ex);
             }
         }
     }
