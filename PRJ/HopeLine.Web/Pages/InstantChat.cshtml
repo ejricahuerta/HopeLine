@@ -1,0 +1,239 @@
+﻿@page
+@model InstantChatModel
+@{
+}
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns' crossorigin='anonymous'>
+
+
+</head>
+
+<section class="mt-1">
+    <div class="row justify-content-center p-2">
+        <div class="col-4 bg-dark d-none d-lg-block d-md-block" style="height:670px; overflow-y: scroll">
+            <form method="POST">
+                <div class="row justify-content-center" id="list">
+
+                    <!--Search-->
+                    <!--Search-->
+                    <div class="col-12 m-3 bg-dark" style="position:sticky;top:0;z-index:1;">
+                        <input class="form-control" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+
+                    <!--Topics-->
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic1">Topic 1</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic1" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic2">Topic 2</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic2" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic3">Topic 3</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic3" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic4">Topic 4</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic4" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic5">Topic 5</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic5" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic6">Topic 6</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic6" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic7">Topic 7</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic7" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic8">Topic 8</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic8" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic9">Topic 9</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic9" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 m-3">
+                        <div class="row form-group form-check">
+                            <div class=" col-12" id="Topic">
+                                <label class="text-white form-check-label col-9 css-label" for="Topic10">Topic 10</label>
+                                <input class="form-check-input col-3" type="checkbox" id="Topic10" style="width:25px; height:25px;" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- end of users-->
+
+        <div class="col-7 border-dark bg-dark p-0">
+            <div class="row p-3 m-0 align-items-center">
+                <div class="col-10">
+                    <img class="rounded-circle" src="https://via.placeholder.com/75x75">
+                    <h3 class="col-4 d-inline-block text-white">Username6</h3>
+                </div>
+                <div class="col-1 text-right">
+                    <a href="https://www.google.ca"><i style='font-size:36px' class='fas'>&#xf098;</i></a>
+                </div>
+                <div class="col-1 text-right">
+                    <a href="https://www.google.ca"><i style="font-size:36px" class="fa">&#xf03d;</i></a>
+                </div>
+            </div>
+
+            <div class="col-12 bg-white" style="height:500px; overflow-y:scroll;" id="messages">
+                <div class="row justify-content-center p-3">
+                    <div id="message" class="col-11 mb-5">
+                        <h5>User</h5>
+                        <p class="bg-primary text-justify rounded p-2" style="min-height:50px;">
+                            Lorem ipsum dolor sit amet,
+                            consectetur
+                            adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
+                            feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
+                            non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
+                            tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
+                            Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
+                            tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
+                            dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
+                            luctus.
+
+                        </p>
+                    </div>
+                    <div id="message" class="col-11 mb-5">
+                        <h5 class="text-right">User</h5>
+                        <p class="bg-primary rounded p-2 text-justify" style="min-height:50px;">
+                            Lorem ipsum dolor sit amet,
+                            consectetur
+                            adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
+                            feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
+                            non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
+                            tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
+                            Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
+                            tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
+                            dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
+                            luctus.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 " style="position:absolute; bottom:0;">
+                <div class="row m-1">
+                    <div class="col-9">
+                        <textarea class="form-control col-10" type="text" placeholder="type a message" rows="1"></textarea>
+                    </div>
+                    <div class="col-3">
+                        <input id="sendbutton" type="button" class="btn btn-secondary btn-lg" value="Send" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function filterTopics() {
+        var input, filter, list, div, label, i
+
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        list = document.getElementById("list");
+        div = list.getElementById("Topic");
+
+        for (i = 0; i < label.length; i++) {
+            label = div[i].getElementsByTagName("label");
+            if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                div[i].style.display = "";
+
+            } else {
+                div[i].style.display = "none";
+
+            }
+
+        }
+
+    }
+
+    /*
+    function listFilter(list, input) {
+        bar $lbs = list.find('.css-label');
+
+        function filter() {
+            var regex = new RegExp('\\b' + this.value);
+            var $els = $lbs.filter(function () {
+                return regex.test($(this).text());
+
+            });
+            $lbs.not($els).hide().prev().hide();
+            $els.show().prev().show();
+
+        };
+        input.keyup(filter).change(filter)
+
+    }
+
+    jQuery(function ($) {
+        listFilter($('#list'), $('.search-filter'))
+    })
+    */
+    $("#sendbutton").click(function () {
+        $("#messages").animate({
+            scrollTop: $('#messages').prop("scrollHeight")
+        }, "slow");
+    });
+</script>
