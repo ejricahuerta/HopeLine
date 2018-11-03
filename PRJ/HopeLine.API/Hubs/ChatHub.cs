@@ -87,6 +87,8 @@ namespace HopeLine.API.Hubs
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
 
+
+
         public async Task AddMentor(string mentorId)
         {
             System.Console.WriteLine("Adding Mentor to Online Mentors...");

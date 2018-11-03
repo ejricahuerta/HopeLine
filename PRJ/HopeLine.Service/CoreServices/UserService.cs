@@ -14,16 +14,14 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _convoRepo;
         private readonly IRepository<MentorSpecialization> _specializationRepo;
 
-        public UserService(IUnitOfWork unitOfWork, IRepository<HopeLineUser> userRepo,
+        public UserService(IRepository<HopeLineUser> userRepo,
                             IRepository<Conversation> convoRepo,
                             IRepository<MentorSpecialization> specializationRepo)
         {
-            _unitOfWork = unitOfWork;
             _userRepo = userRepo;
             _convoRepo = convoRepo;
             _specializationRepo = specializationRepo;
@@ -278,7 +276,6 @@ namespace HopeLine.Service.CoreServices
                     user.Profile.FirstName = model.FirstName;
                     user.Profile.LastName = model.LastName;
                     _userRepo.Update(user);
-                    _unitOfWork.SaveAsync();
                 }
                 return true;
             }

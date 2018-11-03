@@ -36,28 +36,6 @@ namespace HopeLine.Service.CoreServices
             _topicRepo = topicRepo;
         }
 
-        // try
-        //{
-        //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)
-        //        .Conversations.Select(c => new ConversationModel
-        //        {
-        //            Id = c.Id,
-        //            MentorId = c.Mentor.Id,
-        //            UserName = c.UserName,
-        //            DateOfConversation = c.DateOfConversation,
-        //            Minutes = c.Minutes,
-        //            PIN = c.PIN
-
-        //        });
-        //    return conversations;
-        //}
-        //catch (System.Exception ex)
-        //{
-
-        //    throw new System.Exception("Unable to process user service : ", ex);
-        //}
-
-
         public bool AddResources(ResourceModel resource)
         {
             try

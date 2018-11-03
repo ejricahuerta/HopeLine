@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.DataAccess.Repositories
 {
@@ -82,6 +83,16 @@ namespace HopeLine.DataAccess.Repositories
         /// </summary>
         /// <param name="id"></param>
         public void Remove(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAsync()
         {
             throw new NotImplementedException();
         }

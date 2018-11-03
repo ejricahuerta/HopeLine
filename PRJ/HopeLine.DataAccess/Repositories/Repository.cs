@@ -3,6 +3,7 @@ using HopeLine.DataAccess.Entities.Base;
 using HopeLine.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HopeLine.DataAccess.Repositories
 {
@@ -34,7 +35,8 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Delete(T obj)
         {
-            throw new System.NotImplementedException();
+            _entities.Remove(obj);
+            _hopeLineDb.Entry(obj).State = EntityState.Deleted;
         }
 
         /// <summary>
@@ -44,7 +46,8 @@ namespace HopeLine.DataAccess.Repositories
         /// <returns></returns>
         public T Get(object id)
         {
-            throw new System.NotImplementedException();
+            var obj = _entities.Find(id);
+            return obj;
         }
 
         /// <summary>
@@ -66,7 +69,11 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Insert(T obj)
         {
-            throw new System.NotImplementedException();
+            if (obj == null) {
+                throw new System.ArgumentNullException("Object not found");
+            }
+            _entities.Add(obj);
+            _hopeLineDb.Entry(obj).State = EntityState.Added;
         }
         /// <summary>
         /// 
@@ -74,7 +81,25 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="id"></param>
         public void Remove(object id)
         {
-            throw new System.NotImplementedException();
+            var obj = _entities.Find(id);
+            if (obj != null)
+            {
+                _entities.Remove(obj);
+                Delete(obj);
+            }
+
+
+        }
+
+        public void Save()
+        {
+            _hopeLineDb.SaveChanges();
+        }
+
+        public async Task SaveAsync()
+        {
+            await _hopeLineDb.SaveChangesAsync();
+
         }
 
         /// <summary>
@@ -83,7 +108,15 @@ namespace HopeLine.DataAccess.Repositories
         /// <param name="obj"></param>
         public void Update(T obj)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _entities.Update(obj);
+                _hopeLineDb.Entry(obj).State = EntityState.Modified;
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to Update: ", ex);
+            }
         }
     }
 }
