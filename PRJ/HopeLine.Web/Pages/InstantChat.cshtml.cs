@@ -10,12 +10,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HopeLine.Web.Pages {
-    public class InstantChatModel : PageModel {
+namespace HopeLine.Web.Pages
+{
+    public class InstantChatModel : PageModel
+    {
         private readonly ICommonResource _commonResource;
         private readonly ICommunication _communication;
 
-        public InstantChatModel (ICommunication communication, ICommonResource commonResource) {
+        public InstantChatModel(ICommunication communication, ICommonResource commonResource)
+        {
             _commonResource = commonResource;
             _communication = communication;
         }
@@ -30,22 +33,28 @@ namespace HopeLine.Web.Pages {
         public string UserName { get; set; }
         public string ReturnUrl { get; set; }
 
-        public IActionResult OnGet (string topics, string pin = null, string user = null) {
-            UserName = "guest";
+        public IActionResult OnGet(string topics, string pin = null, string user = null)
+        {
+            UserName = HttpContext.Session.GetString("_guest");
+            if (pin == null)
+                PIN = _communication.GenerateConnectionId();
+            else
+                PIN = pin;
 
-            if (UserName != null) {
-                if (pin == null)
-                    PIN = _communication.GenerateConnectionId ();
-                else
-                    PIN = pin;
-
-                Topics = _commonResource.GetTopics ().Select (t => t.Name).ToList ();
-                return Page ();
-
-            } else {
-                string url = Url.Page ("/Login", new { area = "Guest", returnUrl = "chat" });
-                return LocalRedirect (url);
+            if (UserName != null)
+            {
+                HttpContext.Session.SetString("_guest", UserName);
+                TempData["user"] = UserName;
             }
+
+            else
+            {
+                var name = "Guest" + Guid.NewGuid().ToString("N").Substring(0, 12);
+                UserName = name;
+                HttpContext.Session.SetString("_guest", UserName);
+            }
+            Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
+            return Page();
         }
 
     }

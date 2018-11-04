@@ -66,6 +66,9 @@ namespace HopeLine.API.Hubs {
                 UserName = user,
                 Text = message
             };
+
+            Console.WriteLine("Adding Message");
+
             _messageService.NewMessage (newmsg);
             await Clients.Group (room).SendAsync ("ReceiveMessage", user, message);
         }

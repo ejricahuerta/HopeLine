@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,7 +15,6 @@ namespace HopeLine.Web.Areas.Guest.Pages {
         public LoginModel (ICommunication communicationService) {
             _communicationService = communicationService;
         }
-
         public string SessionId = "_guest";
 
         [BindProperty]
@@ -23,29 +23,32 @@ namespace HopeLine.Web.Areas.Guest.Pages {
         public string Username { get; set; }
         public string ReturnUrl { get; set; }
         public IActionResult OnGet (string returnUrl = null) {
-            if (HttpContext.Session.GetString ("_guest") != null) {
-                return Redirect (Url.Content ("~/"));
-            }
-
             ReturnUrl = returnUrl != null ? Url.Content ("~/" + returnUrl) : Url.Content ("~/");
-            return Page ();
-        }
-
-        public IActionResult OnPost (string returnUrl = null) {
-            ReturnUrl = returnUrl != null ? Url.Content ("~/" + returnUrl) : Url.Content ("~/");
-
-            string pin = "";
-            if (ReturnUrl.ToLower ().Contains ("chat")) {
-                pin = _communicationService.GenerateConnectionId ();
-                ReturnUrl = Url.Content ("~/" + returnUrl + "?pin=" + pin);
-            }
 
             if (Username != null) {
                 HttpContext.Session.SetString ("_guest", Username);
                 TempData["user"] = Username;
-                return Redirect (ReturnUrl);
+            } else {
+                var user = "Guest" + Guid.NewGuid ().ToString ("N").Substring (0, 12);
+                Username = user;
+                HttpContext.Session.SetString ("_guest", Username);
             }
-            return Page ();
+            return Redirect (ReturnUrl);
+        }
+
+        public IActionResult OnPost (string returnUrl = null) {
+
+            ReturnUrl = returnUrl != null ? Url.Content ("~/" + returnUrl) : Url.Content ("~/");
+
+            if (Username != null) {
+                HttpContext.Session.SetString ("_guest", Username);
+                TempData["user"] = Username;
+            } else {
+                var user = "Guest" + Guid.NewGuid ().ToString ("N").Substring (0, 12);
+                Username = user;
+                HttpContext.Session.SetString ("_guest", Username);
+            }
+            return Redirect (ReturnUrl);
         }
     }
 }
