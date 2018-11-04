@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model InstantChatModel
 @{
 }
@@ -27,95 +27,18 @@
                     </div>
 
                     <!--Topics-->
+                    @foreach (var item in Model.Topics)
+                    {
                     <div class="col-12 m-3">
                         <div class="row form-group form-check">
                             <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic1">Topic 1</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic1" style="width:25px; height:25px;" />
+                                <label class="p-0 text-white form-check-label col-9 css-label" for="Topic1">@item</label>
+                                <input class="p-0 col-3" type="checkbox" id="Topic1" style="width:25px; height:25px;" />
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic2">Topic 2</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic2" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic3">Topic 3</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic3" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic4">Topic 4</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic4" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic5">Topic 5</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic5" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic6">Topic 6</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic6" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic7">Topic 7</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic7" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic8">Topic 8</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic8" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic9">Topic 9</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic9" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="text-white form-check-label col-9 css-label" for="Topic10">Topic 10</label>
-                                <input class="form-check-input col-3" type="checkbox" id="Topic10" style="width:25px; height:25px;" />
-                            </div>
-                        </div>
-                    </div>
+                    }
+                    
                     <button type="submit" class="btn btn-secondary">Submit</button>
                 </div>
             </form>
