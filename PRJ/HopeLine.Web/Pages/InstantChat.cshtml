@@ -10,52 +10,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns' crossorigin='anonymous'>
-
+    
 
 </head>
 
 <section class="mt-1">
-    <div class="row justify-content-center p-2">
-        <div class="col-4 bg-dark d-none d-lg-block d-md-block" style="height:670px; overflow-y: scroll">
-            <form method="POST">
+    <div class="row justify-content-center p-2 bg-info">
+        <div class="col-md-3 col-sm-12" style=" overflow-y: auto">
+            <form method="POST" class="p-0 m-0">
                 <div class="row justify-content-center" id="list">
 
                     <!--Search-->
-                    <!--Search-->
-                    <div class="col-12 m-3 bg-dark" style="position:sticky;top:0;z-index:1;">
+                    <div class="col-12 m-3" style="position:sticky;top:0;z-index:1;">
                         <input class="form-control" id="searchInput" type="search" placeholder="Search" aria-label="Search">
                     </div>
 
                     <!--Topics-->
                     @foreach (var item in Model.Topics)
                     {
-                    <div class="col-12 m-3">
-                        <div class="row form-group form-check">
-                            <div class=" col-12" id="Topic">
-                                <label class="p-0 text-white form-check-label col-9 css-label" for="Topic1">@item</label>
-                                <input class="p-0 col-3" type="checkbox" id="Topic1" style="width:25px; height:25px;" />
+                    <div class="col-12">
+                            <div  class="form-check form-group" id="Topic">
+                                <label class="p-0 col-9 form-check-label  css-label" for="Topic1">@item</label>
+                                <input class="p-0 col-3 form-check-input" type="checkbox" id="Topic1" />
                             </div>
-                        </div>
+                        
                     </div>
                     }
-                    
-                    <button type="submit" class="btn btn-secondary">Submit</button>
+                    <button type="submit" class="btn btn-secondary" style="position:sticky;bottom:0;z-index:1;">Submit</button>
                 </div>
             </form>
         </div>
         <!-- end of users-->
 
-        <div class="col-7 border-dark bg-dark p-0">
+        <div class="col-md-7 col-sm-12 border-dark p-0">
             <div class="row p-3 m-0 align-items-center">
                 <div class="col-10">
                     <img class="rounded-circle" src="https://via.placeholder.com/75x75">
-                    <h3 class="col-4 d-inline-block text-white">Username6</h3>
+                    <h3 class="col-4 d-inline-block">Guest</h3>
                 </div>
-                <div class="col-1 text-right">
-                    <a href="https://www.google.ca"><i style='font-size:36px' class='fas'>&#xf098;</i></a>
+                <div class="col-1 p-1 text-right ">
+                    <a  class=" p-1 btn btn-outline-dark" href="https://www.google.ca"><i class="fas fa-video fa-3x"></i></a>
                 </div>
-                <div class="col-1 text-right">
-                    <a href="https://www.google.ca"><i style="font-size:36px" class="fa">&#xf03d;</i></a>
+                <div class=" col-1 p-1 text-right ">
+                    <a class="p-1 btn  btn-outline-dark " href="https://www.google.ca"><i class="fas fa-phone fa-3x"></i></a>
                 </div>
             </div>
 

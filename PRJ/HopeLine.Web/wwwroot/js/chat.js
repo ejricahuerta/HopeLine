@@ -27,7 +27,7 @@ if (userId != null) {
 
     connection.on("Load", function (user, message) {
         currentuser = $('#userInput').val();
-        var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
+        var classId = (currentuser == user) ? 'bg-primary' : 'bg-light';
 
         $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
             ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
