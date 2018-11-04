@@ -14,26 +14,24 @@ namespace HopeLine.API.Hubs
     public class ChatHub : Hub
     {
         private readonly IMessage _messageService;
+        private readonly ICommunication _communicationService;
 
-        public ChatHub(IMessage messageService)
+        public ChatHub(IMessage messageService, ICommunication communicationService)
         {
             _messageService = messageService;
+            _communicationService = communicationService;
 
         }
-        // public override async Task OnConnectedAsync()
-        // {
-        //     await Groups.AddToGroupAsync(Context.ConnectionId, "SignalR Users");
-        //     await base.OnConnectedAsync();
-        // }
 
-        // public override async Task OnDisconnectedAsync(Exception exception)
-        // {
 
-        //     await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            await base.OnDisconnectedAsync(exception);
 
-        //     await base.OnDisconnectedAsync(exception);
-        // }
+        }
 
+
+        //Invoke this method wherever the mentor accepted
         public async Task AddUserToRoom(string room)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, room);
@@ -46,6 +44,7 @@ namespace HopeLine.API.Hubs
             {
                 _messageService.DeleteAllMessages(room);
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
+                await Clients.Caller.SendAsync("Load", "System", "User has been disconnected.");
             }
             catch (System.Exception ex)
             {
@@ -87,14 +86,12 @@ namespace HopeLine.API.Hubs
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
 
-
-
         public async Task AddMentor(string mentorId)
         {
             System.Console.WriteLine("Adding Mentor to Online Mentors...");
             try
             {
-                await _messageService.SetMentorOnCall(mentorId, Context.ConnectionId);
+                await _messageService.NewMentorAvailable(mentorId);
                 System.Console.WriteLine("finished adding mentor...");
             }
             catch (System.Exception ex)
@@ -102,5 +99,56 @@ namespace HopeLine.API.Hubs
                 throw new System.Exception("Unable to Process New Mentor: ", ex);
             }
         }
+
+        public async Task UserRequestToTalk(string user)
+        {
+
+            //List all available mentors
+            var availablementors = _messageService.ListAvailableMentor()
+                                    .Select(o => o.ConnectionId)
+                                    .ToList()
+                                    .AsReadOnly();
+
+            if (availablementors == null)
+            {
+
+                //Notify User 
+                await Clients.Caller
+                .SendAsync("NotifyUser", "There are no Available Mentors at the moment. Please try again later.");
+            }
+            else
+            {
+
+                //Notify Mentor and User
+                await Clients.Clients(availablementors)
+                            .SendAsync("NotifyMentor", string.Format("{0} is looking for company...", Context.ConnectionId));
+                await Clients.Caller.SendAsync("NotifyUser", "Matching to Mentor...");
+            }
+        }
+
+        public async Task MentorAcceptRequest(string mentorId, string userConnectionId)
+        {
+            try
+            {
+                //Generate room
+                var room = _communicationService.GenerateConnectionId();
+
+                //set Mentor unavailable
+                await _messageService.SetMentorOnCall(mentorId, Context.ConnectionId);
+
+                //Add user and mentor to room
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                await Groups.AddToGroupAsync(userConnectionId, room);
+
+                //Notify User
+                await Clients.Client(userConnectionId).SendAsync("NotifyUser", "Connected.");
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception("Mentor Unable to Accept: ", ex);
+            }
+        }
+
+        
     }
 }
