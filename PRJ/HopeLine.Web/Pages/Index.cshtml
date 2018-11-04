@@ -2,30 +2,37 @@
 @model HopeLine.Web.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
+
 }
+@using Newtonsoft.Json;
+
 
 <head>
-    <link rel="stylesheet" href="~/css/map.css"/>
-    <link rel="stylesheet" href="~/css/index.css"/>
-    <link rel="stylesheet" href="~/css/flexslides.css"/>
+    <link rel="stylesheet" href="~/css/map.css" />
+    <link rel="stylesheet" href="~/css/index.css" />
+    <link rel="stylesheet" href="~/css/flexslides.css" />
 </head>
 <section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
-    <form class="dropdown text-center"  method="post" action="/instantchat">
+    <form class="dropdown text-center" method="post"  asp-action="/InstantChat">
+        <button type="submit" class="btn btn-success">Talk to Mentor</button>
         <a class="btn btn-lg btn-primary  text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select Topics
         </a>
+
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @foreach (var item in Model.Topics)
-                    {
-                
-                            <div  class="form-check form-group" id="Topic">
-                                <label class="p-0 form-check-label  css-label" for="Topic1">@item</label>
-                                <input class="p-0 form-check-input" type="checkbox" id="Topic1" />
-                            </div>
-                        
-                    }      
+
+            @foreach (var item in Model.Topics)
+            {
+                Dictionary<string, string> dictTopics = new Dictionary<string, string> { { "topics", JsonConvert.SerializeObject(item) } };
+
+                <div class="form-check form-group" id="Topic">
+                    <label class="p-0 form-check-label  css-label" for="Topic1">@item</label>
+                    <input class="p-0 form-check-input" type="checkbox" id="Topic1" value="@item" />
+                </div>
+
+            }
         </div>
-        <button type="submit" class="btn btn-success">Talk to Mentor</button>
+
     </form>
 
 </section>
