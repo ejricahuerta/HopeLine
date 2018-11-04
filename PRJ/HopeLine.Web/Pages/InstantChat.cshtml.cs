@@ -44,7 +44,7 @@ namespace HopeLine.Web.Pages
                 else
                     PIN = pin;
 
-                ReturnUrl = Url.Content("~/" + "?pin=" + pin);
+                ReturnUrl = Url.Content("~/" + returnUrl + "?pin=" + pin);
                 Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
                 return Page();
 
@@ -56,6 +56,6 @@ namespace HopeLine.Web.Pages
             }
         }
         
-        }
+        
     }
 }
