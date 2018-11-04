@@ -65,7 +65,8 @@ namespace HopeLine.Service.CoreServices
                 {
                     Available = n.Available,
                     ConnectionId = n.ConnectionId,
-                    Id = n.Id
+                    Id = n.Id,
+                    MentorId = n.MentorId
                 });
             }
             catch (System.Exception ex)
@@ -89,7 +90,6 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-
                 throw new System.Exception("Unable to Add Mentor to Online Mentors: ", ex);
             }
         }
@@ -113,17 +113,17 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public async Task RemoveMentor(string connectionId)
+        public async Task RemoveMentor(string mentorId)
         {
             try
             {
-                var mentor = _chatDb.OnlineMentors.SingleOrDefault(m => m.ConnectionId == connectionId);
+                var mentor = _chatDb.OnlineMentors.SingleOrDefault(m => m.MentorId == mentorId);
                 _chatDb.Remove(mentor);
                 await _chatDb.SaveChangesAsync();
             }
             catch (System.Exception ex)
             {
-                throw new System.Exception("Unable to Remove Mentor From Pool: " ,ex);
+                throw new System.Exception("Unable to Remove Mentor From Pool: ", ex);
             }
         }
 
