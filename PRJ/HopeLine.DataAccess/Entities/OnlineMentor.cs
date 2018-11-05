@@ -6,7 +6,7 @@ namespace HopeLine.DataAccess.Entities
     {
         public OnlineMentor()
         {
-            
+
         }
         [Key]
         public int Id { get; set; }

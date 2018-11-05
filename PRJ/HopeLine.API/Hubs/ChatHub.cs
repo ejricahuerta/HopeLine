@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using HopeLine.Service.Interfaces;
+﻿using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.API.Hubs
 {
