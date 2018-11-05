@@ -31,6 +31,9 @@ namespace HopeLine.Web.Pages
 
         [BindProperty]
         public string UserName { get; set; }
+
+        [BindProperty]
+        public int IsUser { get; set; }
         public string ReturnUrl { get; set; }
 
         public IActionResult OnGet(string topics, string pin = null, string user = null)
@@ -44,7 +47,7 @@ namespace HopeLine.Web.Pages
             if (UserName != null)
             {
                 HttpContext.Session.SetString("_guest", UserName);
-                TempData["user"] = UserName;
+
             }
 
             else
