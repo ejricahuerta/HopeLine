@@ -24,7 +24,8 @@ namespace HopeLine.Web.Areas.Guest.Pages
 
         [BindProperty]
         public string PIN { get; set; }
-
+        [BindProperty]
+        public List<string> Topics { get; set; }
         [BindProperty]
         public string UserName { get; set; }
         public string ReturnUrl { get; set; }
@@ -41,6 +42,8 @@ namespace HopeLine.Web.Areas.Guest.Pages
 
                 else
                     PIN = pin;
+
+                Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
                 return Page();
             }
             else
