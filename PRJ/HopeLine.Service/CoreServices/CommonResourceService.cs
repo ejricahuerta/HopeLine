@@ -155,18 +155,26 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<CommunityModel> GetCommunities()
         {
-            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel
+            try
             {
-                Name = c.Name,
-                Description = c.Description,
-                URL = c.URL,
-                ImageURL = c.ImageURL
-            });
+                return _communityRepo.GetAll(null).Select(c => new CommunityModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    URL = c.URL,
+                    ImageURL = c.ImageURL
+                });
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to fetch Communites", ex);
+            }
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            return (_languageRepo as IEnumerable<Language>).Select(c => new LanguageModel
+            return _languageRepo.GetAll(null).Select(c => new LanguageModel
             {
                 Name = c.Name,
                 CountryOrigin = c.CountryOrigin,
@@ -176,13 +184,23 @@ namespace HopeLine.Service.CoreServices
         //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
         public IEnumerable<ResourceModel> GetResources()
         {
-            return (_resourceRepo as IEnumerable<Resource>).Select(c => new ResourceModel
+            try
             {
-                Name = c.Name,
-                Description = c.Description,
-                URL = c.URL,
-                ImageURL = c.ImageURL
-            });
+                return _resourceRepo.GetAll(null).Select(c => new ResourceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    URL = c.URL,
+                    ImageURL = c.ImageURL
+                });
+
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception("Unable to Fetch from Service", ex);
+            }
         }
 
         public bool RemoveCommunity(int id)
