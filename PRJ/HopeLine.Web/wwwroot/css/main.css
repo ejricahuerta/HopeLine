@@ -455,11 +455,8 @@ footer {
 
 /*map elements*/
 
-#map{
-	margin: auto;
-}
-*, ::after, ::before {
-    box-sizing: border-box;
-}
 
+element.style {
+    margin-top: 60px;
+}
 /*  FOOTER CSS END  */

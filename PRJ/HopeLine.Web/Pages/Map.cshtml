@@ -15,66 +15,221 @@
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    
+
+
 </head>
 
-<div class="row pl-0 pr-0 pt-0 mt-0 map">
-    <div class="col-12">
-        <!-- The sidebar -->
-        <div class="sidebar bg-dark sticky-top" style="width:20%">
-
-            <!-- Hospitals -->
-
-     
-
-            <!-- Doctors -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="suicideHeader">
-                        <h5 class="mb-0">
-                            <a class="mt-5 btn" name="locationType" value="Show Nearby Hospitals" onclick="searchType('doctor',this)" style="color:rgba(255,255,255,.5)">
-                                Doctors&nbsp;<i class="fa fa-stethoscope" aria-hidden="true"></i>
-
-                            </a>
-
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Clear Map-->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="suicideHeader">
-                        <h5 class="mb-0">
-                            <a class="mt-5 btn" name="locationType" value="clear map" onclick="window.location.reload()" style="color:rgba(255,255,255,.5)">
-                                My Location&nbsp;<i class="fa fa-home" aria-hidden="true"></i>
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
-        <div id="map" class="p-0 m-0"></div>
-    </div>
+<div class="contain">
     <script>
+
+        // This example adds a search box to a map, using the Google Place Autocomplete
+        // feature. People can enter geographical searches. The search box will return a
+        // pick list containing a mix of places and predicted search terms.
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        //
+        //<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        var searchBox, input, bounds, locationType, marker, placeLoc, places;
+        var results = [];
+        var markers = [];
+        var tempResults = [];
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+        function initAutocomplete() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 43.77, lng: -79.49 },
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
+            //load the places(Google api feature) service map
+            var infoWindow = new google.maps.InfoWindow();
+            // Create the search box and link it to the UI element.
+            input = document.getElementById('pac-input');
+            searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            //////////////////////////////////////////////
+            bounds = new google.maps.LatLngBounds();
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Here you are.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+            markers = [];
+            //  var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function () {
+                places = searchBox.getPlaces();
+                if (places.length == 0) {
+                    return;
+                }
+                // Clear out the old markers.
+                markers.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+                // For each place, get the icon, name and location.
+                places.forEach(function (place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+                    // Create a marker for each place.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                    }));
+                    if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
+                    }
+                });
+                map.fitBounds(bounds);
+            });
+        }
+        function searchType(locationType, isChecked) {
+
+            if (isChecked.checked) {
+
+                searchLocation(locationType);
+            } else {
+                deleteMarkers(isChecked, locationType);
+
+            }
+        }
+        function searchLocation(locationType) {
+
+            infowindow = new google.maps.InfoWindow();
+            service = new google.maps.places.PlacesService(map);
+            var request = {
+                location: pos,
+                radius: 9000,
+                type: [locationType]
+            };
+            service.nearbySearch(request, function (results, status) {
+                console.log(locationType + "<-callback");
+                callback(results, status, locationType);
+            });
+        }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+        //////////////////////////////////////////////////////
+        function setMapOnAll(map) {
+            for (var i = 0; i < results.length; i++) {
+                results[i].setMap(map);
+            }
+            for (var j = 0; j < markers.length; j++) {
+                markers[j].setMap(map);
+            }
+        }
+        function clearMarkers() {
+            var checkboxes = document.getElementsByName('locationBox');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            setMapOnAll(null);
+        }
+        function deleteMarkers(isChecked, locationType) {
+
+            for (var i = 0; i < tempResults.length; i++) {
+                //console.log(tempResults[i].locationType + "<-results[i].locationType INdforloop");
+                if (tempResults[i].locationType == locationType) {
+                    //console.log(tempResults[i].locationType + "<-results[i].locationType IN DELETEMARKERS");
+                    results[i].setMap(null);
+
+                }
+
+            }
+
+        }
+
+        ////////////////////////////
+        function callback(results, status, locationType) {
+
+            // var chosenBox = [];
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    results[i].locationType = locationType;
+
+                    tempResults.push(results[i]);
+                    createMarker(results[i]); //<--always results[i]
+
+                }
+            }
+        }
+        function createMarker(place) {
+            placeLoc = place.geometry.location;
+            marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+            //pushes markers to results array.
+            results.push(marker);
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
 
     </script>
 
+</div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
-            async defer></script>
-    <!--
-    <input name="locationType" type="button" value="Show Nearby Hospitals" onclick="searchType('hospital')">
-    <input name="locationType" type="button" value="Show nearby pharmacies" onclick="searchType('pharmacy')">
-    <input name="locationType" type="button" value="Show Nearby health institutions" onclick="searchType('health')">
-    <input name="locationType" type="button" value="Show Nearby doctors" onclick="searchType('doctor')">
-    <input type="button" value="clear map" onClick="window.location.reload()">
-    -->
+<div class="contain" style="margin:0px;">
 
-    <script src="~/js/map.js"></script>
+    <input name="locationBox" value="hospital" type="checkbox" id="locations" onclick="searchType('hospital',this)" style="display:inline-block; margin-left: 10em;">
+    <h2>Hospitals </h2>
+    <input name="locationBox" value="pharmacy" type="checkbox" id="locations" onclick="searchType('pharmacy',this)" style="display:inline-block; margin-left: 10em;">
+    <h2>Pharmacy </h2>
+    <input name="locationBox" value="health" type="checkbox" id="locations" onclick="searchType('health',this)" style="display:inline-block; margin-left: 10em;">
+    <h2>Health</h2>
+    <input name="locationBox" value="doctor" type="checkbox" id="locations" onclick="searchType('doctor',this)" style="display:inline-block; margin-left: 10em;">
+    <h2>Doctors </h2>
 
+    <button class="button" onClick="clearMarkers()">Clear Markers</button>
 
 </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+
+    <div id="map" class="p-0 m-0"></div>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
