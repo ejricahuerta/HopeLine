@@ -13,5 +13,8 @@ namespace HopeLine.Service.Interfaces {
         IEnumerable<OnlineMentorModel> ListAvailableMentor ();
         Task SetMentorOnCall (string mentorId, string connectionId);
 
+        string GetRoomForUser (string userId, bool isGuest);
+        Task AndUsersToRoom (string mentorId, string guestId, string roomId);
+
     }
 }
