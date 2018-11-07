@@ -1,18 +1,34 @@
 ﻿@page
-@model IndexModel
+@model HopeLine.Web.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-
+<head>
+    <link rel="stylesheet" href="~/css/map.css"/>
+    <link rel="stylesheet" href="~/css/index.css"/>
+    <link rel="stylesheet" href="~/css/flexslides.css"/>
+</head>
 <section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
-    <a class="btn btn-success" style="width:200px;height:40px;" href="TalkToMentor/TalkToMentor.html">
-        Talk to a
-        mentor
-    </a>
+    <form class="dropdown text-center"  method="post" action="/instantchat">
+        <a class="btn btn-lg btn-primary  text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Topics
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach (var item in Model.Topics)
+                    {
+                
+                            <div  class="form-check form-group" id="Topic">
+                                <label class="p-0 form-check-label  css-label" for="Topic1">@item</label>
+                                <input class="p-0 form-check-input" type="checkbox" id="Topic1" />
+                            </div>
+                        
+                    }      
+        </div>
+        <button type="submit" class="btn btn-success">Talk to Mentor</button>
+    </form>
 
 </section>
-
 
 <!--Welcome-->
 <section class="welcome-section container">
@@ -42,7 +58,10 @@
     </div>
 </section>
 
-<section class="py-6" style="background-image: url('https://unsplash.it/1900/1080?image=791');">
+<section class="py-6" style="background-image: url('https://unsplash.it/1900/1080?image=791');
+                             background-attachment: fixed;
+                             background-size: cover;
+                             text-align: center;">
     <div style="height: 150px;"></div>
 </section>
 
@@ -70,8 +89,18 @@
 <!-- <section class="Map-section container"> -->
 <section class="Map-section container">
     <h1>Check out our Map</h1>
-    <div id="map" style="width:auto;height:400px;background:yellow"></div>
 
+
+
+    <div id="map" style="width:auto;height:400px;"></div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+            async defer></script>
+
+    <!--
+
+    <div id="map" style="width:auto;height:400px;background:yellow"></div>
     <script>
             function myMap() {
                 var mapOptions = {
@@ -84,7 +113,7 @@
     </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-
+    -->
 </section>
 
 
@@ -112,3 +141,5 @@
         id vitae ex. Aenean ac interdum ipsum.
     </p>
 </section>
+
+<script src="~/js/map.js"></script>

@@ -2,6 +2,7 @@
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,16 +14,14 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _convoRepo;
         private readonly IRepository<MentorSpecialization> _specializationRepo;
 
-        public UserService(IUnitOfWork unitOfWork, IRepository<HopeLineUser> userRepo,
+        public UserService(IRepository<HopeLineUser> userRepo,
                             IRepository<Conversation> convoRepo,
                             IRepository<MentorSpecialization> specializationRepo)
         {
-            _unitOfWork = unitOfWork;
             _userRepo = userRepo;
             _convoRepo = convoRepo;
             _specializationRepo = specializationRepo;
@@ -104,11 +103,11 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(mentorId) as MentorAccount)
+                var activities = (_userRepo.Get((object)mentorId) as MentorAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -131,13 +130,13 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
+                var conversations = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
                         MentorId = c.Mentor.Id,
                         UserName = c.UserName,
-                        DateOfConversation = c.DateOfConversation,
+                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
                         Minutes = c.Minutes,
                         PIN = c.PIN
 
@@ -164,7 +163,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var schedules = (_userRepo.Get(mentorId) as MentorAccount)
+                var schedules = (_userRepo.Get((object)mentorId) as MentorAccount)
                     .Schedules
                     .Select(s => new ScheduleModel
                     {
@@ -213,11 +212,11 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get(userId) as UserAccount)
+                var activities = (_userRepo.Get((object)userId) as UserAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
-                        DateOfActivity = n.DateAdded.ToShortDateString(),
+                        DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
                 return activities;
@@ -246,7 +245,7 @@ namespace HopeLine.Service.CoreServices
                                 {
                                     Id = c.Id,
                                     UserName = c.UserName,
-                                    DateOfConversation = c.DateOfConversation,
+                                    DateOfConversation = DateTime.Parse(c.DateOfConversation),
                                     PIN = c.PIN,
                                     MentorId = c.Mentor.Id,
                                     Minutes = c.Minutes
@@ -260,11 +259,16 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
+        public IEnumerable<string> ListMentorIdByAvailability(bool available)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateUserProfile(UserModel model)
         {
             try
             {
-                var user = _userRepo.Get(model.Id);
+                var user = _userRepo.Get((object)model.Id);
                 if (model.Username != null
                     && model.FirstName != null
                     && model.LastName != null && user != null)
@@ -272,7 +276,6 @@ namespace HopeLine.Service.CoreServices
                     user.Profile.FirstName = model.FirstName;
                     user.Profile.LastName = model.LastName;
                     _userRepo.Update(user);
-                    _unitOfWork.SaveAsync();
                 }
                 return true;
             }

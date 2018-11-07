@@ -1,12 +1,20 @@
 using System;
+using HopeLine.Infrastructure.Services;
+
+using HopeLine.Security.Interfaces;
+using HopeLine.Security.Services;
 using HopeLine.Service.Configurations;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using HopeLine.Infrastructure;
 
 namespace HopeLine.Web
 {
@@ -22,33 +30,41 @@ namespace HopeLine.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
             ConfigureServiceExtension.AddConfiguration(services);
 
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+                new EmailSender(
+                    EmailConstants.host,
+                    EmailConstants.port,
+                    EmailConstants.enableSSL,
+                    EmailConstants.userName,
+                    EmailConstants.password
+                ));
+
+            services.ConfigureApplicationCookie(options =>
+               {
+                   options.Cookie.HttpOnly = true;
+                   options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
+
+                   options.LoginPath = "/Authenticate";
+                   options.AccessDeniedPath = "/Account/AccessDenied";
+                   options.SlidingExpiration = true;
+               });
+
+            //Register all Require Claims for auth
             services.AddAuthorization(opt =>
             {
-                opt.AddPolicy("AdminOnly",
-                                policy => policy.RequireClaim("AccountType", "Admin"));
-                opt.AddPolicy("RegisteredOnly",
-                                policy => policy.RequireClaim("AccountType", "Mentor", "RegisteredUser"));
-            
+                opt.AddPolicy("MentorOnly", policy => policy.RequireClaim("Account", "Mentor"));
+                opt.AddPolicy("UserOnly", policy => policy.RequireClaim("Account", "User"));
+                opt.AddPolicy("AdminOnly", policy => policy.RequireClaim("Account", "Admin"));
+                opt.AddPolicy("SuperUser", policy => policy.RequireClaim("Account", "Super"));
+
             });
 
-
-
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                             .AddSessionStateTempDataProvider();
-                             
-
-
-            services.AddDistributedMemoryCache();
+            //Session Enable for Guest User
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                    .AddSessionStateTempDataProvider();
 
             services.AddSession(options =>
             {
@@ -56,21 +72,11 @@ namespace HopeLine.Web
                 options.Cookie.HttpOnly = true;
             });
 
+            //Required for accessing  hhttpcontext
             services.AddHttpContextAccessor();
 
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-           builder =>
-           {
-               builder.AllowAnyMethod()
-                      .AllowAnyHeader()
-                      .WithOrigins("http://localhost:33061",
-                                   "http://localhost:5000",
-                                   "http://localhost:8000",
-                                   "https://uinames.com/*")
-                      .AllowCredentials();
-           }));
-
-
+            //For Web Api CORS
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,16 +93,23 @@ namespace HopeLine.Web
                 app.UseHsts();
             }
 
-            app.UseAuthentication();
-            //app.UseHttpsRedirection();
-            app.UseCookiePolicy();
-            app.UseStaticFiles();
             app.UseSession();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
 
+            app.UseAuthentication();
+
+            //Required to proxy when deployed to apache or nginx
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+
+            app.UseCors(opt => opt.AllowAnyMethod()
+                                .AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowCredentials());
 
             app.UseMvc();
 

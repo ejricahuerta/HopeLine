@@ -1,5 +1,9 @@
 ﻿@page
 @using HopeLine.Web.Pages
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+
+@inject IHttpContextAccessor HttpContextAccessor
 @model AuthenticateModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -18,7 +22,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>HopeLine - Login Portal</title>
 </head>
 
 <body class="container" style="background-image:url(https://s-i.huffpost.com/gen/2425566/images/o-HOPE-facebook.jpg)">
@@ -30,17 +34,32 @@
             <h5 class=" mb-3">Access our resources or talk to one of our mentors.</h1>
             <hr />
             <br />
-            <a href=@Url.Page("Login", new {area="Guest"}) class="btn btn-lg btn-primary btn-block">Sign in</a>
-            <a href=@Url.Page("Login", new {area="User"}) class="btn btn-lg btn-secondary btn-block">Login as Guest</a>
-            <a asp-page="~/Register" class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
-            <div class="mb-2">
-                <label class="float-right">
-                    <a href=@Url.Page("Login", new {area="Admin"})  class="btn btn-white text-black-50">Admin Access</a>
-                </label>
-                <label class="float-right">
-                    <a href=@Url.Page("Login", new {area="Mentor"}) class="btn btn-outline-light border text-black-50">Mentor Access</a>
-                </label>
-            </div>
+            @if(@HttpContextAccessor.HttpContext.Request.QueryString.Value != null){
+                <a href=@Url.Page("Login", new {area="User",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-primary btn-block">Sign in</a>
+                <a href=@Url.Page("Login", new {area="Guest",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-secondary btn-block">Login as Guest</a>
+                <a href=@Url.Page("Register", new {area="User",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
+                <div class="mb-2">
+                    <label class="float-right">
+                        <a href=@Url.Page("Login",new {area="Admin",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]})  class="btn btn-white text-black-50">Admin Access</a>
+                    </label>
+                    <label class="float-right">
+                        <a href=@Url.Page("Login",new{ area="Mentor",returnUrl=@HttpContextAccessor.HttpContext.Request.Query["returnUrl"]}) class="btn btn-outline-light border text-black-50">Mentor Access</a>
+                    </label>
+                </div>
+            }else{
+                <a href=@Url.Page("Login", new {area="User"}) class="btn btn-lg btn-primary btn-block">Sign in</a>
+                <a href=@Url.Page("Login", new {area="Guest"}) class="btn btn-lg btn-secondary btn-block">Login as Guest</a>
+                <a href=@Url.Page("Register", new {area="User"})  class="btn btn-lg btn-outline-success btn-block">Register</a>                <hr />
+                <div class="mb-2">
+                    <label class="float-right">
+                        <a href=@Url.Page("Login", new {area="Admin"})  class="btn btn-white text-black-50">Admin Access</a>
+                    </label>
+                    <label class="float-right">
+                        <a href=@Url.Page("Login", new {area="Mentor"}) class="btn btn-outline-light border text-black-50">Mentor Access</a>
+                    </label>
+                </div>
+            }
+            
         </div>
     </section>
     <!-- Optional

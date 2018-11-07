@@ -17,6 +17,8 @@ namespace HopeLine.Service.CoreServices
         private readonly IRepository<Language> _languageRepo;
         private readonly IRepository<Resource> _resourceRepo;
         private readonly IRepository<Community> _communityRepo;
+        private readonly IRepository<Topic> _topicRepo;
+
 
         /// <summary>
         /// 
@@ -25,34 +27,14 @@ namespace HopeLine.Service.CoreServices
         /// <param name="communityRepo"></param>
         public CommonResourceService(IRepository<Resource> resourceRepo,
                                     IRepository<Community> communityRepo,
-                                    IRepository<Language> languageRepo)
+                                    IRepository<Language> languageRepo,
+                                    IRepository<Topic> topicRepo)
         {
             _languageRepo = languageRepo;
             _resourceRepo = resourceRepo;
             _communityRepo = communityRepo;
+            _topicRepo = topicRepo;
         }
-
-        // try
-        //{
-        //    var conversations = (_userRepo.Get(mentorId) as MentorAccount)
-        //        .Conversations.Select(c => new ConversationModel
-        //        {
-        //            Id = c.Id,
-        //            MentorId = c.Mentor.Id,
-        //            UserName = c.UserName,
-        //            DateOfConversation = c.DateOfConversation,
-        //            Minutes = c.Minutes,
-        //            PIN = c.PIN
-
-        //        });
-        //    return conversations;
-        //}
-        //catch (System.Exception ex)
-        //{
-
-        //    throw new System.Exception("Unable to process user service : ", ex);
-        //}
-
 
         public bool AddResources(ResourceModel resource)
         {
@@ -74,7 +56,7 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public bool AddResources(CommunityModel resource)
+        public bool AddCommunity(CommunityModel resource)
         {
             try
             {
@@ -149,7 +131,7 @@ namespace HopeLine.Service.CoreServices
             }
         }
 
-        public bool EditResource(CommunityModel resource)
+        public bool EditCommunity(CommunityModel resource)
         {
             try
             {
@@ -173,17 +155,26 @@ namespace HopeLine.Service.CoreServices
 
         public IEnumerable<CommunityModel> GetCommunities()
         {
-            return (_communityRepo as IEnumerable<Community>).Select(c => new CommunityModel {
-                Name = c.Name,
-                Description = c.Description,
-                URL = c.URL,
-                ImageURL = c.ImageURL
-            });
+            try
+            {
+                return _communityRepo.GetAll(null).Select(c => new CommunityModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    URL = c.URL,
+                    ImageURL = c.ImageURL
+                });
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to fetch Communites", ex);
+            }
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
-            return (_languageRepo as IEnumerable<Language>).Select(c => new LanguageModel
+            return _languageRepo.GetAll(null).Select(c => new LanguageModel
             {
                 Name = c.Name,
                 CountryOrigin = c.CountryOrigin,
@@ -193,13 +184,23 @@ namespace HopeLine.Service.CoreServices
         //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
         public IEnumerable<ResourceModel> GetResources()
         {
-            return (_resourceRepo as IEnumerable<Resource>).Select(c => new ResourceModel
+            try
             {
-                Name = c.Name,
-                Description = c.Description,
-                URL = c.URL,
-                ImageURL = c.ImageURL
-            });
+                return _resourceRepo.GetAll(null).Select(c => new ResourceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Description = c.Description,
+                    URL = c.URL,
+                    ImageURL = c.ImageURL
+                });
+
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception("Unable to Fetch from Service", ex);
+            }
         }
 
         public bool RemoveCommunity(int id)
@@ -208,7 +209,8 @@ namespace HopeLine.Service.CoreServices
             {
                 _communityRepo.Remove(id);
                 return true;
-            }catch(System.Exception e)
+            }
+            catch (System.Exception e)
             {
                 System.Console.WriteLine("Error: " + e);
                 return false;
@@ -226,6 +228,23 @@ namespace HopeLine.Service.CoreServices
             {
                 System.Console.WriteLine("Error: " + e);
                 return false;
+            }
+        }
+
+        public IEnumerable<TopicModel> GetTopics()
+        {
+            try
+            {
+                return _topicRepo.GetAll(null).Select(t => new TopicModel
+                {
+                    Name = t.Name,
+                    Id = t.Id,
+                    Description = t.Description
+                });
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception("Unable to Fetch Data:", ex);
             }
         }
     }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HopeLine.DataAccess.Entities;
-using HopeLine.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using HopeLine.Service.Interfaces;
+using HopeLine.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HopeLine.Web.Pages
 {
@@ -18,10 +15,30 @@ namespace HopeLine.Web.Pages
             _commonResource = commonResource;
         }
 
-        public IList<String> Languages { get; set; }
+        public IList<string> Languages { get; set; }
 
-        public void OnGet()
+        [BindProperty]
+        public IList<TopicViewModel> Topics { get; set; }
+
+        [BindProperty]
+        public IList<TopicViewModel> TopicsSelected { get; set; }
+        public IActionResult OnGet()
         {
+
+            Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
+            {
+                Id = t.Id,
+                Name = t.Name
+            }).ToList();
+
+            return Page();
         }
+
+        public IActionResult OnPost()
+        {
+            // TempData["Selected"] = TopicsSelected.Select(t => t.Name).ToList();
+            return LocalRedirect(Url.Page("/instantChat"));
+        }
+
     }
 }

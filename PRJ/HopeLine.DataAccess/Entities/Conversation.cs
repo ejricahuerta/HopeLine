@@ -16,7 +16,7 @@ namespace HopeLine.DataAccess.Entities
 
         public Conversation()
         {
-            DateOfConversation = DateTime.UtcNow;
+            DateOfConversation = DateTime.UtcNow.ToString();;
             LanguageUsed = new List<Language>();
         }
         // this will serve as peerID for 
@@ -35,7 +35,7 @@ namespace HopeLine.DataAccess.Entities
         public float Minutes { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime DateOfConversation { get; set; }
+        public string DateOfConversation { get; set; }
 
         public ICollection<Language> LanguageUsed { get; set; }
         public void SetUser(string id, string name)
