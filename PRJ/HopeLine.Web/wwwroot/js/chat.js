@@ -1,105 +1,157 @@
-﻿"use strict";
+﻿var userId = $("#userId") != null ? $("#userId").val() : null;
+var isconnected = false;
+var currentuser = userId;
+var connection;
+var isconnected = false;
+var requestingUser;
+var isUser = currentuser.indexOf("Guest") != -1;
+console.log("UserId = " + userId);
+var room = $("#pin").val();
+console.log("pin = " + room);
+var incomingusers = [];
+$(function () {
+  connection = new signalR.HubConnectionBuilder()
+    //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
+    .withUrl("http://localhost:5000/chatHub")
+    .build();
 
+  connection.on("ReceiveMessage", function (user, message) {
+    console.log("Receive Message");
+    var classId = currentuser == user ? "bg-secondary " : "bg-warning";
+    var userClass =
+      currentuser == user ? "text-right float-right" : "text-left";
+    $("#chatbox").append(
+      ' <div id="message" class="col-11 mb-2">' +
+      "<h5 class=" +
+      userClass +
+      "><small>" +
+      user +
+      "</small></h5>" +
+      '<div class="col-8 ' +
+      userClass +
+      " " +
+      classId +
+      ' text-justify rounded p-2" style="min-height:50px;">' +
+      message +
+      "</div></div>"
+    );
+  });
 
-var userId = $("#userId") != null ? $("#userId").val() : null;
+  connection.on("Load", function (user, message) {
+    var classId = currentuser == user ? "bg-secondary " : "bg-warning";
+    var userClass =
+      currentuser == user ? "text-right float-right" : "text-left";
+    $("#chatbox").append(
+      '<div id="message" class="col-11 mb-3">' +
+      '<h5 class="' +
+      userClass +
+      '"><small>' +
+      user +
+      "</small></h5>" +
+      '<div class="col-8 ' +
+      userClass +
+      " " +
+      classId +
+      ' text-justify rounded p-2" style="min-height:50px;">' +
+      message +
+      "</div></div>"
+    );
+  });
 
-if (userId != null) {
-    console.log("User Id = " + userId);
-    var currentuser = "";
-    var connection;
-    var isconnected = false;
-
-
-    var room = $('#pin').val();
-    connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        .build();
-
-    //Register all Method here.
-    connection.on("ReceiveMessage", function (user, message) {
-        var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
-
-        $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
-            ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
-            message +
-            '</p></div></div>');
-    });
-
-    connection.on("Load", function (user, message) {
-        currentuser = $('#userInput').val();
-        var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
-
-        $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
-            ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
-            message +
-            '</p></div></div>');
-    });
-
-    connection.onclose("ReceiveMessage", function (user, message) {
-        var classId = (currentuser == user) ? 'bg-secondary' : 'bg-info';
-
-        $('#chatbox').append('<div id="message"><span class= "badge">' + user + '</span>' +
-            ' <div class="' + classId + ' col-11 mb-1 rounded"> <p class="p-2">' +
-            message +
-            '</p></div></div>');
-
-    });
-
-    //End of Registrations
-
-
-    //Start the connection
-    connection.start({
-            withCredentials: false
-        })
-        .catch(function (err) {
-            return console.error(err.toString());
-        })
-
-    $('#connectButton').click(function () {
-        if (!isconnected) {
-            connection.invoke("AddUserToRoom", room)
+  connection.on("NotifyMentor", function (user) {
+      console.log("User Request Id :" + user);
+      requestingUser = user;
+    if (user.indexOf("Guest") != -1) {
+          $("#incominguser").append(
+            '<div class="alert alert-info " role=" alert ">' +
+            user +
+            ' is looking for company!<input id="mentorAccept" type="button" class="btn btn-link" value="Accept?"/></div>'
+        );
+        $("#mentorAccept").on("click", function (event) {
+            console.log("Mentor Accepting")
+            connection.invoke("MentorAcceptRequest", currentuser, requestingUser)
                 .catch(function (err) {
-                    return console.error(err.toString());
-
+                    console.log(err.toString());
                 });
-            isconnected = true;
-            console.log('Id :' + room);
-            connection.invoke("LoadMessage", room)
-                .catch(function (err) {
-                    return console.error(err.toString());
-
-                });
-        }
-
-    });
-
-    // $("#loginbutton").click(function () {
-    //     connection.invoke("AddMentor")
-    //         .catch(function (err) {
-    //             console.log("Unable to add Mentor to list: "  + err.toString());
-    //         });
-    // });
-
-    $('#sendButton').click(function (event) {
-
-        currentuser = $('#userInput').val()
-        var message = $('#messageInput').val().trim();
-
-        console.log('user: ' + currentuser);
-        console.log('message: ' + message);
-
-        if (message && isconnected) {
-
-            connection.invoke("SendMessage", currentuser, message, room)
-                .catch(function (err) {
-                    return console.error(err.toString());
-                });
-
             event.preventDefault();
-            $('#messageInput').val(' ');
+        })
         }
+  });
+    connection.on("NotifyUser", function (message) {
+        if (message == "Connected") {
+            $("#user-motif").remove();
+            $("#sendArea").removeClass("d-none");
+        }
+      console.log(message);
+      $("#chatbox").append('<h3 id="user-notif">  ' + message + '</h3>');
+      $("#sendArea").addClass('d-none');
+
+  });
+
+  connection.onclose(function () {
+    connection.invoke("SendMessage", currentuser, "DISCONNECTED", room);
+  });
+
+  connection
+    .start({
+      withCredentials: false
+    })
+    .catch(function (err) {
+      return console.error(err.toString());
+    })
+    .then(function () {
+      if (isUser) {
+        console.log("isuser " + isUser);
+        connection
+          .invoke("UserRequestToTalk", currentuser)
+          .catch(function (err) {
+            return console.error(err.toString());
+          });
+      } else {
+        connection.invoke("AddMentor", currentuser).catch(function (err) {
+          console.log("Unable to add mentor : " + err.toString());
+        });
+      }
+
+      connection.invoke("LoadMessage", room).catch(function (err) {
+        return console.error(err.toString());
+      });
     });
+});
+//R
+//End of Registrations
+//Start the connection
 
 
-}
+
+$("#sendButton").click(function (event) {
+  var message = $("#messageInput")
+    .val()
+    .trim();
+  if (message != "") {
+    if (!isconnected) {
+      connection.invoke("AddUserToRoom", room).catch(function (err) {
+        return console.error(err.toString());
+      });
+
+      console.log("Added");
+      isconnected = true;
+    }
+    console.log("Id :" + room);
+
+    console.log("user: " + userId);
+    console.log("message: " + message);
+    if (message != null) {
+      console.log("Sending Message");
+      console.log("room " + room);
+      connection
+        .invoke("SendMessage", currentuser, message, room)
+        .catch(function (err) {
+          return console.error(err.toString());
+        });
+
+      event.preventDefault();
+      $("#messageInput").val(" ");
+    }
+  }
+});

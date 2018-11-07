@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HopeLine.Web.Areas.Mentor.Pages
 {
-    [Authorize(Policy = "MentorOnly")]
+    // [Authorize(Policy = "MentorOnly")]
     public class ChatModel : PageModel
     {
         public string ReturnUrl { get; set; }
