@@ -26,7 +26,8 @@ namespace HopeLine.API.Hubs.v2 {
         }
 
         public async Task RemoveMessages (string roomId) {
-            _messageService.DeleteAllMessages (roomId);
+            await _messageService.DeleteAllMessages (roomId);
+            
         }
 
         public async Task LoadMessage (string room) {
