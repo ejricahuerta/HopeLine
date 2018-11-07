@@ -25,8 +25,8 @@ console.log("pin = " + room);
 
 $(function () {
     connection = new signalR.HubConnectionBuilder()
-        //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        .withUrl("http://localhost:5000/v2/chatHub")
+        .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+        //.withUrl("http://localhost:5000/v2/chatHub")
         .build();
 
     connection.on("ReceiveMessage", function (user, message) {
@@ -73,6 +73,10 @@ $(function () {
         room = roomId;
         $("#sendArea").removeClass('d-none');
         connection.invoke("LoadMessage", room);
+    });
+
+    connection.onclose(function (e) {
+        connection.invoke("Delete", room);
     });
 
     connection.on("NotifyMentor", function (user, userConnectionId) {
