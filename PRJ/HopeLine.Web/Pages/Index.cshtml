@@ -4,142 +4,336 @@
     ViewData["Title"] = "Home page";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/map.css"/>
-    <link rel="stylesheet" href="~/css/index.css"/>
-    <link rel="stylesheet" href="~/css/flexslides.css"/>
-</head>
-<section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
-    <form class="dropdown text-center"  method="post" action="/instantchat">
-        <a class="btn btn-lg btn-primary  text-white dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select Topics
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    @foreach (var item in Model.Topics)
-                    {
-                
-                            <div  class="form-check form-group" id="Topic">
-                                <label class="p-0 form-check-label  css-label" for="Topic1">@item</label>
-                                <input class="p-0 form-check-input" type="checkbox" id="Topic1" />
-                            </div>
-                        
-                    }      
-        </div>
-        <button type="submit" class="btn btn-success">Talk to Mentor</button>
-    </form>
 
-</section>
 
-<!--Welcome-->
-<section class="welcome-section container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Welcome to Hopeline. </h1>
-            <h2>
-                Need someone to talk to? Are you dealing with suicide or other mental health issues?Click on talk
-                to mentor to speak with them.
-            </h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis sollicitudin lectus quis
-                dignissim. In posuere tortor
-                nec venenatis volutpat. Cras viverra placerat volutpat. Nullam fermentum suscipit velit, quis
-                imperdiet lacus
-                auctor eget. Nunc mauris tellus, tempor at justo ac, tristique dapibus diam. Donec vel maximus
-                diam, sit amet
-                mollis nibh. Aliquam leo eros, ornare id pulvinar tincidunt, ultricies vel nunc. Aliquam rutrum
-                ultricies eros,
-                in efficitur nulla luctus quis. Etiam vel ex at dui ornare hendrerit at vitae libero. Nulla
-                malesuada eros ligula,
-                ut auctor metus tincidunt at. Fusce volutpat efficitur erat feugiat ornare. In nec nisl eu sapien
-                placerat interdum
-                id vitae ex. Aenean ac interdum ipsum.
-            </p>
+@*<section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
+    <a class="btn btn-success" style="width:700px;height:40px;" asp-page="SelectTopics">
+        Click here to communicate with a mentor.
+    </a>
+
+</section>*@
+
+
+ <!-- Start Slider Area -->
+    <div id="home" class="slider-area">
+      <div class="bend niceties preview-2">
+        <div id="ensign-nivoslider" class="slides">
+          <!---->
+          <img src="~/images/background1.jpg" alt="" title="#slider-direction-1" />
+          <img src="~/images/background2.jpg" alt="" title="#slider-direction-2" />
+          <img src="~/images/background3.jpg" alt="" title="#slider-direction-3" />
         </div>
+
+        <!-- direction 1 -->
+        <div id="slider-direction-1" class="slider-direction slider-one">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="slider-content">
+                  <!-- layer 1 -->
+                  <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 class="title1">Welcome to HopeLine</h2>
+                  </div>
+                  <!-- layer 2 -->
+                  <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                    <h1 class="title2">We're here to help you. Click the button below to speak to a mentor</h1>
+                  </div>
+                  <!-- layer 3 -->
+                  <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                    <a class="btn btn-primary" href=" #services" style="width: 200px; height: 40px;">Click here to talk
+                      to a mentor</a>
+                    <!--<a class="ready-btn page-scroll" href="#about">Learn More</a>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
     </div>
-</section>
+    <!-- End Slider Area -->
 
-<section class="py-6" style="background-image: url('https://unsplash.it/1900/1080?image=791');
-                             background-attachment: fixed;
-                             background-size: cover;
-                             text-align: center;">
-    <div style="height: 150px;"></div>
-</section>
+    <!-- Start About area -->
+    
+    <div id="about" class="about-area area-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline text-center">
+              <h2>About HopeLine</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- single-well start-->
 
-<!--Community-->
-<section class="Community-section container">
-    <h1>Visit our community page</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis sollicitudin lectus quis dignissim. In
-        posuere tortor
-        nec venenatis volutpat. Cras viverra placerat volutpat. Nullam fermentum suscipit velit, quis imperdiet
-        lacus
-        auctor eget. Nunc mauris tellus, tempor at justo ac, tristique dapibus diam. Donec vel maximus diam, sit
-        amet
-        mollis nibh. Aliquam leo eros, ornare id pulvinar tincidunt, ultricies vel nunc. Aliquam rutrum ultricies
-        eros,
-        in efficitur nulla luctus quis. Etiam vel ex at dui ornare hendrerit at vitae libero. Nulla malesuada eros
-        ligula,
-        ut auctor metus tincidunt at. Fusce volutpat efficitur erat feugiat ornare. In nec nisl eu sapien placerat
-        interdum
-        id vitae ex. Aenean ac interdum ipsum.
-    </p>
-</section>
+          <!-- single-well end-->
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="well-middle">
+              <div class="single-well">
+                <a href="#">
+                  <h4 class="sec-head">Our services</h4>
+                </a>
+                <p>
+                  Hopeline is a multiplatform suicide prevention and mental health wellness application. We are
+                  dedicated to spreading awareness of mental health issues and
+                  to try our best to provide advice and guidance to anybody suffering from any sort of mental health
+                  issues. Our application provides the following:
+                </p>
+                <ul>
+                  <li>
+                    <i class="fa fa-check"></i> IOS Compatibility
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i> Android compatibility
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i> Custom Google Map Filtering
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i> Links to other organizations that provide similar services
+                  </li>
+                  <li>
+                    <i class="fa fa-check"></i> Free online Mentoring
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- End col-->
+        </div>
+      </div>
+    </div>
+    
+    <!-- End About area -->
 
-<!--Map-->
-<!-- <section class="Map-section container"> -->
-<section class="Map-section container">
-    <h1>Check out our Map</h1>
+    <!-- Start Service area -->
+    <div id="services" class="services-area area-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="section-headline services-head text-center">
+              <h2>Our Services</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="services-contents"></div>
+          <!-- Start Left services -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-comments"></i>
+                  </a>
+                  <h4>Live Chat</h4>
+                  <p>
+                    You can choose live chat to communicate with a mentor through texting on your phone or
+                    typing through your computer.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-camera-retro"></i>
+                  </a>
+                  <h4>Video Chat</h4>
+                  <p>
+                    Video chat enables you to speak with a mentor through the webcam or your phones camera.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-volume-up"></i>
+                  </a>
+                  <h4>Audio Chat</h4>
+                  <p>
+                    If you prefer to listen and speak instead of typing or video chat then audio chat will provide for
+                    you.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-link"></i>
+                  </a>
+                  <h4>Resources Page </h4>
+                  <p>
+                    Resources page is a collection of links to topics related to mental health or other life issues. If
+                    you want to learn more
+                    about the different types of information related about mental health and suicide then you can visit
+                    our resources page.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <!-- End Left services -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-window-restore"></i>
+                  </a>
+                  <h4>Community Page</h4>
+                  <p>
+                    Community page is a collection of links to other organizations that provide a similar cause to ours
+                    which includes
+                    suicide hotlines, mental health awareness foundations, and other applications that are dedicated to
+                    imporving peoples
+                    lives.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <!-- End Left services -->
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <!-- end col-md-4 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href="#">
+                    <i class="fa fa-map"></i>
+                  </a>
+                  <h4>Map Page</h4>
+                  <p>
+                    Our map page is a customized google map that provides geolocation,search functionality, and a
+                    custom search filter that would
+                    show the nearest hospitals, pharmacies, medical institutions, and doctors.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- End Service area -->
+
+
+    <!-- Start contact Area -->
+    <div id="contact" class="contact-area">
+      <div class="contact-inner area-padding">
+        <div class="contact-overly"></div>
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="section-headline text-center">
+                <h2>Become a Mentor</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <!-- Start contact icon column -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa fa-mobile"></i>
+                  <p>
+                    Call: 416-491-5050<br>
+                    <span>Monday-Friday (9am-5pm)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa fa-envelope-o"></i>
+                  <p>
+                    Email: prj56607@outlook.com<br>
+                    <span>Web: hopeline.azurewebsites.com</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Start contact icon column -->
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="contact-icon text-center">
+                <div class="single-icon">
+                  <i class="fa fa-map-marker"></i>
+                  <p>
+                    Location: 60 pond rd<br>
+                    <span> North York, ON M3N 3A1</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+
+            <!-- End Google Map -->
+
+            <!-- Start  contact -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="form contact-form">
+                <div id="sendmessage">Your application has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <form action="" method="post" role="form" class="contactForm">
+                  <div class="form-group">
+                    <input type="text-center" name="name" class="form-control" id="name" placeholder="Your Name"
+                      data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <div class="validation"></div>
+                  </div>
+                  <div class="form-group">
+                    <input type="email-center" class="form-control" name="email" id="email" placeholder="Your Email"
+                      data-rule="email" data-msg="Please enter a valid email" />
+                    <div class="validation"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlFile1">Attatch CV/Resume</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <div class="validation"></div>
+                  </div>
+                  <!--    <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us"
+                      placeholder="Message"></textarea>
+                    <div class="validation"></div>
+                  </div> -->
+                  <div class="text-center"><button type="submit">Submit Application</button></div>
+                </form>
+              </div>
+            </div>
+            <!-- End Left contact -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Contact Area -->
 
 
 
-    <div id="map" style="width:auto;height:400px;"></div>
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
-            async defer></script>
-
-    <!--
-
-    <div id="map" style="width:auto;height:400px;background:yellow"></div>
-    <script>
-            function myMap() {
-                var mapOptions = {
-                    center: new google.maps.LatLng(51.5, -0.12),
-                    zoom: 10,
-                    mapTypeId: google.maps.MapTypeId.HYBRID
-                }
-                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            }
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-    -->
-</section>
-
-
-
-<!--resources-->
-<!-- <section class="py-6" style="background-image: url('https://unsplash.it/1900/1080?image=791');"> -->
-<!-- <div style="height: 200px;"></div> -->
-<!-- </section> -->
-<!--communicate-->
-<section class="resources-section container">
-    <h1>Visit our resource page if you want to learn more about mental health and information about suicide</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis sollicitudin lectus quis dignissim. In
-        posuere tortor
-        nec venenatis volutpat. Cras viverra placerat volutpat. Nullam fermentum suscipit velit, quis imperdiet
-        lacus
-        auctor eget. Nunc mauris tellus, tempor at justo ac, tristique dapibus diam. Donec vel maximus diam, sit
-        amet
-        mollis nibh. Aliquam leo eros, ornare id pulvinar tincidunt, ultricies vel nunc. Aliquam rutrum ultricies
-        eros,
-        in efficitur nulla luctus quis. Etiam vel ex at dui ornare hendrerit at vitae libero. Nulla malesuada eros
-        ligula,
-        ut auctor metus tincidunt at. Fusce volutpat efficitur erat feugiat ornare. In nec nisl eu sapien placerat
-        interdum
-        id vitae ex. Aenean ac interdum ipsum.
-    </p>
-</section>
-
-<script src="~/js/map.js"></script>
