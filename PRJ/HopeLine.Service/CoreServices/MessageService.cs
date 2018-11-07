@@ -28,14 +28,14 @@ namespace HopeLine.Service.CoreServices {
             }
         }
 
-        public void DeleteAllMessages (string connectionId) {
+        public async Task DeleteAllMessages (string connectionId) {
             try {
                 var connectionMessages = _chatDb.Messages
                     .Where (m => m.ConnectionId == connectionId);
                 foreach (var m in connectionMessages) {
                     _chatDb.Remove (m);
                 }
-                _chatDb.SaveChanges ();
+                await _chatDb.SaveChangesAsync ();
             } catch (System.Exception ex) {
 
                 throw new System.Exception ("Unable to Remove Messages: ", ex);
