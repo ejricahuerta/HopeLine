@@ -11,7 +11,7 @@ var timeout;
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
-        $("#chatbox").append('<a href="http://localhost:8000/instantChat" class="btn btn-info">Retry</a>');
+        $("#chatbox").append('<a href="http://hopeline.azurewebsites.net/instantChat" class="btn btn-info">Retry</a>');
     }, 20000);
 }
 
