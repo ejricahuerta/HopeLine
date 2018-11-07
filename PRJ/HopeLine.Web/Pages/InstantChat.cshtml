@@ -35,21 +35,22 @@
         </div>
         <!-- end of users-->
         <div class="col-md-7 col-sm-12 p-0 bg-dark">
-            <div class="row p-3 m-0 align-items-center">
-                <div class="col-8 text-white">
+            <div class="row p-3 m-0">
+                <div class="col-sm-12 text-white">
                     <img class="rounded-circle" src="https://via.placeholder.com/75x75">
-                    <h3 class="col-4 d-inline-block">@Model.UserName</h3>
+                    <h3 class="col-4  d-inline-block">@Model.UserName</h3>
                 </div>
-                <div class="col-3 text-right">
-                    <a class="col-5 m-1 p-1 btn  btn-outline-light " href="https://www.google.ca"><i class="fas fa-phone fa-2x"></i></a>
-                    <a class="col-5 m-1 p-1 btn btn-outline-light" href="https://www.google.ca"><i class="fas fa-video fa-2x"></i></a>
+                <div class="col-sm-12 text-right ml-1">
+                    <a class="col-2 btn  btn-outline-light " href="https://www.google.ca"><i class="fas fa-phone fa-1x"></i></a>
+                    <a class="col-2   btn btn-outline-light" href="https://www.google.ca"><i class="fas fa-video fa-1x"></i></a>
                 </div>
-
             </div>
+
             <input id="pin" value=@Model.PIN  hidden/>
             <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
-                <div id="chatbox" class="row justify-content-center p-3">
-
+                <div id="chatbox" class="row p-1">
+                    <div id="loading">Waiting for Mentor... <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                    </div>
                     <!--
 
                     <div id="message" class="col-11 mb-5">
@@ -78,9 +79,9 @@
                     -->
                 </div>
             </div>
-            <div class="col-12 border bg-white p-1" style="position:absolute; bottom:0;">
+            <div id="sendArea" class="col-12 border bg-white p-1" style="position:absolute; bottom:0;">
                 <div class="row m-1">
-                    <div class="col-9">
+                    <div class="col-8">
                         <textarea id="messageInput" class="form-control col-10" type="text" placeholder="type a message" rows="1"></textarea>
                     </div>
                     <div class="col-3">
@@ -96,11 +97,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script>
-        $("#sendbutton").click(function () {
+        $("#sendButton").click(function () {
             $("#messages").animate({
                 scrollTop: $('#messages').prop("scrollHeight")
             }, "slow");
         });
+        
         function filterTopics() {
             var input, filter, list, div, label, i
 

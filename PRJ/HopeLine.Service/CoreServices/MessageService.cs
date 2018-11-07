@@ -13,6 +13,21 @@ namespace HopeLine.Service.CoreServices {
         public MessageService (ChatDbContext chatDb) {
             _chatDb = chatDb;
         }
+
+        public async Task AndUsersToRoom (string mentorId, string guestId, string roomId) {
+            try {
+                await _chatDb.Rooms.AddAsync (new Room {
+                    RoomId = roomId,
+                        MentorId = mentorId,
+                        GuestId = guestId
+                });
+                await _chatDb.SaveChangesAsync ();
+            } catch (System.Exception ex) {
+
+                throw new System.Exception ("Unable to Add to Room: ", ex);
+            }
+        }
+
         public void DeleteAllMessages (string connectionId) {
             try {
                 var connectionMessages = _chatDb.Messages
@@ -27,12 +42,12 @@ namespace HopeLine.Service.CoreServices {
             }
         }
 
-        public IEnumerable<MessageModel> GetAllMessages (string connectionId) {
+        public IEnumerable<MessageModel> GetAllMessages (string roomId) {
             try {
                 //TODO  : change to logger
-                System.Console.WriteLine ("Returning All Messages for " + connectionId);
+                System.Console.WriteLine ("Returning All Messages for " + roomId);
                 return _chatDb.Messages
-                    .Where (m => m.ConnectionId == connectionId)
+                    .Where (m => m.ConnectionId == roomId)
                     .Select (mm => new MessageModel {
                         ConnectionId = mm.ConnectionId,
                             UserName = mm.UserName,
@@ -42,6 +57,20 @@ namespace HopeLine.Service.CoreServices {
 
                 throw new System.Exception ("Unable to Get Messages: ", ex);
             }
+        }
+
+        public string GetRoomForUser (string userId, bool isGuest) {
+
+            Room room;
+            if (isGuest) {
+                room = _chatDb.Rooms.FirstOrDefault (u => u.GuestId == userId);
+                System.Console.WriteLine ("Room inside Service: " + room);
+            } else {
+                room = _chatDb.Rooms.FirstOrDefault (u => u.MentorId == userId);
+            }
+            System.Console.WriteLine ("Room inside Service: " + room);
+            return (room != null) ? room.RoomId : null;
+
         }
 
         public IEnumerable<OnlineMentorModel> ListAvailableMentor () {
@@ -65,9 +94,16 @@ namespace HopeLine.Service.CoreServices {
                     ConnectionId = connectionId,
                     Available = true
                 };
-
-                await _chatDb.OnlineMentors.AddAsync (newOnline);
-                await _chatDb.SaveChangesAsync ();
+                var mentor = _chatDb.OnlineMentors.SingleOrDefault (i => i.MentorId == mentorId);
+                if (mentor == null) {
+                    await _chatDb.OnlineMentors.AddAsync (newOnline);
+                    await _chatDb.SaveChangesAsync ();
+                } else {
+                    mentor.Available = true;
+                    mentor.ConnectionId = connectionId;
+                    _chatDb.Update (mentor);
+                    _chatDb.SaveChanges ();
+                }
             } catch (System.Exception ex) {
                 throw new System.Exception ("Unable to Add Mentor to Online Mentors: ", ex);
             }
