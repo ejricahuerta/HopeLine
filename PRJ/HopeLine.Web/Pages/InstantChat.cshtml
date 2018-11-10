@@ -23,7 +23,7 @@
                     {
                         <div class="col-12">
                             <div class="form-check form-group" id="Topic">
-                                <label class="p-0 col-9 form-check-label  css-label" for="Topic1">@item</label>
+                                <label class="p-0 col-9 form-check-label  css-label" for="Topic1">@item.Name</label>
                                 <input class="p-0 col-3 form-check-input" type="checkbox" id="Topic1" />
                             </div>
 
@@ -34,8 +34,8 @@
             </form>
         </div>
         <!-- end of users-->
-        <div class="col-md-7 col-sm-12 p-0 bg-dark">
-            <div class="row p-3 m-0">
+        <div class="col-md-7 col-sm-12 p-0">
+            <div class="row p-3 m-0 bg-dark">
                 <div class="col-sm-12 text-white">
                     <img class="rounded-circle" src="https://via.placeholder.com/75x75">
                     <h3 class="col-4  d-inline-block">@Model.UserName</h3>
@@ -49,7 +49,7 @@
             <input id="pin" value=@Model.PIN  hidden/>
             <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
                 <div id="chatbox" class="row p-1">
-                    <div id="loading">Waiting for Mentor... <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+                    <div class="d-none" id="loading">Waiting for Mentor... <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </div>
                     <!--
 

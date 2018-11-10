@@ -37,7 +37,7 @@ namespace HopeLine.Web.Pages
         public int IsUser { get; set; }
         public string ReturnUrl { get; set; }
 
-        public IActionResult OnGet(string pin = null, string user = null)
+        public IActionResult OnGet()
         {
             Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
             {
@@ -47,16 +47,11 @@ namespace HopeLine.Web.Pages
             }).ToList();
 
             UserName = HttpContext.Session.GetString("_guest");
-            if (pin == null)
-                PIN = _communication.GenerateConnectionId();
-            else
-                PIN = pin;
 
             if (UserName != null)
             {
                 HttpContext.Session.SetString("_guest", UserName);
             }
-
             else
             {
                 var name = "Guest" + Guid.NewGuid().ToString("N").Substring(0, 12);
@@ -68,7 +63,7 @@ namespace HopeLine.Web.Pages
             return Page();
         }
 
-        public IActionResult OnPost(string pin = null, string user = null)
+        public IActionResult OnPost()
         {
 
             if (!ModelState.IsValid || _signInManager.IsSignedIn(User))

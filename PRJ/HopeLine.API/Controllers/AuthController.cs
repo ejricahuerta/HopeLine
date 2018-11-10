@@ -67,7 +67,7 @@ namespace HopeLine.API.Controllers
                 if (result.Succeeded)
                 {
                     var newuser = await _userManager.FindByEmailAsync(model.Username);
-                    var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "User"));
+                    var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Mentor"));
                     return Ok(_tokenService.GenerateToken(model.Username, newuser));
                 }
 

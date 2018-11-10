@@ -38,7 +38,6 @@
 
 html, body {
   height: 100%;
-
 }
 
 .floatleft {
@@ -137,16 +136,44 @@ a:active, a:hover {
 
 body {
   background: #fff none repeat scroll 0 0;
-  color: black;
+  color: #444;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   text-align: left;
   overflow-x: hidden;
-  line-height: 22px;
+  /*line-height: 22px;*/
 }
 
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: #3EC1D5;
+  color: #fff;
+  padding: 6px 12px 9px 12px;
+  font-size: 16px;
+  border-radius: 2px;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.5s;
+}
 
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 15px;
+  }
+}
 
+.back-to-top:focus {
+  background: #3EC1D5;
+  color: #fff;
+  outline: none;
+}
+
+.back-to-top:hover {
+  background: #3cd6ed;
+  color: #fff;
+}
 
 .clear {
   clear: both;

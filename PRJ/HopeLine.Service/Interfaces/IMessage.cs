@@ -8,7 +8,7 @@ namespace HopeLine.Service.Interfaces {
 
         Task NewMentorAvailable (string mentorId, string connectionId);
         Task RemoveMentor (string connectionId);
-        void DeleteAllMessages (string connectionId);
+        Task DeleteAllMessages (string connectionId);
         IEnumerable<MessageModel> GetAllMessages (string roomId);
         IEnumerable<OnlineMentorModel> ListAvailableMentor ();
         Task SetMentorOnCall (string mentorId, string connectionId);
