@@ -9,13 +9,15 @@ namespace HopeLine.Web.ViewModels
     public class ResourcesViewModel : BaseViewModel
     {
         [Required]
-        [StringLength(100)]
+        [StringLength(40)]
         public string Name { get; set; }
 
-        [DataType(DataType.Url)]
-        public string Url { get; set; }
+        [StringLength(200)]
+        public string Description { get; set; }
+
+        public string URL { get; set; }
 
         [DataType(DataType.ImageUrl)]
-        public string ImgUrl { get; set; }
+        public string ImageURL { get; set; }
     }
 }
