@@ -7,6 +7,7 @@ var isconnected = false;
 var requestingUser;
 var isUser = currentuser.indexOf("Guest") != -1;
 var timeout;
+var room
 
 function findTime() {
     timeout = setTimeout(function () {
@@ -146,7 +147,7 @@ function startConnection() {
 }
 
 console.log("UserId = " + userId);
-var room = $("#pin").val();
+
 console.log("pin = " + room);
 
 $(function () {
