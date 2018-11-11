@@ -34,7 +34,8 @@
                 </li>
             </ul>
         </form>
-        <input id="userId" type="text" hidden value="@UserManager.GetUserName(User)" />
+        <input id="userId" type="hidden" value="@UserManager.GetUserName(User)" />
+        <input id="accountType" type="hidden" value="@User.Claims.FirstOrDefault(c => c.Type =="Account").Value" />
     }
     else
     {
