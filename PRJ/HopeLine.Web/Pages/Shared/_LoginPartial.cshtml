@@ -14,7 +14,7 @@
                     <span class="nav-link" asp-area="Identity">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </span>
                 </li>
                 <li>
-                    <button type="submit" class=" btn na" >Logout</button>
+                    <button id="logout" type="submit" class=" btn na" >Logout</button>
                 </li>
             </ul>
         </form>
@@ -30,7 +30,7 @@
                     <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User) </a>
                 </li>
                 <li class="nav-item">
-                    <button type="submit" class="btn" >Logout</button>
+                    <button id="logout" type="submit" class="btn" >Logout</button>
                 </li>
             </ul>
         </form>

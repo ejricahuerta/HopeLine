@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
@@ -34,7 +35,6 @@ namespace HopeLine.API.Hubs.v2
             await _messageService.DeleteAllMessages(roomId);
 
         }
-
         public async Task LoadMessage(string room)
         {
             try
@@ -59,7 +59,6 @@ namespace HopeLine.API.Hubs.v2
 
         public async Task SendMessage(string user, string message, string room)
         {
-
             var newmsg = new MessageModel
             {
                 ConnectionId = room,
@@ -74,7 +73,6 @@ namespace HopeLine.API.Hubs.v2
 
         public async Task AddMentor(string mentorId)
         {
-
             var room = _messageService.GetRoomForUser(mentorId, false);
             System.Console.WriteLine("Room: " + room);
             if (room != null)
@@ -91,6 +89,24 @@ namespace HopeLine.API.Hubs.v2
             {
                 throw new Exception("Unable to Add Mentor to Group", ex);
             }
+        }
+
+        public async Task RemoveUser(string userId, string roomId, bool isUser)
+        {
+            try
+            {
+                System.Console.WriteLine("Removing User" + userId);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
+                var method = (isUser) ? "NotifyUser" : "NotifyMentor";
+                await Clients.Group(roomId).SendAsync(method, -1);
+                await _messageService.DeleteAllMessages(roomId);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception("Delete Process did not go through :", ex);
+            }
+
         }
 
         public async Task AcceptUserRequest(string mentorId, string userId, string userConnectionId)
@@ -114,21 +130,17 @@ namespace HopeLine.API.Hubs.v2
 
         public async Task RequestToTalk(string userId)
         {
-
             var room = _messageService.GetRoomForUser(userId, true);
             if (room != null)
             {
-                await Clients.Caller.SendAsync("NotifyUser", "Connected");
+                await Clients.Caller.SendAsync("NotifyUser", 1);
                 await Clients.Caller.SendAsync("Room", room);
-
             }
             else
             {
-                await Clients.Caller.SendAsync("NotifyUser", "Finding Available Mentors...");
+                await Clients.Caller.SendAsync("NotifyUser", 0);
                 await Clients.Group(Mentor).SendAsync("NotifyMentor", userId, Context.ConnectionId);
             }
-
         }
-
     }
 }

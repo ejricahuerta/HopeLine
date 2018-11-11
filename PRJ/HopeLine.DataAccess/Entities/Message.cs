@@ -6,19 +6,19 @@ namespace HopeLine.DataAccess.Entities
     {
         public Message()
         {
-        
+
         }
         [Key]
         public int Id { get; set; }
-    
+
         [Required]
-        [StringLength(20)]
-        public string ConnectionId { get; set; }
-        
+        [StringLength(30)]
+        public string RoomId { get; set; }
+
         [Required]
         [StringLength(20)]
         public string UserName { get; set; }
-    
+
         [Required]
         [StringLength(500)]
         public string Text { get; set; }
