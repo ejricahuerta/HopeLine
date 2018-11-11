@@ -12,71 +12,27 @@
 
         <tbody class="container" style="margin-top: 90px;">
 
-            <div class="col-12">
-                <div class="card-deck">
+            <div class="row">
+             
 
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community1.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">How to deal with suicide on online communities or forums</h5>
-                            <p class="card-text"> Dealing with suicide in online forums can be difficult or challenging.This link can help give you advice in how to dela with these situations online.</p>
-                            <a href="http://www.managingcommunities.com/2009/06/22/dealing-with-suicide-on-your-online-community-or-forums-how-you-can-help-and-protect-everyone/" class="btn btn-primary">Go</a>
+                    @foreach (var item in Model.Communities)
+                    {
+
+
+                    <div class="col-md-4">
+                            <div class="card" >
+                                <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                    <p class="card-text"> @Html.DisplayFor(modelitem => item.Description)</p>
+                                    <a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary">Go</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        
 
-
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community2.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">We Hear You</h5>
-                            <p class="card-text"> WeHearYou is an alternative website where you can open up and talk to about any issues that are bothering you in life. This website does not require you to sign up as it's optional and when you wish to chat with one of thier agents they will be available. They are open to help clients out in various issues including mental health issues as well. </p>
-                            <a href="http://myvmlab.senecacollege.ca:6284/app" class="btn btn-primary">Go</a>
-                        </div>
-                    </div>
-
-
-
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community3.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Canadian Association for Suicide Prevention</h5>
-                            <p class="card-text"> Referenced is a list of crisis services,centers, and other hotlines that are available 24 hours. General information about these services are available to you and ar elisted in the link referenced. These servies may be more convenient and may provide you with a good alternative. They provide locations of where they are stationed or located if you find that your located somewhere else. </p>
-                            <a href="https://suicideprevention.ca/need-help/" class="btn btn-primary">Go</a>
-                        </div>
-                    </div>
-
-                    <div class="w-100 py-2">  </div>
-
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community4.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">The mighty</h5>
-                            <p class="card-text"> Youtube channel that provides videos of both physical and mental illnesses. </p>
-                            <a href="https://www.youtube.com/channel/UCKQaSdgFK01UyVdv6-Up1mg/videos" class="btn btn-primary">Go</a>
-                        </div>
-                    </div>
-
-
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community5.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">The Mental Health & Psychosocial Support Network</h5>
-                            <p class="card-text"> A global platform to connect with other people for support and sharing knowledge. </p>
-                            <a href="http://www.mhpss.net/" class="btn btn-primary">Go</a>
-                        </div>
-                    </div>
-
-
-                    <div class="card" style="width:18rem;">
-                        <img class="card-img-top" src="~/images/Community/community6.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Canadian Mental Health Association Facebook page</h5>
-                            <p class="card-text"> Canadian Mental Health Association provides a Facebook page where you can stay connected with thier online community to recieve thier online information regarding mental health</p>
-                            <a href="https://www.facebook.com/cmha.ontario/" class="btn btn-primary">Go</a>
-                        </div>
-                    </div>
-
-                </div>
+                    }
+                                           
 
             </div>
 
