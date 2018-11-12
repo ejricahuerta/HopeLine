@@ -47,7 +47,7 @@ namespace HopeLine.Service.CoreServices
                 {
                     _chatDb.Remove(m);
                 }
-                var room _chatDb.SingleOrDefault(r=>r.RoomId == roomId);
+                var room =  _chatDb.SingleOrDefault(r=>r.RoomId == roomId);
                 _chatDb.Remove(room);
                 await _chatDb.SaveChangesAsync();
             }
