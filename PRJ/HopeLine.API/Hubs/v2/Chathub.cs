@@ -44,7 +44,7 @@ namespace HopeLine.API.Hubs.v2
                 System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
-                    foreach (var m in allMessages.Reverse())
+                    foreach (var m in allMessages)
                     {
                         await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
                     }
