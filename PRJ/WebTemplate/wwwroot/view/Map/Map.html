@@ -13,7 +13,7 @@
       <link rel="stylesheet" href="../../css/Site.css">
       <meta name="viewport" content="initial-scale=1.0">
       <meta charset="utf-8">
-      <input onchange="setPosition();" id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
 
       <div id="map"></div>
 
@@ -109,29 +109,31 @@
                         icon: icon,
                         title: place.name,
                         position: place.geometry.location
-                        
+                       
                     }));
                    
-            tempLong = place.geometry.location.lat();
-            tempLat = place.geometry.location.lng();
-            console.log(tempLong);
-       
+           // tempLong = parseFloat(place.geometry.location.lat());
+           // tempLat = parseFloat(place.geometry.location.lng());
+                     // console.log(tempLong,tempLat);
+           setPosition(place.geometry.location.lat(),place.geometry.location.lng());
                     if (place.geometry.viewport) {
                     // Only geocodes have viewport.
                     bounds.union(place.geometry.viewport);
                    } else {
                     bounds.extend(place.geometry.location);
                     }
+                  
                 });
                 map.fitBounds(bounds);
             });
         }
 
-          function setPosition(){
+          function setPosition(latPar,lngPar){
            pos = {
-               lat: tempLat,
-               lng: tempLong
+               lat: latPar,
+               lng: lngPar
            }
+           console.log(pos.lat , pos.lng + "in setPosition");
         }
 
         function searchType(locationType, isChecked) {
@@ -149,13 +151,17 @@
 
             infowindow = new google.maps.InfoWindow();
             service = new google.maps.places.PlacesService(map);
+            console.log(pos.lat , pos.lng + "IN SEARCHLOCATION");
+            console.log(locationType);
             var request = {
                 location: pos,
                 radius: 9000,
                 type: [locationType]
             };
             service.nearbySearch(request, function (results, status) {
-               // console.log(locationType + "<-callback");
+                console.log(request.location + "<--callback request")
+                console.log( pos + "<-callback");
+                console.log( results + "<-callback");
                 callback(results, status, locationType);
             });
         }
@@ -202,12 +208,12 @@
 
         ////////////////////////////
         function callback(results, status, locationType) {
-
+            console.log("callback");
             // var chosenBox = [];
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     results[i].locationType = locationType;
-
+                    ;
                     tempResults.push(results[i]);
                     createMarker(results[i]); //<--always results[i]
 
@@ -216,6 +222,7 @@
         }
         function createMarker(place) {
             placeLoc = place.geometry.location;
+            console.log(placeLoc.lat,placeLoc.lng + "createMarker()");
             marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
