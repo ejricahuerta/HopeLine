@@ -40,7 +40,7 @@ namespace HopeLine.API.Hubs.v2
             try
             {
                 System.Console.WriteLine(room);
-                var allMessages = _messageService.GetAllMessages(room);
+                var allMessages = _messageService.GetAllMessages(room).Reverse();
                 System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
