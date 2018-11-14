@@ -1,7 +1,6 @@
 
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
-=======
 var userId = $("#userId") != null ? $("#userId").val() : null;
 
 var isconnected = false;
