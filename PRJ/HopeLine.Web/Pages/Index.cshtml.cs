@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace HopeLine.Web.Pages
 {
@@ -24,7 +25,14 @@ namespace HopeLine.Web.Pages
         public IList<TopicViewModel> TopicsSelected { get; set; }
         public IActionResult OnGet()
         {
-
+            /*
+            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
+            var url = Url.Page("/Index", new { Page = "Mentor" });
+            if (claim.Value == "Mentor")
+            {
+                return Redirect(url);
+            }
+            */
             Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
             {
                 Id = t.Id,
