@@ -99,6 +99,13 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         public async Task<IActionResult> OnGetAsync(string pin = null, string user = null)
         {
+            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
+            var url = Url.Page("~/Index");
+
+            if(claim.Value == "User" || claim.Value == "Admin")
+            {
+                return Redirect(url);
+            }
             /* Profile Page Logic START */
             Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
             {
