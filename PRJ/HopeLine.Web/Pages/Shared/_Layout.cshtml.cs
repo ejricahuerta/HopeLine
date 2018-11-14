@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HopeLine.Web.Pages
 {
-    public class MapModel : PageModel
+    public class _LayoutModel : PageModel
     {
-        public void OnGet()
+        public string Message { get; set; }
+
+        public IActionResult OnGet()
         {
 
+            return Page();
         }
     }
 }
