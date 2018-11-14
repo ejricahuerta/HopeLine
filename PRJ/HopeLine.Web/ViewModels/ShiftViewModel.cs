@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace HopeLine.Web.ViewModels
 {
-    public class ShiftViewModel
+    public class ShiftViewModel : BaseViewModel
     {
-        [Required]
+
         [DataType(DataType.Time)]
         [Display(Name = "Start Time")]
         public DateTime StartTime { get; set; }
 
-        [Required]
+
         [DataType(DataType.Time)]
         [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }

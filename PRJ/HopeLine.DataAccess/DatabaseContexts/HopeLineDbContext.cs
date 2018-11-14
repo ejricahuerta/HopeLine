@@ -1,6 +1,7 @@
 ﻿
 using System;
 using HopeLine.DataAccess.Entities;
+using HopeLine.DataAccess.Entities.Base;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
@@ -42,7 +43,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<GuestAccount> Guests { get; set; }
         public DbSet<ProfileLanguage> ProfileLanguages { get; set; }
         public DbSet<MentorSpecialization> MentorSpecializations { get; set; }
-
+        public DbSet<Shift> Shifts { get; set; }
         public DbSet<Map> Maps { get; set; }
 
         public DbSet<Community> Communities { get; set; }

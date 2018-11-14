@@ -1,767 +1,268 @@
 <!DOCTYPE html>
-
 <html>
 
-  <head>
-
-    
-
-
-
-     <meta charset="utf-8" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-
-    <title>Map Page</title>
-
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="../../css/Site.css">
-
-
-
-
-
-    <meta name="viewport" content="initial-scale=1.0">
-
-    <meta charset="utf-8">
-
-    <style>
-
-      /* Always set the map height explicitly to define the size of the div
-
-       * element that contains the map. */
-
-      #map {
-
-        height: 100%;
-
-      }
-
-      /* Optional: Makes the sample page fill the window. */
-
-      html, body {
-
-        height: 100%;
-
-        margin: 200;
-
-        padding: 200;
-
-      }
-
-      #description {
-
-        font-family: Roboto;
-
-        font-size: 15px;
-
-        font-weight: 300;
-
-      }
-
-
-
-      #infowindow-content .title {
-
-        font-weight: bold;
-
-      }
-
-
-
-      #infowindow-content {
-
-        display: none;
-
-      }
-
-
-
-      #map #infowindow-content {
-
-        display: inline;
-
-      }
-
-
-
-      .pac-card {
-
-        margin: 10px 10px 0 0;
-
-        border-radius: 2px 0 0 2px;
-
-        box-sizing: border-box;
-
-        -moz-box-sizing: border-box;
-
-        outline: none;
-
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
-        background-color: #fff;
-
-        font-family: Roboto;
-
-      }
-
-
-
-      #pac-container {
-
-        padding-bottom: 12px;
-
-        margin-right: 12px;
-
-      }
-
-
-
-      .pac-controls {
-
-        display: inline-block;
-
-        padding: 5px 11px;
-
-      }
-
-
-
-      .pac-controls label {
-
-        font-family: Roboto;
-
-        font-size: 13px;
-
-        font-weight: 300;
-
-      }
-
-
-
-      #pac-input {
-
-        background-color: #fff;
-
-        font-family: Roboto;
-
-        font-size: 15px;
-
-        font-weight: 300;
-
-        margin-left: 12px;
-
-        padding: 0 11px 0 13px;
-
-        text-overflow: ellipsis;
-
-        width: 400px;
-
-        margin-top:20px;
-
-      }
-
-
-
-      #pac-input:focus {
-
-        border-color: #4d90fe;
-
-      }
-
-
-
-      #title {
-
-        color: #fff;
-
-        background-color: #4d90fe;
-
-        font-size: 25px;
-
-        font-weight: 500;
-
-        padding: 6px 12px;
-
-      }
-
-      #target {
-
-        width: 345px;
-
-      }
-
-    </style>
-
-  </head>
-
-
-
-  <body class="container">
-
-
-
- <nav class="navbar navbar-expand-lg fixed-top background-color:white">
-
-        <div id="headerMenu" class="container">
-
-            <a class="navbar-brand" href="../index.html" style="font-size: 30px">HopeLine</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-
-                <span class="navbar-toggler-icon"></span>
-
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                <ul class="navbar-nav ml-auto">
-
-                  <!--   <li class="nav-item active">
-
-                        <a class="nav-link" href="#">Home
-
-                            <span class="sr-only">(current)</span>
-
-                        </a>
-
-                    </li> -->
-
-                    <li class="nav-item color:white">
-
-                        <a class="nav-link" href="TalkToMentor/TalkToMentor.html">Talk to Mentor</a>
-
-                    </li>
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="Map/Map.html">Map</a>
-
-                    </li>
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="Resources/Resources.html">Resources</a>
-
-                    </li>
-
-
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="Community/Community.html">Community</a>
-
-                    </li>
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="Account/LoginRegister.html">Login/Register</a>
-
-                    </li>
-
-
-
-
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </nav>
-
-    <h1 class="container position:center">Map</h1>
-
-
-
-  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-
-    <div id="map"></div>
-
-    
-
+  <body>
+
+    <head>
+
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
+      <title>Map Page</title>
+      <link rel="stylesheet" href="../../css/map.css" />
+      <link rel="stylesheet" href="../../css/bootstrap.min.css">
+      <link rel="stylesheet" href="../../css/Site.css">
+      <meta name="viewport" content="initial-scale=1.0">
+      <meta charset="utf-8">
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+
+      <div id="map"></div>
+
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+
+
+      <script src="../../js/Site.js"></script>
+
+      <script src="../../js/bootstrap.bundle.min.js"></script>
+
+      <script src="../../jquery/jquery.min.js"></script>
+
+      <script>
+          var searchBox, input, bounds, locationType, marker, placeLoc, places;
+        var results = [];
+        var markers = [];
+        var tempResults = [];
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+        var tempLong;
+        var tempLat;
+
+        function initAutocomplete() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 43.77, lng: -79.49 },
+                zoom: 10,
+                mapTypeId: 'roadmap'
+            });
+            //load the places(Google api feature) service map
+            var infoWindow = new google.maps.InfoWindow();
+            // Create the search box and link it to the UI element.
+            input = document.getElementById('pac-input');
+            searchBox = new google.maps.places.SearchBox(input);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+            //////////////////////////////////////////////
+            bounds = new google.maps.LatLngBounds();
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Here you are.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function () {
+                searchBox.setBounds(map.getBounds());
+            });
+            markers = [];
+            //  var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function () {
+                places = searchBox.getPlaces();
+                if (places.length == 0) {
+                    return;
+                }
+                // Clear out the old markers.
+                markers.forEach(function (marker) {
+                    marker.setMap(null);
+                });
+                markers = [];
+                // For each place, get the icon, name and location.
+                places.forEach(function (place) {
+                    if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                    }
+                    var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                    };
+                    // Create a marker for each place.
+                    markers.push(new google.maps.Marker({
+                        map: map,
+                        icon: icon,
+                        title: place.name,
+                        position: place.geometry.location
+                       
+                    }));
+                   
+           // tempLong = parseFloat(place.geometry.location.lat());
+           // tempLat = parseFloat(place.geometry.location.lng());
+                     // console.log(tempLong,tempLat);
+           setPosition(place.geometry.location.lat(),place.geometry.location.lng());
+                    if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                   } else {
+                    bounds.extend(place.geometry.location);
+                    }
+                  
+                });
+                map.fitBounds(bounds);
+            });
+        }
+
+          function setPosition(latPar,lngPar){
+           pos = {
+               lat: latPar,
+               lng: lngPar
+           }
+           console.log(pos.lat , pos.lng + "in setPosition");
+        }
+
+        function searchType(locationType, isChecked) {
+
+            if (isChecked.checked) {
+
+                searchLocation(locationType);
+               
+            } else {
+                deleteMarkers(isChecked, locationType);
+              
+            }
+        }
+        function searchLocation(locationType) {
+
+            infowindow = new google.maps.InfoWindow();
+            service = new google.maps.places.PlacesService(map);
+            console.log(pos.lat , pos.lng + "IN SEARCHLOCATION");
+            console.log(locationType);
+            var request = {
+                location: pos,
+                radius: 9000,
+                type: [locationType]
+            };
+            service.nearbySearch(request, function (results, status) {
+                console.log(request.location + "<--callback request")
+                console.log( pos + "<-callback");
+                console.log( results + "<-callback");
+                callback(results, status, locationType);
+            });
+        }
+
+      
+
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+        //////////////////////////////////////////////////////
+        function setMapOnAll(map) {
+            for (var i = 0; i < results.length; i++) {
+                results[i].setMap(map);
+            }
+            for (var j = 0; j < markers.length; j++) {
+                markers[j].setMap(map);
+            }
+        }
+        function clearMarkers() {
+            var checkboxes = document.getElementsByName('locationBox');
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].checked = false;
+            }
+            setMapOnAll(null);
+        }
+        function deleteMarkers(isChecked, locationType) {
+
+            for (var i = 0; i < tempResults.length; i++) {
+                //console.log(tempResults[i].locationType + "<-results[i].locationType INdforloop");
+                if (tempResults[i].locationType == locationType) {
+                    //console.log(tempResults[i].locationType + "<-results[i].locationType IN DELETEMARKERS");
+                    results[i].setMap(null);
+
+                }
+
+            }
+
+        }
+
+        ////////////////////////////
+        function callback(results, status, locationType) {
+            console.log("callback");
+            // var chosenBox = [];
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    results[i].locationType = locationType;
+                    ;
+                    tempResults.push(results[i]);
+                    createMarker(results[i]); //<--always results[i]
+
+                }
+            }
+        }
+        function createMarker(place) {
+            placeLoc = place.geometry.location;
+            console.log(placeLoc.lat,placeLoc.lng + "createMarker()");
+            marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+            //pushes markers to results array.
+            results.push(marker);
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+
+      </script>
+
+    </head>
     <script>
 
-      // This example adds a search box to a map, using the Google Place Autocomplete
-
-      // feature. People can enter geographical searches. The search box will return a
-
-      // pick list containing a mix of places and predicted search terms.
-
-
-
-      // This example requires the Places library. Include the libraries=places
-
-      // parameter when you first load the API. For example:
-
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      var searchBox,input,bounds,locationType,marker,placeLoc,places;
-
-      var pos = {  lat: position.coords.latitude,
-
-                  lng: position.coords.longitude}
-
-
-
-      function initAutocomplete() {
-
-           map = new google.maps.Map(document.getElementById('map'), {
-
-          center: {lat: -33.6, lng: 151.195},
-
-          zoom: 13,
-
-          mapTypeId: 'roadmap'
-
-        });
-
-
-
-          
-
-           //load the places(Google api feature) service map
-
-           var infoWindow = new google.maps.InfoWindow();
-
-             // Create the search box and link it to the UI element.
-
-          input = document.getElementById('pac-input');
-
-          searchBox = new google.maps.places.SearchBox(input);
-
-          map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-         ////////////////////////////////////////////// 
-
-          bounds = new google.maps.LatLngBounds();
-
-         
-
-    if (navigator.geolocation) {
-
-              navigator.geolocation.getCurrentPosition(function(position) {
-
-                pos = {
-
-                  lat: position.coords.latitude,
-
-                  lng: position.coords.longitude
-
-                };
-
-
-
-                infoWindow.setPosition(pos);
-
-                infoWindow.setContent('Location found.');
-
-                infoWindow.open(map);
-
-                map.setCenter(pos);
-
-
-
-              }, function() {
-
-                handleLocationError(true, infoWindow, map.getCenter());
-
-              });
-
-        } else {
-
-          // Browser doesn't support Geolocation
-
-          handleLocationError(false, infoWindow, map.getCenter());
-
-        }
-
-      
-
-         // Bias the SearchBox results towards current map's viewport.
-
-        map.addListener('bounds_changed', function() {
-
-          searchBox.setBounds(map.getBounds());
-
-        });
-
-
-
-        var markers = [];
-
-        // Listen for the event fired when the user selects a prediction and retrieve
-
-        // more details for that place.
-
-        searchBox.addListener('places_changed', function() {
-
-           places = searchBox.getPlaces();
-
-
-
-          if (places.length == 0) {
-
-            return;
-
-          }
-
-
-
-          // Clear out the old markers.
-
-          markers.forEach(function(marker) {
-
-            marker.setMap(null);
-
-          });
-
-          markers = [];
-
-
-
-          // For each place, get the icon, name and location.
-
-         
-
-          places.forEach(function(place) {
-
-            if (!place.geometry) {
-
-              console.log("Returned place contains no geometry");
-
-              return;
-
-            }
-
-            var icon = {
-
-              url: place.icon,
-
-              size: new google.maps.Size(71, 71),
-
-              origin: new google.maps.Point(0, 0),
-
-              anchor: new google.maps.Point(17, 34),
-
-              scaledSize: new google.maps.Size(25, 25)
-
-            };
-
-
-
-            // Create a marker for each place.
-
-            markers.push(new google.maps.Marker({
-
-              map: map,
-
-              icon: icon,
-
-              title: place.name,
-
-              position: place.geometry.location
-
-            }));
-
-
-
-            if (place.geometry.viewport) {
-
-              // Only geocodes have viewport.
-
-              bounds.union(place.geometry.viewport);
-
-            } else {
-
-              bounds.extend(place.geometry.location);
-
-            }
-
-          });
-
-          map.fitBounds(bounds);
-
-        });
-
-   
-
-      }
-
-
-
-      function searchType(locationType){
-
-       clearMarkers();
-
-       var infowindow = new google.maps.InfoWindow();
-
-       var service = new google.maps.places.PlacesService(map);
-
-        service.nearbySearch({
-
-          location : pos ,
-
-          radius: 5000,
-
-          type: [locationType]
-
-        }, callback);
-
-            
-
-        }
-
-
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-
-        infoWindow.setPosition(pos);
-
-        infoWindow.setContent(browserHasGeolocation ?
-
-                              'Error: The Geolocation service failed.' :
-
-                              'Error: Your browser doesn\'t support geolocation.');
-
-        infoWindow.open(map);
-
-      }
-
-//////////////////////////////////////////////////////
-
-      function setMapOnAll(map){
-
-
-
-        for (var i = 0; i < results.length; i++) {
-
-          results[i].setMap(map);
-
-        }
-
-      }
-
-      function clearMarkers() {
-
-        setMapOnAll(null);
-
-      }
-
-
-
-       function deleteMarkers() {
-
-        clearMarkers();
-
-        markers = []
-
-        setMapOnAll(null);
-
-      }
-
-////////////////////////////
-
-function callback(results, status) {
-
-         
-
-        if (status === google.maps.places.PlacesServiceStatus.OK ) {
-
-          for (var i = 0; i < results.length; i++) {
-
-            createMarker(results[i]);
-
-          }
-
-             
-
-      }
-
-}
-
-      
-
-        
-
-
-
-function createMarker(place) {
-
-  console.log("callback");
-
-         placeLoc = place.geometry.location;
-
-         marker = new google.maps.Marker({
-
-          map: map,
-
-          position: place.geometry.location
-
-               
-
-        });
-
-
-
-    google.maps.event.addListener(marker, 'click', function() {
-
-          infowindow.setContent(place.name);
-
-          infowindow.open(map, this);
-
-        });
-
-      }
-
-   
     </script>
-   
+    <div class="row pl-0 pr-0 pt-0 mt-0 map">
+      <div class="col-12">
+        <!-- The sidebar -->
+        <div class="sidebar bg-dark sticky-top" style="width:20%">
+          <!-- Hospitals -->
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
-
-         async defer></script>
-
-
-
-         <input name="locationType" type="checkbox" id="checkbox" onclick="searchType('hospital')"> Hospital <br>
-
-         <input name="locationType" type="checkbox" id="checkbox" onclick="searchType('pharmacy')"> pharmacy <br>
-
-         <input name="locationType" type="checkbox" id="checkbox" onclick="searchType('health')"> health <br>
-
-         <input name="locationType" type="checkbox" id="checkbox" onclick="searchType('doctor')"> doctor <br>
-
-         <input type="button" value="clear map" onClick="window.location.reload()">
-
-
-
-
-
-<footer id="footer">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-md-4 col-sm-6 footer-col">
-
-                    <div class="logofooter"> Contact</div>
-
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-
-                        the
-
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-
-                    <p>
-
-                        <i class="fa fa-map-pin"></i> #228, Tiruvannamalai, Tamilnadu, India</p>
-
-                    <p>
-
-                        <i class="fa fa-phone"></i> Phone (India) : +91 9999 999 999</p>
-
-                    <p>
-
-                        <i class="fa fa-envelope"></i> E-mail : info@prabuuideveloper.com</p>
-
-
-
-                </div>
-
-                <div class="col-md-4 col-sm-6 footer-col">
-
-                    <h6 class="heading7">About Us</h6>
-
-                    <div class="post">
-
-                        <p>facebook crack the movie advertisment code:what it means for you
-
-                            <span>August 3,2015</span>
-
-                        </p>
-
-                        <p>facebook crack the movie advertisment code:what it means for you
-
-                            <span>August 3,2015</span>
-
-                        </p>
-
-                        <p>facebook crack the movie advertisment code:what it means for you
-
-                            <span>August 3,2015</span>
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-4 col-sm-6 footer-col">
-
-                    <h6 class="heading7">Social Media</h6>
-
-                    <ul class="footer-social">
-
-                        <li>
-
-                            <a href="www.linkedin.com"><i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i></a>
-
-                        </li>
-
-                        <li>
-
-                            <i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i>
-
-                        </li>
-
-                        <li>
-
-                            <i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i>
-
-                        </li>
-
-                        <li>
-
-                            <i class="fa fa-google-plus social-icon google" aria-hidden="true"></i>
-
-                        </li>
-
-                    </ul>
-
-                </div>
-
-            </div>
-
+          <!-- Doctors -->
+  
+          <input type="checkbox" name="locationBox" value="doctor" onclick="searchType('doctor',this)"> doctor<br>
+          <input name="locationBox" value="doctor" type="checkbox" id="locations" onclick="searchType('hospital',this)">
+          hospital <br>
+          <input name="locationBox" value="hospital" type="checkbox" id="locations" onclick="clearMarkers()">
+          clearmap <br>
+          <!-- Clear Map-->
+     
         </div>
 
-    </footer>
 
-    <div class="copyright">
-
-        <div class="container">
-
-            <div class="col-md-6">
-
-                <p id="demo" class="copyright"></p>
-
-            </div>
-
-        </div>
+      </div>
 
     </div>
-
-    <script src="../../js/Site.js"></script>
-
-    <script src="../../js/bootstrap.bundle.min.js"></script>
-
-    <script src="../../jquery/jquery.min.js"></script>
-
   </body>
 
 </html>

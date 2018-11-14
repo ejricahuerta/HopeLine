@@ -1,0 +1,350 @@
+﻿@page
+@using HopeLine.Web.Areas.Mentor.Pages
+@model IndexModel
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
+@{
+    //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+    Layout = "/Pages/Shared/_Layout.cshtml";
+
+}
+
+@foreach (var mentor in Model.Mentors)
+{
+    if (mentor.Username == UserManager.GetUserName(User))
+    {
+        Model.CurrentMentor = mentor;
+    }
+}
+
+
+<head>
+    <link rel="stylesheet" , href="~/css/resources.css" />
+
+</head>
+
+<section class="mt-5">
+    <div class="accordion" id="mentor">
+        <!-- The sidebar -->
+        <div class="sidebar bg-dark">
+
+            <!-- Profile -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="profileHeader">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#profile" style="color:rgba(255,255,255,.5)">
+                                Profile
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Chat -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="chatHeader">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#changepassword" style="color:rgba(255,255,255,.5)">
+                                Change Password
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="statHeader">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#stat" style="color:rgba(255,255,255,.5)">
+                                Statistics
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--Sidebar END-->
+        <!-- Page content -->
+        <div class="content accordion-group">
+            <!--Profile tab-->
+            <div id="profile" class="collapse container bootstrap snippet show" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 20px" active>
+
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>User name</h1>
+                    </div>
+
+                </div>
+                <div class="row p-0 m-0">
+                    <div class="col-md-3">
+                        <!--left col-->
+
+
+                        <div class="text-center">
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+
+                        </div>
+                        <br>
+
+
+
+
+
+                        <ul class="list-group">
+                            <li class="list-group-item text-muted"><strong>Specializtions </strong><i class="fa fa-dashboard fa-1x"></i></li>
+                            @foreach (var item in Model.Specializations)
+                            {
+                                <li class="list-group-item text-right"><span class="pull-left">@item.Name</span> </li>
+                            }
+                        </ul>
+                        <!--
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Social Media</div>
+                            <div class="panel-body">
+                                <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i>
+                                <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+                            </div>
+                        </div>
+                            -->
+                    </div>
+                    <!--/col-3-->
+                    <div class="col-md-5">
+
+
+
+
+                        <hr>
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="email">
+                                        <h4>Mentor Id</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="email">
+                                        <h4>Email</h4>
+                                    </label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder=@Model.CurrentMentor.Email
+                                           title="enter your email." disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="username">
+                                        <h4>Username</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder=@Model.CurrentMentor.Username
+                                           disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="phone">
+                                        <h4>Phone Number</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="phone" id="phone" placeholder=@Model.CurrentMentor.Phone>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="first_name">
+                                        <h4>First name</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder=@Model.CurrentMentor.FirstName
+                                           title="enter your first name if any.">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+
+                                    <label for="last_name">
+                                        <h4>Last name</h4>
+                                    </label>
+                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder=@Model.CurrentMentor.LastName
+                                           title="enter your last name if any.">
+                                </div>
+                            </div>
+                            -->
+
+
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    <br>
+                                    <button class="btn btn-lg btn-success" type="submit">
+                                        <i class="glyphicon glyphicon-ok-sign"></i>
+                                        Save
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!--chat content-->
+                    <input id="pin" value="@Model.PIN" hidden>
+
+                    <div class="chat col-md-4 shadow-sm" fixed>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>
+                                    Chat
+                                </h3>
+                                <div class="form-group">
+                                    <label>@Model.PIN</label>
+                                    <input type="text" class="form-control" id="userInput" placeholder="Name" value="@Model.UserName" />
+                                    <button id="connectButton" type="button" class="btn btn-outline-info text-black-50">Connect</button>
+                                </div>
+                            </div>
+                            <div class="card-body bg-white" id="chatbox" style="height:350px;   ">
+                            </div>
+                            <div class="card-footer text-muted">
+                                <div class="form-row">
+                                    <div class="col-9">
+
+                                        <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--chat content-->
+                    <hr>
+
+
+
+                    <!--/tab-content-->
+                    <!--/col-9-->
+                </div>
+                <!--/row-->
+
+
+            </div>
+            <!--Profile END-->
+
+
+            <!-- Change Password START-->
+            <div id="changepassword" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h1>Change Password</h1>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <form id="change-password-form" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.OldPassword">OldPassword</label>
+                            <input asp-for="Input.OldPassword" class="form-control" required/>
+                            <span asp-validation-for="Input.OldPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.NewPassword">NewPassword</label>
+                            <input asp-for="Input.NewPassword" class="form-control" required/>
+                            <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.ConfirmPassword">ConfirmPassword</label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" required/>
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-default">Update password</button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- Change Password END-->
+
+            <!-- Conversation History START -->
+            <div id="stat" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            
+                            <th scope="col">Id</th>
+                            <th scope="col">User&nbsp;Id</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">Minutes</th>
+                            <th scope="col">Date&nbsp;of&nbsp;Conversation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Conversations)
+                        {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.UserId</td>
+                            <td>@item.UserName</td>
+                            <td>@item.PIN</td>
+                            <td>@item.Minutes</td>
+                            <td>@item.DateOfConversation</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- Conversation History END-->
+
+
+        </div>
+
+    </div>
+
+
+</section>
+
+<script>
+
+    $("#switch-id").on("click", function () {
+        $("#password").prop("disabled", !$("#password").prop("disabled"));
+        $("#password1").prop("disabled", !$("#password1").prop("disabled"));
+        $("#password2").prop("disabled", !$("#password2").prop("disabled"));
+    });
+
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

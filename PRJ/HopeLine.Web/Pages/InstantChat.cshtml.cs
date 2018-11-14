@@ -39,6 +39,15 @@ namespace HopeLine.Web.Pages
 
         public IActionResult OnGet(string pin = null, string user = null)
         {
+
+            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
+            var url = Url.Page("/Index", new { area = "Mentor" });
+
+            if(claim.Value == "Mentor")
+            {
+                return Redirect(url);
+            }
+            
             Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
             {
                 Id = t.Id,
