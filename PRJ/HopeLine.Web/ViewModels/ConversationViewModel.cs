@@ -28,9 +28,9 @@ namespace HopeLine.Web.ViewModels
         [Required]
         public MentorAccountViewModel Mentor { get; set; }
 
-        public string UserName { get; private set; }
+        public string UserName { get; set; }
 
-        public string UserId { get; private set; }
+        public string UserId { get; set; }
 
         public float Minutes { get; set; }
 

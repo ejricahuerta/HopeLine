@@ -37,7 +37,7 @@ namespace HopeLine.Web.Areas.User.Pages
             if (ModelState.IsValid)
             {
 
-                var profile = new ProfileViewModel
+                var profile = new Profile
                 {
                     FirstName = RegisterViewModel.FirstName,
                     LastName = RegisterViewModel.LastName

@@ -4,9 +4,9 @@
     /// Admin account
     /// Testing
     /// </summary>
-    public class AdminAccount : HopeLineUser
+    public class AdminAccountViewModel : HopeLineUserViewModel
     {
-        public AdminAccount()
+        public AdminAccountViewModel()
         {
             AccountType = Account.Admin;
         }

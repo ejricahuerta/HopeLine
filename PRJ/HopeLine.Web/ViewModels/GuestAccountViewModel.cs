@@ -3,7 +3,7 @@
     /// <summary>
     /// Guest Account that only holds username
     /// </summary>
-    public class GuestAccountViewModel : HopeLineUser
+    public class GuestAccountViewModel : HopeLineUserViewModel
     {
         public GuestAccountViewModel()
         {
