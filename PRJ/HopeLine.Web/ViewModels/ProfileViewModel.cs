@@ -4,25 +4,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.Web.ViewModels
 {
-
     /// <summary>
-    /// this class with hold info for available speaking languages
+    /// This class holds profile of user like name, gender, languages, etc
     /// </summary>
-    public class LanguageViewModel : BaseEntity
+    public class ProfileViewModel : BaseViewModel
     {
-        public LanguageViewModel()
+        public ProfileViewModel()
         {
             ProfileLanguages = new List<ProfileLanguageViewModel>();
         }
+        [Required]
+        [MinLength(2)]
+        [MaxLength(20)]
+
+        public string FirstName { get; set; }
 
         [Required]
-        [StringLength(40)]
-        public string Name { get; set; }
-
-        [Required]
-        [StringLength(40)]
-        public string CountryOrigin { get; set; }
+        [MinLength(2)]
+        [MaxLength(20)]
+        public string LastName { get; set; }
 
         public ICollection<ProfileLanguageViewModel> ProfileLanguages { get; set; }
+
     }
 }

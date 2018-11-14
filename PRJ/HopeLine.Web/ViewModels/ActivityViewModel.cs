@@ -8,10 +8,6 @@ namespace HopeLine.Web.ViewModels
 {
     public class ActivityViewModel : BaseViewModel
     {
-        [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Date")]
-        public string DateOfActivity { get; set; }
 
         [DataType(DataType.MultilineText)]
         [StringLength(1000)]

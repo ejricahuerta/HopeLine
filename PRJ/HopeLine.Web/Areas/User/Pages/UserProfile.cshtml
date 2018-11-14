@@ -1,0 +1,254 @@
+@page
+@using HopeLine.Web.Areas.User.Pages
+@model IndexModel
+@{
+      Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<head>
+    <link rel="stylesheet" , href="~/css/resources.css" />
+</head>
+
+<section class="mt-5">
+    <div class="accordion" id="user">
+        <!-- The sidebar -->
+        <div class="sidebar bg-dark">
+            <!-- Profile -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="profileHeader">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#profile" style="color:rgba(255,255,255,.5)">
+                                Profile
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat -->
+            <div>
+
+                <div class="card bg-dark">
+                    <div class="card-header" id="chatHeader">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#changepassword" style="color:rgba(255,255,255,.5)">
+                               Chat
+                            </a>
+
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stat -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="statHeader">
+                        <h5 class="mb-0">
+
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#stat" style="color:rgba(255,255,255,.5)">
+                                Statistics
+                            </a>
+
+                       </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Sidebar END-->
+
+        <!-- Page content -->
+
+        <div class="content accordion-group">
+            <!--Profile tab-->
+
+            <div id="profile" class="collapse container bootstrap snippet" data-parent="#user" style="margin:0 auto; float:none; margin-top: 20px" active>
+                <div class="row">
+                    <div class="col-md-10">
+                       <h1>User name</h1>
+                    </div>
+                </div>
+
+                <div class="row p-0 m-0">
+
+                    <div class="col-md-3">
+
+                        <!--left col-->
+
+                        <div class="text-center">
+
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                        </div>
+                        <br>
+
+                        <ul class="list-group">
+                            <li class="list-group-item text-muted"><strong>Specializtions </strong><i class="fa fa-dashboard fa-1x"></i></li>
+                            <li class="list-group-item text-right"><span class="pull-left">Shares</span> </li>
+                           <li class="list-group-item text-right"><span class="pull-left">Likes</span> </li>
+                           <li class="list-group-item text-right"><span class="pull-left">Posts</span> </li>
+                            <li class="list-group-item text-right"><span class="pull-left">Followers</span> </li>
+                        </ul>
+
+                    </div>
+
+                    <!--/col-3-->
+
+                    <div class="col-md-5">
+
+                        <hr>
+
+                        <form class="form" action="##" method="post" id="registrationForm">
+
+                         <div class="col-md-12">
+
+                               <div class="form-group">
+
+                                    <label for="email">
+
+                                        <h4>User Id</h4>
+
+                                    </label>
+
+                                    <input type="text" class="form-control" name="userId" id="userId" placeholder="Your id" disabled>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+
+                                    <label for="first_name">
+
+                                        <h4>First name</h4>
+
+                                    </label>
+
+                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name"
+
+                                           title="enter your first name if any.">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="last_name">
+                                        <h4>Last name</h4>
+                                    </label>
+
+                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name"
+
+                                           title="enter your last name if any.">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                   <label for="email">
+
+                                        <h4>Email</h4>
+
+                                    </label>
+
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
+
+                                           title="enter your email.">
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+
+                                    <br>
+
+                                    <button class="btn btn-lg btn-success" type="submit">
+
+                                        <i class="glyphicon glyphicon-ok-sign"></i>
+
+                                        Save
+
+                                   </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!--chat content-->
+
+                    <input id="pin" value="@Model.PIN" hidden>
+                    <div class="chat col-md-4 shadow-sm" fixed>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>
+                                    Chat
+                                </h3>
+                                <div class="form-group">
+                                    <label>@Model.PIN</label>
+                                    <input type="text" class="form-control" id="userInput" placeholder="Name" value="@Model.UserName" />
+                                    <button id="connectButton" type="button" class="btn btn-outline-info text-black-50">Connect</button>
+                                </div>
+                            </div>
+                            <div class="card-body bg-white" id="chatbox" style="height:350px;   ">
+                            </div>
+                            <div class="card-footer text-muted">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
+                                    </div>
+                                   <div class="col-3">
+                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" />
+                                   </div>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <!--chat content-->
+                    <hr>
+                    <!--/tab-content-->
+                    <!--/col-9-->
+
+                </div>
+                <!--/row-->
+            </div>
+            <!--Profile END-->
+
+            <div id="changepassword" class="collapse" data-parent="#user" style="margin:0 auto; float:none; margin-top: 90px">
+
+                <h2 class="text-center">Change Password</h2>
+
+            </div>
+         <div id="stat" class="collapse" data-parent="#user" style="margin:0 auto; float:none; margin-top: 90px">
+
+                <h2 class="text-center">Statistics</h2>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+   
+
+   $("#switch-id").on("click", function () {
+        $("#password").prop("disabled", !$("#password").prop("disabled"));
+        $("#password1").prop("disabled", !$("#password1").prop("disabled"));
+        $("#password2").prop("disabled", !$("#password2").prop("disabled"));
+
+    });
+  
+
+</script>

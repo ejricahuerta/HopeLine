@@ -1,20 +1,21 @@
-﻿using HopeLine.Service.Models;
-using System;
+﻿using HopeLine.DataAccess.Entities.Base;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HopeLine.Web.ViewModels
 {
+    //TODO : needs refactoring and annotaions
+
+    /// <summary>
+    /// This class will hold the schedule of time and details
+    /// on when the Mentor will work
+    /// </summary>
     public class ScheduleViewModel : BaseViewModel
     {
-        public ICollection<ShiftViewModel> ShiftViewModels { get; set; }
+        //TODO : need to decide about this class func - Eduardo
 
-        public string Notes { get; set; }
+        public bool Available { get; set; }
 
-        public ScheduleViewModel()
-        {
-            ShiftViewModels = new List<ShiftViewModel>();
-        }
+        public ICollection<Shift> Shifts { get; set; }
+
     }
 }

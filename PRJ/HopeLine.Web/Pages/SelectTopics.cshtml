@@ -7,7 +7,9 @@
 <hr />
 
 <div class="container">
+
     <h1>Please Select the Topics for the Conversation</h1>
+
     <form action="/LiveChat.cshtml" method="post">
         <table class="table table-striped">
             <thead>
@@ -51,10 +53,11 @@
                 Submit
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a type="submit" class="dropdown-item" asp-page="instantChat">Live Chat</a>
+                <a type="submit" class="dropdown-item" asp-page="LiveChat">Live Chat</a>
                 <a type="submit" class="dropdown-item" asp-page="AudioChat">Audio Chat</a>
                 <a type="submit" class="dropdown-item" asp-page="VideoChat">Video Chat</a>
             </div>
         </div>
     </form>
+
 </div>

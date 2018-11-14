@@ -36,7 +36,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages {
         }
 
         public async Task<IActionResult> OnPostAsync (string returnUrl = null) {
-            returnUrl = returnUrl = returnUrl ?? Url.Content ("~/");
+            returnUrl = returnUrl = returnUrl ?? Url.Content ("~/mentor/index");
             if (ModelState.IsValid) {
                 var user = await _userManager.FindByEmailAsync (LoginInput.Username);
                 if (user.AccountType == Account.Mentor) {

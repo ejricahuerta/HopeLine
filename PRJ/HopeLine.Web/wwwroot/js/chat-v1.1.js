@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
+=======
+var userId = $("#userId") != null ? $("#userId").val() : null;
+>>>>>>> 28289fc1ced81dcf32658b361859ff9f833f5b3b
 var isconnected = false;
 var currentuser = userId;
 var connection;
@@ -12,7 +16,7 @@ var room
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
-        $("#chatbox").append('<a href="http://hopeline.azurewebsites.net/instantChat" class="btn btn-info">Retry</a>');
+        $("#chatbox").append('<a href="http://localhost:8000/instantChat" class="btn btn-info">Retry</a>');
     }, 20000);
 }
 
@@ -21,10 +25,19 @@ function found() {
 }
 
 
-function registerhub() {
+console.log("UserId = " + userId);
+var room = $("#pin").val();
+console.log("pin = " + room);
+
+$(function () {
+    connection = new signalR.HubConnectionBuilder()
+        //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
+        .withUrl("http://localhost:5000/v2/chatHub")
+        .build();
+
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
-        var classId = currentuser == user ? "bg-light " : "bg-warning";
+        var classId = currentuser == user ? "bg-secondary " : "bg-warning";
         var userClass = currentuser == user ? "float-right" : "float-left";
         $("#chatbox").append(
             '<div id="message" class=" msg col-11 mb-3 bg-light">' +
@@ -44,7 +57,7 @@ function registerhub() {
     });
 
     connection.on("Load", function (user, message) {
-        var classId = currentuser == user ? " border" : "bg-warning";
+        var classId = currentuser == user ? "bg-secondary " : "bg-warning";
         var userClass = currentuser == user ? " float-right" : "float-left";
         $("#chatbox").append(
             '<div id="message" class=" msg col-11 mb-3">' +
@@ -62,7 +75,6 @@ function registerhub() {
             "</div></div>"
         );
     });
-
     connection.on("Room", function (roomId) {
         room = roomId;
         $("#sendArea").removeClass('d-none');
@@ -125,8 +137,7 @@ function startConnection() {
             return console.error(err.toString());
         })
         .then(function () {
-            if (accountType != "Mentor" ||
-                accountType == null) {
+            if (isUser) {
                 console.log("isuser " + isUser);
                 connection
                     .invoke("RequestToTalk", currentuser)
@@ -134,6 +145,7 @@ function startConnection() {
                         return console.error(err.toString());
                     });
             } else {
+
                 connection.invoke("AddMentor", currentuser)
                     .catch(function (err) {
                         console.log("Unable to add mentor : " + err.toString());
@@ -168,8 +180,7 @@ $("#sendButton").click(function (event) {
     var message = $("#messageInput")
         .val()
         .trim();
-    if (message != "" ||
-        message != null) {
+    if (message != "") {
         console.log("Id :" + room);
         console.log("user: " + userId);
         console.log("message: " + message);

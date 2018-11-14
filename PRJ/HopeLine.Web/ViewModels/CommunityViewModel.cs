@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HopeLine.Web.ViewModels
 {
-    public class CommunityViweModel : BaseViewModel
+    public class CommunityViewModel : BaseViewModel
     {
         [Required]
         [Display(Name = "Community Name")]
@@ -17,7 +17,6 @@ namespace HopeLine.Web.ViewModels
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [DataType(DataType.Url)]
         public string URL { get; set; }
 
         [DataType(DataType.ImageUrl)]
