@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
 =======
 var userId = $("#userId") != null ? $("#userId").val() : null;
->>>>>>> 28289fc1ced81dcf32658b361859ff9f833f5b3b
+
 var isconnected = false;
 var currentuser = userId;
 var connection;
