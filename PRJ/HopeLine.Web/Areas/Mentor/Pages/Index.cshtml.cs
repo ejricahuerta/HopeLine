@@ -75,6 +75,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
         public List<ConversationViewModel> Conversations { get; set; }
         /*Conversation END*/
 
+            /*Change Password START*/
         public class InputModel
         {
             [Required]

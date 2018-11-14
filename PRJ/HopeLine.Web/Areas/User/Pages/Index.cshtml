@@ -4,6 +4,10 @@
 @{
     Layout = "/Pages/Shared/_Layout.cshtml";
 }
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
+
 <head>
     <link rel="stylesheet" , href="~/css/resources.css" />
 </head>
@@ -61,7 +65,7 @@
         <div class="content accordion-group">
             <!--Profile tab-->
 
-            <div id="profile" class="collapse container bootstrap snippet" data-parent="#user" style="margin:0 auto; float:none; margin-top: 20px" active>
+            <div id="profile" class="collapse container bootstrap snippet show" data-parent="#user" style="margin:0 auto; float:none; margin-top: 20px" active>
                 <div class="row">
                     <div class="col-md-10">
                         <h1>User name</h1>
@@ -182,8 +186,6 @@
                     </div>
 
                     <!--chat content-->
-
-            
                     <!--chat content-->
                     <hr>
                     <!--/tab-content-->
