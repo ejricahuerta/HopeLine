@@ -5,8 +5,7 @@
 }
 
 <head>
-
-
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <title>Map Page</title>
@@ -15,8 +14,7 @@
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-
-
+    
 </head>
 
 <div class="contain" style="margin-top: 90px;">
@@ -25,7 +23,7 @@
         //DO NOT SEPERATE JAVASCRIPT TO ANOTHER FILE. Google api must work if javascript code is in the same file.
         //
         //<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-       var searchBox, input, bounds, locationType, marker, placeLoc, places;
+        var searchBox, input, bounds, locationType, marker, placeLoc, places;
         var results = [];
         var markers = [];
         var tempResults = [];
@@ -96,39 +94,41 @@
                         size: new google.maps.Size(71, 71),
                         origin: new google.maps.Point(0, 0),
                         anchor: new google.maps.Point(17, 34),
-                        scaledSize: new google.maps.Size(25, 25)
+                        scaledSize: new google.maps.Size(25, 25),
+                       
                     };
                     // Create a marker for each place.
                     markers.push(new google.maps.Marker({
                         map: map,
                         icon: icon,
                         title: place.name,
-                        position: place.geometry.location
-                       
+                        position: place.geometry.location,
+                        
                     }));
-                   
-           // tempLong = parseFloat(place.geometry.location.lat());
-           // tempLat = parseFloat(place.geometry.location.lng());
-                     // console.log(tempLong,tempLat);
-           setPosition(place.geometry.location.lat(),place.geometry.location.lng());
+
+                    // tempLong = parseFloat(place.geometry.location.lat());
+                    // tempLat = parseFloat(place.geometry.location.lng());
+                    // console.log(tempLong,tempLat);
+                    setPosition(place.geometry.location.lat(), place.geometry.location.lng());
                     if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                   } else {
-                    bounds.extend(place.geometry.location);
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                    } else {
+                        bounds.extend(place.geometry.location);
                     }
-                  
+
                 });
                 map.fitBounds(bounds);
             });
         }
 
-          function setPosition(latPar,lngPar){
-           pos = {
-               lat: latPar,
-               lng: lngPar
-           }
-           //console.log(pos.lat , pos.lng + "in setPosition");
+        function setPosition(latPar, lngPar) {
+            pos = {
+                lat: latPar,
+                lng: lngPar
+            }
+          
+            //console.log(pos.lat , pos.lng + "in setPosition");
         }
 
         function searchType(locationType, isChecked) {
@@ -136,32 +136,32 @@
             if (isChecked.checked) {
 
                 searchLocation(locationType);
-               
+
             } else {
                 deleteMarkers(isChecked, locationType);
-              
+
             }
         }
         function searchLocation(locationType) {
 
             infowindow = new google.maps.InfoWindow();
             service = new google.maps.places.PlacesService(map);
-           // console.log(pos.lat , pos.lng + "IN SEARCHLOCATION");
-           // console.log(locationType);
+            // console.log(pos.lat , pos.lng + "IN SEARCHLOCATION");
+            // console.log(locationType);
             var request = {
                 location: pos,
                 radius: 9000,
                 type: [locationType]
             };
             service.nearbySearch(request, function (results, status) {
-               /// console.log(request.location + "<--callback request")
-               /// console.log( pos + "<-callback");
-               // console.log( results + "<-callback");
+                /// console.log(request.location + "<--callback request")
+                /// console.log( pos + "<-callback");
+                // console.log( results + "<-callback");
                 callback(results, status, locationType);
             });
         }
 
-      
+
 
 
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -203,7 +203,7 @@
 
         ////////////////////////////
         function callback(results, status, locationType) {
-           // console.log("callback");
+            // console.log("callback");
             // var chosenBox = [];
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
@@ -217,7 +217,7 @@
         }
         function createMarker(place) {
             placeLoc = place.geometry.location;
-           // console.log(placeLoc.lat,placeLoc.lng + "createMarker()");
+            // console.log(placeLoc.lat,placeLoc.lng + "createMarker()");
             marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
@@ -234,23 +234,29 @@
 
 </div>
 
-<div class="contain">
+<input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
+<label for="c1">
+    <div>&#x2714;</div>Hospital<br />
+</label>
+<input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
+<label for="c2">
+    <div>&#x2714;</div>Pharmacy<br />
+</label>
+<input name="locationBox" value="physiotherapist" type="checkbox" id="c3" onclick="searchType('physiotherapist',this)" />
+<label for="c3">
+    <div>&#x2714;</div>Physiotherapist<br />
+</label>
+<input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
+<label for="c4">
+    <div>&#x2714;</div>Doctor<br />
+</label>
 
-    <input name="locationBox" value="hospital" type="checkbox" id="locations" onclick="searchType('hospital',this)" style="display:inline-block; margin-left: 5em;">
-    <h2>Hospitals </h2>
-    <input name="locationBox" value="pharmacy" type="checkbox" id="locations" onclick="searchType('pharmacy',this)" style="display:inline-block; margin-left: 5em;">
-    <h2>Pharmacy </h2>
-    <input name="locationBox" value="physiotherapist" type="checkbox" id="locations" onclick="searchType('physiotherapist',this)" style="display:inline-block; margin-left: 5em;">
-    <h2>Physiotherapist</h2>
-    <input name="locationBox" value="doctor" type="checkbox" id="locations" onclick="searchType('doctor',this)" style="display:inline-block; margin-left: 5em;">
-    <h2>Doctors </h2>
 
-    <button class="button" onClick="clearMarkers()">Clear Markers</button>
+<button class="button" onClick="clearMarkers()">Clear Markers</button>
 
-</div>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
 
-    <div id="map" class="p-0 m-0"></div>
+<div id="map" class="p-0 m-0"></div>
 
 
 

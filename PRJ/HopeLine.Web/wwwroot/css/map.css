@@ -34,7 +34,6 @@ input[type=checkbox] {
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
-    margin-left: 10em;
     font-family:sans-serif;
 }
 
@@ -110,44 +109,38 @@ html, body, .map {
     }
 
 
-
-
-#map-input {
-
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
-    margin-top: 20px;
+label {
+    padding: 0 5px;
 }
 
-    #pac-input:focus {
-
-    text-overflow: ellipsis;
-    width: 400px;
-    margin-top: 20px;
-    padding: 0 11px 0 13px;
+input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
 }
 
-    #map-input:focus {
-
-        border-color: #4d90fe;
+    input[type="checkbox"] + label {
+        text-align: center;
+        cursor: pointer;
     }
 
-#title {
-    color: #fff;
-    background-color: #4d90fe;
-    font-size: 25px;
-    font-weight: 500;
-    padding: 6px 12px;
-}
+ 
+    input[type="checkbox"] + label div {
+        border: 2px solid #666666;
+        border-radius: 2px;
+        content: "";
+        display: inline-block;
+        height: 1.4em;
+        margin-right: 5px;
+        margin-top: -2px;
+        margin-bottom: 4px;
+        transition: all 240ms ease 0s;
+        width: 1.4em;
+        padding: 0;
+        color: transparent;
+    }
 
-#target {
-    width: 345px;
-}
-
+    input[type="checkbox"]:checked + label div {
+        background-color: #2196f3;
+        border-color: white;
+        color: #fff;
+    }
