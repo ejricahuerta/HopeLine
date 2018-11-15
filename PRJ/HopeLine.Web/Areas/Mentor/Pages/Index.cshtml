@@ -10,13 +10,7 @@
 
 }
 
-@foreach (var mentor in Model.Mentors)
-{
-    if (mentor.Username == UserManager.GetUserName(User))
-    {
-        Model.CurrentMentor = mentor;
-    }
-}
+
 
 
 <head>
