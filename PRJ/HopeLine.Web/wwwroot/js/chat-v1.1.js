@@ -1,4 +1,3 @@
-
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
 var userId = $("#userId") != null ? $("#userId").val() : null;
@@ -33,7 +32,9 @@ $(function () {
         //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
         .withUrl("http://localhost:5000/v2/chatHub")
         .build();
+});
 
+function registerhub() {
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         var classId = currentuser == user ? "bg-secondary " : "bg-warning";
@@ -168,7 +169,6 @@ $(function () {
             .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
             //.withUrl("http://localhost:5000/v2/chatHub")
             .build();
-
         registerhub();
         startConnection();
     }
