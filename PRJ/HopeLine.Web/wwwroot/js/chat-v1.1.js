@@ -30,27 +30,24 @@ console.log("pin = " + room);
 $(function () {
     connection = new signalR.HubConnectionBuilder()
         .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        //.withUrl("http://localhost:5000/v2/chatHub")
+        // .withUrl("http://localhost:5000/v2/chatHub")
         .build();
 });
 
 function registerhub() {
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
-        var classId = currentuser == user ? "bg-secondary " : "bg-warning";
-        var userClass = currentuser == user ? "float-right" : "float-left";
+        var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
             '<div id="message" class=" msg col-11 mb-3 bg-light">' +
-            // '<h5 class="' +
-            // userClass +
-            // '"><small>' +
-            // user +
-            // "</small></h5>" +
-            '<div class="col-8 ' +
-            userClass +
-            " " +
+            '<h5 class="' +
             classId +
-            ' text-justify rounded p-2" style="min-height:50px;">' +
+            '"><small>' +
+            user +
+            "</small></h5>" +
+            '<div class="col-8 ' +
+            classId +
+            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
             message +
             "</div></div>"
         );
@@ -60,17 +57,15 @@ function registerhub() {
         var classId = currentuser == user ? "bg-secondary " : "bg-warning";
         var userClass = currentuser == user ? " float-right" : "float-left";
         $("#chatbox").append(
-            '<div id="message" class=" msg col-11 mb-3">' +
-            // '<h5 class="' +
-            // userClass +
-            // '"><small>' +
-            // user +
-            // "</small></h5>" +
-            '<div class="col-8 ' +
-            userClass +
-            " " +
+            '<div id="message" class=" msg col-11 mb-3 bg-light">' +
+            '<h5 class="' +
             classId +
-            ' text-justify rounded p-2" style="min-height:50px;">' +
+            '"><small>' +
+            user +
+            "</small></h5>" +
+            '<div class="col-8 ' +
+            classId +
+            ' text-justify rounded p-2" style="border-width:8px !important; min-height:50px;">' +
             message +
             "</div></div>"
         );
@@ -102,7 +97,10 @@ function registerhub() {
                         });
                     $(this).parent().remove();
                     event.preventDefault();
-                    window.location.replace("https://hopeline.azurewebsites.net/chat");
+                    window.location
+                        // .replace("https://hopeline.azurewebsites.net/chat");
+                        .replace("https://localhost:8000/chat");
+
                 });
             } else {
                 $("#chatbox").append('<div class = "alert alert-primary" role = "alert" >' +
