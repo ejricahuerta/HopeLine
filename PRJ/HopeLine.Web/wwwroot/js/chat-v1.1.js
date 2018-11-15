@@ -29,8 +29,8 @@ console.log("pin = " + room);
 
 $(function () {
     connection = new signalR.HubConnectionBuilder()
-        //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        .withUrl("http://localhost:5000/v2/chatHub")
+        .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
+        //.withUrl("http://localhost:5000/v2/chatHub")
         .build();
 });
 
