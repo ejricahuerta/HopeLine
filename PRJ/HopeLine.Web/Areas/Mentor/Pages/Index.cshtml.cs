@@ -103,6 +103,19 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
             var url = Url.Page("~/Index");
 
+            HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
+
+            CurrentMentor = new UserViewModel
+            {
+                Id = CurrentUser.Id,
+                //FirstName = CurrentUser.Profile.FirstName,
+                //LastName = CurrentUser.Profile.LastName,
+                Username = CurrentUser.UserName,
+                Email = CurrentUser.Email,
+                AccountType = CurrentUser.AccountType.ToString(),
+                Phone = CurrentUser.PhoneNumber
+            };
+
             if(claim.Value == "User" || claim.Value == "Admin")
             {
                 return Redirect(url);
