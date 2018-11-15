@@ -40,30 +40,49 @@ namespace HopeLine.Web.Pages
 
         public IActionResult OnGet()
         {
-            // var url = Url.Page("/Index", new { area = "Mentor" });
-            // if (User.Identity == null)
-            //{
-            Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
+            /*
+             if user is authenticated, check if user is a mentor
+                if user is a mentor, redirect user to mentor profile page
+                if user is not a mentor, user can access Instant Chat
+            if user is not authenticated
+                user can access Instant Chat
+             */
+            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
+            var url = Url.Page("/Index", new { area = "Mentor" });
+            if (User.Identity.IsAuthenticated)
             {
-                Id = t.Id,
-                Name = t.Name,
-                Description = t.Description
-            }).ToList();
+                if (claim.Value == "Mentor")
+                {
+                    return Redirect(url);
 
-            UserName = HttpContext.Session.GetString("_guest");
-            if (UserName != null)
-            {
-                HttpContext.Session.SetString("_guest", UserName);
+                }
+                return Page();
             }
             else
             {
-                var name = "Guest" + Guid.NewGuid().ToString("N").Substring(0, 12);
-                UserName = name;
-                HttpContext.Session.SetString("_guest", UserName);
-            }
-            // Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
-            return Page();
 
+
+                Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    Description = t.Description
+                }).ToList();
+
+                UserName = HttpContext.Session.GetString("_guest");
+                if (UserName != null)
+                {
+                    HttpContext.Session.SetString("_guest", UserName);
+                }
+                else
+                {
+                    var name = "Guest" + Guid.NewGuid().ToString("N").Substring(0, 12);
+                    UserName = name;
+                    HttpContext.Session.SetString("_guest", UserName);
+                }
+                // Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
+                return Page();
+            }
             //else
             //{
             //    return LocalRedirect(url);
