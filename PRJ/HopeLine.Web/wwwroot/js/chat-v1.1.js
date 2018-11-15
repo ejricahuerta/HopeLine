@@ -14,7 +14,7 @@ var room
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
-        $("#chatbox").append('<a href="http://localhost:8000/instantChat" class="btn btn-info">Retry</a>');
+        $("#chatbox").append('<a href="http://hopeline.azurewebsites.net/instantChat" class="btn btn-info">Retry</a>');
     }, 20000);
 }
 
@@ -30,7 +30,7 @@ console.log("pin = " + room);
 $(function () {
     connection = new signalR.HubConnectionBuilder()
         .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        // .withUrl("http://localhost:5000/v2/chatHub")
+        //.withUrl("http://localhost:5000/v2/chatHub")
         .build();
 });
 
@@ -39,13 +39,12 @@ function registerhub() {
         console.log("Receive Message");
         var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
-            '<div id="message" class=" msg col-11 mb-3 bg-light">' +
-            '<h5 class="' +
-            classId +
-            '"><small>' +
+            '<div id="message" class=" msg mb-3">' +
+            '<small class="' +
+            classId + '">' +
             user +
-            "</small></h5>" +
-            '<div class="col-8 ' +
+            '</small>' +
+            '<div class="' +
             classId +
             ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
             message +
@@ -54,18 +53,16 @@ function registerhub() {
     });
 
     connection.on("Load", function (user, message) {
-        var classId = currentuser == user ? "bg-secondary " : "bg-warning";
-        var userClass = currentuser == user ? " float-right" : "float-left";
+        var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
-            '<div id="message" class=" msg col-11 mb-3 bg-light">' +
-            '<h5 class="' +
-            classId +
-            '"><small>' +
+            '<div id="message" class=" msg mb-3">' +
+            '<small class="' +
+            classId + '">' +
             user +
-            "</small></h5>" +
-            '<div class="col-8 ' +
+            '</small>' +
+            '<div class="' +
             classId +
-            ' text-justify rounded p-2" style="border-width:8px !important; min-height:50px;">' +
+            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
             message +
             "</div></div>"
         );
@@ -98,8 +95,8 @@ function registerhub() {
                     $(this).parent().remove();
                     event.preventDefault();
                     window.location
-                        // .replace("https://hopeline.azurewebsites.net/chat");
-                        .replace("https://localhost:8000/chat");
+                        .replace("https://hopeline.azurewebsites.net/Mentor/Index");
+                    //.replace("https://localhost:8000/chat");
 
                 });
             } else {

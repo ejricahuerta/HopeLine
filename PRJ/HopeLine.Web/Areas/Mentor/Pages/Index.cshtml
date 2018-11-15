@@ -76,30 +76,18 @@
         <div class="content accordion-group">
             <!--Profile tab-->
             <div id="profile" class="collapse container bootstrap snippet show" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 20px" active>
-
-
-
                 <div class="row">
                     <div class="col-md-10">
                         <h1>User name</h1>
                     </div>
-
                 </div>
                 <div class="row p-0 m-0">
                     <div class="col-md-3">
                         <!--left col-->
-
-
                         <div class="text-center">
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-
                         </div>
                         <br>
-
-
-
-
-
                         <ul class="list-group">
                             <li class="list-group-item text-muted"><strong>Specializtions </strong><i class="fa fa-dashboard fa-1x"></i></li>
                             @foreach (var item in Model.Specializations)
@@ -107,22 +95,10 @@
                                 <li class="list-group-item text-right"><span class="pull-left">@item.Name</span> </li>
                             }
                         </ul>
-                        <!--
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Social Media</div>
-                            <div class="panel-body">
-                                <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i>
-                                <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
-                            </div>
-                        </div>
-                            -->
+                    
                     </div>
                     <!--/col-3-->
                     <div class="col-md-5">
-
-
-
-
                         <hr>
                         <form class="form" action="##" method="post" id="registrationForm">
                             <div class="col-md-12">
@@ -223,18 +199,12 @@
                                 <h3>
                                     Chat
                                 </h3>
-                                <div class="form-group">
-                                    <label>@Model.PIN</label>
-                                    <input type="text" class="form-control" id="userInput" placeholder="Name" value="@Model.UserName" />
-                                    <button id="connectButton" type="button" class="btn btn-outline-info text-black-50">Connect</button>
-                                </div>
                             </div>
-                            <div class="card-body bg-white" id="chatbox" style="height:350px;   ">
+                            <div class="card-body bg-white" id="chatbox" style="height:350px; ">
                             </div>
                             <div class="card-footer text-muted">
                                 <div class="form-row">
-                                    <div class="col-9">
-
+                                    <div class="col-12">
                                         <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
                                     </div>
                                     <div class="col-3">
