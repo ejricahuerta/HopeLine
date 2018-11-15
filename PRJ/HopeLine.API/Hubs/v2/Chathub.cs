@@ -6,28 +6,33 @@ using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
 
-namespace HopeLine.API.Hubs.v2 {
+namespace HopeLine.API.Hubs.v2
+{
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
 
-    public class ChatHub : Hub {
+    public class ChatHub : Hub
+    {
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
 
         private string Mentor = "MentorRoomOnly";
-        public ChatHub (IMessage messageService, ICommunication communicationService) {
+        public ChatHub(IMessage messageService, ICommunication communicationService)
+        {
             _messageService = messageService;
             _communicationService = communicationService;
         }
 
-        public override async Task OnDisconnectedAsync (Exception exception) {
-            await base.OnDisconnectedAsync (exception);
+        public override async Task OnDisconnectedAsync(Exception exception)
+        {
+            await base.OnDisconnectedAsync(exception);
 
         }
 
-        public async Task RemoveMessages (string roomId) {
-            _messageService.DeleteAllMessages (roomId);
+        public async Task RemoveMessages(string roomId)
+        {
+            _messageService.DeleteAllMessages(roomId);
         }
         public async Task LoadMessage(string room)
         {
@@ -49,9 +54,11 @@ namespace HopeLine.API.Hubs.v2 {
                         await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
                     }
                 }
-            } catch (System.Exception ex) {
+            }
+            catch (System.Exception ex)
+            {
 
-                throw new System.Exception ("Unable to Load Data: ", ex);
+                throw new System.Exception("Unable to Load Data: ", ex);
             }
         }
 
@@ -64,9 +71,9 @@ namespace HopeLine.API.Hubs.v2 {
                 Text = message
             };
 
-            Console.WriteLine ("Adding Message");
-            _messageService.NewMessage (newmsg);
-            await Clients.Group (room).SendAsync ("ReceiveMessage", user, message);
+            Console.WriteLine("Adding Message");
+            _messageService.NewMessage(newmsg);
+            await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
 
         public async Task AddMentor(string mentorId)
@@ -78,11 +85,14 @@ namespace HopeLine.API.Hubs.v2 {
                 await Groups.AddToGroupAsync(Context.ConnectionId, room);
                 await Clients.Caller.SendAsync("Room", room);
             }
-            try {
-                System.Console.WriteLine ("Mentor available:" + mentorId);
-                await Groups.AddToGroupAsync (Context.ConnectionId, Mentor);
-            } catch (System.Exception ex) {
-                throw new Exception ("Unable to Add Mentor to Group", ex);
+            try
+            {
+                System.Console.WriteLine("Mentor available:" + mentorId);
+                await Groups.AddToGroupAsync(Context.ConnectionId, Mentor);
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception("Unable to Add Mentor to Group", ex);
             }
         }
 
@@ -109,7 +119,7 @@ namespace HopeLine.API.Hubs.v2 {
             try
             {
                 var room = _communicationService.GenerateConnectionId();
-                await Groups.RemoveFromGroupAsync(Context.ConnectionId, Mentor);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, mentorId);
                 await Groups.AddToGroupAsync(userConnectionId, room);
                 await Clients.Client(userConnectionId).SendAsync("Room", room);
                 await _messageService.AndUsersToRoom(mentorId, userId, room);
