@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.Web.Pages
 {
@@ -37,17 +38,11 @@ namespace HopeLine.Web.Pages
         public int IsUser { get; set; }
         public string ReturnUrl { get; set; }
 
-        public IActionResult OnGet(string pin = null, string user = null)
+        public IActionResult OnGet()
         {
-
-            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
-            var url = Url.Page("/Index", new { area = "Mentor" });
-
-            if(claim.Value == "Mentor")
-            {
-                return Redirect(url);
-            }
-            
+            // var url = Url.Page("/Index", new { area = "Mentor" });
+            // if (User.Identity == null)
+            //{
             Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
             {
                 Id = t.Id,
@@ -56,25 +51,24 @@ namespace HopeLine.Web.Pages
             }).ToList();
 
             UserName = HttpContext.Session.GetString("_guest");
-            if (pin == null)
-                PIN = _communication.GenerateConnectionId();
-            else
-                PIN = pin;
-
             if (UserName != null)
             {
                 HttpContext.Session.SetString("_guest", UserName);
             }
-
             else
             {
                 var name = "Guest" + Guid.NewGuid().ToString("N").Substring(0, 12);
                 UserName = name;
                 HttpContext.Session.SetString("_guest", UserName);
             }
-
             // Topics = _commonResource.GetTopics().Select(t => t.Name).ToList();
             return Page();
+
+            //else
+            //{
+            //    return LocalRedirect(url);
+
+            //}
         }
 
         public IActionResult OnPost(string pin = null, string user = null)

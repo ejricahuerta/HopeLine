@@ -46,7 +46,7 @@ namespace HopeLine.Web
                    options.Cookie.HttpOnly = true;
                    options.ExpireTimeSpan = TimeSpan.FromMinutes(120);
 
-                   options.LoginPath = "/Authenticate";
+                   options.LoginPath = "/Index";
                    options.AccessDeniedPath = "/Account/AccessDenied";
                    options.SlidingExpiration = true;
                });
