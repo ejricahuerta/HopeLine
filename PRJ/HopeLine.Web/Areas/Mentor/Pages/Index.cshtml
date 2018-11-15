@@ -192,7 +192,6 @@
 
                     <!--chat content-->
                     <input id="pin" value="@Model.PIN" hidden>
-
                     <div class="chat col-md-4 shadow-sm" fixed>
                         <div class="card">
                             <div class="card-header">
@@ -200,12 +199,12 @@
                                     Chat
                                 </h3>
                             </div>
-                            <div class="card-body bg-white" id="chatbox" style="height:350px; ">
+                            <div class="card-body bg-white" id="chatbox" style="height:350px;overflow-y:auto">
                             </div>
                             <div class="card-footer text-muted">
                                 <div class="form-row">
-                                    <div class="col-12">
-                                        <textarea class="form-control" id="messageInput" rows="1" wrap></textarea>
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="messageInput" rows="1"></textarea>
                                     </div>
                                     <div class="col-3">
                                         <input type="button" id="sendButton" class="btn btn-success" value="Send" />
