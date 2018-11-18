@@ -5,15 +5,6 @@
 }
 
 
-
-@*<section class="py-5" style="background-image: url('https://unsplash.it/1900/1080?image=399');">
-    <a class="btn btn-success" style="width:700px;height:40px;" asp-page="SelectTopics">
-        Click here to communicate with a mentor.
-    </a>
-
-</section>*@
-
-
  <!-- Start Slider Area -->
     <div id="home" class="slider-area">
       <div class="bend niceties preview-2">
@@ -29,29 +20,27 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="slider-content">
-                      
-                      <!-- layer 1 -->
-                      <div class="layer-1-1 f wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
-                          <h2 class="title1">Welcome  HopeLine</h2>
-                      </div>
-                      <!-- layer 2 -->
-                      <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                          <h1 class="title2">We're here to help you. Click the button below to speak to a mentor</h1>
-                      </div>
-                      <!-- layer 3 -->
-                      <div class="layer-1-3  wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                          <a class="btn btn-primary btn-lg" asp-page="/InstantChat" style="width: 200px; height: 40px; resize: both;">
-                              Click here to talk
-                              to a mentor
-                          </a>
-                          <!--<a class="ready-btn page-scroll" href="#about">Learn More</a>-->
-                      </div>
+                <div class="slider-content">
+                  <!-- layer 1 -->
+                  <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
+                    <h2 class="title1">Welcome to HopeLine</h2>
                   </div>
+                  <!-- layer 2 -->
+                  <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                    <h1 class="title2">We're here to help you. Click the button below to speak to a mentor</h1>
+                  </div>
+                  <!-- layer 3 -->
+                  <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
+                    <a class="btn btn-primary" btn-lg asp-page="/InstantChat" style="width: 200px; height: 40px; resize: both;">Click here to talk
+                      to a mentor</a>
+                    <!--<a class="ready-btn page-scroll" href="#about">Learn More</a>-->
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <!-- End Slider Area -->
@@ -127,7 +116,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/InstantChat")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-comments"></i>
                   </a>
                   <h4>Live Chat</h4>
@@ -144,7 +133,7 @@
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/InstantChat")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-camera-retro"></i>
                   </a>
                   <h4>Video Chat</h4>
@@ -161,7 +150,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/InstantChat")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-volume-up"></i>
                   </a>
                   <h4>Audio Chat</h4>
@@ -179,7 +168,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/Resources")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-link"></i>
                   </a>
                   <h4>Resources Page </h4>
@@ -200,7 +189,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/Communities")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-window-restore"></i>
                   </a>
                   <h4>Community Page</h4>
@@ -222,7 +211,7 @@
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/Map")>
+                  <a class="services-icon" href="#">
                     <i class="fa fa-map"></i>
                   </a>
                   <h4>Map Page</h4>
@@ -261,15 +250,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
 
                 <!-- Start  contact -->
-                <form size="550">
+                <form size="550" onsubmit="alert('Thank you for your submission')">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="col-md-12 col-sm-12 col-xs-12" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <label for="applyInput">Email address</label>
+                        <input type="email" class="col-md-12 col-sm-12 col-xs-12" id="applyInput" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="col-md-12 col-sm-12 col-xs-12" id="exampleInputPassword1" placeholder="Password">
+                        <label for="FullNameInput">Full Name</label>
+                        <input type="text" class="col-md-12 col-sm-12 col-xs-12" id="FullNameInput" placeholder="Full Name">
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type="checkbox" class="col-md-12 col-sm-12 col-xs-12" id="exampleCheck1">
@@ -277,10 +265,14 @@
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <input type='file' name='upload'><h7>Attatch CV/Resume</h7>
-                     </div>
+
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <br>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                         <br>
-                        <br>
+                    
                 </form>
                 <br>
                 <br>
@@ -332,38 +324,6 @@
       </div>
     </div>
     <!-- End Contact Area -->
-    <div class="row">
-    <!-- Start contact icon column -->
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="contact-icon text-center">
-          <div class="single-icon">
-            <i class="fa fa-phone"></i>
-            <p>Call: 416-491-5050<br><span>Monday-Friday (9am-5pm)</span></p>
-          </div>
-        </div>
-      </div>
-            <!-- Start contact icon column -->
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="contact-icon text-center">
-          <div class="single-icon">
-            <i class="fas fa-envelope-open"></i>
-            <p>Email: prj56607@outlook.com<br><span>Web: hopeline.azurewebsites.com</span></p>
-          </div>
-        </div>
-      </div>
-            <!-- Start contact icon column -->
-      <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="contact-icon text-center">
-          <div class="single-icon">
-                  <i class="fas fa-map-marker" ></i>
-                  <p>
-                    Location: 60 pond rd<br>
-                    <span> North York, ON M3N 3A1</span>
-                  </p>
-          </div>
-        </div>
-      </div>
-    </div>
- 
+
 
 
