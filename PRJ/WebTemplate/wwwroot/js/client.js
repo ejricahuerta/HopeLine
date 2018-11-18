@@ -1,17 +1,61 @@
-$(window).ready(function () {
+var conn = new signalR.HubConnectionBuilder()
+    .withUrl("https://hopelineapi.azurewebsites.net/chathub")
+    // .withUrl("http://localhost:5000/chatHub")
+    .build();
 
+conn.onclose(function (e) {
+    console.log("on close" + e);
+});
+
+conn.on("Connecting", function (msg) {
+    var data = JSON.parse(msg.data);
+    console.log("before switch case");
+
+    switch (data.type) {
+        case "offer":
+            console.log("switch offer");
+            handleOffer(data.offer);
+            console.log("getting offer");
+            break
+        case "answer":
+            console.log("switch answer");
+            handleAnswer(data.answer);
+            break;
+        case "candidate":
+            console.log("switch candidate");
+            handleCandidate(data.candidate);
+            break;
+    }
+});
+
+conn.on("Notify", function (msg) {
+    console.log("nofitying... " + msg);
 })
+
+$(window).ready(function () {
+    conn.start().then(function () {
+        // invoke.on("");
+        console.log("connecting");
+    });
+});
 
 //our username 
 var name;
 var connectedUser;
 
 //connecting to our signaling server
-var conn = new WebSocket('ws://localhost:9090');
+// var conn = new WebSocket('ws://localhost:9090');
 
-conn.onopen = function () {
-    console.log("Connected to the signaling server");
-};
+// conn.onopen = function () {
+//     console.log("Connected to the signaling server");
+// };
+
+// conn.start().then(function () {
+//     // invoke.on("");
+//     console.log("connecting");
+// });
+
+console.log("on ready");
 
 //when we got a message from a signaling server 
 conn.onmessage = function (msg) {
@@ -52,8 +96,10 @@ function send(message) {
     if (connectedUser) {
         message.name = connectedUser;
     }
+    console.log("in send function");
 
     conn.send(JSON.stringify(message));
+
 };
 
 //****** 
@@ -139,6 +185,18 @@ function handleLogin(success) {
                     });
                 }
             };
+
+            yourConn.createOffer(function (offer) {
+                send({
+                    type: "offer",
+                    offer: offer
+                });
+
+                yourConn.setLocalDescription(offer);
+                console.log("created offer")
+            }, function (error) {
+                alert("Error when creating an offer");
+            });
 
         }, function (error) {
             console.log(error);

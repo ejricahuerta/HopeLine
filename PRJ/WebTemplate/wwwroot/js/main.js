@@ -1,36 +1,51 @@
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("https://hopelineapi.azurewebsites.net/chathub")
+  // .withUrl("http://localhost:5000/chatHub")
+  .build();
 
+connection.onclose(function (e) {
+  console.log("on close" + e);
+});
 
+connection.on("Connecting", function (msg) {
+  var data = JSON.parse(msg.data);
+  console.log("before switch case");
+
+  switch (data.type) {
+    case "offer":
+      console.log("switch offer");
+      handleOffer(data.offer);
+      console.log("getting offer");
+      break
+    case "answer":
+      console.log("switch answer");
+      handleAnswer(data.answer);
+      break;
+    case "candidate":
+      console.log("switch candidate");
+      handleCandidate(data.candidate);
+      break;
+  }
+});
+
+connection.on("Notify", function (msg) {
+  console.log("nofitying... " + msg);
+})
 $(window).ready(function () {
 
 
-  var connection = new signalR.HubConnectionBuilder()
-    .withUrl("https://peer-js.azurewebsites.net/rtchub")
-    // .withUrl("http://localhost:5000/chatHub")
-    .build();
 
 
-  connection.on("Connecting", function (msg) {
-    var data = JSON.parse(msg.data);
-
-    switch (data.type) {
-      case "offer":
-        handleOffer(data.offer);
-        console.log("getting offer");
-        break
-      case "answer":
-        handleAnswer(data.answer);
-        break;
-      case "candidate":
-        handleCandidate(data.candidate);
-        break;
-    }
-  });
-
-  connection.start().catch(function (e) {
+  let room1 = "room1";
+  console.log("before start");
+  connection.start().then(function () {
+    // connection.invoke('Add', room1);
+    console.log("connection start");
+  }).catch(function (e) {
     console.log(e.toString());
   });
+  console.log("after start");
 
-  connection.invoke("Add", "room1");
 
 
   navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
@@ -92,6 +107,7 @@ $(window).ready(function () {
       type: "offer",
       offer: offer
     };
+    console.log("creating offer");
 
     connection.invoke("Connect", JSON.stringify(sendOffer), "room1")
 
@@ -134,7 +150,7 @@ function handleOffer(offer) {
 // In this codelab, you will be streaming video only: "video: true".
 // Audio will not be streamed because it is set to "audio: false" by default.
 const mediaStreamConstraints = {
-  video: false,
+  video: true,
   audio: true
 };
 
