@@ -14,6 +14,7 @@ namespace HopeLine.API.Hubs.v2
 
     public class ChatHub : Hub
     {
+        private bool isConnected = false;
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
 
@@ -38,7 +39,11 @@ namespace HopeLine.API.Hubs.v2
         }
         public async Task Connect(string connection, string room)
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, room);
+            if (!isConnected)
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                isConnected = true;
+            }
             // _logger.LogInformation("Attempting to connect...");
             await Clients.Group(room).SendAsync("Connecting", connection);
         }
