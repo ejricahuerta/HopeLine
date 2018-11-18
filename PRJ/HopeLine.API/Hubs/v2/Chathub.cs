@@ -14,6 +14,7 @@ namespace HopeLine.API.Hubs.v2
 
     public class ChatHub : Hub
     {
+        private bool isConnected = false;
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
 
@@ -24,15 +25,47 @@ namespace HopeLine.API.Hubs.v2
             _communicationService = communicationService;
         }
 
+
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             await base.OnDisconnectedAsync(exception);
 
         }
+        public async Task Remove(string connection, string room)
+        {
+            // _logger.Log(LogLevel.Information, "Removing room");
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
+            await Clients.Group(room).SendAsync("Notify", "The other User just left.");
+        }
+        public async Task Connect(string connection, string room)
+        {
+            if (!isConnected)
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                isConnected = true;
+            }
+            // _logger.LogInformation("Attempting to connect...");
+            await Clients.Group(room).SendAsync("Connecting", connection);
+        }
+
+        public async Task Add(string room)
+        {
+            await Clients.Caller.SendAsync("Notify", "Adding!");
+            try
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+            }
+            catch (System.Exception)
+            {
+
+                throw new Exception("Unable to add to room");
+            }
+            //_logger.LogInformation("Adding new Client...");
+        }
 
         public async Task RemoveMessages(string roomId)
         {
-            _messageService.DeleteAllMessages(roomId);
+            await _messageService.DeleteAllMessages(roomId);
         }
         public async Task LoadMessage(string room)
         {
