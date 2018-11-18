@@ -6,7 +6,7 @@
 @inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
 @{
     //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-    Layout = "/Pages/Shared/_Layout.cshtml";
+    Layout = "/Pages/Shared/_mentorLayout.cshtml";
 
 }
 
@@ -22,6 +22,14 @@
 <head>
     <link rel="stylesheet" , href="~/css/resources.css" />
 
+    <style>
+        .hidediv{
+            display: none;
+        }
+        .unhidedive{
+            display: block;
+        }
+    </style>
 </head>
 
 <section class="mt-5">
@@ -78,101 +86,68 @@
             <div id="profile" class="collapse container bootstrap snippet show" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 20px" active>
                 <div class="row">
                     <div class="col-md-10">
-                        <h1>User name</h1>
+                        <h1>@Model.CurrentMentor.Username</h1>
+                    </div>
+                    <div class="col-md-2">
+                        <input id="unhide" type="button" value="Go Chat" />
                     </div>
                 </div>
                 <div class="row p-0 m-0">
-                    <div class="col-md-3">
-                        <!--left col-->
-                        <div class="text-center">
-                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-                        </div>
-                        <br>
-                        <ul class="list-group">
-                            <li class="list-group-item text-muted"><strong>Specializtions </strong><i class="fa fa-dashboard fa-1x"></i></li>
-                            @foreach (var item in Model.Specializations)
-                            {
-                                <li class="list-group-item text-right"><span class="pull-left">@item.Name</span> </li>
-                            }
-                        </ul>
                     
-                    </div>
-                    <!--/col-3-->
-                    <div class="col-md-5">
+                    <div class="col-md-8">
                         <hr>
                         <form class="form" action="##" method="post" id="registrationForm">
                             <div class="col-md-12">
                                 <div class="form-group">
-
-
-                                    <label for="email">
-                                        <h4>Mentor Id</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id disabled>
+                                    <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id hidden disabled>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">
+                                            <h4>Email</h4>
+                                        </label>
+                                        <input type="email" class="form-control" name="email" id="email" placeholder=@Model.CurrentMentor.Email
+                                               title="enter your email." disabled>
+                                    </div>
+                                </div>
 
-                            <div class="col-md-12">
-                                <div class="form-group">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
 
-                                    <label for="email">
-                                        <h4>Email</h4>
-                                    </label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder=@Model.CurrentMentor.Email
-                                           title="enter your email." disabled>
+                                        <label for="phone">
+                                            <h4>Phone Number</h4>
+                                        </label>
+                                        <input type="text" class="form-control" name="phone" id="phone" value=@Model.CurrentMentor.Phone>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
-                            <div class="col-md-12">
-                                <div class="form-group">
+
+                                        <label for="username">
+                                            <h4>First Name</h4>
+                                        </label>
+                                        <input type="text" class="form-control" name="username" id="username" value=@Model.CurrentMentor.FirstName>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
 
 
-                                    <label for="username">
-                                        <h4>Username</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder=@Model.CurrentMentor.Username
-                                           disabled>
+                                        <label for="username">
+                                            <h4>Last Name</h4>
+                                        </label>
+                                        <input type="text" class="form-control" name="username" id="username" value=@Model.CurrentMentor.LastName>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-
-
-                                    <label for="phone">
-                                        <h4>Phone Number</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="phone" id="phone" placeholder=@Model.CurrentMentor.Phone>
-                                </div>
-                            </div>
-                            <!--
-                            <div class="col-md-12">
-                                <div class="form-group">
-
-
-                                    <label for="first_name">
-                                        <h4>First name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder=@Model.CurrentMentor.FirstName
-                                           title="enter your first name if any.">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-
-
-                                    <label for="last_name">
-                                        <h4>Last name</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder=@Model.CurrentMentor.LastName
-                                           title="enter your last name if any.">
-                                </div>
-                            </div>
-                            -->
-
-
-
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -191,8 +166,9 @@
                     </div>
 
                     <!--chat content-->
+                    
                     <input id="pin" value="@Model.PIN" hidden>
-                    <div class="chat col-md-4 shadow-sm" fixed>
+                    <div class="chat col-md-4 shadow-sm hidediv" id="chatwindow" fixed>
                         <div class="card">
                             <div class="card-header">
                                 <h3>
@@ -304,7 +280,9 @@
 
 </section>
 
+
 <script>
+    
 
     $("#switch-id").on("click", function () {
         $("#password").prop("disabled", !$("#password").prop("disabled"));
@@ -316,4 +294,23 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        $(function () {
+            $("#unhide").click(function () {
+                console.log("fewafwgfWGRBGFRFWE")
+                var item = document.getElementById("chatwindow");
+                if (item) {
+                    if (item.className == "chat col-md-4 shadow-sm hidediv") {
+                        item.className = "chat col-md-4 shadow-sm unhidediv";
+                        $("#unhide").value = "Close"
+                    } else {
+                        item.className = "chat col-md-4 shadow-sm hidediv";
+                        $("#unhide").value = "Go Chat"
+                    }
+                }
+            });
+
+        });
+    </script>
 }

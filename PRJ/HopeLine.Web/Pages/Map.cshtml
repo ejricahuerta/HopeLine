@@ -2,6 +2,14 @@
 @model HopeLine.Web.Pages.MapModel
 @{
     ViewData["Title"] = "Map";
+    if (Model.isUser)
+    {
+        Layout = "/Pages/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Pages/Shared/_mentorLayout.cshtml";
+    }
 }
 
 <head>
