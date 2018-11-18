@@ -32,24 +32,34 @@ namespace HopeLine.API.Hubs.v2
         }
         public async Task Remove(string connection, string room)
         {
-           // _logger.Log(LogLevel.Information, "Removing room");
+            // _logger.Log(LogLevel.Information, "Removing room");
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
-            await Clients.Group(room).SendAsync("Notify","The other User just left.");
+            await Clients.Group(room).SendAsync("Notify", "The other User just left.");
         }
         public async Task Connect(string connection, string room)
         {
-           // _logger.LogInformation("Attempting to connect...");
-           await Clients.Group(room).SendAsync("Connecting",connection);      
+            // _logger.LogInformation("Attempting to connect...");
+            await Clients.Group(room).SendAsync("Connecting", connection);
         }
 
-        public async Task Add(string room){
+        public async Task Add(string room)
+        {
+            await Clients.Caller.SendAsync("Notify", "Adding!");
+            try
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+            }
+            catch (System.Exception)
+            {
+
+                throw new Exception("Unable to add to room");
+            }
             //_logger.LogInformation("Adding new Client...");
-            await Groups.AddToGroupAsync(Context.ConnectionId,room);
         }
 
         public async Task RemoveMessages(string roomId)
         {
-            _messageService.DeleteAllMessages(roomId);
+            await _messageService.DeleteAllMessages(roomId);
         }
         public async Task LoadMessage(string room)
         {
