@@ -4,7 +4,14 @@
     Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
 }
 
-    <div class="row">
+
+
+
+
+
+
+<div class="container">
+    <div class="row" style="margin-top:60px">
         <div class="col-md-4 float-left">
             <input type="text" value="Search" />
         </div>
@@ -25,73 +32,74 @@
         </div>
 
     </div>
-<hr />
-<div class="container">
-    <div class="row">
-        <b class="col-md-2">Id</b>
-        <b class="col-md-2">First&nbsp;Name</b>
-        <b class="col-md-2">Last&nbsp;Name</b>
-        <b class="col-md-2">Account&nbsp;Type</b>
-        <b class="col-md-4">Manage</b>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000001</div>
-        <div class="col-md-2">John</div>
-        <div class="col-md-2">Doe</div>
-        <div class="col-md-2">User</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
-        </div>
     </div>
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000002</div>
-        <div class="col-md-2">Steve</div>
-        <div class="col-md-2">Smith</div>
-        <div class="col-md-2">Mentor</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
-
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000003</div>
-        <div class="col-md-2">Jack</div>
-        <div class="col-md-2">Peng</div>
-        <div class="col-md-2">Admin</div>
-        <div class="col-md-4">
-            <a href="ManageAccounts.cshtml" class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
-
-    <!--
-
-        foreach (var item in collection)
-        {
-            <hr />
+    <div class="container">
         <div class="row">
-            <div class="col-md-2">item.Id</div>
-            <div class="col-md-2">item.FirstName</div>
-            <div class="col-md-2">item.LastName</div>
-            <div class="col-md-2">item.AccountType</div>
+            <b class="col-md-2">Id</b>
+            <b class="col-md-2">First&nbsp;Name</b>
+            <b class="col-md-2">Last&nbsp;Name</b>
+            <b class="col-md-2">Account&nbsp;Type</b>
+            <b class="col-md-4">Manage</b>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">000001</div>
+            <div class="col-md-2">John</div>
+            <div class="col-md-2">Doe</div>
+            <div class="col-md-2">User</div>
             <div class="col-md-4">
                 <a class="btn btn-warning">
                     Manage
                 </a>
             </div>
         </div>
-        }
 
-        -->
-</div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">000002</div>
+            <div class="col-md-2">Steve</div>
+            <div class="col-md-2">Smith</div>
+            <div class="col-md-2">Mentor</div>
+            <div class="col-md-4">
+                <a class="btn btn-warning">
+                    Manage
+                </a>
+            </div>
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-2">000003</div>
+            <div class="col-md-2">Jack</div>
+            <div class="col-md-2">Peng</div>
+            <div class="col-md-2">Admin</div>
+            <div class="col-md-4">
+                <a href="ManageAccounts.cshtml" class="btn btn-warning">
+                    Manage
+                </a>
+            </div>
+        </div>
+
+        <!--
+
+            foreach (var item in collection)
+            {
+                <hr />
+            <div class="row">
+                <div class="col-md-2">item.Id</div>
+                <div class="col-md-2">item.FirstName</div>
+                <div class="col-md-2">item.LastName</div>
+                <div class="col-md-2">item.AccountType</div>
+                <div class="col-md-4">
+                    <a class="btn btn-warning">
+                        Manage
+                    </a>
+                </div>
+            </div>
+            }
+
+            -->
+    </div>
 
 
