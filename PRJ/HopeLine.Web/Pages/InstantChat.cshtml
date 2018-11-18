@@ -12,17 +12,21 @@
         <div class="col-md-3 col-sm-12 d-none d-md-block border" style=" overflow-y: auto">
             <form method="POST" class="p-0 m-0">
                 <div class="row justify-content-center" id="list">
-
+                    @{ 
+                        var filter = "";
+                    }
                     <!--Search-->
                     <div class="col-12 m-3 " style="position:sticky;top:0;z-index:1;">
-                        <input class="form-control" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" id="myInput" type="search" placeholder="Search" aria-label="Search">
                     </div>
 
                     <!--Topics-->
-                    @foreach (var item in Model.Topics)
+                    @foreach (var item in Model.Topics.Where(i => i.Name.Contains(filter)))
                     {
-                        <div class="col-12">
+                       
+                        <div class="col-12" id="myUL">
                             <div class="form-check form-group" id="Topic">
+                                <p>@filter</p>
                                 <label class="p-0 col-9 form-check-label  css-label" for="Topic1">@item.Name</label>
                                 <input class="p-0 col-3 form-check-input float-right" type="checkbox" id="Topic1" style="height:20px; width:20px" />
                             </div>
@@ -84,8 +88,8 @@
 
             <div id="sendArea" class="col-12 border bg-white p-1" style="position:absolute; bottom:0;">
                 <div class="row m-1">
-                    <div class="col-8">
-                        <textarea id="messageInput" class="form-control col-10" type="text" placeholder="type a message" rows="1"></textarea>
+                    <div class="col-8" id="messageBar">
+                        <textarea id="messageInput" class="form-control col-10" type="text" placeholder="type a message" rows="1" autofocus></textarea>
                     </div>
                     <div class="col-3">
                         <input id="sendButton" type="button" class="btn btn-info btn-lg" value="Send" />
@@ -102,33 +106,55 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     -->
     <script>
+        filter = $('#myInput').val();
+        /*
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("div");
+            console.log("Number of topics: " + li.length);
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("label")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        */
+        // Hit ENTER to send messages
+        $(function () {
+            $("#messageInput").keypress(function (enter) {
+                var code = (enter.keyCode ? enter.keyCode : enter.which);
+                
+                if (code == 13) {
+                    enter.preventDefault();
+                    $("#sendButton").trigger('click');
+                    /*
+                    $("#messageInput").remove();
+
+                    $('<textarea>', {
+                        id: 'messageInput',
+                        class: 'form-control col-10',
+                        type: 'text',
+                        placeholder: 'type a message',
+                        rows: '1'
+                    }).appendTo("#messageBar");
+                    */
+                }
+            });
+        });
+
         $("#sendButton").click(function () {
             $("#messages").animate({
                 scrollTop: $('#messages').prop("scrollHeight")
             }, "slow");
         });
 
-        function filterTopics() {
-            var input, filter, list, div, label, i
-
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            list = document.getElementById("list");
-            div = list.getElementById("Topic");
-
-            for (i = 0; i < label.length; i++) {
-                label = div[i].getElementsByTagName("label");
-                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    div[i].style.display = "";
-
-                } else {
-                    div[i].style.display = "none";
-
-                }
-
-            }
-
-        }
+        
 
             /*
             function listFilter(list, input) {
