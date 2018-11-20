@@ -29,6 +29,10 @@
         .unhidedive{
             display: block;
         }
+        #message {
+            height: 80px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -175,7 +179,7 @@
                                     Chat
                                 </h3>
                             </div>
-                            <div class="card-body bg-white" id="chatbox" style="height:350px;overflow-y:auto">
+                            <div class="card-body bg-light" id="chatbox" style="height:350px;overflow-y:auto">
                             </div>
                             <div class="card-footer text-muted">
                                 <div class="form-row">
@@ -324,5 +328,27 @@
                 }
             });
         });
+
+        // Automatically scroll down
+        const messages = document.getElementById('message');
+
+        function getMessage() {
+            shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+            appendMessage();
+            if (!shouldScroll) {
+                scrollToBottom();
+            }
+        }
+
+        function scrollToBottom() {
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        scrollToBottom();
+
+        setInterval(getMessage, 10);
+
+
+        ////////////////////
     </script>
 }

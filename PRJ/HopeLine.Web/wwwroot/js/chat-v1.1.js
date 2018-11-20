@@ -39,7 +39,8 @@ function registerhub() {
         console.log("Receive Message");
         var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
-            '<div id="message" class=" msg mb-3">' +
+            '<br/>' +
+            '<div id="message" class="msg mb-3">' +
             '<small class="' +
             classId + '">' +
             user +
@@ -55,6 +56,7 @@ function registerhub() {
     connection.on("Load", function (user, message) {
         var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
+            '<br/>' +
             '<div id="message" class=" msg mb-3">' +
             '<small class="' +
             classId + '">' +

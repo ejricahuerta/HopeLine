@@ -6,6 +6,15 @@
     ViewData["Title"] = "Talk to Mentor";
 }
 
+<head>
+    <style>
+        #message {
+            height: 80px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
 <input id="isUser" value=@Model.IsUser hidden />
 <section class="container" style="margin-top:100px;">
     <div class="row justify-content-center p-2 shadow-lg">
@@ -52,37 +61,11 @@
 
             <input id="pin" value=@Model.PIN hidden />
             <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
-                <div id="chatbox" class="row p-1">
+                <div id="chatbox" class="card-body bg-white" style="overflow-y:auto">
                     <div class="col-12" id="loading">
                         Waiting for Mentor...
                         <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </div>
-                    <!--
-
-                    <div id="message" class="col-11 mb-5">
-                        <h5>User</h5>
-                        <p class="bg-primary text-justify rounded p-2" style="min-height:50px;">
-
-
-                        </p>
-                    </div>
-                    <div id="message" class="col-11 mb-5">
-                        <h5 class="text-right">User</h5>
-                        <p class="bg-primary rounded p-2 text-justify" style="min-height:50px;">
-                            Lorem ipsum dolor sit amet,
-                            consectetur
-                            adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
-                            feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
-                            non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
-                            tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
-                            Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
-                            tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
-                            dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
-                            luctus.
-
-                        </p>
-                    </div>
-                    -->
                 </div>
             </div>
 
@@ -144,8 +127,27 @@
             }, "slow");
         });
 
+        // Automatically scroll down
+        const messages = document.getElementById('message');
         
+        function getMessage() {
+            shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+            appendMessage();
+            if (!shouldScroll) {
+                scrollToBottom();
+            }
+        }
 
+        function scrollToBottom() {
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        scrollToBottom();
+
+        setInterval(getMessage, 10);
+
+
+        ////////////////////
             /*
             function listFilter(list, input) {
                 bar $lbs = list.find('.css-label');
