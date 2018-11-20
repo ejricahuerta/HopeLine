@@ -202,3 +202,37 @@ $("#sendButton").click(function (event) {
 $("#logout").click(function () {
     connection.invoke("RemoveUser", userId, room, isUser);
 });
+
+// Automatically scroll down
+const messages = document.getElementById('message');
+
+function getMessage() {
+    shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+    if (!shouldScroll) {
+        scrollToBottom();
+    }
+}
+
+function scrollToBottom() {
+    messages.scrollTop = messages.scrollHeight;
+}
+
+var i = setInterval(getMessage, 700);
+
+function stopAutoScroll() {
+    clearInterval(i);
+    console.log("CLEARED");
+}
+
+$("#message").scroll(function (m) {
+    if ($(this).is(':animated')) {
+        stopAutoScroll();
+    }
+});
+
+scrollToBottom();
+
+
+
+
+        ////////////////////

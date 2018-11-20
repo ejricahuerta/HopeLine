@@ -179,20 +179,23 @@
                                     Chat
                                 </h3>
                             </div>
-                            <div class="card-body bg-light" id="chatbox" style="height:350px;overflow-y:auto">
+                            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="message">
+                                <div id="chatbox" class="card-body bg-clear">
+                                    
+                                </div>
                             </div>
-                            <div class="card-footer text-muted">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="messageInput" rows="1"></textarea>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus/>
+                                <div class="card-footer text-muted">
+                                    <div class="form-row">
+                                        <div class="col-9">
+                                            <textarea class="form-control" id="messageInput" rows="1"></textarea>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     <!--chat content-->
                     <hr>
@@ -329,26 +332,6 @@
             });
         });
 
-        // Automatically scroll down
-        const messages = document.getElementById('message');
-
-        function getMessage() {
-            shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-            appendMessage();
-            if (!shouldScroll) {
-                scrollToBottom();
-            }
-        }
-
-        function scrollToBottom() {
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        scrollToBottom();
-
-        setInterval(getMessage, 10);
-
-
-        ////////////////////
+        
     </script>
 }

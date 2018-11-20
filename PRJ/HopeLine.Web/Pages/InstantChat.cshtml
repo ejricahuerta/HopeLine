@@ -60,8 +60,8 @@
             </div>
 
             <input id="pin" value=@Model.PIN hidden />
-            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
-                <div id="chatbox" class="card-body bg-white" style="overflow-y:auto">
+            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="message">
+                <div id="chatbox" class="card-body bg-clear">
                     <div class="col-12" id="loading">
                         Waiting for Mentor...
                         <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
@@ -127,27 +127,7 @@
             }, "slow");
         });
 
-        // Automatically scroll down
-        const messages = document.getElementById('message');
-        
-        function getMessage() {
-            shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-            appendMessage();
-            if (!shouldScroll) {
-                scrollToBottom();
-            }
-        }
-
-        function scrollToBottom() {
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        scrollToBottom();
-
-        setInterval(getMessage, 10);
-
-
-        ////////////////////
+       
             /*
             function listFilter(list, input) {
                 bar $lbs = list.find('.css-label');
