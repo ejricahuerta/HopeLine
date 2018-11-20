@@ -183,7 +183,7 @@
                                         <textarea class="form-control" id="messageInput" rows="1"></textarea>
                                     </div>
                                     <div class="col-3">
-                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" />
+                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus/>
                                     </div>
                                 </div>
                             </div>
@@ -311,6 +311,18 @@
                 }
             });
 
+        });
+
+        // Hit ENTER to send messages
+        $(function () {
+            $("#messageInput").keypress(function (enter) {
+                var code = (enter.keyCode ? enter.keyCode : enter.which);
+
+                if (code == 13) {
+                    enter.preventDefault();
+                    $("#sendButton").trigger('click');
+                }
+            });
         });
     </script>
 }

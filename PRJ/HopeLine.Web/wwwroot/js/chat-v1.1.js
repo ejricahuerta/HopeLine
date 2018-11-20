@@ -71,6 +71,10 @@ function registerhub() {
         room = roomId;
         $("#sendArea").removeClass('d-none');
         connection.invoke("LoadMessage", room);
+        console.log("Room: " + room);
+        $("#sendArea").removeClass("d-none");
+        $("#loading").hide();
+        found();
     });
 
     connection.onclose(function (e) {
@@ -94,10 +98,10 @@ function registerhub() {
                         });
                     $(this).parent().remove();
                     event.preventDefault();
-                    window.location
+                    /*window.location
                         .replace("https://hopeline.azurewebsites.net/Mentor/Index");
                     //.replace("https://localhost:8000/chat");
-
+                    */
                 });
             } else {
                 $("#chatbox").append('<div class = "alert alert-primary" role = "alert" >' +
@@ -109,8 +113,9 @@ function registerhub() {
         });
     } else {
         connection.on("NotifyUser", function (code) {
-            if (code != 1) {
+            if (code == 1) {
                 $("#sendArea").removeClass("d-none");
+                console.log("code: " + code);
                 $("#loading").hide();
                 found();
             } else if (code == 0) {

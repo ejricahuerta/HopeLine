@@ -53,7 +53,7 @@
             <input id="pin" value=@Model.PIN hidden />
             <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
                 <div id="chatbox" class="row p-1">
-                    <div class="col-12 d-none" id="loading">
+                    <div class="col-12" id="loading">
                         Waiting for Mentor...
                         <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </div>
@@ -134,17 +134,6 @@
                 if (code == 13) {
                     enter.preventDefault();
                     $("#sendButton").trigger('click');
-                    /*
-                    $("#messageInput").remove();
-
-                    $('<textarea>', {
-                        id: 'messageInput',
-                        class: 'form-control col-10',
-                        type: 'text',
-                        placeholder: 'type a message',
-                        rows: '1'
-                    }).appendTo("#messageBar");
-                    */
                 }
             });
         });
