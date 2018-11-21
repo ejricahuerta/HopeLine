@@ -211,6 +211,7 @@
 
 })(jQuery);
 
+
 function checkFile(form) {
     if (document.getElementById("fileUpload").files.length == 0) {
         window.alert("Please attatch a Resume/CV");
@@ -234,8 +235,6 @@ function submitMentor(form) {
         }
 
     }
-
-
+    
 }
-
 
