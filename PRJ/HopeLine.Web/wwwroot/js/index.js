@@ -222,8 +222,8 @@ function checkFile(form) {
 }
 
 function submitMentor(form) {
-    var temp = form.getElementsByTagName('input');
 
+   var temp = form.getElementsByTagName('input');
     for (var i = 0; i < temp.length; i++) {
         if (temp[i].value == "") {
             window.alert("Please fill all fields and attatch a Resume/CV");
