@@ -47,7 +47,7 @@ function registerhub() {
             '</small>' +
             '<div class="' +
             classId +
-            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
+            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px; overflow-wrap:break-word">' +
             message +
             "</div></div>"
         );
