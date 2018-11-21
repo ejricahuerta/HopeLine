@@ -11,29 +11,43 @@ namespace HopeLine.API.Hubs.v2
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
+    public enum MentorStatus {
+        Finding,
+        Connected,
+        Error = -1
+    }
 
     public class ChatHub : Hub
     {
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
+        private string CurrentRoom { get; set; }
 
-        private string Mentor = "MentorRoomOnly";
+        private static string Mentor = "MentorRoomOnly";
         public ChatHub(IMessage messageService, ICommunication communicationService)
         {
             _messageService = messageService;
             _communicationService = communicationService;
         }
 
-        public override async Task OnDisconnectedAsync(Exception exception)
+        public override Task OnDisconnectedAsync(Exception exception)
         {
-            await base.OnDisconnectedAsync(exception);
+            Console.WriteLine("User has been disconnected...");
+            return base.OnDisconnectedAsync(exception);
+        }
 
+        public override Task OnConnectedAsync()
+        {
+
+            Console.WriteLine("User has connected...");
+            return base.OnConnectedAsync();
         }
 
         public async Task RemoveMessages(string roomId)
         {
-            _messageService.DeleteAllMessages(roomId);
+           await _messageService.DeleteAllMessages(roomId);
         }
+
         public async Task LoadMessage(string room)
         {
             try
@@ -44,11 +58,7 @@ namespace HopeLine.API.Hubs.v2
                 System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
-                    /*
-                    foreach (var m in allMessages.ToList().Reverse())
-                    {
-                        await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
-                    }*/
+
                     foreach (var m in allMessages.Reverse())
                     {
                         await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
@@ -73,7 +83,7 @@ namespace HopeLine.API.Hubs.v2
 
             Console.WriteLine("Adding Message");
             _messageService.NewMessage(newmsg);
-            await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(room).SendAsync("msg);ReceiveMessage", user, message);
         }
 
         public async Task AddMentor(string mentorId)
@@ -119,13 +129,14 @@ namespace HopeLine.API.Hubs.v2
             try
             {
                 var room = _communicationService.GenerateConnectionId();
+                CurrentRoom = room;
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, mentorId);
                 await Groups.AddToGroupAsync(userConnectionId, room);
                 await Clients.Client(userConnectionId).SendAsync("Room", room);
                 await _messageService.AndUsersToRoom(mentorId, userId, room);
                 await Groups.AddToGroupAsync(Context.ConnectionId, room);
                 await Clients.Caller.SendAsync("Room", room);
-                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Welcome " + userId);
+                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Hello, a mentor is here is now for you.");
             }
             catch (System.Exception ex)
             {
@@ -135,17 +146,27 @@ namespace HopeLine.API.Hubs.v2
 
         public async Task RequestToTalk(string userId)
         {
-            var room = _messageService.GetRoomForUser(userId, true);
-            if (room != null)
+            try
             {
-                await Clients.Caller.SendAsync("NotifyUser", 1);
-                await Clients.Caller.SendAsync("Room", room);
+                var room = _messageService.GetRoomForUser(userId, true);
+                if (room != null)
+                {
+                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Connected);
+                    await Clients.Caller.SendAsync("Room", room);
+                }
+                else
+                {
+                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Finding);
+                    await Clients.Group(Mentor).SendAsync("NotifyMentor", userId, Context.ConnectionId);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await Clients.Caller.SendAsync("NotifyUser", 0);
-                await Clients.Group(Mentor).SendAsync("NotifyMentor", userId, Context.ConnectionId);
+                Console.WriteLine("Unable to completed request: " + ex);
+                await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
+                
             }
+            
         }
     }
 }
