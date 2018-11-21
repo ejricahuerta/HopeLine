@@ -13,18 +13,17 @@
         <div class="col-md-3 col-sm-12 d-none d-md-block border" style=" overflow-y: auto">
             <form method="POST" class="p-0 m-0">
                 <div class="row justify-content-center" id="list">
-                    @{ 
+                    @{
                         var filter = "";
                     }
-                    <!--Search-->
-                    <div class="col-12 m-3 " style="position:sticky;top:0;z-index:1;">
-                        <input class="form-control" id="myInput" type="search" placeholder="Search" aria-label="Search">
-                    </div>
-
+                    <!--Search
+    <div class="col-12 m-3 " style="position:sticky;top:0;z-index:1;">
+        <input class="form-control" id="myInput" type="search" placeholder="Search" aria-label="Search">
+    </div>-->
                     <!--Topics-->
                     @foreach (var item in Model.Topics.Where(i => i.Name.Contains(filter)))
                     {
-                       
+
                         <div class="col-12" id="myUL">
                             <div class="form-check form-group" id="Topic">
                                 <p>@filter</p>
