@@ -2,13 +2,13 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right" style="margin-top:90px">
     <li class="@ManageNavPages.IndexNavClass(ViewContext) nav-item"><a asp-page="./Index" class="nav-link">Profile</a></li>
     <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav-item"><a id="change-password" asp-page="./ChangePassword" class="nav-link">Password</a></li>
     @if (hasExternalLogins)
     { 
         <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext) nav-item"><a id="external-login" asp-page="./ExternalLogins" class="nav-link">External logins</a></li>
     }
-    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav-item"><a asp-page="./TwoFactorAuthentication" class="nav-link">Two-factor authentication</a></li>
+    @*<li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav-item"><a asp-page="./TwoFactorAuthentication" class="nav-link">Two-factor authentication</a></li>*@
     <li class="@ManageNavPages.PersonalDataNavClass(ViewContext) nav-item float-right"><a asp-page="./PersonalData" class="nav-link">Personal data</a></li>
 </ul>
