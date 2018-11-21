@@ -1,4 +1,88 @@
 ﻿@page
 @model HopeLine.Web.Areas.Admin.Pages.AddMentorModel
 @{
+    
+        ViewData["Title"] = "Admin Home";
+        //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+        Layout = "~/Pages/Shared/_Layout.cshtml";
+    
 }
+
+<hr />
+
+<div class="sidebar bg-dark">
+    <!-- Profile -->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="depressionHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#depression" style="color:rgba(255,255,255,.5)">
+                        Profile
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Change Password-->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="depressionHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#depression" style="color:rgba(255,255,255,.5)">
+                        Change Password
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Personal Data -->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="anxietyHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#anxiety" style="color:rgba(255,255,255,.5)">
+                        Add Mentor
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="content accordion-group " style="margin-top:60px">
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <!-- Start  contact -->
+        <form name="formMentor" size="550" action="#">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <label for="applyInput">ID</label>
+                <input type="Text" class="col-md-12 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <label for="FullNameInput">First Name</label>
+                <input type="Text" class="col-md-12 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <label for="FullNameInput">Last Name</label>
+                <input type="Text" class="col-md-12 col-sm-12 col-xs-12">
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <br>
+                <button type="Submit" class="btn btn-primary">Add Mentor</button>
+            </div>
+            <br>
+
+        </form>
+
+        <br>
+        <br>
+    </div>
+</div>
