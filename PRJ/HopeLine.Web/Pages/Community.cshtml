@@ -2,6 +2,14 @@
 @model HopeLine.Web.Pages.CommunityModel
 @{
     ViewData["Title"] = "Community";
+    if (Model.isUser)
+    {
+        Layout = "/Pages/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Pages/Shared/_mentorLayout.cshtml";
+    }
 }
 
 <div class="container" style="margin-top: 90px;">

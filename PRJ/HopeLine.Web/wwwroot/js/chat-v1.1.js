@@ -39,14 +39,15 @@ function registerhub() {
         console.log("Receive Message");
         var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
-            '<div id="message" class=" msg mb-3">' +
+            '<br/>' +
+            '<div id="message" class="msg mb-3">' +
             '<small class="' +
             classId + '">' +
             user +
             '</small>' +
             '<div class="' +
             classId +
-            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
+            ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px; overflow-wrap:break-word">' +
             message +
             "</div></div>"
         );
@@ -55,6 +56,7 @@ function registerhub() {
     connection.on("Load", function (user, message) {
         var classId = currentuser == user ? "border-primary" : "border-success";
         $("#chatbox").append(
+            '<br/>' +
             '<div id="message" class=" msg mb-3">' +
             '<small class="' +
             classId + '">' +
@@ -71,6 +73,10 @@ function registerhub() {
         room = roomId;
         $("#sendArea").removeClass('d-none');
         connection.invoke("LoadMessage", room);
+        console.log("Room: " + room);
+        $("#sendArea").removeClass("d-none");
+        $("#loading").hide();
+        found();
     });
 
     connection.onclose(function (e) {
@@ -94,10 +100,10 @@ function registerhub() {
                         });
                     $(this).parent().remove();
                     event.preventDefault();
-                    window.location
+                    /*window.location
                         .replace("https://hopeline.azurewebsites.net/Mentor/Index");
                     //.replace("https://localhost:8000/chat");
-
+                    */
                 });
             } else {
                 $("#chatbox").append('<div class = "alert alert-primary" role = "alert" >' +
@@ -109,8 +115,9 @@ function registerhub() {
         });
     } else {
         connection.on("NotifyUser", function (code) {
-            if (code != 1) {
+            if (code == 1) {
                 $("#sendArea").removeClass("d-none");
+                console.log("code: " + code);
                 $("#loading").hide();
                 found();
             } else if (code == 0) {
@@ -195,3 +202,37 @@ $("#sendButton").click(function (event) {
 $("#logout").click(function () {
     connection.invoke("RemoveUser", userId, room, isUser);
 });
+
+// Automatically scroll down
+const messages = document.getElementById('message');
+
+function getMessage() {
+    shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+    if (!shouldScroll) {
+        scrollToBottom();
+    }
+}
+
+function scrollToBottom() {
+    messages.scrollTop = messages.scrollHeight;
+}
+
+var i = setInterval(getMessage, 700);
+
+function stopAutoScroll() {
+    clearInterval(i);
+    console.log("CLEARED");
+}
+
+$("#message").scroll(function (m) {
+    if ($(this).is(':animated')) {
+        stopAutoScroll();
+    }
+});
+
+scrollToBottom();
+
+
+
+
+        ////////////////////

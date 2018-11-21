@@ -14,7 +14,7 @@
                     <span class="nav-link" asp-area="Identity">Hello @HttpContextAccessor.HttpContext.Session.GetString("_guest") </span>
                 </li>
                 <li>
-                    <button id="logout" type="submit" class=" btn na" >Logout</button>
+                    <button id="logout" type="submit" class=" btn na">Exit</button>
                 </li>
             </ul>
         </form>
@@ -44,4 +44,16 @@
             <li><a class="nav-link" href=@Url.Page("/Login", new {area="Mentor"})>Mentor Sign in</a></li>
         </ul>   
     }
+}
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#logout").click(function () {
+                sessionStorage.removeItem('_guest');
+            });
+
+        })
+    </script>
+
 }

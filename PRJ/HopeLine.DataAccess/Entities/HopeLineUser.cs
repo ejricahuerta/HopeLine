@@ -6,6 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HopeLine.DataAccess.Entities
 {
+        public enum Account
+        {
+            Admin, Mentor, User, Guest
+        }
 
     //TODO : create own Identity User
 
@@ -17,10 +21,6 @@ namespace HopeLine.DataAccess.Entities
         /// <summary>
         /// These are types of user
         /// </summary>
-        public enum Account
-        {
-            Admin, Mentor, User, Guest
-        }
         public HopeLineUser()
         {
             DateAdded = DateTime.UtcNow.ToString();
