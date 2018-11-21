@@ -222,19 +222,20 @@ function checkFile(form) {
 
 function submitMentor(form) {
     var temp = form.getElementsByTagName('input');
-    
+
     for (var i = 0; i < temp.length; i++) {
-         if (temp[i].value == "") {
-        window.alert("Please fill all fields and attatch a Resume/CV");
-        return false;
-    
-    } else {
-        window.alert("Thank you for your submission");
-        return true;
+        if (temp[i].value == "") {
+            window.alert("Please fill all fields and attatch a Resume/CV");
+            return false;
+
+        } else {
+            window.alert("Thank you for your submission");
+            return true;
         }
-        
+
     }
-        
+
+
 }
 
 
