@@ -20,7 +20,7 @@ namespace HopeLine.Web.Pages
         ////private var ApiKeySecret = "apiKeySecret";
         ////private var identity = "example-user";
 
-            
+
         private readonly ICommunication _communicationService;
 
         [BindProperty]
@@ -31,28 +31,52 @@ namespace HopeLine.Web.Pages
         public VideoChatModel(ICommunication communicationService)
         {
             _communicationService = communicationService;
-            var grant = new VideoGrant();
-            grant.Room = "cool room";
-            var grants = new HashSet<IGrant> { grant };
-            var identity = "example-user";
 
-            // Create an Access Token generator
-            var token = new Token(APIConstant.TwilioAccountSID, APIConstant.TwilioApiSID, APIConstant.TwilioSecret, identity: identity, grants: grants);
-            Token = token.ToJwt();
-            Console.WriteLine("Here is the token: " + token.ToJwt());
-            // Serialize the token as a JWT
-            Console.WriteLine(token.ToJwt());
         }
 
         [BindProperty]
         public string RoomId { get; set; }
-        
-        public IActionResult OnGet(string roomId)
+
+        public IActionResult OnGet(string roomId = null)
         {
-            RoomId = roomId;
-            return Page();
-            //RoomId = _communicationService.GenerateConnectionId();
+            if (roomId != null && GetTwilioToken())
+            {
+                RoomId = roomId;
+                return Page();
+            }
+            else
+            {
+                return Redirect("/Index");
+            }
         }
-        
+
+        // get twilio token 
+        private bool GetTwilioToken()
+        {
+            try
+            {
+                var grant = new VideoGrant();
+                grant.Room = "cool room";
+                var grants = new HashSet<IGrant> { grant };
+                var identity = "example-user";
+                // Create an Access Token generator
+                var token = new Token(APIConstant.TwilioAccountSID, APIConstant.TwilioApiSID, APIConstant.TwilioSecret, identity: identity, grants: grants);
+                Token = token.ToJwt();
+                Console.WriteLine("Here is the token: " + token.ToJwt());
+                // Serialize the token as a JWT
+                Console.WriteLine(token.ToJwt());
+                if (Token == null)
+                {
+                    return false;
+                }
+            }
+            catch (System.Exception)
+            {
+
+                return false;
+            }
+            return true;
+
+        }
     }
 }
