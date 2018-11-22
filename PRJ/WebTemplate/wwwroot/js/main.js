@@ -1,4 +1,149 @@
-'use strict';
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("https://hopelineapi.azurewebsites.net/chathub")
+  // .withUrl("http://localhost:5000/chatHub")
+  .build();
+
+connection.onclose(function (e) {
+  console.log("on close" + e);
+});
+
+connection.on("Connecting", function (msg) {
+  var data = JSON.parse(msg.data);
+  console.log("before switch case");
+
+  switch (data.type) {
+    case "offer":
+      console.log("switch offer");
+      handleOffer(data.offer);
+      console.log("getting offer");
+      break
+    case "answer":
+      console.log("switch answer");
+      handleAnswer(data.answer);
+      break;
+    case "candidate":
+      console.log("switch candidate");
+      handleCandidate(data.candidate);
+      break;
+  }
+});
+
+connection.on("Notify", function (msg) {
+  console.log("nofitying... " + msg);
+})
+$(window).ready(function () {
+
+
+
+
+  let room1 = "room1";
+  console.log("before start");
+  connection.start().then(function () {
+    // connection.invoke('Add', room1);
+    console.log("connection start");
+  }).catch(function (e) {
+    console.log(e.toString());
+  });
+  console.log("after start");
+
+
+
+  navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
+    .then(gotLocalMediaStream).catch(handleLocalMediaStreamError);
+  trace('Requesting local stream.');
+
+  callButton.disabled = true;
+  hangupButton.disabled = false;
+
+  trace('Starting call.');
+  startTime = window.performance.now();
+
+  // Get local media stream tracks.
+  const videoTracks = localStream.getVideoTracks();
+  const audioTracks = localStream.getAudioTracks();
+  if (videoTracks.length > 0) {
+    trace(`Using video device: ${videoTracks[0].label}.`);
+  }
+  if (audioTracks.length > 0) {
+    trace(`Using audio device: ${audioTracks[0].label}.`);
+  }
+
+  const servers = {
+    "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }]
+  };;  // Allows for RTC server configuration.
+
+  // Create peer connections and add behavior.
+  localPeerConnection = new RTCPeerConnection(servers);
+  trace('Created local peer connection object localPeerConnection.');
+
+  localPeerConnection.addEventListener('icecandidate', handleConnection);
+  localPeerConnection.addEventListener(
+    'iceconnectionstatechange', handleConnectionChange);
+
+  remotePeerConnection = new RTCPeerConnection(servers);
+  trace('Created remote peer connection object remotePeerConnection.');
+
+  remotePeerConnection.addEventListener('icecandidate', handleConnection);
+  remotePeerConnection.addEventListener(
+    'iceconnectionstatechange', handleConnectionChange);
+  remotePeerConnection.addEventListener('addstream', gotRemoteMediaStream);
+
+  // Add local stream to connection and create offer to connect.
+  localPeerConnection.addStream(localStream);
+  trace('Added local stream to localPeerConnection.');
+
+
+  trace('localPeerConnection createOffer start.');
+  localPeerConnection.createOffer(offerOptions)
+    .then(createdOffer).catch(setSessionDescriptionError);
+
+  localPeerConnection.createOffer(function (offer) {
+    // send({
+    //     type: "offer",
+    //     offer: offer
+    // });
+
+    sendOffer = {
+      type: "offer",
+      offer: offer
+    };
+    console.log("creating offer");
+
+    connection.invoke("Connect", JSON.stringify(sendOffer), "room1")
+
+    yourConn.setLocalDescription(offer);
+  }, function (error) {
+    alert("Error when creating an offer");
+  });
+
+
+})
+
+function handleCandidate(candidate) {
+  localPeerConnection.addIceCandidate(new RTCIceCandidate(candidate));
+}
+
+function handleAnswer(answer) {
+  localPeerConnection.setRemoteDescription(new RTCSessionDescription(answer));
+}
+
+
+function handleOffer(offer) {
+  localPeerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+
+  console.log("in handleOffer");
+  localPeerConnection.createAnswer(function (answer) {
+    localPeerConnection.setLocalDescription(answer);
+    send = {
+      type: "answer",
+      answer: answer
+
+    };
+
+    console.log("answer: " + answer.toString);
+    connection.invoke("Connect", JSON.stringify(send), "room1");
+  })
+}
 
 // Set up media stream constant and parameters.
 
@@ -6,6 +151,7 @@
 // Audio will not be streamed because it is set to "audio: false" by default.
 const mediaStreamConstraints = {
   video: true,
+  audio: true
 };
 
 // Set up to exchange only video.
@@ -57,7 +203,7 @@ function gotRemoteMediaStream(event) {
 function logVideoLoaded(event) {
   const video = event.target;
   trace(`${video.id} videoWidth: ${video.videoWidth}px, ` +
-        `videoHeight: ${video.videoHeight}px.`);
+    `videoHeight: ${video.videoHeight}px.`);
 }
 
 // Logs a message with the id and size of a video element.
@@ -96,7 +242,7 @@ function handleConnection(event) {
       });
 
     trace(`${getPeerName(peerConnection)} ICE candidate:\n` +
-          `${event.candidate.candidate}.`);
+      `${event.candidate.candidate}.`);
   }
 }
 
@@ -107,8 +253,8 @@ function handleConnectionSuccess(peerConnection) {
 
 // Logs that the connection failed.
 function handleConnectionFailure(peerConnection, error) {
-  trace(`${getPeerName(peerConnection)} failed to add ICE Candidate:\n`+
-        `${error.toString()}.`);
+  trace(`${getPeerName(peerConnection)} failed to add ICE Candidate:\n` +
+    `${error.toString()}.`);
 }
 
 // Logs changes to the connection state.
@@ -116,7 +262,7 @@ function handleConnectionChange(event) {
   const peerConnection = event.target;
   console.log('ICE state change event: ', event);
   trace(`${getPeerName(peerConnection)} ICE state: ` +
-        `${peerConnection.iceConnectionState}.`);
+    `${peerConnection.iceConnectionState}.`);
 }
 
 // Logs error when setting session description fails.
@@ -193,12 +339,12 @@ hangupButton.disabled = true;
 
 
 // Handles start button action: creates local MediaStream.
-function startAction() {
-  startButton.disabled = true;
-  navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
-    .then(gotLocalMediaStream).catch(handleLocalMediaStreamError);
-  trace('Requesting local stream.');
-}
+// function startAction() {
+//   startButton.disabled = true;
+//   navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
+//     .then(gotLocalMediaStream).catch(handleLocalMediaStreamError);
+//   trace('Requesting local stream.');
+// }
 
 // Handles call button action: creates peer connection.
 function callAction() {
@@ -218,7 +364,9 @@ function callAction() {
     trace(`Using audio device: ${audioTracks[0].label}.`);
   }
 
-  const servers = null;  // Allows for RTC server configuration.
+  const servers = {
+    "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }]
+  };;  // Allows for RTC server configuration.
 
   // Create peer connections and add behavior.
   localPeerConnection = new RTCPeerConnection(servers);
@@ -257,7 +405,7 @@ function hangupAction() {
 }
 
 // Add click event handlers for buttons.
-startButton.addEventListener('click', startAction);
+// startButton.addEventListener('click', startAction);
 callButton.addEventListener('click', callAction);
 hangupButton.addEventListener('click', hangupAction);
 
@@ -267,13 +415,13 @@ hangupButton.addEventListener('click', hangupAction);
 // Gets the "other" peer connection.
 function getOtherPeer(peerConnection) {
   return (peerConnection === localPeerConnection) ?
-      remotePeerConnection : localPeerConnection;
+    remotePeerConnection : localPeerConnection;
 }
 
 // Gets the name of a certain peer connection.
 function getPeerName(peerConnection) {
   return (peerConnection === localPeerConnection) ?
-      'localPeerConnection' : 'remotePeerConnection';
+    'localPeerConnection' : 'remotePeerConnection';
 }
 
 // Logs an action (text) and the time when it happened on the console.

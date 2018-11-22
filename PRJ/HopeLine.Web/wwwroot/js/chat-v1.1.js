@@ -44,7 +44,6 @@ function registerhub() {
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         addChatBubble(user, message);
-
     });
 
     //FIXME: redundant as receivemessage
