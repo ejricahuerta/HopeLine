@@ -1,11 +1,11 @@
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
 var userId = $("#userId") != null ? $("#userId").val() : null;
-var isUser = currentuser.indexOf("Guest") != -1;
 
 var isconnected = false;
 var onCall = false;
 var currentuser = userId;
+var isUser = currentuser.indexOf("Guest") != -1;
 var connection;
 var isconnected = false;
 var requestingUser;
@@ -24,6 +24,11 @@ connection = new signalR.HubConnectionBuilder()
 connection.onclose(function (e) {
     connection.invoke("DeleteFromRoom", room);
 });
+
+
+//ALL FUNCTIONS FOR THIS FILE
+// put all functions after this line
+
 
 function registerhub() {
 
@@ -108,6 +113,8 @@ function startConnection() {
         });
 }
 
+
+//notifying user func
 function notifyUser() {
     connection.on("NotifyUser", function (code) {
         //if positive then remove loading and pop the send area
@@ -128,6 +135,7 @@ function notifyUser() {
     });
 }
 
+//notifying mentors func
 function notifyMentor() {
     connection.on("NotifyMentor", function (user, userConnectionId, code) {
         if (code == null) {
@@ -158,6 +166,8 @@ function notifyMentor() {
     });
 }
 
+
+//adding each messages
 function addChatBubble(user, message) {
     var classId = currentuser == user ? "border-primary" : "border-success";
     $("#chatbox").append(
@@ -175,6 +185,13 @@ function addChatBubble(user, message) {
     );
 }
 
+//!END OF FUNCTIONS
+
+
+
+//ALL JQUERY USER INTERACTIONS (ACTIONS)
+//Put your code here for all actions from html
+
 $(function () {
     if (userId != null) {
         console.log("UserId = " + userId);
@@ -191,7 +208,6 @@ $(function () {
     }
 
 });
-
 
 //When user send a message
 $("#sendButton").click(function (event) {
@@ -237,8 +253,16 @@ $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
 
+$("#message").scroll(function (m) {
+    if ($(this).is(':animated')) {
+        stopAutoScroll();
+    }
+});
+
+//!END OF ALL ACTIONS
 
 
+//FIXME : Refactor this and place it to its proper sections
 // Automatically scroll down
 const messages = document.getElementById('message');
 
@@ -259,9 +283,3 @@ function stopAutoScroll() {
     clearInterval(i);
     console.log("CLEARED");
 }
-
-$("#message").scroll(function (m) {
-    if ($(this).is(':animated')) {
-        stopAutoScroll();
-    }
-});
