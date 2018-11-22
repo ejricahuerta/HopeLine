@@ -12,13 +12,13 @@ var requestingUser;
 var timeout;
 var room = null;
 
-//var url = "http://hopeline.azurewebsites.net/";
+var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
-var url = "http://localhost:8000/";
+//var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
-    //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-    .withUrl("http://localhost:5000/v2/chatHub")
+    .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+    // .withUrl("http://localhost:5000/v2/chatHub")
     .build();
 
 connection.onclose(function (e) {
@@ -198,8 +198,8 @@ $(function () {
         console.log("pin = " + room);
 
         connection = new signalR.HubConnectionBuilder()
-            //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-            .withUrl("http://localhost:5000/v2/chatHub")
+            .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+            // .withUrl("http://localhost:5000/v2/chatHub")
             .build();
         //register all methods
         registerhub();
