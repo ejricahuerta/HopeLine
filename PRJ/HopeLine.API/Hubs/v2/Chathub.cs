@@ -129,7 +129,6 @@ namespace HopeLine.API.Hubs.v2
 
                 throw new Exception("Delete Process did not go through :", ex);
             }
-
         }
 
         public async Task AcceptUserRequest(string mentorId, string userId, string userConnectionId)
@@ -149,31 +148,6 @@ namespace HopeLine.API.Hubs.v2
             catch (System.Exception ex)
             {
                 throw new Exception("Unable to Accept Request: ", ex);
-            }
-        }
-
-        public async Task ConnectCall(string roomId)
-        {
-            await Clients.Group(roomId).SendAsync("CallConnected");
-        }
-
-
-        //TODO: Refactor
-        public async Task RequestToVideoCall(string roomId)
-        {
-            Console.WriteLine("Room when requested: " + roomId);
-            try
-            {
-                if (roomId != null)
-                {
-
-                    await Clients.Group(roomId).SendAsync("CallMentor");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Unable to process request: ", ex);
             }
         }
 
@@ -201,5 +175,39 @@ namespace HopeLine.API.Hubs.v2
             }
 
         }
+
+        // TODO: move to own HUB
+        public async Task CallDisconnected(string roomId)
+        {
+            await Clients.Group(roomId).SendAsync("Disconnected");
+        }
+
+        // TODO: move to own HUB
+        public async Task ConnectCall(string roomId)
+        {
+            await Clients.Group(roomId).SendAsync("CallConnected");
+        }
+
+
+        // TODO: move to own HUB
+        //TODO: Refactor
+        public async Task RequestToVideoCall(string roomId)
+        {
+            Console.WriteLine("Room when requested: " + roomId);
+            try
+            {
+                if (roomId != null)
+                {
+
+                    await Clients.Group(roomId).SendAsync("CallMentor");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Unable to process request: ", ex);
+            }
+        }
+
     }
 }
