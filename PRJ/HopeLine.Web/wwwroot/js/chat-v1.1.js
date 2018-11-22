@@ -10,7 +10,7 @@ var connection;
 var isconnected = false;
 var requestingUser;
 var timeout;
-var room = null;
+var room;
 
 var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
@@ -21,14 +21,14 @@ connection = new signalR.HubConnectionBuilder()
     // .withUrl("http://localhost:5000/v2/chatHub")
     .build();
 
-connection.onclose(function (e) {
-    connection.invoke("DeleteFromRoom", room);
-});
-
-
 //ALL FUNCTIONS FOR THIS FILE
 // put all functions after this line
-
+function findTime() {
+    timeout = setTimeout(function () {
+        $("#loading").text("Unable to Find Mentor...");
+        $("#loading").append('<a href="http://hopeline.azurewebsites.net/instantChat" class="btn btn-info">Retry</a>');
+    }, 20000);
+}
 
 function registerhub() {
 
@@ -56,18 +56,16 @@ function registerhub() {
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
-        $("#pin").val(room);
+        console.log("Room: " + room);
         $("#sendArea").removeClass('d-none');
         connection.invoke("LoadMessage", room);
-        console.log("Room: " + room);
         $("#sendArea").removeClass("d-none");
         $("#loading").hide();
-        found();
+        timeout = null;
     });
 
     //register for users
     if (!isUser) {
-
         //notify mentors 
         notifyMentor();
         //notify mentor for incoming call
@@ -121,14 +119,16 @@ function notifyUser() {
             $("#sendArea").removeClass("d-none");
             console.log("code: " + code);
             $("#loading").hide();
-            found();
             //if 0 then keep notify the mentor
         } else if (code == 0) {
-            findTime();
             $("#sendArea").addClass('d-none');
+            findTime();
             // else  chat is disconnected
         } else {
-            $("msg").remove();
+            $("#sendArea").addClass('d-none');
+            $("#loading").show();
+            findTime();
+            // $("#message").remove();
             //FIXME: add a message or modal to notify the user's disconnection
         }
     });
@@ -153,8 +153,8 @@ function notifyMentor() {
                 $(this).parent().remove();
                 event.preventDefault();
             });
-        } else {
 
+        } else {
             //FIXME: refactor this
             $("#chatbox").append('<div class = "alert alert-primary" role = "alert" >' +
                 'User has DISCONNECTED!' +
@@ -207,7 +207,6 @@ $(function () {
     }
 
 });
-
 //When user send a message
 $("#sendButton").click(function (event) {
     var message = $("#messageInput")
@@ -231,8 +230,11 @@ $("#sendButton").click(function (event) {
 
         event.preventDefault();
         $("#messageInput").val(" ");
+        $("#message").animate({
+            scrollTop: $('#message').prop("scrollHeight")
+        }, "slow");
     }
-    scrollToBottom();
+    //scrollToBottom();
 });
 
 $("#logout").click(function () {
@@ -252,33 +254,34 @@ $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
 
-$("#message").scroll(function (m) {
-    if ($(this).is(':animated')) {
-        stopAutoScroll();
-    }
-});
+
 
 //!END OF ALL ACTIONS
 
 
 //FIXME : Refactor this and place it to its proper sections
 // Automatically scroll down
-const messages = document.getElementById('message');
+// $("#message").scroll(function (m) {
+//     if ($(this).is(':animated')) {
+//         stopAutoScroll();
+//     }
+// // });
+// const messages = document.getElementById('message');
 
-function getMessage() {
-    shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-    if (!shouldScroll) {
-        scrollToBottom();
-    }
-}
+// function getMessage() {
+//     shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+//     if (!shouldScroll) {
+//         scrollToBottom();
+//     }
+// }
 
-function scrollToBottom() {
-    messages.scrollTop = messages.scrollHeight;
-}
+// function scrollToBottom() {
+//     messages.scrollTop = messages.scrollHeight;
+// }
 
-var i = setInterval(getMessage, 700);
+// var i = setInterval(getMessage, 700);
 
-function stopAutoScroll() {
-    clearInterval(i);
-    console.log("CLEARED");
-}
+// function stopAutoScroll() {
+//     clearInterval(i);
+//     console.log("CLEARED");
+// }
