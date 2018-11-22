@@ -12,21 +12,10 @@ namespace HopeLine.Web.Pages
 {
     public class VideoChatModel : PageModel
     {
-
-
-        //// Substitute your Twilio AccountSid and ApiKey details
-        ////private var AccountSid = "accountSid";
-        ////private var ApiKeySid = "apiKeySid;
-        ////private var ApiKeySecret = "apiKeySecret";
-        ////private var identity = "example-user";
-
-
         private readonly ICommunication _communicationService;
 
         [BindProperty]
         public string Token { get; set; }
-
-
 
         public VideoChatModel(ICommunication communicationService)
         {
@@ -39,14 +28,22 @@ namespace HopeLine.Web.Pages
 
         public IActionResult OnGet(string roomId = null)
         {
-            if (roomId != null && GetTwilioToken())
+            try
             {
-                RoomId = roomId;
-                return Page();
+                if (roomId != null && GetTwilioToken())
+                {
+                    RoomId = roomId;
+                    return Page();
+                }
+                else
+                {
+                    return Redirect("/Index");
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                return Redirect("/Index");
+                System.Console.WriteLine(ex);
+                return NotFound();
             }
         }
 
@@ -58,9 +55,13 @@ namespace HopeLine.Web.Pages
                 var grant = new VideoGrant();
                 grant.Room = "cool room";
                 var grants = new HashSet<IGrant> { grant };
-                var identity = "example-user";
+                var identity = "example-user"; //TODO : change this
                 // Create an Access Token generator
-                var token = new Token(APIConstant.TwilioAccountSID, APIConstant.TwilioApiSID, APIConstant.TwilioSecret, identity: identity, grants: grants);
+                var token = new Token(APIConstant.TwilioAccountSID,
+                                        APIConstant.TwilioApiSID,
+                                        APIConstant.TwilioSecret,
+                                        identity: identity,
+                                        grants: grants);
                 Token = token.ToJwt();
                 Console.WriteLine("Here is the token: " + token.ToJwt());
                 // Serialize the token as a JWT
@@ -72,7 +73,6 @@ namespace HopeLine.Web.Pages
             }
             catch (System.Exception)
             {
-
                 return false;
             }
             return true;
