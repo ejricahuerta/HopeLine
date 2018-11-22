@@ -11,7 +11,8 @@ namespace HopeLine.API.Hubs.v2
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
-    public enum MentorStatus {
+    public enum MentorStatus
+    {
         Finding,
         Connected,
         Error = -1
@@ -45,7 +46,7 @@ namespace HopeLine.API.Hubs.v2
 
         public async Task RemoveMessages(string roomId)
         {
-           await _messageService.DeleteAllMessages(roomId);
+            await _messageService.DeleteAllMessages(roomId);
         }
 
         public async Task LoadMessage(string room)
@@ -83,7 +84,7 @@ namespace HopeLine.API.Hubs.v2
 
             Console.WriteLine("Adding Message");
             _messageService.NewMessage(newmsg);
-            await Clients.Group(room).SendAsync("msg);ReceiveMessage", user, message);
+            await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
 
         public async Task AddMentor(string mentorId)
@@ -112,8 +113,15 @@ namespace HopeLine.API.Hubs.v2
             {
                 System.Console.WriteLine("Removing User" + userId);
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
-                var method = (isUser) ? "NotifyUser" : "NotifyMentor";
-                await Clients.Group(roomId).SendAsync(method, -1);
+
+                if (isUser)
+                {
+                    await Clients.Group(roomId).SendAsync("NotifyMentor", userId, null, MentorStatus.Error);
+                }
+                else
+                {
+                    await Clients.Group(roomId).SendAsync("NotifyUser", MentorStatus.Error);
+                }
                 await _messageService.DeleteAllMessages(roomId);
             }
             catch (System.Exception ex)
@@ -144,7 +152,8 @@ namespace HopeLine.API.Hubs.v2
             }
         }
 
-        public async Task ConnectCall(string roomId) {
+        public async Task ConnectCall(string roomId)
+        {
             await Clients.Group(roomId).SendAsync("CallConnected");
         }
 
@@ -155,13 +164,14 @@ namespace HopeLine.API.Hubs.v2
             Console.WriteLine("Room when requested: " + roomId);
             try
             {
-                if(roomId != null)
+                if (roomId != null)
                 {
 
                     await Clients.Group(roomId).SendAsync("CallMentor");
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception("Unable to process request: ", ex);
             }
@@ -187,9 +197,9 @@ namespace HopeLine.API.Hubs.v2
             {
                 Console.WriteLine("Unable to completed request: " + ex);
                 await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
-                
+
             }
-            
+
         }
     }
 }
