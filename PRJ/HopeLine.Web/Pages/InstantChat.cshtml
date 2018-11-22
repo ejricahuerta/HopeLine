@@ -6,25 +6,29 @@
     ViewData["Title"] = "Talk to Mentor";
 }
 
-<input id="isUser" value=@Model.IsUser hidden/>
+
+<input id="isUser" value=@Model.IsUser hidden />
 <section class="container" style="margin-top:100px;">
     <div class="row justify-content-center p-2 shadow-lg">
         <div class="col-md-3 col-sm-12 d-none d-md-block border" style=" overflow-y: auto">
             <form method="POST" class="p-0 m-0">
                 <div class="row justify-content-center" id="list">
-
-                    <!--Search-->
-                    <div class="col-12 m-3 " style="position:sticky;top:0;z-index:1;">
-                        <input class="form-control" id="searchInput" type="search" placeholder="Search" aria-label="Search">
-                    </div>
-
+                    @{
+                        var filter = "";
+                    }
+                    <!--Search
+    <div class="col-12 m-3 " style="position:sticky;top:0;z-index:1;">
+        <input class="form-control" id="myInput" type="search" placeholder="Search" aria-label="Search">
+    </div>-->
                     <!--Topics-->
-                    @foreach (var item in Model.Topics)
+                    @foreach (var item in Model.Topics.Where(i => i.Name.Contains(filter)))
                     {
-                        <div class="col-12">
+
+                        <div class="col-12" id="myUL">
                             <div class="form-check form-group" id="Topic">
+                                <p>@filter</p>
                                 <label class="p-0 col-9 form-check-label  css-label" for="Topic1">@item.Name</label>
-                                <input class="p-0 col-3 form-check-input" type="checkbox" id="Topic1" />
+                                <input class="p-0 col-3 form-check-input float-right" type="checkbox" id="Topic1" style="height:20px; width:20px" />
                             </div>
 
                         </div>
@@ -38,51 +42,28 @@
             <div class="row p-3 m-0">
                 <div class="col-sm-12 text-white">
                     <img class="rounded-circle" src="https://via.placeholder.com/75x75">
-                    <h3 class="col-4  d-inline-block">@Model.UserName</h3>
+                    <h3 class="col-4  d-inline-block text-white">Instant&nbsp;Chat</h3>
                 </div>
                 <div class="col-sm-12 text-right ml-1">
                     <a class="col-2 btn  btn-outline-light " href="https://www.google.ca"><i class="fas fa-phone fa-1x"></i></a>
-                    <a class="col-2   btn btn-outline-light" href="https://www.google.ca"><i class="fas fa-video fa-1x"></i></a>
+                    <a data-target="#incomingCall" data-toggle="modal" id="videoCallBtn" class="col-2   btn btn-outline-light" ><i class="fas fa-video fa-1x"></i></a>
                 </div>
             </div>
 
-            <input id="pin" value=@Model.PIN  hidden/>
-            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="messages">
-                <div id="chatbox" class="row p-1">
-                    <div class="col-12 d-none" id="loading" >Waiting for Mentor... <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
+            <input id="pin" value=@Model.PIN hidden />
+            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="message">
+                <div id="chatbox" class="card-body bg-clear">
+                    <div class="col-12" id="loading">
+                        Waiting for Mentor...
+                        <i class="fa fa-spinner fa-spin" style="font-size:24px"></i>
                     </div>
-                    <!--
-
-                    <div id="message" class="col-11 mb-5">
-                        <h5>User</h5>
-                        <p class="bg-primary text-justify rounded p-2" style="min-height:50px;">
-                            
-
-                        </p>
-                    </div>
-                    <div id="message" class="col-11 mb-5">
-                        <h5 class="text-right">User</h5>
-                        <p class="bg-primary rounded p-2 text-justify" style="min-height:50px;">
-                            Lorem ipsum dolor sit amet,
-                            consectetur
-                            adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
-                            feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
-                            non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
-                            tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
-                            Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
-                            tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
-                            dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
-                            luctus.
-
-                        </p>
-                    </div>
-                    -->
                 </div>
             </div>
-            <div id="sendArea" class="col-12 border bg-white p-1" style="position:absolute; bottom:0;">
+
+            <div id="sendArea" class="col-12 border bg-white p-1">
                 <div class="row m-1">
-                    <div class="col-8">
-                        <textarea id="messageInput" class="form-control col-10" type="text" placeholder="type a message" rows="1"></textarea>
+                    <div class="col-8" id="messageBar">
+                        <textarea id="messageInput" class="form-control col-10" type="text" placeholder="type a message" rows="1" autofocus></textarea>
                     </div>
                     <div class="col-3">
                         <input id="sendButton" type="button" class="btn btn-info btn-lg" value="Send" />
@@ -93,60 +74,74 @@
     </div>
 </section>
 @section Scripts {
+    <!--
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    -->
+
     <script>
+        filter = $('#myInput').val();
+        /*
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("div");
+            console.log("Number of topics: " + li.length);
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("label")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        */
+        // Hit ENTER to send messages
+        $(function () {
+            $("#messageInput").keypress(function (enter) {
+                var code = (enter.keyCode ? enter.keyCode : enter.which);
+                
+                if (code == 13) {
+                    enter.preventDefault();
+                    $("#sendButton").trigger('click');
+                }
+            });
+        });
+
         $("#sendButton").click(function () {
             $("#messages").animate({
                 scrollTop: $('#messages').prop("scrollHeight")
             }, "slow");
         });
-        
-        function filterTopics() {
-            var input, filter, list, div, label, i
 
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            list = document.getElementById("list");
-            div = list.getElementById("Topic");
+       
+            /*
+            function listFilter(list, input) {
+                bar $lbs = list.find('.css-label');
 
-            for (i = 0; i < label.length; i++) {
-                label = div[i].getElementsByTagName("label");
-                if (label.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    div[i].style.display = "";
+                function filter() {
+                    var regex = new RegExp('\\b' + this.value);
+                    var $els = $lbs.filter(function () {
+                        return regex.test($(this).text());
 
-                } else {
-                    div[i].style.display = "none";
+                    });
+                    $lbs.not($els).hide().prev().hide();
+                    $els.show().prev().show();
 
-                }
+                };
+                input.keyup(filter).change(filter)
 
             }
 
-        }
+            jQuery(function ($) {
+                listFilter($('#list'), $('.search-filter'))
+            })
+            */
 
-        /*
-        function listFilter(list, input) {
-            bar $lbs = list.find('.css-label');
-
-            function filter() {
-                var regex = new RegExp('\\b' + this.value);
-                var $els = $lbs.filter(function () {
-                    return regex.test($(this).text());
-
-                });
-                $lbs.not($els).hide().prev().hide();
-                $els.show().prev().show();
-
-            };
-            input.keyup(filter).change(filter)
-
-        }
-
-        jQuery(function ($) {
-            listFilter($('#list'), $('.search-filter'))
-        })
-        */
- 
     </script>
+
 }

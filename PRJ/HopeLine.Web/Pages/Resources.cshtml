@@ -2,7 +2,14 @@
 @model HopeLine.Web.Pages.ResourcesModel
 @{
     ViewData["Title"] = "Resources";
-
+    if (Model.isUser)
+    {
+        Layout = "/Pages/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "/Pages/Shared/_mentorLayout.cshtml";
+    }
 }
 
 <head>

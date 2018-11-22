@@ -2,70 +2,51 @@
 @model HopeLine.Web.Pages.VideoChatModel
 @{
     ViewData["Title"] = "VideoChat";
+    Layout = null;
 }
 
-<p></p>
-<hr />
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 bg-light m-40 p-40">
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Topics</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Depression</td>
-                        <td class="form-group">
-                            <input type="checkbox" value="depression" style="width: 20px; height: 20px;" class="pull-right">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Bullying</td>
-                        <td class="form-group">
-                            <input type="checkbox" value="bullying" style="width: 20px; height: 20px;" class="pull-right">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Phonbia</td>
-                        <td class="form-group">
-                            <input type="checkbox" value="phonbia" style="width: 20px; height: 20px;" class="pull-right" checked>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body class="container-fluid bg-dark text-white">
+    <section class="row">
+        <div id="remote" class=" border" style="min-height:300px;">
+        <div id="local" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
+
         </div>
-        <div class="main col-md-9">
-            <div class="row">
-                <div class="well">
-                    <h1>Realtime communication with WebRTC</h1>
-
-           
-                    <video id="localVideo" autoplay playsinline></video>
-                    <video id="remoteVideo" autoplay playsinline></video>
-            
-                    <div>
-                        <button id="startButton">Start</button>
-                        <button id="callButton">Call</button>
-                        <button id="hangupButton">Hang Up</button>
-                    </div>
-                  
-                    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
-                    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-                    <script src="~/js/main.js"></script>
-                </div>
-            </div>
         </div>
-
-
-    </div>
-</div>
-
+    </section>
+    <section class="row" style="bottom:20px;position:fixed;z-index:-1">
+        <div class="col-4">
+            <button class=" btn btn-lg btn-outline-light">
+                <i class="fas fa-volume-mute"></i>
+            </button>
+        </div>
+        <div class="col-4">
+            <button class=" btn btn-lg btn-outline-light">
+                <i class="fas fa-video 9x"></i>
+            </button>
+        </div>
+        <div class="col-4">
+            <button class=" btn btn-lg btn-outline-light">
+                <i class="far fa-times-circle 9x"></i>
+            </button>
+        </div>
+    </section>
+    <input id="token" type="hidden" value="@Model.Token"/>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="//media.twiliocdn.com/sdk/js/video/releases/2.0.0-beta1/twilio-video.min.js"></script>
+    <script src="~/js/video.js"></script>
+</body>
+</html>
