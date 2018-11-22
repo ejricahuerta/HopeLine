@@ -3,10 +3,9 @@
 @{
     ViewData["Title"] = "Admin Home";
     //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-    Layout = "~/Pages/Shared/_Layout.cshtml";
+    Layout = "~/Pages/Shared/_mentorLayout.cshtml";
 }
 
-<hr />
 
 <div class="sidebar bg-dark">
     <!-- Profile -->
@@ -86,7 +85,7 @@
 
         <tbody>
 
-            @foreach (var item in Model.HopeLine)
+            @foreach (var item in Model.Users)
             {
                 <tr>
                     <th scope="row">@Html.DisplayFor(modelitem => item.Id)</th>

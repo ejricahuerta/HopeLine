@@ -22,11 +22,14 @@ namespace HopeLine.Web.Pages
         }
 
         [BindProperty]
-        public List<UserViewModel> HopeLine { get; set; }
+        public List<UserViewModel> Users { get; set; }
+
+        [BindProperty]
+        public List<UserViewModel> Mentors { get; set; }
 
         public void OnGet()
         {
-            HopeLine = _userService.GetAllUsers().Select(c => new UserViewModel
+            Users = _userService.GetAllUsers().Select(c => new UserViewModel
             {
                 Id = c.Id,
                 Email = c.Email,
