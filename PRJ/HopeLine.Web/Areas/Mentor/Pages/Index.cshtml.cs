@@ -210,6 +210,8 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             _logger.LogInformation("User changed their password successfully.");
             StatusMessage = "Your password has been changed.";
 
+
+            Url.Page("/VideoChat", new { room = PIN });
             return RedirectToPage();
         }
     }

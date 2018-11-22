@@ -23,10 +23,11 @@
     <link rel="stylesheet" , href="~/css/resources.css" />
 
     <style>
-        .hidediv{
+        .hidediv {
             display: none;
         }
-        .unhidedive{
+
+        .unhidedive {
             display: block;
         }
     </style>
@@ -93,7 +94,7 @@
                     </div>
                 </div>
                 <div class="row p-0 m-0">
-                    
+
                     <div class="col-md-8">
                         <hr>
                         <form class="form" action="##" method="post" id="registrationForm">
@@ -124,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -166,7 +167,7 @@
                     </div>
 
                     <!--chat content-->
-                    
+
                     <input id="pin" value="@Model.PIN" hidden>
                     <div class="chat col-md-4 shadow-sm hidediv" id="chatwindow" fixed>
                         <div class="card">
@@ -177,26 +178,44 @@
                             </div>
                             <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="message">
                                 <div id="chatbox" class="card-body bg-clear">
-                                    
+
                                 </div>
                             </div>
-                                <div class="card-footer text-muted">
-                                    <div class="form-row">
-                                        <div class="col-9">
-                                            <textarea class="form-control" id="messageInput" rows="1"></textarea>
-                                        </div>
-                                        <div class="col-3">
-                                            <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus />
-                                        </div>
+                            <div class="card-footer text-muted">
+                                <div class="form-row">
+                                    <div class="col-9">
+                                        <textarea class="form-control" id="messageInput" rows="1"></textarea>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus />
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                     <!--chat content-->
                     <hr>
-
-
+                    <!--video request modal-->
+                    <div id="incomingCall" class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Video Call</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Answer Incoming Call</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="dismissCall"type="button" class="btn btn-secondary" data-dismiss="modal">Decline</button>
+                                    <button id="acceptCall"  class="btn btn-primary">Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!--/tab-content-->
                     <!--/col-9-->
@@ -206,8 +225,6 @@
 
             </div>
             <!--Profile END-->
-
-
             <!-- Change Password START-->
             <div id="changepassword" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
                 <div class="row">
@@ -222,17 +239,17 @@
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="Input.OldPassword">OldPassword</label>
-                            <input asp-for="Input.OldPassword" class="form-control" required/>
+                            <input asp-for="Input.OldPassword" class="form-control" required />
                             <span asp-validation-for="Input.OldPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Input.NewPassword">NewPassword</label>
-                            <input asp-for="Input.NewPassword" class="form-control" required/>
+                            <input asp-for="Input.NewPassword" class="form-control" required />
                             <span asp-validation-for="Input.NewPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Input.ConfirmPassword">ConfirmPassword</label>
-                            <input asp-for="Input.ConfirmPassword" class="form-control" required/>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" required />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <button type="submit" class="btn btn-default">Update password</button>
@@ -241,13 +258,12 @@
 
             </div>
             <!-- Change Password END-->
-
             <!-- Conversation History START -->
             <div id="stat" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
                 <table class="table">
                     <thead>
                         <tr>
-                            
+
                             <th scope="col">Id</th>
                             <th scope="col">User&nbsp;Id</th>
                             <th scope="col">Username</th>
@@ -259,14 +275,14 @@
                     <tbody>
                         @foreach (var item in Model.Conversations)
                         {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.UserId</td>
-                            <td>@item.UserName</td>
-                            <td>@item.PIN</td>
-                            <td>@item.Minutes</td>
-                            <td>@item.DateOfConversation</td>
-                        </tr>
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserId</td>
+                                <td>@item.UserName</td>
+                                <td>@item.PIN</td>
+                                <td>@item.Minutes</td>
+                                <td>@item.DateOfConversation</td>
+                            </tr>
                         }
 
                     </tbody>
@@ -284,20 +300,19 @@
 </section>
 
 
-<script>
-    
-
-    $("#switch-id").on("click", function () {
-        $("#password").prop("disabled", !$("#password").prop("disabled"));
-        $("#password1").prop("disabled", !$("#password1").prop("disabled"));
-        $("#password2").prop("disabled", !$("#password2").prop("disabled"));
-    });
-
-</script>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
 
+
+        $("#switch-id").on("click", function () {
+            $("#password").prop("disabled", !$("#password").prop("disabled"));
+            $("#password1").prop("disabled", !$("#password1").prop("disabled"));
+            $("#password2").prop("disabled", !$("#password2").prop("disabled"));
+        });
+
+    </script>
     <script>
         $(function () {
             $("#unhide").click(function () {
@@ -328,6 +343,6 @@
             });
         });
 
-        
+
     </script>
 }

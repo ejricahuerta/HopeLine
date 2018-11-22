@@ -11,10 +11,13 @@ var isUser = currentuser.indexOf("Guest") != -1;
 var timeout;
 var room
 
+//var url = "http://hopeline.azurewebsites.net/instantChat";
+
+var url = "http://localhost/instantChat";
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
-        $("#chatbox").append('<a href="http://hopeline.azurewebsites.net/instantChat" class="btn btn-info">Retry</a>');
+        $("#chatbox").append('<a href="'+url+'" class="btn btn-info">Retry</a>');
     }, 20000);
 }
 
@@ -29,12 +32,16 @@ console.log("pin = " + room);
 
 $(function () {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("https://hopelineapi.azurewebsites.net/chatHub")
-        //.withUrl("http://localhost:5000/v2/chatHub")
+        //.withUrl("https://hopelineapi.azurewebsites.net/chatHub")
+        .withUrl("http://localhost:5000/v2/chatHub")
         .build();
 });
 
 function registerhub() {
+    connection.on("CallConnected", function () {
+        window.open(url + "/roomId=" + room, "_blank");
+    });
+
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         var classId = currentuser == user ? "border-primary" : "border-success";
@@ -71,6 +78,7 @@ function registerhub() {
     });
     connection.on("Room", function (roomId) {
         room = roomId;
+        $("#pin").val(room);
         $("#sendArea").removeClass('d-none');
         connection.invoke("LoadMessage", room);
         console.log("Room: " + room);
@@ -112,6 +120,10 @@ function registerhub() {
                 )
                 connection.invoke("RemoveUser", room, isUser);
             }
+        });
+        connection.on("CallMentor", function () {
+            console.log("Notifying");
+            $("#incomingCall").toggle();
         });
     } else {
         connection.on("NotifyUser", function (code) {
@@ -168,8 +180,8 @@ $(function () {
     if (userId != null) {
 
         connection = new signalR.HubConnectionBuilder()
-            .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-            //.withUrl("http://localhost:5000/v2/chatHub")
+            //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+            .withUrl("http://localhost:5000/v2/chatHub")
             .build();
         registerhub();
         startConnection();
@@ -203,6 +215,19 @@ $("#logout").click(function () {
     connection.invoke("RemoveUser", userId, room, isUser);
 });
 
+$("#videoCallBtn").click(function () {
+    console.log("video btn clicked");
+    console.log(room);
+    connection.invoke("RequestToVideoCall", room);
+    console.log("after modal show");
+});
+
+
+$("#acceptCall").click(function () {
+    connection.invoke("ConnectCall", room);
+});
+
+
 // Automatically scroll down
 const messages = document.getElementById('message');
 
@@ -231,8 +256,3 @@ $("#message").scroll(function (m) {
 });
 
 scrollToBottom();
-
-
-
-
-        ////////////////////
