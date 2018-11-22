@@ -112,7 +112,6 @@ namespace HopeLine.API.Hubs.v2
                 UserName = user,
                 Text = message
             };
-
             Console.WriteLine("Adding Message");
             _messageService.NewMessage(newmsg);
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
@@ -174,7 +173,7 @@ namespace HopeLine.API.Hubs.v2
                 await _messageService.AndUsersToRoom(mentorId, userId, room);
                 await Groups.AddToGroupAsync(Context.ConnectionId, room);
                 await Clients.Caller.SendAsync("Room", room);
-                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Hello, a mentor is here is now for you.");
+                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Hello, Happy Chattting!.");
             }
             catch (System.Exception ex)
             {
