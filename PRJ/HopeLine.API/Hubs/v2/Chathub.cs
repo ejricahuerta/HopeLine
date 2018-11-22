@@ -167,7 +167,7 @@ namespace HopeLine.API.Hubs.v2
             {
                 var room = _communicationService.GenerateConnectionId();
                 CurrentRoom = room;
-                await Groups.RemoveFromGroupAsync(Context.ConnectionId, mentorId);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, Mentor);
                 await Groups.AddToGroupAsync(userConnectionId, room);
                 await Clients.Client(userConnectionId).SendAsync("Room", room);
                 await _messageService.AndUsersToRoom(mentorId, userId, room);
@@ -188,8 +188,9 @@ namespace HopeLine.API.Hubs.v2
                 var room = _messageService.GetRoomForUser(userId, true);
                 if (room != null)
                 {
-                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Connected);
+                    await Groups.AddToGroupAsync(Context.ConnectionId, room);
                     await Clients.Caller.SendAsync("Room", room);
+                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Connected);
                 }
                 else
                 {
