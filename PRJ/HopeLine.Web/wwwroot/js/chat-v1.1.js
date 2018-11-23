@@ -44,6 +44,9 @@ function registerhub() {
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         addChatBubble(user, message);
+        $("#message").animate({
+            scrollTop: $('#message').prop("scrollHeight")
+        }, "slow");
     });
 
     //FIXME: redundant as receivemessage
@@ -51,7 +54,11 @@ function registerhub() {
     connection.on("Load", function (user, message) {
         console.log("Loading Message");
         addChatBubble(user, message);
-    });
+        $("#message").animate({
+            scrollTop: $('#message').prop("scrollHeight")
+        }, "slow");
+    //scrollToBottom();
+});
 
     //when a room is created
     connection.on("Room", function (roomId) {
@@ -230,11 +237,7 @@ $("#sendButton").click(function (event) {
 
         event.preventDefault();
         $("#messageInput").val(" ");
-        $("#message").animate({
-            scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
     }
-    //scrollToBottom();
 });
 
 $("#logout").click(function () {
@@ -254,7 +257,7 @@ $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
 
-
+ 
 
 //!END OF ALL ACTIONS
 
@@ -285,3 +288,4 @@ $("#acceptCall").click(function () {
 //     clearInterval(i);
 //     console.log("CLEARED");
 // }
+    
