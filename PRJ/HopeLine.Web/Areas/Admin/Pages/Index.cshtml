@@ -1,97 +1,111 @@
 ﻿@page
+@model HopeLine.Web.Pages.HopeLineUser
 @{
     ViewData["Title"] = "Admin Home";
-    Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+    //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+    Layout = "~/Pages/Shared/_mentorLayout.cshtml";
 }
 
-    <div class="row">
-        <div class="col-md-4 float-left">
-            <input type="text" value="Search" />
-        </div>
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Search by account type
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <button class="dropdown-item btn btn-primary">Mentor</button>
-                    <button class="dropdown-item  btn btn-primary">User</button>
 
+<div class="sidebar bg-dark">
+    <!-- Profile -->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="depressionHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="Index#" style="color:rgba(255,255,255,.5)">
+                        Profile
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Change Password-->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="depressionHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="ChangePassword#" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
+                        Change Password
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Personal Data -->
+    <div>
+        <div class="card bg-dark">
+            <div class="card-header" id="anxietyHeader">
+                <h5 class="mb-0">
+                    <a class="btn nav-link dropdown" data-toggle="collapse" data-target="AddMentor#" style="color:rgba(255,255,255,.5)">
+                        Add Mentor
+                    </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content accordion-group ">
+    <div class="container">
+        <div class="row" style="margin-top:60px">
+            <div class="col-md-4 float-left">
+                <input type="text" value="Search" />
+            </div>
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Search by account type
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <button class="dropdown-item btn btn-primary">Mentor</button>
+                        <button class="dropdown-item  btn btn-primary">User</button>
+
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-success">Add mentor</button>
-        </div>
-
-    </div>
-<hr />
-<div class="container">
-    <div class="row">
-        <b class="col-md-2">Id</b>
-        <b class="col-md-2">First&nbsp;Name</b>
-        <b class="col-md-2">Last&nbsp;Name</b>
-        <b class="col-md-2">Account&nbsp;Type</b>
-        <b class="col-md-4">Manage</b>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000001</div>
-        <div class="col-md-2">John</div>
-        <div class="col-md-2">Doe</div>
-        <div class="col-md-2">User</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
+          
         </div>
     </div>
+   
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000002</div>
-        <div class="col-md-2">Steve</div>
-        <div class="col-md-2">Smith</div>
-        <div class="col-md-2">Mentor</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Account Type</th>
+            </tr>
+        </thead>
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000003</div>
-        <div class="col-md-2">Jack</div>
-        <div class="col-md-2">Peng</div>
-        <div class="col-md-2">Admin</div>
-        <div class="col-md-4">
-            <a href="ManageAccounts.cshtml" class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
+        <tbody>
 
-    <!--
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <th scope="row">@Html.DisplayFor(modelitem => item.Id)</th>
+                    <td>@Html.DisplayFor(modelitem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelitem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
+                    <td>
+                        <a class="btn btn-warning">
+                            Manage
+                        </a>
+                        </td>
+                </tr>
+                        
 
-        foreach (var item in collection)
-        {
-            <hr />
-        <div class="row">
-            <div class="col-md-2">item.Id</div>
-            <div class="col-md-2">item.FirstName</div>
-            <div class="col-md-2">item.LastName</div>
-            <div class="col-md-2">item.AccountType</div>
-            <div class="col-md-4">
-                <a class="btn btn-warning">
-                    Manage
-                </a>
-            </div>
-        </div>
-        }
+            }
+        </tbody>
+</table>
 
-        -->
 </div>
+   
+
 
 
