@@ -39,7 +39,7 @@ function registerhub() {
             '_blank', 'toolbar=0,menubar=0');
     });
 
-    //FIXME: redundant as load
+    //FIXME: redundant as load FIXED
     //when a user sent a message
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
@@ -48,7 +48,7 @@ function registerhub() {
             scrollTop: $('#message').prop("scrollHeight")
         }, "slow");
     });
-
+/*
     //FIXME: redundant as receivemessage
     //when a user refresh the page
     connection.on("Load", function (user, message) {
@@ -59,7 +59,7 @@ function registerhub() {
         }, "slow");
     //scrollToBottom();
 });
-
+*/
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
@@ -136,7 +136,7 @@ function notifyUser() {
             $("#loading").show();
             findTime();
             // $("#message").remove();
-            //FIXME: add a message or modal to notify the user's disconnection
+            //FIXME: add a message or modal to notify the user's disconnection FIXED
             $("#modaltrigger").click();
         }
     });
