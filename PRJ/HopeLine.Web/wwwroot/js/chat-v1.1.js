@@ -137,6 +137,7 @@ function notifyUser() {
             findTime();
             // $("#message").remove();
             //FIXME: add a message or modal to notify the user's disconnection
+            $("#modaltrigger").click();
         }
     });
 }

@@ -8,7 +8,7 @@
 
 <input id="isUser" value=@Model.IsUser hidden />
 <section class="container" style="margin-top:100px;">
-    <div class="row justify-content-center p-2 shadow-lg">
+    <div class="row justify-content-center p-2 shadow-lg"style="height:600px">
         <div class="col-md-3 col-sm-12 d-none d-md-block border" style=" overflow-y: auto">
             <form method="POST" class="p-0 m-0">
                 <div class="row justify-content-center" id="list">
@@ -37,7 +37,7 @@
         </div>
         <!-- end of users-->
         <div class="col-md-7 col-sm-12 p-0">
-            <div class="row p-3 m-0">
+            <div class="row m-0">
                 <div class="col-sm-12">
                     <h3 class="">Instant&nbsp;Chat</h3>
                     <div class=" text-right ml-1">
@@ -71,6 +71,11 @@
             </div>
         </div>
     </div>
+
+    <div id="disconnection" class="modal">
+        <p>You are disconnected from the chat</p>
+    </div>
+    <p hidden><a id="modaltrigger" href="#disconnection" rel="modal:open"></a></p>
 </section>
 @section Scripts {
     <!--
