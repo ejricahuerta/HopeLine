@@ -45,7 +45,7 @@
         function initAutocomplete() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 43.77, lng: -79.49 },
-                zoom: 10,
+                zoom: 14,
                 mapTypeId: 'roadmap'
             });
             //load the places(Google api feature) service map
@@ -80,7 +80,16 @@
             // Bias the SearchBox results towards current map's viewport.
             map.addListener('bounds_changed', function () {
                 searchBox.setBounds(map.getBounds());
+                pos = map.getCenter();
+                //var lat = pos.lat();
+                //var lat = pos.lng();
+
             });
+
+            //var lat = tempLoc1.lat();
+            //var lat = tempLoc1.lng();
+
+            //console.log("Lat:" + lat, "lng" + lng);
             markers = [];
             //  var markers = [];
             // Listen for the event fired when the user selects a prediction and retrieve
@@ -107,7 +116,7 @@
                         origin: new google.maps.Point(0, 0),
                         anchor: new google.maps.Point(17, 34),
                         scaledSize: new google.maps.Size(25, 25),
-                       
+
                     };
                     // Create a marker for each place.
                     markers.push(new google.maps.Marker({
@@ -115,13 +124,14 @@
                         icon: icon,
                         title: place.name,
                         position: place.geometry.location,
-                        
+
                     }));
 
                     // tempLong = parseFloat(place.geometry.location.lat());
                     // tempLat = parseFloat(place.geometry.location.lng());
                     // console.log(tempLong,tempLat);
                     setPosition(place.geometry.location.lat(), place.geometry.location.lng());
+
                     if (place.geometry.viewport) {
                         // Only geocodes have viewport.
                         bounds.union(place.geometry.viewport);
@@ -139,7 +149,7 @@
                 lat: latPar,
                 lng: lngPar
             }
-          
+
             //console.log(pos.lat , pos.lng + "in setPosition");
         }
 
@@ -162,7 +172,7 @@
             // console.log(locationType);
             var request = {
                 location: pos,
-                radius: 9000,
+                radius: 5000,
                 type: [locationType]
             };
             service.nearbySearch(request, function (results, status) {
@@ -220,7 +230,6 @@
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     results[i].locationType = locationType;
-                    ;
                     tempResults.push(results[i]);
                     createMarker(results[i]); //<--always results[i]
 
@@ -236,7 +245,12 @@
             });
             //pushes markers to results array.
             results.push(marker);
-
+            markers.push(marker);
+            //  console.log(getBounds());
+            for (var i = 0; i < marker.length; i++) {
+                i++;
+                console.log("Number of markers:" + i);
+            }
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
@@ -266,6 +280,9 @@
 
 <button class="button" onClick="clearMarkers()">Clear Markers</button>
 
+<button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
+    Search area
+</button>
 <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
 
 <div id="map" class="p-0 m-0"></div>
