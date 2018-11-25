@@ -39,20 +39,27 @@ function registerhub() {
             '_blank', 'toolbar=0,menubar=0');
     });
 
-    //FIXME: redundant as load
+    //FIXME: redundant as load FIXED
     //when a user sent a message
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         addChatBubble(user, message);
+        $("#message").animate({
+            scrollTop: $('#message').prop("scrollHeight")
+        }, "slow");
     });
-
-    //FIXME: redundant as receivemessage
-    //when a user refresh the page
-    connection.on("Load", function (user, message) {
-        console.log("Loading Message");
-        addChatBubble(user, message);
+    /*
+        //FIXME: redundant as receivemessage
+        //when a user refresh the page
+        connection.on("Load", function (user, message) {
+            console.log("Loading Message");
+            addChatBubble(user, message);
+            $("#message").animate({
+                scrollTop: $('#message').prop("scrollHeight")
+            }, "slow");
+        //scrollToBottom();
     });
-
+    */
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
@@ -61,6 +68,7 @@ function registerhub() {
         connection.invoke("LoadMessage", room);
         $("#sendArea").removeClass("d-none");
         $("#loading").hide();
+        $("#mentorFound").click();
         timeout = null;
     });
 
@@ -115,6 +123,7 @@ function startConnection() {
 function notifyUser() {
     connection.on("NotifyUser", function (code) {
         //if positive then remove loading and pop the send area
+        console.log("code:  " + code);
         if (code == 1) {
             $("#sendArea").removeClass("d-none");
             console.log("code: " + code);
@@ -122,6 +131,7 @@ function notifyUser() {
             //if 0 then keep notify the mentor
         } else if (code == 0) {
             $("#sendArea").addClass('d-none');
+            $("#openLoading").click();
             findTime();
             // else  chat is disconnected
         } else {
@@ -129,7 +139,8 @@ function notifyUser() {
             $("#loading").show();
             findTime();
             // $("#message").remove();
-            //FIXME: add a message or modal to notify the user's disconnection
+            //FIXME: add a message or modal to notify the user's disconnection FIXED
+            $("#modaltrigger").click();
         }
     });
 }
@@ -230,11 +241,7 @@ $("#sendButton").click(function (event) {
 
         event.preventDefault();
         $("#messageInput").val(" ");
-        $("#message").animate({
-            scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
     }
-    //scrollToBottom();
 });
 
 $("#logout").click(function () {
