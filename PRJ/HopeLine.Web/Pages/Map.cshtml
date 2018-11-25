@@ -13,7 +13,7 @@
 }
 
 <head>
-    
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
     <title>Map Page</title>
@@ -22,7 +22,7 @@
 
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    
+
 </head>
 
 <div class="contain" style="margin-top: 90px;">
@@ -258,37 +258,39 @@
         }
     </script>
 
+
 </div>
+    <input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
+    <label for="c1">
+        <div>&#x2714;</div>Hospital<br />
+    </label>
+    <input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
+    <label for="c2">
+        <div>&#x2714;</div>Pharmacy<br />
+    </label>
 
-<input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
-<label for="c1">
-    <div>&#x2714;</div>Hospital<br />
-</label>
-<input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
-<label for="c2">
-    <div>&#x2714;</div>Pharmacy<br />
-</label>
-<input name="locationBox" value="physiotherapist" type="checkbox" id="c3" onclick="searchType('physiotherapist',this)" />
-<label for="c3">
-    <div>&#x2714;</div>Physiotherapist<br />
-</label>
-<input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
-<label for="c4">
-    <div>&#x2714;</div>Doctor<br />
-</label>
+    <input name="locationBox" value="health" type="checkbox" id="c3" onclick="searchType('spa',this)" />
+    <label for="c3">
+        <div>&#x2714;</div>Health club/Sauna<br />
+    </label>
 
-
-<button class="button" onClick="clearMarkers()">Clear Markers</button>
-
-<button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
-    Search area
-</button>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
-
-<div id="map" class="p-0 m-0"></div>
+    <input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
+    <label for="c4">
+        <div>&#x2714;</div>Doctor<br />
+    </label>
 
 
+    <button class="button" onClick="clearMarkers()">Clear Markers</button>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
-        async defer></script>
+    <button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
+        Search area
+    </button>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+
+    <div id="map" class="p-0 m-0"></div>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+            async defer></script>
 
