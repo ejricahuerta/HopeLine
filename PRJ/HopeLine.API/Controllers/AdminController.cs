@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HopeLine.Service.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HopeLine.API.Controllers
 {
@@ -9,6 +10,12 @@ namespace HopeLine.API.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        //TODO : SetSchedule
+        private readonly IUserService _userService;
+
+        public AdminController(IUserService userService)
+        {
+            _userService = userService;
+        }
     }
+
 }
