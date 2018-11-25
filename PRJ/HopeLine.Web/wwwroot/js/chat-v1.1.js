@@ -48,18 +48,18 @@ function registerhub() {
             scrollTop: $('#message').prop("scrollHeight")
         }, "slow");
     });
-/*
-    //FIXME: redundant as receivemessage
-    //when a user refresh the page
-    connection.on("Load", function (user, message) {
-        console.log("Loading Message");
-        addChatBubble(user, message);
-        $("#message").animate({
-            scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
-    //scrollToBottom();
-});
-*/
+    /*
+        //FIXME: redundant as receivemessage
+        //when a user refresh the page
+        connection.on("Load", function (user, message) {
+            console.log("Loading Message");
+            addChatBubble(user, message);
+            $("#message").animate({
+                scrollTop: $('#message').prop("scrollHeight")
+            }, "slow");
+        //scrollToBottom();
+    });
+    */
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
@@ -68,6 +68,7 @@ function registerhub() {
         connection.invoke("LoadMessage", room);
         $("#sendArea").removeClass("d-none");
         $("#loading").hide();
+        $("#mentorFound").click();
         timeout = null;
     });
 
@@ -122,6 +123,7 @@ function startConnection() {
 function notifyUser() {
     connection.on("NotifyUser", function (code) {
         //if positive then remove loading and pop the send area
+        console.log("code:  " + code);
         if (code == 1) {
             $("#sendArea").removeClass("d-none");
             console.log("code: " + code);
@@ -129,6 +131,7 @@ function notifyUser() {
             //if 0 then keep notify the mentor
         } else if (code == 0) {
             $("#sendArea").addClass('d-none');
+            $("#openLoading").click();
             findTime();
             // else  chat is disconnected
         } else {
@@ -258,7 +261,7 @@ $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
 
- 
+
 
 //!END OF ALL ACTIONS
 
@@ -289,4 +292,3 @@ $("#acceptCall").click(function () {
 //     clearInterval(i);
 //     console.log("CLEARED");
 // }
-    
