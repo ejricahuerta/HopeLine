@@ -134,9 +134,9 @@ namespace HopeLine.Service.CoreServices
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
-                        MentorId = c.Mentor.Id,
-                        UserName = c.UserName,
-                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
+                        MentorId = c.MentorId,
+                        UserId = c.UserId,
+                        DateOfConversation = DateTime.Parse(c.DateOfConversation),
                         Minutes = c.Minutes,
                         PIN = c.PIN
 
@@ -240,14 +240,14 @@ namespace HopeLine.Service.CoreServices
             {
 
                 return _convoRepo.GetAll()
-                                .Where(u => u.UserName == username)
+                                .Where(u => u.UserId == username)
                                 .Select(c => new ConversationModel
                                 {
                                     Id = c.Id,
-                                    UserName = c.UserName,
+                                    UserId = c.UserId,
                                     DateOfConversation = DateTime.Parse(c.DateOfConversation),
                                     PIN = c.PIN,
-                                    MentorId = c.Mentor.Id,
+                                    MentorId = c.MentorId,
                                     Minutes = c.Minutes
                                 });
             }
