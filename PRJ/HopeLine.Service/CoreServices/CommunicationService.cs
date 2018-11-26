@@ -38,6 +38,7 @@ namespace HopeLine.Service.CoreServices
                         DateOfConversation = conversation.DateOfConversation.ToString(),
                     };
                     _conversationRepo.Insert(newConversation);
+                    _conversationRepo.Save();
                     return true;
                 }
             }
@@ -61,6 +62,7 @@ namespace HopeLine.Service.CoreServices
                     DateOfConversation = conversation.DateOfConversation.ToString(),
                 };
                 _conversationRepo.Insert(newConversation);
+                _conversationRepo.Save();
                 return true;
             }
             catch (SystemException e)
@@ -84,6 +86,7 @@ namespace HopeLine.Service.CoreServices
                     DateOfConversation = conversation.DateOfConversation.ToString()
                 };
                 _conversationRepo.Update(newConversation);
+                _conversationRepo.Save();
                 return true;
             }
             catch (SystemException e)
