@@ -19,9 +19,18 @@
 <body class="container-fluid bg-dark text-white">
     <section class="row">
         <div id="remote" class=" border" style="min-height:300px;">
-        <div id="local" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
+            <div id="local video" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
+                <input type="file" accept="video/*;capture=camcorder" />
+                <input type="file" accept="video/*;capture=microphone" />
+                <script>
+                    const constraint = {
+                        video: true
+                    };
 
-        </div>
+                    const video = document.querySelector('video');
+                    navigator.mediaDevices.getUserMedia(constraint).then((stream) => { video.srcObject = stream });
+                </script>
+            </div>
         </div>
     </section>
     <section class="row" style="bottom:20px;position:fixed;z-index:-1">

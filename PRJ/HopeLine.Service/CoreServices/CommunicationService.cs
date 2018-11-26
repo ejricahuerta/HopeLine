@@ -29,21 +29,21 @@ namespace HopeLine.Service.CoreServices
             {
                 if (isGuestUser)
                 {
-                    var _conversation = new Conversation
+                    var newConversation = new Conversation
                     {
                         PIN = conversation.PIN,
+                        MentorId = conversation.MentorId,
+                        UserId = conversation.UserId,
                         Minutes = conversation.Minutes,
-                        Mentor = conversation.Mentor,
                         DateOfConversation = conversation.DateOfConversation.ToString(),
-                        LanguageUsed = conversation.LanguageUsed
                     };
-                    _conversationRepo.Insert(_conversation);
+                    _conversationRepo.Insert(newConversation);
                     return true;
                 }
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
+                Console.WriteLine("SERVICE ERROR: " + e);
             }
             return false;
         }
@@ -56,16 +56,14 @@ namespace HopeLine.Service.CoreServices
                 {
                     PIN = conversation.PIN,
                     Minutes = conversation.Minutes,
-                    Mentor = conversation.Mentor,
                     DateOfConversation = conversation.DateOfConversation.ToString(),
-                    LanguageUsed = conversation.LanguageUsed
                 };
                 _conversationRepo.Insert(_conversation);
                 return true;
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
+                Console.WriteLine("SERVICE ERROR: " + e);
                 return false;
             }
 
@@ -75,22 +73,22 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var _conversation = new Conversation
+                var newConversation = new Conversation
                 {
                     PIN = conversation.PIN,
+                    UserId = conversation.UserId,
                     Minutes = conversation.Minutes,
-                    Mentor = conversation.Mentor,
-                    DateOfConversation = conversation.DateOfConversation.ToString(),
-                    LanguageUsed = conversation.LanguageUsed
+                    MentorId = conversation.MentorId,
+                    DateOfConversation = conversation.DateOfConversation.ToString()
                 };
-                _conversationRepo.Update(_conversation);
+                _conversationRepo.Update(newConversation);
                 return true;
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
-                return false;
+                Console.WriteLine("SERVICE ERROR: " + e);
             }
+            return false;
         }
 
         public string GenerateConnectionId()
@@ -109,10 +107,9 @@ namespace HopeLine.Service.CoreServices
                          {
                              PIN = c.PIN,
                              Minutes = c.Minutes,
-                             Mentor = c.Mentor,
+                             MentorId = c.MentorId,
+                             UserId = c.UserId,
                              DateOfConversation = DateTime.Parse(c.DateOfConversation),
-                             LanguageUsed = c.LanguageUsed
-
                          }
                      )
                      .SingleOrDefault(c => c.Id == id);
@@ -121,7 +118,7 @@ namespace HopeLine.Service.CoreServices
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
+                Console.WriteLine("SERVICE ERROR: " + e);
                 return null;
             }
         }
@@ -135,10 +132,12 @@ namespace HopeLine.Service.CoreServices
 
                         new ConversationModel
                         {
+                            PIN = c.PIN,
+                            UserId = c.UserId,
                             Minutes = c.Minutes,
-                            Mentor = c.Mentor,
+                            MentorId = c.MentorId,
                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
-                            LanguageUsed = c.LanguageUsed
+
 
                         }
                     )
@@ -148,7 +147,7 @@ namespace HopeLine.Service.CoreServices
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
+                Console.WriteLine("SERVICE ERROR:" + e);
                 return null;
             }
         }
@@ -162,9 +161,10 @@ namespace HopeLine.Service.CoreServices
                     {
                         PIN = c.PIN,
                         Minutes = c.Minutes,
-                        Mentor = c.Mentor,
-                        DateOfConversation =  DateTime.Parse(c.DateOfConversation),
-                        LanguageUsed = c.LanguageUsed
+                        MentorId = c.MentorId,
+                        UserId = c.UserId,
+                        DateOfConversation = DateTime.Parse(c.DateOfConversation),
+
                     });
 
                 return conversations;
@@ -172,9 +172,9 @@ namespace HopeLine.Service.CoreServices
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
-                return null;
+                Console.WriteLine("SERVICE ERROR: " + e);
             }
+            return null;
         }
 
         public IEnumerable<ConversationModel> GetConversationsByMentorId(string mentorId)
@@ -182,17 +182,15 @@ namespace HopeLine.Service.CoreServices
             try
             {
                 var obj = _conversationRepo.GetAll()
-                    .Where(c => c.Mentor.Id.ToString().Contains(mentorId))
+                    .Where(c => c.MentorId == mentorId)
                     .Select(c =>
-
                         new ConversationModel
                         {
                             PIN = c.PIN,
                             Minutes = c.Minutes,
-                            Mentor = c.Mentor,
+                            MentorId = c.MentorId,
+                            UserId = c.UserId,
                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
-                            LanguageUsed = c.LanguageUsed
-
                         }
                     );
 
@@ -200,9 +198,9 @@ namespace HopeLine.Service.CoreServices
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
-                return null;
+                Console.WriteLine("SERVICE ERROR:" + e);
             }
+            return null;
         }
 
         public IEnumerable<ConversationModel> GetConversationsByUserId(string userId)
@@ -217,20 +215,17 @@ namespace HopeLine.Service.CoreServices
                         {
                             PIN = c.PIN,
                             Minutes = c.Minutes,
-                            Mentor = c.Mentor,
+                            MentorId = c.MentorId,
                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
-                            LanguageUsed = c.LanguageUsed
-
                         }
                     );
-
                 return obj;
             }
             catch (SystemException e)
             {
-                Console.WriteLine("Error: " + e);
-                return null;
+                Console.WriteLine("SERVICE ERROR:" + e);
             }
+            return null;
         }
     }
 }

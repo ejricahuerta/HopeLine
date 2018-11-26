@@ -15,7 +15,7 @@ using static HopeLine.Web.Areas.Identity.Pages.Account.ExternalLoginModel;
 
 namespace HopeLine.Web.Areas.Mentor.Pages
 {
-  
+
     public class IndexModel : PageModel
     {
         /* For Profile */
@@ -55,9 +55,9 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         [BindProperty]
         public List<UserViewModel> Mentors { get; set; }
-        
+
         [BindProperty]
-        public  UserViewModel CurrentMentor { get; set; }
+        public UserViewModel CurrentMentor { get; set; }
 
         [BindProperty]
         public List<SpecializationViewModel> Specializations { get; set; }
@@ -75,7 +75,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
         public List<ConversationViewModel> Conversations { get; set; }
         /*Conversation END*/
 
-            /*Change Password START*/
+        /*Change Password START*/
         public class InputModel
         {
             [Required]
@@ -96,7 +96,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
         }
         /* For Change Password END */
 
-        
+
 
         public async Task<IActionResult> OnGetAsync(string pin = null, string user = null)
         {
@@ -116,7 +116,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 Phone = CurrentUser.PhoneNumber
             };
 
-            if(claim.Value == "User" || claim.Value == "Admin")
+            if (claim.Value == "User" || claim.Value == "Admin")
             {
                 return Redirect(url);
             }
@@ -124,16 +124,17 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
             {
                 Id = m.Id,
-                FirstName=m.FirstName,
-                LastName=m.LastName,
-                Username=m.Username,
-                Email=m.Email,
-                AccountType=m.AccountType,
-                Phone=m.Phone
+                FirstName = m.FirstName,
+                LastName = m.LastName,
+                Username = m.Username,
+                Email = m.Email,
+                AccountType = m.AccountType,
+                Phone = m.Phone
 
             }).ToList();
 
-            Specializations = _userService.GetMentorSpecializations("1a68265d-9601-47a7-9539-fe4a9486fb65").Select(s => new SpecializationViewModel
+
+            Specializations = _userService.GetMentorSpecializations(CurrentMentor.Id).Select(s => new SpecializationViewModel
             {
                 Name = s.Name,
                 Description = s.Description
@@ -170,13 +171,13 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             /* Change Password END */
 
             /*Conversation Logic START*/
-            Conversations = _userService.GetMentorConversations("1a68265d-9601-47a7-9539-fe4a9486fb65").Select(c => new ConversationViewModel
+            Conversations = _userService.GetMentorConversations(CurrentMentor.Id).Select(c => new ConversationViewModel
             {
-                Id=c.Id,
-                PIN=c.PIN,
+                Id = c.Id,
+                PIN = c.PIN,
                 UserId = c.UserId,
-                UserName=c.UserName,
-                Minutes=c.Minutes,
+                UserName = c.UserName,
+                Minutes = c.Minutes,
                 DateOfConversation = c.DateOfConversation.ToString()
             }).ToList();
             /*Conversation Logic END */

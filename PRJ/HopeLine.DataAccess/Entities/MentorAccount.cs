@@ -17,7 +17,7 @@ namespace HopeLine.DataAccess.Entities
             Conversations = new List<Conversation>();
             Schedules = new List<Schedule>();
         }
-
+        public string SIN { get; set; }
         //TODO : add more properties like availabilitie and Schedule
         public ICollection<Schedule> Schedules { get; set; }
         public ICollection<Conversation> Conversations { get; set; }
