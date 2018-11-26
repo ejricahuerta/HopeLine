@@ -52,20 +52,22 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var _conversation = new Conversation
+                var newConversation = new Conversation
                 {
                     PIN = conversation.PIN,
+                    UserId = conversation.UserId,
                     Minutes = conversation.Minutes,
+                    MentorId = conversation.MentorId,
                     DateOfConversation = conversation.DateOfConversation.ToString(),
                 };
-                _conversationRepo.Insert(_conversation);
+                _conversationRepo.Insert(newConversation);
                 return true;
             }
             catch (SystemException e)
             {
                 Console.WriteLine("SERVICE ERROR: " + e);
-                return false;
             }
+            return false;
 
         }
 
@@ -216,6 +218,7 @@ namespace HopeLine.Service.CoreServices
                             PIN = c.PIN,
                             Minutes = c.Minutes,
                             MentorId = c.MentorId,
+                            UserId = c.UserId,
                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
                         }
                     );
