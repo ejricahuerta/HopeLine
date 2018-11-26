@@ -127,13 +127,16 @@ namespace HopeLine.API.Hubs.v2
             }
 
             //Updating Conversation
-            var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
-            TimeSpan span = (conversation.DateOfConversation - DateTime.UtcNow);
-            conversation.Minutes = span.Minutes;
-            var result = _communicationService.EditConversation(conversation);
-            if (!result)
+            if (CurrentRoom != null)
             {
-                throw new Exception("Unable to Update Conversation from HUB");
+                var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
+                TimeSpan span = (conversation.DateOfConversation - DateTime.UtcNow);
+                conversation.Minutes = span.Minutes;
+                var result = _communicationService.EditConversation(conversation);
+                if (!result)
+                {
+                    throw new Exception("Unable to Update Conversation from HUB");
+                }
             }
 
         }
@@ -170,6 +173,10 @@ namespace HopeLine.API.Hubs.v2
             if (!result)
             {
                 throw new Exception("Unable to Add Conversation");
+            }
+            else
+            {
+                Console.WriteLine("Added Convo");
             }
         }
 
