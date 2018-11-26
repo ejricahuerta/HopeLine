@@ -59,7 +59,7 @@ namespace HopeLine.API.Hubs.v2
                 {
                     foreach (var m in allMessages)
                     {
-                        await Clients.Caller.SendAsync("Load", m.UserName, m.Text);
+                        await Clients.Caller.SendAsync("ReceiveMessage", m.UserName, m.Text);
                     }
                 }
             }
