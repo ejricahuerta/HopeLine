@@ -12,21 +12,11 @@ namespace HopeLine.Service.Models
     /// </summary>
     public class ConversationModel : BaseModel
     {
-
         public string PIN { get; set; }
-
         public string MentorId { get; set; }
-
-        public string UserId { get; private set; }
-
-        public MentorAccount Mentor { get; set; }
-
-        public string UserName { get; set; }
-
+        public string UserId { get; set; }
         public float Minutes { get; set; }
-
         public DateTime DateOfConversation { get; set; }
 
-        public ICollection<Language> LanguageUsed { get; set; }
     }
 }

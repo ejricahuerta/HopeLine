@@ -25,13 +25,12 @@ namespace HopeLine.Service.Interfaces
         //For Application and Admin Only
         bool AddConversation(ConversationModel conversation, bool isGuestUser);
 
-        //For Application Admin Only
         bool EditConversation(ConversationModel conversation);
 
 
         string GenerateConnectionId();
 
         bool AddConversation(ConversationModel conversation);
-                
+
     }
 }
