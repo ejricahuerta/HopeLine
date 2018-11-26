@@ -1,235 +1,159 @@
 ﻿//using HopeLine.Service.Interfaces;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using HopeLine.DataAccess.Entities;
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace HopeLine.Service.CoreServices
-{
+namespace HopeLine.Service.CoreServices {
     //TODO : change repo to unit of work.
-    public class CommunicationService : ICommunication
-    {
+    public class CommunicationService : ICommunication {
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _conversationRepo;
 
-        public CommunicationService(IRepository<HopeLineUser> userRepo,
-                                    IRepository<Conversation> conversationRepo)
-        {
+        public CommunicationService (IRepository<HopeLineUser> userRepo,
+            IRepository<Conversation> conversationRepo) {
             _userRepo = userRepo;
             _conversationRepo = conversationRepo;
         }
-
-        public bool AddConversation(ConversationModel conversation, bool isGuestUser)
-        {
-            try
-            {
-                if (isGuestUser)
-                {
-                    var newConversation = new Conversation
-                    {
-                        PIN = conversation.PIN,
-                        MentorId = conversation.MentorId,
-                        UserId = conversation.UserId,
-                        Minutes = conversation.Minutes,
-                        DateOfConversation = conversation.DateOfConversation.ToString(),
-                    };
-                    _conversationRepo.Insert(newConversation);
-                    _conversationRepo.Save();
-                    return true;
-                }
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR: " + e);
-            }
-            return false;
-        }
-
-        public bool AddConversation(ConversationModel conversation)
-        {
-            try
-            {
-                var newConversation = new Conversation
-                {
+        public bool AddConversation (ConversationModel conversation) {
+            try {
+                var newConversation = new Conversation {
                     PIN = conversation.PIN,
                     UserId = conversation.UserId,
                     Minutes = conversation.Minutes,
                     MentorId = conversation.MentorId,
-                    DateOfConversation = conversation.DateOfConversation.ToString(),
+                    DateOfConversation = conversation.DateOfConversation.ToString (),
                 };
-                _conversationRepo.Insert(newConversation);
-                _conversationRepo.Save();
+                _conversationRepo.Insert (newConversation);
+                _conversationRepo.Save ();
                 return true;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR: " + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR: " + e);
             }
             return false;
 
         }
 
-        public bool EditConversation(ConversationModel conversation)
-        {
-            try
-            {
-                var newConversation = new Conversation
-                {
-                    PIN = conversation.PIN,
-                    UserId = conversation.UserId,
-                    Minutes = conversation.Minutes,
-                    MentorId = conversation.MentorId,
-                    DateOfConversation = conversation.DateOfConversation.ToString()
-                };
-                _conversationRepo.Update(newConversation);
-                _conversationRepo.Save();
+        public bool EditConversation (ConversationModel conversation) {
+            try {
+                var oldConversation = _conversationRepo.Get (conversation.Id);
+                oldConversation.PIN = conversation.PIN;
+                oldConversation.UserId = conversation.UserId;
+                oldConversation.Minutes = conversation.Minutes;
+                oldConversation.MentorId = conversation.MentorId;
+                oldConversation.DateOfConversation = conversation.DateOfConversation.ToString ();
+                _conversationRepo.Update (oldConversation);
+                _conversationRepo.Save ();
                 return true;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR: " + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR: " + e);
             }
             return false;
         }
 
-        public string GenerateConnectionId()
-        {
-            return Guid.NewGuid().ToString("N");
+        public string GenerateConnectionId () {
+            return Guid.NewGuid ().ToString ("N");
         }
 
-        public ConversationModel GetConversationById(int id)
-        {
-            try
-            {
-                var obj = _conversationRepo.GetAll()
-                     .Select(c =>
+        public ConversationModel GetConversationById (int id) {
+            try {
+                var obj = _conversationRepo.Get (id);
+                return new ConversationModel {
+                    Id = obj.Id,
+                        PIN = obj.PIN,
+                        Minutes = obj.Minutes,
+                        MentorId = obj.MentorId,
+                        UserId = obj.UserId,
+                        DateOfConversation = DateTime.Parse (obj.DateOfConversation),
+                };
 
-                         new ConversationModel
-                         {
-                             PIN = c.PIN,
-                             Minutes = c.Minutes,
-                             MentorId = c.MentorId,
-                             UserId = c.UserId,
-                             DateOfConversation = DateTime.Parse(c.DateOfConversation),
-                         }
-                     )
-                     .SingleOrDefault(c => c.Id == id);
-
-                return obj;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR: " + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR: " + e);
                 return null;
             }
         }
 
-        public ConversationModel GetConversationByPIN(string pin)
-        {
-            try
-            {
-                var obj = _conversationRepo.GetAll()
-                    .Select(c =>
+        public ConversationModel GetConversationByPIN (string pin) {
+            try {
+                var obj = _conversationRepo.GetAll (null)
+                    .SingleOrDefault (c => c.PIN == pin);
+                return (obj != null) ? new ConversationModel {
+                    Id = obj.Id,
+                        PIN = obj.PIN,
+                        UserId = obj.UserId,
+                        Minutes = obj.Minutes,
+                        MentorId = obj.MentorId,
+                        DateOfConversation = DateTime.Parse (obj.DateOfConversation),
+                } : null;
 
-                        new ConversationModel
-                        {
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR:" + e);
+                return null;
+            }
+        }
+
+        public IEnumerable<ConversationModel> GetConversations () {
+            try {
+                var conversations = _conversationRepo.GetAll (null)
+                    .Select (c => new ConversationModel {
+                        Id = c.Id,
                             PIN = c.PIN,
-                            UserId = c.UserId,
                             Minutes = c.Minutes,
                             MentorId = c.MentorId,
-                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
-
-
-                        }
-                    )
-                    .SingleOrDefault(c => c.PIN == pin);
-
-                return obj;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR:" + e);
-                return null;
-            }
-        }
-
-        public IEnumerable<ConversationModel> GetConversations()
-        {
-            try
-            {
-                var conversations = (_conversationRepo as IEnumerable<Conversation>)
-                    .Select(c => new ConversationModel
-                    {
-                        PIN = c.PIN,
-                        Minutes = c.Minutes,
-                        MentorId = c.MentorId,
-                        UserId = c.UserId,
-                        DateOfConversation = DateTime.Parse(c.DateOfConversation),
+                            UserId = c.UserId,
+                            DateOfConversation = DateTime.Parse (c.DateOfConversation),
 
                     });
 
                 return conversations;
 
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR: " + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR: " + e);
             }
             return null;
         }
 
-        public IEnumerable<ConversationModel> GetConversationsByMentorId(string mentorId)
-        {
-            try
-            {
-                var obj = _conversationRepo.GetAll()
-                    .Where(c => c.MentorId == mentorId)
-                    .Select(c =>
-                        new ConversationModel
-                        {
-                            PIN = c.PIN,
-                            Minutes = c.Minutes,
-                            MentorId = c.MentorId,
-                            UserId = c.UserId,
-                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
+        public IEnumerable<ConversationModel> GetConversationsByMentorId (string mentorId) {
+            try {
+                return _conversationRepo.GetAll (null)
+                    .Where (c => c.MentorId == mentorId)
+                    .Select (c =>
+                        new ConversationModel {
+                            Id = c.Id,
+                                PIN = c.PIN,
+                                Minutes = c.Minutes,
+                                MentorId = c.MentorId,
+                                UserId = c.UserId,
+                                DateOfConversation = DateTime.Parse (c.DateOfConversation),
                         }
                     );
 
-                return obj;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR:" + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR:" + e);
             }
             return null;
         }
 
-        public IEnumerable<ConversationModel> GetConversationsByUserId(string userId)
-        {
-            try
-            {
-                var obj = _conversationRepo.GetAll()
-                    .Where(c => c.UserId.ToString().Contains(userId))
-                    .Select(c =>
-
-                        new ConversationModel
-                        {
-                            PIN = c.PIN,
-                            Minutes = c.Minutes,
-                            MentorId = c.MentorId,
-                            UserId = c.UserId,
-                            DateOfConversation = DateTime.Parse(c.DateOfConversation),
+        public IEnumerable<ConversationModel> GetConversationsByUserId (string userId) {
+            try {
+                return _conversationRepo.GetAll (null)
+                    .Where (c => c.UserId.ToString ().Contains (userId))
+                    .Select (c =>
+                        new ConversationModel {
+                            Id = c.Id,
+                                PIN = c.PIN,
+                                Minutes = c.Minutes,
+                                MentorId = c.MentorId,
+                                UserId = c.UserId,
+                                DateOfConversation = DateTime.Parse (c.DateOfConversation),
                         }
                     );
-                return obj;
-            }
-            catch (SystemException e)
-            {
-                Console.WriteLine("SERVICE ERROR:" + e);
+            } catch (SystemException e) {
+                Console.WriteLine ("SERVICE ERROR:" + e);
             }
             return null;
         }
