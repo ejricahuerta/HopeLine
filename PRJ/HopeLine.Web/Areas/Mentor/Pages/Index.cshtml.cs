@@ -7,6 +7,7 @@ using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Web.Areas.Identity.Pages.Account.Manage;
 using HopeLine.Web.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,6 +17,7 @@ using static HopeLine.Web.Areas.Identity.Pages.Account.ExternalLoginModel;
 namespace HopeLine.Web.Areas.Mentor.Pages
 {
 
+    [Authorize(Policy = "MentorOnly")]
     public class IndexModel : PageModel
     {
         /* For Profile */
@@ -100,7 +102,6 @@ namespace HopeLine.Web.Areas.Mentor.Pages
 
         public async Task<IActionResult> OnGetAsync(string pin = null, string user = null)
         {
-            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
             var url = Url.Page("~/Index");
 
             HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
@@ -108,18 +109,12 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             CurrentMentor = new UserViewModel
             {
                 Id = CurrentUser.Id,
-                //FirstName = CurrentUser.Profile.FirstName,
-                //LastName = CurrentUser.Profile.LastName,
                 Username = CurrentUser.UserName,
                 Email = CurrentUser.Email,
                 AccountType = CurrentUser.AccountType.ToString(),
                 Phone = CurrentUser.PhoneNumber
             };
 
-            if (claim.Value == "User" || claim.Value == "Admin")
-            {
-                return Redirect(url);
-            }
             /* Profile Page Logic START */
             Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
             {
@@ -139,20 +134,6 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 Name = s.Name,
                 Description = s.Description
             }).ToList();
-
-            // UserName = HttpContext.Session.GetString("_guest");
-            // System.Console.WriteLine("User = " + UserName);
-
-            // if (UserName != null)
-            // {
-
-            //     return Page();
-            // }
-            // else
-            // {
-            //     string url = Url.Page("/Login", new { area = "Guest",returnUrl = "chat" });
-            //     return LocalRedirect(url);
-            // }
 
             /* Profile Logic END */
 
