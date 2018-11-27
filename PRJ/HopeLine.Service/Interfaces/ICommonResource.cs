@@ -20,9 +20,15 @@ namespace HopeLine.Service.Interfaces
         bool EditResource(ResourceModel resource);
         bool AddCommunity(CommunityModel resource);
         bool EditCommunity(CommunityModel resource);
+        bool AddTopics(TopicModel topic);
+        bool AddLanguage(LanguageModel language);
 
         bool RemoveResource(int id);
         bool RemoveCommunity(int id);
 
+        void SaveTopic();
+        void SaveResource();
+        void SaveCommunity();
+        void SaveLanguage();
     }
 }

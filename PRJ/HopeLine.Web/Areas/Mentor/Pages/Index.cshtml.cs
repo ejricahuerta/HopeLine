@@ -143,7 +143,7 @@ namespace HopeLine.Web.Areas.Mentor.Pages {
                 Id = c.Id,
                     PIN = c.PIN,
                     UserId = c.UserId,
-                    MentorId = c.MentorId,
+                    //MentorId = c.MentorId,
                     Minutes = c.Minutes,
                     DateOfConversation = c.DateOfConversation.ToString ()
             }).ToList ();

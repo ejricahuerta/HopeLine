@@ -15,24 +15,24 @@
                 <div class="col-sm-12">
                     <h3 class="">Instant Chat</h3>
                     <div class=" text-right ml-1">
-                    <a class=" btn  btn-outline-dark " href="https://www.google.ca"><i class="fas fa-phone fa-1x"></i></a>
-                    <a data-target="#incomingCall" data-toggle="modal" id="videoCallBtn" class=" btn btn-outline-dark" ><i class="fas fa-video fa-1x"></i></a>
+                        <a class=" btn  btn-outline-dark " href="https://www.google.ca"><i class="fas fa-phone fa-1x"></i></a>
+                        <a data-target="#incomingCall" data-toggle="modal" id="videoCallBtn" class=" btn btn-outline-dark"><i class="fas fa-video fa-1x"></i></a>
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
 
             <input id="pin" value=@Model.PIN hidden />
-            <div class="modal" id="loading" >
-                        Waiting for Mentor...
-                        <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" ></img>
-                        <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
-                        <a href="#" rel="modal:close" id="mentorFound" hidden></a>
-            </div>
-            <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
+                <div class="modal" id="loading" >
+                    Waiting for Mentor...
+                    <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px"></img>
+                    <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
+                    <a href="#" rel="modal:close" id="mentorFound" hidden></a>
+                </div>
+                <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
             <div class="col-12 border-top" style="height:500px; overflow-y:auto;" id="message">
                 <div id="chatbox" class="card-body bg-clear">
-                    
+
                 </div>
             </div>
 
@@ -51,6 +51,7 @@
 
     <div id="disconnection" class="modal">
         <p>You are disconnected from the chat</p>
+        <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
     </div>
     <p hidden><a id="modaltrigger" href="#disconnection" rel="modal:open"></a></p>
 </section>
@@ -59,6 +60,9 @@
     <script src="~/js/chat-v1.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script>
+        
+
+
         filter = $('#myInput').val();
         /*
         function myFunction() {
