@@ -11,22 +11,18 @@
         Layout = "/Pages/Shared/_mentorLayout.cshtml";
     }
 }
+@section Styles {
+
+}
 
 <div class="container" style="margin-top: 90px;">
     <h2> Community Page</h2>
     <hr>
-
     <table class="table table-striped">
-
         <tbody class="container" style="margin-top: 90px;">
-
             <div class="row mb-2">
-             
-
                     @foreach (var item in Model.Communities)
                     {
-
-
                     <div class="col-md-4 mb-2" >
                             <div class="card" >
                                 <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
@@ -37,15 +33,15 @@
                                 </div>
                             </div>
                         </div>
-                        
-
                     }
-                                           
-
             </div>
-
         </tbody>
-
     </table>
-
 </div>
+<div class="bg-light border-top container-fluid" style="bottom: 10px;">
+    <p class="float-right">Made by PRJ666-Group 07 ©2018. All Rights Reserved.</p>
+</div>
+@section Scripts{
+
+
+}
