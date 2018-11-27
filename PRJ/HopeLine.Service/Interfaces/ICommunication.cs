@@ -1,36 +1,29 @@
-﻿using HopeLine.Service.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using HopeLine.Service.Models;
 
-namespace HopeLine.Service.Interfaces
-{
+namespace HopeLine.Service.Interfaces {
     /// <summary>
     /// 
     /// </summary>
-    public interface ICommunication
-    {
+    public interface ICommunication {
         //For Admin Only
-        IEnumerable<ConversationModel> GetConversations();
+        IEnumerable<ConversationModel> GetConversations ();
 
         //For Mentor Only
-        IEnumerable<ConversationModel> GetConversationsByMentorId(string mentorId);
+        IEnumerable<ConversationModel> GetConversationsByMentorId (string mentorId);
 
         //For Registered User Only
-        IEnumerable<ConversationModel> GetConversationsByUserId(string userId);
-
+        IEnumerable<ConversationModel> GetConversationsByUserId (string userId);
 
         //For all kind of users
-        ConversationModel GetConversationById(int id);
-        ConversationModel GetConversationByPIN(string pin);
+        ConversationModel GetConversationById (int id);
+        ConversationModel GetConversationByPIN (string pin);
 
-        //For Application and Admin Only
-        bool AddConversation(ConversationModel conversation, bool isGuestUser);
+        bool EditConversation (ConversationModel conversation);
 
-        bool EditConversation(ConversationModel conversation);
+        string GenerateConnectionId ();
 
-
-        string GenerateConnectionId();
-
-        bool AddConversation(ConversationModel conversation);
+        bool AddConversation (ConversationModel conversation);
 
     }
 }

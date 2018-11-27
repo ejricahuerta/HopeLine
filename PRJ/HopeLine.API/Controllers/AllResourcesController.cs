@@ -1,5 +1,6 @@
 ﻿using HopeLine.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace HopeLine.API.Controllers
 {
@@ -10,10 +11,12 @@ namespace HopeLine.API.Controllers
     [ApiController]
     public class AllResourcesController : ControllerBase
     {
+        private readonly ILogger<AllResourcesController> _logger;
         private readonly ICommonResource _commonResource;
 
-        public AllResourcesController(ICommonResource commonResource)
+        public AllResourcesController(ILogger<AllResourcesController> logger, ICommonResource commonResource)
         {
+            _logger = logger;
             _commonResource = commonResource;
         }
 
@@ -28,7 +31,8 @@ namespace HopeLine.API.Controllers
             }
             catch (System.Exception ex)
             {
-                return NotFound(ex);
+                _logger.LogInformation("Unable to get Topics");
+                return NotFound();
             }
 
         }
@@ -42,7 +46,8 @@ namespace HopeLine.API.Controllers
             }
             catch (System.Exception ex)
             {
-                return NotFound(ex);
+                _logger.LogInformation("Unable to get Communities");
+                return NotFound();
             }
         }
 
@@ -56,7 +61,8 @@ namespace HopeLine.API.Controllers
             catch (System.Exception ex)
             {
 
-                return NotFound(ex);
+                _logger.LogInformation("Unable to get Resources");
+                return NotFound();
             }
         }
     }

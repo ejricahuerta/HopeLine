@@ -28,7 +28,7 @@ namespace HopeLine.DataAccess.DatabaseContexts
         #endregion
         // TODO : Add all entities
 
-        //public Dbset<> MyProperty { get; set; }
+        //public Dbet<> MyProperty { get; set; }
 
         public DbSet<Language> Languages { get; set; }
         public DbSet<Conversation> Conversations { get; set; }

@@ -16,32 +16,16 @@ namespace HopeLine.Web.ViewModels
 
         public ConversationViewModel()
         {
-            DateOfConversation = DateTime.UtcNow.ToString();;
-            LanguageUsed = new List<LanguageViewModel>();
+            DateOfConversation = DateTime.UtcNow.ToString();
         }
-        // this will serve as peerID for 
-        // communication of mentor and user
         [Required]
-        [StringLength(10)]
+        [StringLength(30)]
         public string PIN { get; set; }
-
-        [Required]
-        public MentorAccountViewModel Mentor { get; set; }
-
-        public string UserName { get; set; }
-
         public string UserId { get; set; }
-
+        public string MentorId { get; set; }
         public float Minutes { get; set; }
 
         [DataType(DataType.DateTime)]
         public string DateOfConversation { get; set; }
-
-        public ICollection<LanguageViewModel> LanguageUsed { get; set; }
-        public void SetUser(string id, string name)
-        {
-            UserId = id;
-            UserName = name;
-        }
     }
 }
