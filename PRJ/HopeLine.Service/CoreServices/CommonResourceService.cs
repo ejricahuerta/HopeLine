@@ -36,6 +36,26 @@ namespace HopeLine.Service.CoreServices
             _topicRepo = topicRepo;
         }
 
+        public bool AddTopics(TopicModel topic)
+        {
+            try
+            {
+                var _topic = new Topic
+                {
+                    Id = topic.Id,
+                    Name = topic.Name,
+                    Description = topic.Description
+                };
+                _topicRepo.Insert(_topic);
+                SaveTopic();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+
         public bool AddResources(ResourceModel resource)
         {
             try
@@ -47,6 +67,7 @@ namespace HopeLine.Service.CoreServices
                     URL = resource.URL
                 };
                 _resourceRepo.Insert(_resource);
+                SaveResource();
                 return true;
             }
             catch (System.Exception)
@@ -68,11 +89,33 @@ namespace HopeLine.Service.CoreServices
                     ImageURL = resource.ImageURL
                 };
                 _communityRepo.Insert(_resource);
+                SaveCommunity();
                 return true;
             }
             catch (System.Exception e)
             {
                 // TODO : Log error
+                System.Console.WriteLine("Error: " + e);
+                return false;
+            }
+        }
+
+        public bool AddLanguage(LanguageModel language)
+        {
+            try
+            {
+                var _language = new Language
+                {
+                    Id = language.Id,
+                    Name = language.Name,
+                    CountryOrigin = language.CountryOrigin
+                };
+                _languageRepo.Insert(_language);
+                SaveLanguage();
+                return true;
+            }
+            catch (System.Exception e)
+            {
                 System.Console.WriteLine("Error: " + e);
                 return false;
             }
@@ -246,6 +289,26 @@ namespace HopeLine.Service.CoreServices
             {
                 throw new System.Exception("Unable to Fetch Data:", ex);
             }
+        }
+
+        public void SaveResource()
+        {
+            _resourceRepo.Save();
+        }
+
+        public void SaveCommunity()
+        {
+            _communityRepo.Save();
+        }
+
+        public void SaveTopic()
+        {
+            _topicRepo.Save();
+        }
+
+        public void SaveLanguage()
+        {
+            _languageRepo.Save();
         }
     }
 }
