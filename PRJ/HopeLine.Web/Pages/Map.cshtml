@@ -12,19 +12,6 @@
     }
 }
 
-<head>
-    
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
-    <title>Map Page</title>
-    <link rel="stylesheet" href="~/css/map.css" />
-    <link rel="stylesheet" href="~/css/resources.css" />
-
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    
-</head>
-
 <div class="contain" style="margin-top: 90px;">
     <script>
 
@@ -45,7 +32,7 @@
         function initAutocomplete() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: 43.77, lng: -79.49 },
-                zoom: 10,
+                zoom: 14,
                 mapTypeId: 'roadmap'
             });
             //load the places(Google api feature) service map
@@ -80,7 +67,16 @@
             // Bias the SearchBox results towards current map's viewport.
             map.addListener('bounds_changed', function () {
                 searchBox.setBounds(map.getBounds());
+                pos = map.getCenter();
+                //var lat = pos.lat();
+                //var lat = pos.lng();
+
             });
+
+            //var lat = tempLoc1.lat();
+            //var lat = tempLoc1.lng();
+
+            //console.log("Lat:" + lat, "lng" + lng);
             markers = [];
             //  var markers = [];
             // Listen for the event fired when the user selects a prediction and retrieve
@@ -107,7 +103,7 @@
                         origin: new google.maps.Point(0, 0),
                         anchor: new google.maps.Point(17, 34),
                         scaledSize: new google.maps.Size(25, 25),
-                       
+
                     };
                     // Create a marker for each place.
                     markers.push(new google.maps.Marker({
@@ -115,13 +111,14 @@
                         icon: icon,
                         title: place.name,
                         position: place.geometry.location,
-                        
+
                     }));
 
                     // tempLong = parseFloat(place.geometry.location.lat());
                     // tempLat = parseFloat(place.geometry.location.lng());
                     // console.log(tempLong,tempLat);
                     setPosition(place.geometry.location.lat(), place.geometry.location.lng());
+
                     if (place.geometry.viewport) {
                         // Only geocodes have viewport.
                         bounds.union(place.geometry.viewport);
@@ -139,7 +136,7 @@
                 lat: latPar,
                 lng: lngPar
             }
-          
+
             //console.log(pos.lat , pos.lng + "in setPosition");
         }
 
@@ -162,7 +159,7 @@
             // console.log(locationType);
             var request = {
                 location: pos,
-                radius: 9000,
+                radius: 5000,
                 type: [locationType]
             };
             service.nearbySearch(request, function (results, status) {
@@ -220,7 +217,6 @@
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < results.length; i++) {
                     results[i].locationType = locationType;
-                    ;
                     tempResults.push(results[i]);
                     createMarker(results[i]); //<--always results[i]
 
@@ -236,7 +232,12 @@
             });
             //pushes markers to results array.
             results.push(marker);
-
+            markers.push(marker);
+            //  console.log(getBounds());
+            for (var i = 0; i < marker.length; i++) {
+                i++;
+                console.log("Number of markers:" + i);
+            }
             google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent(place.name);
                 infowindow.open(map, this);
@@ -244,34 +245,39 @@
         }
     </script>
 
+
 </div>
+    <input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
+    <label for="c1">
+        <div>&#x2714;</div>Hospital<br />
+    </label>
+    <input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
+    <label for="c2">
+        <div>&#x2714;</div>Pharmacy<br />
+    </label>
 
-<input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
-<label for="c1">
-    <div>&#x2714;</div>Hospital<br />
-</label>
-<input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
-<label for="c2">
-    <div>&#x2714;</div>Pharmacy<br />
-</label>
-<input name="locationBox" value="physiotherapist" type="checkbox" id="c3" onclick="searchType('physiotherapist',this)" />
-<label for="c3">
-    <div>&#x2714;</div>Physiotherapist<br />
-</label>
-<input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
-<label for="c4">
-    <div>&#x2714;</div>Doctor<br />
-</label>
+    <input name="locationBox" value="health" type="checkbox" id="c3" onclick="searchType('spa',this)" />
+    <label for="c3">
+        <div>&#x2714;</div>Health club/Sauna<br />
+    </label>
 
-
-<button class="button" onClick="clearMarkers()">Clear Markers</button>
-
-<input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
-
-<div id="map" class="p-0 m-0"></div>
+    <input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
+    <label for="c4">
+        <div>&#x2714;</div>Doctor<br />
+    </label>
 
 
+    <button class="button" onClick="clearMarkers()">Clear Markers</button>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
-        async defer></script>
+    <button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
+        Search area
+    </button>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+
+    <div id="map" class="p-0 m-0"></div>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
+            async defer></script>
 

@@ -18,13 +18,14 @@ namespace HopeLine.API.Hubs.v2
         Error = -1
     }
 
-    public class ChatHub : Hub
+    public class ChatHub : Hub, IChat, ICall
     {
         private bool isConnected = false;
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
         private string CurrentRoom { get; set; }
 
+        private DateTime DateConversationStarted { get; set; }
         private static string Mentor = "MentorRoomOnly";
         public ChatHub(IMessage messageService, ICommunication communicationService)
         {
@@ -44,42 +45,7 @@ namespace HopeLine.API.Hubs.v2
             Console.WriteLine("User has connected...");
             return base.OnConnectedAsync();
         }
-        public async Task Remove(string connection, string room)
-        {
-            // _logger.Log(LogLevel.Information, "Removing room");
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, room);
-            await Clients.Group(room).SendAsync("Notify", "The other User just left.");
-        }
-        public async Task Connect(string connection, string room)
-        {
-            if (!isConnected)
-            {
-                await Groups.AddToGroupAsync(Context.ConnectionId, room);
-                isConnected = true;
-            }
-            // _logger.LogInformation("Attempting to connect...");
-            await Clients.Group(room).SendAsync("Connecting", connection);
-        }
 
-        public async Task Add(string room)
-        {
-            await Clients.Caller.SendAsync("Notify", "Adding!");
-            try
-            {
-                await Groups.AddToGroupAsync(Context.ConnectionId, room);
-            }
-            catch (System.Exception)
-            {
-
-                throw new Exception("Unable to add to room");
-            }
-            //_logger.LogInformation("Adding new Client...");
-        }
-
-        public async Task RemoveMessages(string roomId)
-        {
-            await _messageService.DeleteAllMessages(roomId);
-        }
 
         public async Task LoadMessage(string room)
         {
@@ -159,13 +125,25 @@ namespace HopeLine.API.Hubs.v2
 
                 throw new Exception("Delete Process did not go through :", ex);
             }
+
+            //Updating Conversation
+            var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
+            TimeSpan span = (conversation.DateOfConversation - DateTime.UtcNow);
+            conversation.Minutes = span.Minutes;
+            var result = _communicationService.EditConversation(conversation);
+            if (!result)
+            {
+                throw new Exception("Unable to Update Conversation from HUB");
+            }
+
         }
 
         public async Task AcceptUserRequest(string mentorId, string userId, string userConnectionId)
         {
+
+            var room = _communicationService.GenerateConnectionId();
             try
             {
-                var room = _communicationService.GenerateConnectionId();
                 CurrentRoom = room;
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, Mentor);
                 await Groups.AddToGroupAsync(userConnectionId, room);
@@ -173,13 +151,28 @@ namespace HopeLine.API.Hubs.v2
                 await _messageService.AndUsersToRoom(mentorId, userId, room);
                 await Groups.AddToGroupAsync(Context.ConnectionId, room);
                 await Clients.Caller.SendAsync("Room", room);
-                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Hello, Happy Chattting!.");
+                await Clients.Group(room).SendAsync("ReceiveMessage", "system", "Welcome to HopeLine Chatroom");
             }
             catch (System.Exception ex)
             {
                 throw new Exception("Unable to Accept Request: ", ex);
             }
+
+            //Creating new Conversation
+            var result = _communicationService.AddConversation(new ConversationModel
+            {
+                PIN = room,
+                UserId = userId,
+                MentorId = mentorId,
+                DateOfConversation = DateTime.UtcNow
+            });
+
+            if (!result)
+            {
+                throw new Exception("Unable to Add Conversation");
+            }
         }
+
 
         public async Task RequestToTalk(string userId)
         {
@@ -202,26 +195,20 @@ namespace HopeLine.API.Hubs.v2
             {
                 Console.WriteLine("Unable to completed request: " + ex);
                 await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
-
             }
-
         }
 
-        // TODO: move to own HUB
         public async Task CallDisconnected(string roomId)
         {
             await Clients.Group(roomId).SendAsync("Disconnected");
         }
 
-        // TODO: move to own HUB
         public async Task ConnectCall(string roomId)
         {
             await Clients.Group(roomId).SendAsync("CallConnected");
+
         }
 
-
-        // TODO: move to own HUB
-        //TODO: Refactor
         public async Task RequestToVideoCall(string roomId)
         {
             Console.WriteLine("Room when requested: " + roomId);

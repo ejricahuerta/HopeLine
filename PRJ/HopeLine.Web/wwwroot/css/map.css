@@ -1,7 +1,7 @@
 ﻿/* Always set the map height explicitly to define the size of the div
         * element that contains the map. */
 #map {
-    height: 90%;
+    height: 85%;
      width: 100%;
 }
 
@@ -58,11 +58,6 @@ input[type=checkbox] {
 }
 
 /* Optional: Makes the sample page fill the window. */
-html, body, .map {
-    height: 100%;
-   
-}
-
 #description {
     font-family: Roboto;
     font-size: 20px;

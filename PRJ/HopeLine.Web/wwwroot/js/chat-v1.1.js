@@ -1,13 +1,11 @@
 var userId = ($("#userId") != null) ? $("#userId").val() : null;
 var accountType = $("#accountType") != null ? $("#accountType").val() : null;
 var userId = $("#userId") != null ? $("#userId").val() : null;
-
-var isconnected = false;
 var onCall = false;
-var currentuser = userId;
-var isUser = currentuser.indexOf("Guest") != -1;
+var currentUser = userId;
+var isUser = currentUser.indexOf("Guest") != -1;
 var connection;
-var isconnected = false;
+var isConnected = false;
 var requestingUser;
 var timeout;
 var room;
@@ -26,11 +24,13 @@ connection = new signalR.HubConnectionBuilder()
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
-        $("#loading").append('<a href="http://localhost:8000/instantChat" class="btn btn-info">Retry</a>');
+
+        $("#loading").append('<a href="' + url + '/instantChat" class="btn btn-info">Retry</a>');
+
     }, 20000);
 }
 
-function registerhub() {
+function registerHub() {
 
     //when a  call is connected
     connection.on("CallConnected", function () {
@@ -39,7 +39,6 @@ function registerhub() {
             '_blank', 'toolbar=0,menubar=0');
     });
 
-    //FIXME: redundant as load FIXED
     //when a user sent a message
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
@@ -48,18 +47,7 @@ function registerhub() {
             scrollTop: $('#message').prop("scrollHeight")
         }, "slow");
     });
-    /*
-        //FIXME: redundant as receivemessage
-        //when a user refresh the page
-        connection.on("Load", function (user, message) {
-            console.log("Loading Message");
-            addChatBubble(user, message);
-            $("#message").animate({
-                scrollTop: $('#message').prop("scrollHeight")
-            }, "slow");
-        //scrollToBottom();
-    });
-    */
+
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
@@ -98,15 +86,15 @@ function startConnection() {
         })
         .then(function () {
             if (isUser) {
-                console.log("isuser " + isUser);
+                console.log("isUser " + isUser);
                 //request to start connection
-                connection.invoke("RequestToTalk", currentuser)
+                connection.invoke("RequestToTalk", currentUser)
                     .catch(function (err) {
                         return console.error(err.toString());
                     });
             } else {
                 //add to mentor list if is mentor
-                connection.invoke("AddMentor", currentuser)
+                connection.invoke("AddMentor", currentUser)
                     .catch(function (err) {
                         console.log("Unable to add mentor : " + err.toString());
                     });
@@ -137,9 +125,7 @@ function notifyUser() {
         } else {
             $("#sendArea").addClass('d-none');
             $("#loading").show();
-            findTime();
-            // $("#message").remove();
-            //FIXME: add a message or modal to notify the user's disconnection FIXED
+            findTime()
             $("#modaltrigger").click();
         }
     });
@@ -179,7 +165,7 @@ function notifyMentor() {
 
 //adding each messages
 function addChatBubble(user, message) {
-    var classId = currentuser == user ? "border-primary" : "border-success";
+    var classId = currentUser == user ? "border-primary" : "border-success";
     $("#chatbox").append(
         '<br/>' +
         '<div id="message" class="msg mb-3">' +
@@ -194,10 +180,7 @@ function addChatBubble(user, message) {
         "</div></div>"
     );
 }
-
 //!END OF FUNCTIONS
-
-
 
 //ALL JQUERY USER INTERACTIONS (ACTIONS)
 //Put your code here for all actions from html
@@ -212,12 +195,12 @@ $(function () {
             // .withUrl("http://localhost:5000/v2/chatHub")
             .build();
         //register all methods
-        registerhub();
+        registerHub();
         //start connection
         startConnection();
     }
-
 });
+
 //When user send a message
 $("#sendButton").click(function (event) {
     var message = $("#messageInput")
@@ -232,7 +215,7 @@ $("#sendButton").click(function (event) {
         console.log("Sending Message");
         console.log("room " + room);
         connection
-            .invoke("SendMessage", currentuser, message, room)
+            .invoke("SendMessage", currentUser, message, room)
             .catch(function (err) {
                 return console.error(err.toString());
             }).then(function () {
@@ -260,35 +243,3 @@ $("#videoCallBtn").click(function () {
 $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
-
-
-
-//!END OF ALL ACTIONS
-
-
-//FIXME : Refactor this and place it to its proper sections
-// Automatically scroll down
-// $("#message").scroll(function (m) {
-//     if ($(this).is(':animated')) {
-//         stopAutoScroll();
-//     }
-// // });
-// const messages = document.getElementById('message');
-
-// function getMessage() {
-//     shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
-//     if (!shouldScroll) {
-//         scrollToBottom();
-//     }
-// }
-
-// function scrollToBottom() {
-//     messages.scrollTop = messages.scrollHeight;
-// }
-
-// var i = setInterval(getMessage, 700);
-
-// function stopAutoScroll() {
-//     clearInterval(i);
-//     console.log("CLEARED");
-// }
