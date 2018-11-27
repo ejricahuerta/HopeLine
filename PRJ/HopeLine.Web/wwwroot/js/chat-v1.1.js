@@ -35,7 +35,7 @@ function registerhub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#incomingCall").hide();
-        window.open(url + "VideoChat?roomId=" + room, "HopeLine-Call",
+        window.open(url + "VideoChat?roomId=" + room + "&userId="+userId, "HopeLine-Call",
             '_blank', 'toolbar=0,menubar=0');
     });
 

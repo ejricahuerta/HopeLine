@@ -21,6 +21,8 @@ namespace HopeLine.Web.Pages
 
         [BindProperty]
         public string Token { get; set; }
+        [BindProperty]
+        public string UserId { get; set; }
 
         public VideoChatModel(ICommunication communicationService)
         {
@@ -31,13 +33,14 @@ namespace HopeLine.Web.Pages
         [BindProperty]
         public string RoomId { get; set; }
 
-        public IActionResult OnGet(string roomId = null)
+        public IActionResult OnGet(string roomId = null, string userId = null)
         {
             try
             {
                 if (roomId != null && GetTwilioToken())
                 {
                     RoomId = roomId;
+                    UserId = userId;
                     return Page();
                 }
                 else
@@ -60,7 +63,7 @@ namespace HopeLine.Web.Pages
                 var grant = new VideoGrant();
                 grant.Room = "cool room";
                 var grants = new HashSet<IGrant> { grant };
-                var identity = "example-user"; //TODO : change this
+                var identity = "user"; //TODO : change this
                 // Create an Access Token generator
                 var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity: identity, grants: grants);
 
