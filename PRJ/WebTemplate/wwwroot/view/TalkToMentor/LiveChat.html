@@ -1,182 +1,69 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HopeLine</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/Site.css">
-    <link rel="stylesheet" href="../../css/TalkToMentor/TalkToMentor.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <title>Hello, world!</title>
 </head>
 
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div id="headerMenu" class="container">
-            <a class="navbar-brand" href="./index.html" style="font-size: 30px">HopeLine</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../TalkToMentor/TalkToMentor.html">Talk to Mentor</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Map/Map.html">Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Resources/Resources.html">Resources</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Community/Community.html">Community</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Account/LoginRegister.html">Login/Register</a>
-                    </li>
-
-
-                </ul>
+<body class="container-fluid">
+    <section class="container" style="margin-top:100px;">
+        <div class="row m-1 shadow-lg">
+            <div class="col-3 rounded-left d-none d-md-block text-white" style="height:480px;  background-color: #102542">
+                <h4 class="text-center">Topics You Have Selected</h4>
             </div>
-        </div>
-    </nav>
-    <hr />
+            <div class="col-md-9 col-sm-12 rounded-right" style="height:480px;background-image: linear-gradient(to right, #102542, #235789);">
+                <div class="row m-1">
+                    <div class="col-12 border text-white mt-1" style="height:100px;">
+                        <div class="d-flex justify-content-between">
+                            <h4>Chat</h4>
+                            <div id="buttons " class="row " >
+                                <a id="videoCallBtn" title="Call Mentor" href="" class="col-12 text-right text-white"> Call</a>
+                                <a id="topics" title="Check Selected Topics" href="" class="col-12 text-right text-white" >Topics</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chatbox" class="col-12 bg-light" style="height:300px;overflow-y:auto">
+                        <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique rhoncus ante quis dapibus. Aenean ultrices rutrum lectus, sit amet interdum ipsum gravida sit amet. Sed vel nibh magna. Etiam accumsan, diam vitae dapibus posuere, sem metus viverra neque, ac lobortis risus mi quis nisi. Sed a tellus non purus tempus efficitur mollis vel magna. Curabitur vulputate elit augue, vitae tempor nisi malesuada vel. Duis feugiat vulputate velit, a luctus mi ullamcorper id. Nunc mollis dui sed mollis fringilla. Morbi vitae ipsum dapibus, porttitor dolor et, aliquam justo. Aliquam ut arcu mollis, vulputate nisi eget, posuere magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 bg-light m-40 p-40">
-                <ul class="list-group">
-                    <li class="list-group-item">Diseases</li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label" for="gridCheck">
-                                    Depression
-                                </label>
-                                <input class="form-check-input pull-right big-checkbox" type="checkbox" id="gridCheck"
-                                    checked>
-                            </div>
+                                Vivamus fermentum urna ut auctor dapibus. Donec finibus semper euismod. Sed non diam auctor, viverra orci at, hendrerit mauris. Ut est justo, rhoncus sed dapibus at, malesuada in purus. Morbi non interdum dui. Sed ipsum odio, facilisis at convallis vitae, porttitor in ex. Donec iaculis aliquam euismod. Nullam a arcu scelerisque, egestas orci eget, finibus tellus. Morbi id dignissim quam, at vestibulum dolor. Nam fringilla ligula nunc, in pretium metus bibendum in. Maecenas euismod sed magna non tempor.
+                                
+                                Curabitur dictum ligula et magna efficitur, vel consequat velit elementum. Vivamus elit leo, ornare non tristique eget, ornare a ante. Donec dictum nec enim vel facilisis. Fusce consequat in lacus quis porttitor. Nunc gravida elit eleifend dui venenatis, in placerat tellus interdum. Pellentesque commodo maximus rutrum. Nunc dapibus dapibus tortor vitae bibendum. Quisque cursus dui ante, et finibus dolor elementum a. Nullam feugiat lorem non ex condimentum iaculis in ut ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam ut laoreet nulla. Aliquam fringilla, leo id porta ultrices, tellus risus ornare leo, nec ultricies ipsum turpis volutpat est. In auctor felis ante, ut volutpat neque lobortis vitae.
+                                
+                                Mauris efficitur facilisis nunc. Cras interdum a orci eget rhoncus. Vivamus in lacus mattis, vestibulum ligula et, pulvinar diam. Nulla eu augue facilisis, pretium felis sed, egestas ipsum. Sed sem sem, sodales nec finibus ut, porta ac libero. Donec ex erat, placerat vel tellus a, ullamcorper convallis enim. Nulla facilisi. Aenean nec nisl molestie, iaculis est ac, pulvinar metus. Phasellus nec iaculis ligula, sed cursus nisi. Pellentesque hendrerit enim ac metus tempus rutrum. In et ipsum blandit, sollicitudin ex eu, fermentum est.
+                                
+                                Nunc vehicula lectus sed lectus volutpat, quis sagittis ipsum maximus. Aliquam erat volutpat. Vivamus tincidunt lacinia vehicula. Pellentesque ante nunc, aliquet quis nisl ac, dictum vestibulum tortor. Vestibulum a dui quis neque ultricies auctor. Proin ultrices mi ut sagittis vulputate. Donec quam diam, accumsan eu suscipit sed, lacinia ac elit. Donec semper condimentum diam, eget aliquet dui dictum vulputate. Vestibulum aliquet sed augue tincidunt condimentum. Suspendisse venenatis tellus sed neque vehicula ornare.
+                                
+                                Generated 5 paragraphs, 467 words, 3138 bytes of Lorem Ipsum
+                        </p>
+                    </div>
+                    <div class="col-11 " style="bottom:10px;position:absolute;right:10px;">
+                        <div class="row justify-content-center">
+                            <textarea id="inputMessage" class="col-xs-10 col-md-9 form-control"  placeholder="type your message..." rows="1" ></textarea>
+                            <input id="sendButton" title="Send Message" class="col-sm-2 d-md-block d-none btn m-1" value="Send" />
                         </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label" for="gridCheck">
-                                    Bullying
-                                </label>
-                                <input class="form-check-input pull-right big-checkbox" type="checkbox" id="gridCheck"
-                                    checked>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label" for="gridCheck">
-                                    Mental Disease
-                                </label>
-                                <input class="form-check-input pull-right big-checkbox" type="checkbox" id="gridCheck"
-                                    checked>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="form-group">
-                            <div class="form-check">
-                                <label class="form-check-label" for="gridCheck">
-                                    Mentor Disease
-                                </label>
-                                <input class="form-check-input pull-right big-checkbox" type="checkbox" id="gridCheck"
-                                    checked>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="main col-md-9">
-                <div class="row">
-                    <div class="well">
-                        <h1>Live Chat</h1>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 
-    <hr />
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <div class="logofooter"> Contact</div>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
-                    <p>
-                        <i class="fa fa-map-pin"></i> #228, Tiruvannamalai, Tamilnadu, India</p>
-                    <p>
-                        <i class="fa fa-phone"></i> Phone (India) : +91 9999 999 999</p>
-                    <p>
-                        <i class="fa fa-envelope"></i> E-mail : info@prabuuideveloper.com</p>
-
-                </div>
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <h6 class="heading7">About Us</h6>
-                    <div class="post">
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                        <p>facebook crack the movie advertisment code:what it means for you
-                            <span>August 3,2015</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <h6 class="heading7">Social Media</h6>
-                    <ul class="footer-social">
-                        <li>
-                            <i class="fa fa-linkedin social-icon linked-in" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-facebook social-icon facebook" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-twitter social-icon twitter" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <i class="fa fa-google-plus social-icon google" aria-hidden="true"></i>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="copyright">
-        <div class="container">
-            <div class="col-md-6">
-                <p id="demo" class="copyright"></p>
-            </div>
-        </div>
-    </div>
-
+    </section>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-<script src="../../js/Site.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
-
-<script src="../../jquery/jquery.min.js"></script>
-<script src="../../js/bootstrap.bundle.min.js"></script>
 
 </html>
