@@ -4,17 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-HopeLine.Web-2A475D5A-1AE3-4BA3-AFE5-3C8F7DBB2691</UserSecretsId>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <Compile Remove="Pages\Communication\**" />
-    <Content Remove="Pages\Communication\**" />
-    <EmbeddedResource Remove="Pages\Communication\**" />
-    <None Remove="Pages\Communication\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="bootstrap" Version="4.1.3" />
-    <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
