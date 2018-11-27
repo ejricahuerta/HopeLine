@@ -87,6 +87,7 @@ namespace HopeLine.Service.CoreServices
                 {
                     Id = resource.Id,
                     Name = resource.Name,
+                    Description = resource.Description,
                     URL = resource.URL,
                     ImageURL = resource.ImageURL
                 };
