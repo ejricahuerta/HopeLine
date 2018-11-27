@@ -64,7 +64,9 @@ namespace HopeLine.Service.CoreServices
                 {
                     Id = resource.Id,
                     Name = resource.Name,
-                    URL = resource.URL
+                    Description = resource.Description,
+                    URL = resource.URL,
+                    ImageURL = resource.ImageURL
                 };
                 _resourceRepo.Insert(_resource);
                 SaveResource();
