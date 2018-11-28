@@ -1,155 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous">
-
-    <title>Mentor Chat Space</title>
+    <title>Hello, world!</title>
   </head>
 
-  <body class="container-fluid p-0" style="margin-top:60px;">
-    <section class="m-0">
-      <div class="row justify-content-center">
-        <div class="col-4 bg-dark d-none d-lg-block d-md-block" style="height:500px;overflow-y: scroll">
-          <div class="row justify-content-center">
-            <div class="col-12 m-3 bg-dark" style="position:sticky;top:0;z-index:1;">
-              <input class="form-control " type="search" placeholder="Search" aria-label="Search">
-            </div>
-            <!--users-->
-            <div class="mentor-chat-users col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username1</h5>
-                  <p class="text-muted">Finished Conversation<small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="user-convo col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username2</h5>
-                  <p class="text-muted">Finished Conversation - <small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="mentor-chat-users col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username3</h5>
-                  <p class="text-muted">Finished Conversation<small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="user-convo col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username4</h5>
-                  <p class="text-muted">Finished Conversation - <small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
-
-            <div class="mentor-chat-users col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username5</h5>
-                  <p class="text-muted">Finished Conversation<small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
-            <div class="user-convo col-12 m-3">
-              <div class="row">
-                <img class="rounded-circle mr-3 ml-3 mb-3" src="https://via.placeholder.com/50x50">
-                <div class=" col-8 p-0">
-                  <h5 class="text-white">Username6</h5>
-                  <p class="text-muted">Finished Conversation - <small>Oct 7, 2017</small></p>
-                </div>
-              </div>
-            </div>
+  <body class="container-fluid">
+    <section class="row">
+      <div class="col-md-5 offset-md-5 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
+        <div id="accordion" class="row">
+          <div class="col-md-2 col-sm-3">
+            <button class="btn btn-link text-white" data-toggle="collapse" data-target="#chat" aria-expanded="true"
+              aria-controls="chat">
+              Toggle Chat
+            </button>
           </div>
         </div>
-        <!-- end of users-->
-
-        <div class="col-7 border-dark bg-dark p-0" style="height:500px;">
-          <div class="row p-3 m-0">
-            <div class="col-12">
-              <img class="rounded-circle" src="https://via.placeholder.com/75x75">
-              <h3 class="col-4 d-inline-block text-white">Username6</h3>
+        <!--
+          <div class="col-2 m-2 text-white"><i class="fas fa-bell"></i></div>
+        -->
+        <div id="chat" class="collapse show" aria-labelledby="chat" data-parent="#accordion">
+          <div">
+            <div id="chatbox" class="col-12 bg-light" style="height:380px;overflow-y:auto">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Donec tristique rhoncus ante quis dapibus. Aenean ultrices
+                rutrum lectus, sit amet interdum ipsum gravida sit amet. Sed
+                vel nibh magna. Etiam accumsan, diam vitae dapibus posuere,
+                sem metus viverra neque, ac lobortis risus mi quis nisi. Sed
+                a tellus non purus tempus efficitur mollis vel magna.
+                Curabitur vulputate elit augue, vitae tempor nisi malesuada
+                vel. Duis feugiat vulputate velit, a luctus mi ullamcorper
+                id. Nunc mollis dui sed mollis fringilla. Morbi vitae ipsum
+                dapibus, porttitor dolor et, aliquam justo. Aliquam ut arcu
+                mollis, vulputate nisi eget, posuere magna. Class aptent
+                taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos. Orci varius natoque penatibus et magnis
+                dis parturient montes, nascetur ridiculus mus. Vivamus
+                fermentum urna ut auctor dapibus. Donec finibus semper
+                euismod. Sed non diam auctor, viverra orci at, hendrerit
+                mauris. Ut est justo, rhoncus sed dapibus at, malesuada in
+                purus. Morbi non interdum dui. Sed ipsum odio, facilisis at
+                convallis vitae, porttitor in ex. Donec iaculis aliquam
+                euismod. Nullam a arcu scelerisque, egestas orci eget,
+                finibus tellus. Morbi id dignissim quam, at vestibulum
+                dolor. Nam fringilla ligula nunc, in pretium metus bibendum
+                in. Maecenas euismod sed magna non tempor. Curabitur dictum
+                ligula et magna efficitur, vel consequat velit elementum.
+                Vivamus elit leo, ornare non tristique eget, ornare a ante.
+                Donec dictum nec enim vel facilisis. Fusce consequat in
+                lacus quis porttitor. Nunc gravida elit eleifend dui
+                venenatis, in placerat tellus interdum. Pellentesque commodo
+                maximus rutrum. Nunc dapibus dapibus tortor vitae bibendum.
+                Quisque cursus dui ante, et finibus dolor elementum a.
+                Nullam feugiat lorem non ex condimentum iaculis in ut ipsum.
+                Vestibulum ante ipsum primis in faucibus orci luctus et
+                ultrices posuere cubilia Curae; Aliquam ut laoreet nulla.
+                Aliquam fringilla, leo id porta ultrices, tellus risus
+                ornare leo, nec ultricies ipsum turpis volutpat est. In
+                auctor felis ante, ut volutpat neque lobortis vitae. Mauris
+                efficitur facilisis nunc. Cras interdum a orci eget rhoncus.
+                Vivamus in lacus mattis, vestibulum ligula et, pulvinar
+                diam. Nulla eu augue facilisis, pretium felis sed, egestas
+                ipsum. Sed sem sem, sodales nec finibus ut, porta ac libero.
+                Donec ex erat, placerat vel tellus a, ullamcorper convallis
+                enim. Nulla facilisi. Aenean nec nisl molestie, iaculis est
+                ac, pulvinar metus. Phasellus nec iaculis ligula, sed cursus
+                nisi. Pellentesque hendrerit enim ac metus tempus rutrum. In
+                et ipsum blandit, sollicitudin ex eu, fermentum est. Nunc
+                vehicula lectus sed lectus volutpat, quis sagittis ipsum
+                maximus. Aliquam erat volutpat. Vivamus tincidunt lacinia
+                vehicula. Pellentesque ante nunc, aliquet quis nisl ac,
+                dictum vestibulum tortor. Vestibulum a dui quis neque
+                ultricies auctor. Proin ultrices mi ut sagittis vulputate.
+                Donec quam diam, accumsan eu suscipit sed, lacinia ac elit.
+                Donec semper condimentum diam, eget aliquet dui dictum
+                vulputate. Vestibulum aliquet sed augue tincidunt
+                condimentum. Suspendisse venenatis tellus sed neque vehicula
+                ornare. Generated 5 paragraphs, 467 words, 3138 bytes of
+                Lorem Ipsum
+              </p>
             </div>
-          </div>
-
-          <div class="col-12 bg-white" style="height:330px; overflow-y:scroll;" id="messages">
-            <div class="row justify-content-center p-3">
-              <div id="message" class="col-11 mb-5">
-                <h5>User</h5>
-                <p class="bg-primary text-justify rounded p-2" style="min-height:50px;"> Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
-                  feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
-                  non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
-                  tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
-                  Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
-                  tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
-                  dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
-                  luctus.
-
-                </p>
-              </div>
-              <div id="message" class="col-11 mb-5">
-                <h5 class="text-right">User</h5>
-                <p class="bg-primary rounded p-2 text-justify" style="min-height:50px;"> Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing elit. Curabitur vitae pulvinar ex, nec aliquam justo. Nulla mollis auctor lorem at
-                  feugiat. Sed arcu urna, lobortis non ornare in, condimentum quis metus. Integer semper auctor justo,
-                  non mollis mauris interdum a. Integer faucibus tellus et ante elementum porta. Quisque mattis finibus
-                  tristique. Nunc id gravida eros. Proin eget leo enim. Morbi eleifend eu tellus quis consectetur.
-                  Aenean auctor accumsan purus at viverra. Cras et tristique quam. Vestibulum tincidunt velit a gravida
-                  tempor. Pellentesque enim quam, ornare ut tortor ac, iaculis imperdiet augue. In hac habitasse platea
-                  dictumst. In lobortis augue ut eros ultrices, ac ornare arcu ornare. Nunc ultrices odio in blandit
-                  luctus.
-
-                </p>
+            <div class="col-12 m-2">
+              <div class="row justify-content-center">
+                <textarea id="inputMessage" class="col-sm-11 col-md-9 form-control" placeholder="type your message..."
+                  rows="1"></textarea>
+                <button id="sendButton" title="Send Message" class="col-sm-2 d-md-block d-none btn btn-outline-light m-1"><i
+                    class="fas fa-angle-right"></i></button>
               </div>
             </div>
-          </div>
-          <div class="col-12 " style="position:absolute; bottom:0;">
-            <div class="row m-1">
-              <textarea class="form-control col-10" type="text" placeholder="type a message" rows="1"></textarea>
-              <div class="col">
-                <input id="sendbutton" type="button" class="btn btn-secondary btn-lg" value="Send" />
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
       </div>
     </section>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"></script>
-    <script>
-      $("#sendbutton").click(function () {
-        $("#messages").animate({
-          scrollTop: $('#messages').prop("scrollHeight")
-        }, "slow");
-      });
-    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
   </body>
 
 </html>
