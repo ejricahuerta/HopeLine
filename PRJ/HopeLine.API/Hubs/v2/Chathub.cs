@@ -132,8 +132,9 @@ namespace HopeLine.API.Hubs.v2
             if (CurrentRoom != null)
             {
                 var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
-                TimeSpan span = (conversation.DateOfConversation - DateTime.UtcNow);
-                conversation.Minutes = span.Minutes;
+                TimeSpan span = (conversation.DateOfConversation - DateTime.Now);
+
+                conversation.Minutes = (float)span.TotalSeconds;
                 var result = _communicationService.EditConversation(conversation);
                 if (!result)
                 {
@@ -168,7 +169,7 @@ namespace HopeLine.API.Hubs.v2
                 PIN = room,
                 UserId = userId,
                 MentorId = mentorId,
-                DateOfConversation = DateTime.UtcNow
+                DateOfConversation = DateTime.Now
             });
 
             if (!result)
@@ -200,7 +201,7 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to completed request: " + ex);
+                _logger.LogInformation("Unable to Process Request for User: {} with Error: {}", userId, ex);
                 await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
             }
         }
