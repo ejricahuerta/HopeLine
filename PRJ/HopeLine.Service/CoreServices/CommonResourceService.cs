@@ -5,6 +5,7 @@ using HopeLine.Service.Models;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.Service.CoreServices
 {
@@ -50,7 +51,6 @@ namespace HopeLine.Service.CoreServices
                     Description = topic.Description
                 };
                 _topicRepo.Insert(_topic);
-                SaveTopic();
                 return true;
             }
             catch (System.Exception)
@@ -73,7 +73,6 @@ namespace HopeLine.Service.CoreServices
                 };
                 _resourceRepo.Insert(_resource);
                 _logger.LogInformation("Inserting new resource -  {}", resource.Name);
-                SaveResource();
                 return true;
             }
             catch (System.Exception)
@@ -96,7 +95,6 @@ namespace HopeLine.Service.CoreServices
                 };
                 _logger.LogInformation("Inserting new community -  {}", resource.Name);
                 _communityRepo.Insert(newresource);
-                SaveCommunity();
                 return true;
             }
             catch (System.Exception)
@@ -118,7 +116,6 @@ namespace HopeLine.Service.CoreServices
                     CountryOrigin = language.CountryOrigin
                 };
                 _languageRepo.Insert(_language);
-                SaveLanguage();
                 return true;
             }
             catch (System.Exception e)
@@ -326,6 +323,26 @@ namespace HopeLine.Service.CoreServices
         public void SaveLanguage()
         {
             _languageRepo.Save();
+        }
+
+        public async Task SaveTopicAsync()
+        {
+            await _languageRepo.SaveAsync();
+        }
+
+        public async Task SaveResourceAsync()
+        {
+            await _resourceRepo.SaveAsync();
+        }
+
+        public async Task SaveCommunityAsync()
+        {
+            await _communityRepo.SaveAsync();
+        }
+
+        public async Task SaveLanguageAsync()
+        {
+            await _languageRepo.SaveAsync();
         }
     }
 }
