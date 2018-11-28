@@ -11,49 +11,97 @@
 
 }
 
+@section Styles {
+    <link rel="stylesheet" , href="~/css/resources.css" />
+}
 
-<div class="sidebar bg-dark">
-    <!-- Profile -->
-    <div>
-        <div class="card bg-dark">
-            <div class="card-header" id="depressionHeader">
-                <h5 class="mb-0">
-                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="Index#" style="color:rgba(255,255,255,.5)">
-                        Profile
-                    </a>
-                </h5>
+    <section class="mt-5">
+        <div class="accordion" id="admin">
+            <div class="sidebar bg-dark">
+                <!-- Profile -->
+                <div>
+                    <div class="card bg-dark">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#statistics" style="color:rgba(255,255,255,.5)">
+                                    Statistics
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Change Password-->
+                <div>
+                    <div class="card bg-dark">
+                        <div class="card-header" id="changePassword">
+                            <h5 class="mb-0">
+                                <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="ChangePassword#" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
+                                    Change Password
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Personal Data -->
+                <div>
+                    <div class="card bg-dark">
+                        <div class="card-header" id="AddMentor">
+                            <h5 class="mb-0">
+                                <a class="btn nav-link dropdown" data-toggle="collapse" data-target="AddMentor#" style="color:rgba(255,255,255,.5)">
+                                    Add Mentor
+                                </a>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+          
 
 
-    <!-- Change Password-->
-    <div>
-        <div class="card bg-dark">
-            <div class="card-header" id="depressionHeader">
-                <h5 class="mb-0">
-                    <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="ChangePassword#" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
-                        Change Password
-                    </a>
-                </h5>
+
+
+            <div id="statistics" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">Minutes</th>
+                            <th scope="col">Date of Conversation</th>
+                        </tr>
+                    </thead>
+
+                    @*<tbody>
+                    @foreach (var item in Model.Conversations)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.UserId</td>
+                            <td>@item.PIN</td>
+                            <td>@item.Minutes</td>
+                            <td>@item.DateOfConversation</td>
+                        </tr>
+                    }
+
+                </tbody>*@
+                </table>
+
             </div>
-        </div>
-    </div>
 
 
-    <!--Personal Data -->
-    <div>
-        <div class="card bg-dark">
-            <div class="card-header" id="anxietyHeader">
-                <h5 class="mb-0">
-                    <a class="btn nav-link dropdown" data-toggle="collapse" data-target="AddMentor#" style="color:rgba(255,255,255,.5)">
-                        Add Mentor
-                    </a>
-                </h5>
-            </div>
+
+
+
+
+
+
         </div>
-    </div>
-</div>
+    </section>
 
 <div class="content accordion-group ">
     <div class="container">
@@ -61,7 +109,7 @@
             <div class="col-md-4 float-left">
                 <form method="POST">
                     <input type="text" class="form-control" asp-for="QueryString">
-                    <input type="submit"  asp-page-handler="Search" value="Go" />
+                    <input type="submit" asp-page-handler="Search" value="Go" />
                 </form>
 
                 @*<form method="POST">
@@ -97,6 +145,7 @@
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Account Type</th>
+                <th scope="col">Email</th>
             </tr>
         </thead>
 
@@ -109,6 +158,7 @@
                     <td>@Html.DisplayFor(modelitem => item.FirstName)</td>
                     <td>@Html.DisplayFor(modelitem => item.LastName)</td>
                     <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
+                    <td>@Html.DisplayFor(modelitem => item.Email)</td>
                     <td>
                         <a class="btn btn-warning">
                             Manage
@@ -122,7 +172,12 @@
     </table>
 
 </div>
-@section Scripts{
 
-}
+
+
+
+
+    @section Scripts{
+
+    }
 
