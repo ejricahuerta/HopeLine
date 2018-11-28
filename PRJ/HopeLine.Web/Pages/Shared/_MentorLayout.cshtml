@@ -56,6 +56,27 @@
 
         <div style="margin-top:60px;"></div> <!--white space? -->
         @RenderBody()
+
+        <div class="row ml-auto">
+            <div class="col-md-5 offset-md-7 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
+                <div id="accordion" class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <button id="toggleChat" class="btn btn-link text-white" data-toggle="collapse" data-target="#chat" aria-expanded="true" aria-controls="chat">Toggle Chat</button>
+                    </div>
+                </div>
+                <div id="chat" class="collapse show" aria-labelledby="chat" data-parent="#accordion">
+                    <div id="chatbox" class="col-12 bg-light" style="height:380px;overflow-y:auto">
+                        <!--message area-->
+                    </div>
+                    <div class="col-12 m-2">
+                        <div class="row justify-content-center">
+                            <textarea id="messageInput" class="col-sm-11 col-md-9 form-control" placeholder="type your message..." rows="1" autofocus></textarea>
+                            <button id="sendButton" title="Send Message" class="col-sm-2 d-md-block d-none btn btn-outline-light m-1"><i class="fas fa-angle-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="incominguser" style="left:20px;bottom:20px; position:fixed"></div>
     </section>
 
@@ -66,7 +87,7 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/js/site.js"></script>
     <script src="~/js/signalr.min.js"></script>
-
+    <script src="~/js/chat-v1.1.js"></script>
     <!--
     <script src="~/js/jquery-3.3.1.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
