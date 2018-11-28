@@ -8,8 +8,38 @@
 
 <input id="isUser" value=@Model.IsUser hidden />
 <section class="container" style="margin-top:100px;">
-    <div class="row justify-content-center p-2 shadow-lg"style="height:600px">
-        <!-- end of users-->
+    <div class="row m-1 shadow-lg">
+                <div class="col-3 rounded-left d-none d-md-block text-white" style="height:480px;  background-color: #102542">
+                    <h4 class="text-center text-white">Topics You Have Selected</h4>
+                </div>
+                <div class="col-md-9 col-sm-12 rounded-right" style="height:480px;background-image: linear-gradient(to right, #102542, #235789);">
+                    <div class="row m-1">
+                        <div class="col-12 border mt-1" style="height:100px;">
+                            <div class="d-flex justify-content-between">
+                                <h4 class="text-white">Chat</h4>
+                                <div id="buttons" class="row">
+                                    <a id="videoCallBtn" title="Call Mentor" href="" class="col-12 text-right text-white">
+                                        Call</a>
+                                    <a id="topics" title="Check Selected Topics" href="" class="col-12 text-right text-white">Topics</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chatbox" class="col-12 bg-light" style="height:300px;overflow-y:auto">
+                            <!--message area-->
+                        </div>
+                        <div class="col-11 " style="bottom:10px;position:absolute;right:10px;">
+                            <div class="row justify-content-center">
+                                <textarea id="messageInput" class="col-xs-10 col-md-9 form-control" placeholder="type your message..."
+                                    rows="1"></textarea>
+                                <button id="sendButton" title="Send Message" class="col-sm-2 d-md-block d-none btn btn-outline-light m-1"><i
+                                        class="fas fa-angle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- <div class="row justify-content-center p-2 shadow-lg"style="height:600px">
+
         <div class="col-md-7 col-sm-12 p-0">
             <div class="row m-0">
                 <div class="col-sm-12">
@@ -23,13 +53,6 @@
             </div>
 
             <input id="pin" value=@Model.PIN hidden />
-                <div class="modal" id="loading" >
-                    Waiting for Mentor...
-                    <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px"></img>
-                    <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
-                    <a href="#" rel="modal:close" id="mentorFound" hidden></a>
-                </div>
-                <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
             <div class="col-12 border-top" style="height:500px; overflow-y:auto;" id="message">
                 <div id="chatbox" class="card-body bg-clear">
 
@@ -47,8 +70,15 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> -->
+           <div class="modal" id="loading" >
+                        Waiting for Mentor...
+                        <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" />
+                        <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
+                        <a href="#" rel="modal:close" id="mentorFound" hidden></a>
+            </div>
+            <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
+            
     <div id="disconnection" class="modal">
         <p>You are disconnected from the chat</p>
         <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
@@ -64,62 +94,16 @@
 
 
         filter = $('#myInput').val();
-        /*
-        function myFunction() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("div");
-            console.log("Number of topics: " + li.length);
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("label")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        }
-        */
         // Hit ENTER to send messages
         $(function () {
             $("#messageInput").keypress(function (enter) {
                 var code = (enter.keyCode ? enter.keyCode : enter.which);
-                
                 if (code == 13) {
                     enter.preventDefault();
                     $("#sendButton").trigger('click');
                 }
             });
         });
-
-       
-
-       
-            /*
-            function listFilter(list, input) {
-                bar $lbs = list.find('.css-label');
-
-                function filter() {
-                    var regex = new RegExp('\\b' + this.value);
-                    var $els = $lbs.filter(function () {
-                        return regex.test($(this).text());
-
-                    });
-                    $lbs.not($els).hide().prev().hide();
-                    $els.show().prev().show();
-
-                };
-                input.keyup(filter).change(filter)
-
-            }
-
-            jQuery(function ($) {
-                listFilter($('#list'), $('.search-filter'))
-            })
-            */
-
     </script>
 
 }

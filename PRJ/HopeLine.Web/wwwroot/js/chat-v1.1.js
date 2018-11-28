@@ -4,11 +4,11 @@ var userId = $("#userId") != null ? $("#userId").val() : null;
 var onCall = false;
 var currentUser = userId;
 var isUser = currentUser.indexOf("Guest") != -1;
-var connection;
+var connection = null;
 var isConnected = false;
 var requestingUser;
 var timeout;
-var room;
+var room = null;
 
 //var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
@@ -45,7 +45,10 @@ function registerHub() {
         addChatBubble(user, message);
         $("#message").animate({
             scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
+        }, 0);
+        $("#chatbox").animate({
+            scrollTop: $('#chatbox').prop("scrollHeight")
+        }, 0);
     });
 
     //when a room is created
