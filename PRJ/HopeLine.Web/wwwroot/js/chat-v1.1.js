@@ -16,7 +16,7 @@ var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
     .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-     //.withUrl("http://localhost:5000/v2/chatHub")
+    //.withUrl("http://localhost:5000/v2/chatHub")
     .build();
 
 //ALL FUNCTIONS FOR THIS FILE
@@ -35,7 +35,7 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#incomingCall").hide();
-        window.open(url + "VideoChat?roomId=" + room + "&userId="+userId, "HopeLine-Call",
+        window.open(url + "VideoChat?roomId=" + room + "&userId=" + userId, "HopeLine-Call",
             '_blank', 'toolbar=0,menubar=0');
     });
 
@@ -245,4 +245,22 @@ $("#videoCallBtn").click(function () {
 
 $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
+});
+
+$("#toggleChat").clik(function () {
+    $("#message").animate({
+        scrollTop: $('#message').prop("scrollHeight")
+    }, 0);
+    $("#chatbox").animate({
+        scrollTop: $('#chatbox').prop("scrollHeight")
+    }, 0);
+});
+
+$("#messageInput").click(function () {
+    $("#message").animate({
+        scrollTop: $('#message').prop("scrollHeight")
+    }, 0);
+    $("#chatbox").animate({
+        scrollTop: $('#chatbox').prop("scrollHeight")
+    }, 0);
 });
