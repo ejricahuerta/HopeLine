@@ -4,11 +4,11 @@ var userId = $("#userId") != null ? $("#userId").val() : null;
 var onCall = false;
 var currentUser = userId;
 var isUser = currentUser.indexOf("Guest") != -1;
-var connection;
+var connection = null;
 var isConnected = false;
 var requestingUser;
 var timeout;
-var room;
+var room = null;
 
 //var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
@@ -16,7 +16,7 @@ var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
     .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-     //.withUrl("http://localhost:5000/v2/chatHub")
+    //.withUrl("http://localhost:5000/v2/chatHub")
     .build();
 
 //ALL FUNCTIONS FOR THIS FILE
@@ -35,7 +35,7 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#incomingCall").hide();
-        window.open(url + "VideoChat?roomId=" + room + "&userId="+userId, "HopeLine-Call",
+        window.open(url + "VideoChat?roomId=" + room + "&userId=" + userId, "HopeLine-Call",
             '_blank', 'toolbar=0,menubar=0');
     });
 
@@ -45,7 +45,10 @@ function registerHub() {
         addChatBubble(user, message);
         $("#message").animate({
             scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
+        }, 0);
+        $("#chatbox").animate({
+            scrollTop: $('#chatbox').prop("scrollHeight")
+        }, 0);
     });
 
     //when a room is created
@@ -57,6 +60,7 @@ function registerHub() {
         $("#sendArea").removeClass("d-none");
         $("#loading").hide();
         $("#mentorFound").click();
+        $("#toggleChat").removeClass("disabled");
         timeout = null;
     });
 
@@ -103,9 +107,15 @@ function startConnection() {
             connection.invoke("LoadMessage", room).catch(function (err) {
                 return console.error(err.toString());
             });
+            if (room == null) {
+                $("#chat").removeClass("show");
+                $("#toggleChat").addClass("disabled");
+            } else {
+                $("#chat").addClass("show");
+                $("#toggleChat").removeClass("disabled");
+            }
         });
 }
-
 
 //notifying user func
 function notifyUser() {
@@ -162,20 +172,19 @@ function notifyMentor() {
     });
 }
 
-
 //adding each messages
 function addChatBubble(user, message) {
     var classId = currentUser == user ? "border-primary" : "border-success";
+    classId = user == "system" ? "border-warning" : classId;
     $("#chatbox").append(
-        '<br/>' +
-        '<div id="message" class="msg mb-3">' +
+        '<div id="message" class="msg mb-2">' +
         '<small class="' +
         classId + '">' +
         user +
         '</small>' +
         '<div class="' +
         classId +
-        ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
+        ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;">' +
         message +
         "</div></div>"
     );
@@ -203,27 +212,30 @@ $(function () {
 
 //When user send a message
 $("#sendButton").click(function (event) {
-    var message = $("#messageInput")
-        .val()
-        .trim();
-    if (message != "") {
+    if (room != null) {
 
-        console.log("Id :" + room);
-        console.log("user: " + userId);
-        console.log("message: " + message);
+        var message = $("#messageInput")
+            .val()
+            .trim();
+        if (message != "") {
 
-        console.log("Sending Message");
-        console.log("room " + room);
-        connection
-            .invoke("SendMessage", currentUser, message, room)
-            .catch(function (err) {
-                return console.error(err.toString());
-            }).then(function () {
-                console.log("Message sent.")
-            });
+            console.log("Id :" + room);
+            console.log("user: " + userId);
+            console.log("message: " + message);
 
-        event.preventDefault();
-        $("#messageInput").val(" ");
+            console.log("Sending Message");
+            console.log("room " + room);
+            connection
+                .invoke("SendMessage", currentUser, message, room)
+                .catch(function (err) {
+                    return console.error(err.toString());
+                }).then(function () {
+                    console.log("Message sent.")
+                });
+
+            event.preventDefault();
+            $("#messageInput").val(" ");
+        }
     }
 });
 
@@ -242,4 +254,22 @@ $("#videoCallBtn").click(function () {
 
 $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
+});
+
+$("#toggleChat").click(function () {
+    $("#message").animate({
+        scrollTop: $('#message').prop("scrollHeight")
+    }, 0);
+    $("#chatbox").animate({
+        scrollTop: $('#chatbox').prop("scrollHeight")
+    }, 0);
+});
+
+$("#messageInput").click(function () {
+    $("#message").animate({
+        scrollTop: $('#message').prop("scrollHeight")
+    }, 0);
+    $("#chatbox").animate({
+        scrollTop: $('#chatbox').prop("scrollHeight")
+    }, 0);
 });
