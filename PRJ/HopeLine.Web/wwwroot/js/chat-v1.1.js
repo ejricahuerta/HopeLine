@@ -159,6 +159,11 @@ function notifyMentor() {
                 '</div>'
             )
             connection.invoke("RemoveUser", room, isUser);
+            alert("User has DISCONNECTED");
+            setTimeout(function () {
+                location.reload();
+            }, 500);
+
         }
     });
 }
