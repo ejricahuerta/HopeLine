@@ -10,13 +10,13 @@ var requestingUser;
 var timeout;
 var room = null;
 
-var url = "http://hopeline.azurewebsites.net/";
+//var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
-// var url = "http://localhost:8000/";
+var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
     .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-    // .withUrl("http://localhost:5000/v2/chatHub")
+     //.withUrl("http://localhost:5000/v2/chatHub")
     .build();
 
 //ALL FUNCTIONS FOR THIS FILE
@@ -24,7 +24,9 @@ connection = new signalR.HubConnectionBuilder()
 function findTime() {
     timeout = setTimeout(function () {
         $("#loading").text("Unable to Find Mentor...");
+
         $("#loading").append('<a href="' + url + '/instantChat" class="btn btn-info">Retry</a>');
+
     }, 20000);
 }
 
@@ -33,7 +35,7 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#incomingCall").hide();
-        window.open(url + "VideoChat?roomId=" + room, "HopeLine-Call",
+        window.open(url + "VideoChat?roomId=" + room + "&userId="+userId, "HopeLine-Call",
             '_blank', 'toolbar=0,menubar=0');
     });
 

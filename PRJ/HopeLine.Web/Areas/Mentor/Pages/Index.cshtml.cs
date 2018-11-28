@@ -153,15 +153,13 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 UserId = c.UserId,
                 MentorId = c.MentorId,
                 Minutes = c.Minutes,
-                DateOfConversation = c.DateOfConversation.ToString()
-            }).ToList();
-            System.Console.WriteLine("Convo count = " + Conversations.Count());
-            foreach (var c in Conversations)
-            {
-                System.Console.WriteLine("User: " + c.UserId);
-                System.Console.WriteLine("mentor: " + c.MentorId);
+                DateOfConversation = c.DateOfConversation.ToString ()
+            }).ToList ();
+            System.Console.WriteLine ("Convo count = " + Conversations.Count ());
+            foreach (var c in Conversations) {
+                System.Console.WriteLine ("User: " + c.UserId);
+                System.Console.WriteLine ("mentor: " + c.MentorId);
             }
-            /*Conversation Logic END */
             return Page();
         }
 

@@ -39,6 +39,26 @@ namespace HopeLine.Service.CoreServices
             _topicRepo = topicRepo;
         }
 
+        public bool AddTopics(TopicModel topic)
+        {
+            try
+            {
+                var _topic = new Topic
+                {
+                    Id = topic.Id,
+                    Name = topic.Name,
+                    Description = topic.Description
+                };
+                _topicRepo.Insert(_topic);
+                SaveTopic();
+                return true;
+            }
+            catch (System.Exception)
+            {
+                return false;
+            }
+        }
+
         public bool AddResources(ResourceModel resource)
         {
             try
@@ -47,10 +67,13 @@ namespace HopeLine.Service.CoreServices
                 {
                     Id = resource.Id,
                     Name = resource.Name,
-                    URL = resource.URL
+                    Description = resource.Description,
+                    URL = resource.URL,
+                    ImageURL = resource.ImageURL
                 };
                 _resourceRepo.Insert(_resource);
                 _logger.LogInformation("Inserting new resource -  {}", resource.Name);
+                SaveResource();
                 return true;
             }
             catch (System.Exception)
@@ -71,14 +94,36 @@ namespace HopeLine.Service.CoreServices
                     URL = resource.URL,
                     ImageURL = resource.ImageURL
                 };
-                _communityRepo.Insert(newresource);
                 _logger.LogInformation("Inserting new community -  {}", resource.Name);
+                _communityRepo.Insert(newresource);
+                SaveCommunity();
                 return true;
             }
             catch (System.Exception)
             {
                 // TODO : Log error
                 _logger.LogWarning("Unable to insert {}. ", resource.Name);
+                return false;
+            }
+        }
+
+        public bool AddLanguage(LanguageModel language)
+        {
+            try
+            {
+                var _language = new Language
+                {
+                    Id = language.Id,
+                    Name = language.Name,
+                    CountryOrigin = language.CountryOrigin
+                };
+                _languageRepo.Insert(_language);
+                SaveLanguage();
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine("Error: " + e);
                 return false;
             }
         }
@@ -261,6 +306,26 @@ namespace HopeLine.Service.CoreServices
                 _logger.LogWarning("Unable to Fetch Data: {}", ex);
                 return null;
             }
+        }
+
+        public void SaveResource()
+        {
+            _resourceRepo.Save();
+        }
+
+        public void SaveCommunity()
+        {
+            _communityRepo.Save();
+        }
+
+        public void SaveTopic()
+        {
+            _topicRepo.Save();
+        }
+
+        public void SaveLanguage()
+        {
+            _languageRepo.Save();
         }
     }
 }
