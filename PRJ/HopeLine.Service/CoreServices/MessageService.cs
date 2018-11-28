@@ -5,15 +5,18 @@ using HopeLine.DataAccess.DatabaseContexts;
 using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using Microsoft.Extensions.Logging;
 
 namespace HopeLine.Service.CoreServices
 {
     public class MessageService : IMessage
     {
+        private readonly ILogger<MessageService> _logger;
         private readonly ChatDbContext _chatDb;
 
-        public MessageService(ChatDbContext chatDb)
+        public MessageService(ILogger<MessageService> logger, ChatDbContext chatDb)
         {
+            _logger = logger;
             _chatDb = chatDb;
         }
 
@@ -27,12 +30,12 @@ namespace HopeLine.Service.CoreServices
                     MentorId = mentorId,
                     GuestId = guestId
                 });
+                _logger.LogInformation("Adding {} and {} to room: {}", mentorId, guestId, roomId);
                 await _chatDb.SaveChangesAsync();
             }
             catch (System.Exception ex)
             {
-
-                throw new System.Exception("Unable to Add to Room: ", ex);
+                _logger.LogWarning("Unable to Add to Room:{} with Exception: {}", roomId, ex);
             }
         }
 
@@ -47,13 +50,14 @@ namespace HopeLine.Service.CoreServices
                 {
                     _chatDb.Remove(m);
                 }
-                var room =  _chatDb.Rooms.SingleOrDefault(r=>r.RoomId == roomId);
+                var room = _chatDb.Rooms.SingleOrDefault(r => r.RoomId == roomId);
                 _chatDb.Remove(room);
+                _logger.LogInformation("Removing All messages for room: {}", roomId);
                 await _chatDb.SaveChangesAsync();
             }
             catch (System.Exception ex)
             {
-                throw new System.Exception("Unable to Remove Messages: ", ex);
+                _logger.LogWarning("Unable to Remove Messages for Room : {} with Exception: {}", roomId, ex);
             }
         }
 
@@ -61,8 +65,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                //TODO  : change to logger
-                System.Console.WriteLine("Returning All Messages for " + roomId);
+                _logger.LogInformation("Returning All Messages for {}", roomId);
                 return _chatDb.Messages
                     .Where(m => m.RoomId == roomId)
                     .Select(mm => new MessageModel
@@ -74,9 +77,9 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-
-                throw new System.Exception("Unable to Get Messages: ", ex);
+                _logger.LogWarning("Unable to Get Messages for Room:{} with Exception: {} ", roomId, ex);
             }
+            return null;
         }
 
         public string GetRoomForUser(string userId, bool isGuest)
@@ -85,14 +88,14 @@ namespace HopeLine.Service.CoreServices
             Room room;
             if (isGuest)
             {
+                _logger.LogInformation("Getting room for guest user {}", userId);
                 room = _chatDb.Rooms.FirstOrDefault(u => u.GuestId == userId);
-                System.Console.WriteLine("Room inside Service: " + room);
             }
             else
             {
+                _logger.LogInformation("Getting room for mentor {}", userId);
                 room = _chatDb.Rooms.FirstOrDefault(u => u.MentorId == userId);
             }
-            System.Console.WriteLine("Room inside Service: " + room);
             return (room != null) ? room.RoomId : null;
 
         }
@@ -101,6 +104,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
+                _logger.LogInformation("Fethcing All available Mentors");
                 return _chatDb.OnlineMentors.Where(m => m.Available == true).Select(n => new OnlineMentorModel
                 {
                     Available = n.Available,
@@ -111,9 +115,9 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-
-                throw new System.Exception("Unable to Process Finding Mentors : ", ex);
+                _logger.LogWarning("Unable to Process Finding Mentors with Exception: {}", ex);
             }
+            return null;
         }
 
         public async Task NewMentorAvailable(string mentorId, string connectionId)
