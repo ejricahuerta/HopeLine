@@ -60,6 +60,7 @@ function registerHub() {
         $("#sendArea").removeClass("d-none");
         $("#loading").hide();
         $("#mentorFound").click();
+        $("#toggleChat").removeClass("disabled");
         timeout = null;
     });
 
@@ -106,9 +107,15 @@ function startConnection() {
             connection.invoke("LoadMessage", room).catch(function (err) {
                 return console.error(err.toString());
             });
+            if (room == null) {
+                $("#chat").removeClass("show");
+                $("#toggleChat").addClass("disabled");
+            } else {
+                $("#chat").addClass("show");
+                $("#toggleChat").removeClass("disabled");
+            }
         });
 }
-
 
 //notifying user func
 function notifyUser() {
@@ -165,20 +172,19 @@ function notifyMentor() {
     });
 }
 
-
 //adding each messages
 function addChatBubble(user, message) {
     var classId = currentUser == user ? "border-primary" : "border-success";
+    classId = user == "system" ? "border-warning" : classId;
     $("#chatbox").append(
-        '<br/>' +
-        '<div id="message" class="msg mb-3">' +
+        '<div id="message" class="msg mb-2">' +
         '<small class="' +
         classId + '">' +
         user +
         '</small>' +
         '<div class="' +
         classId +
-        ' text-justify border-left p-2" style="border-width:8px !important; min-height:50px;">' +
+        ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;">' +
         message +
         "</div></div>"
     );
@@ -206,27 +212,30 @@ $(function () {
 
 //When user send a message
 $("#sendButton").click(function (event) {
-    var message = $("#messageInput")
-        .val()
-        .trim();
-    if (message != "") {
+    if (room != null) {
 
-        console.log("Id :" + room);
-        console.log("user: " + userId);
-        console.log("message: " + message);
+        var message = $("#messageInput")
+            .val()
+            .trim();
+        if (message != "") {
 
-        console.log("Sending Message");
-        console.log("room " + room);
-        connection
-            .invoke("SendMessage", currentUser, message, room)
-            .catch(function (err) {
-                return console.error(err.toString());
-            }).then(function () {
-                console.log("Message sent.")
-            });
+            console.log("Id :" + room);
+            console.log("user: " + userId);
+            console.log("message: " + message);
 
-        event.preventDefault();
-        $("#messageInput").val(" ");
+            console.log("Sending Message");
+            console.log("room " + room);
+            connection
+                .invoke("SendMessage", currentUser, message, room)
+                .catch(function (err) {
+                    return console.error(err.toString());
+                }).then(function () {
+                    console.log("Message sent.")
+                });
+
+            event.preventDefault();
+            $("#messageInput").val(" ");
+        }
     }
 });
 
@@ -247,7 +256,7 @@ $("#acceptCall").click(function () {
     connection.invoke("ConnectCall", room);
 });
 
-$("#toggleChat").clik(function () {
+$("#toggleChat").click(function () {
     $("#message").animate({
         scrollTop: $('#message').prop("scrollHeight")
     }, 0);
