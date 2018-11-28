@@ -307,41 +307,49 @@ namespace HopeLine.Service.CoreServices
 
         public void SaveResource()
         {
+            _logger.LogInformation("Saving Resource");
             _resourceRepo.Save();
         }
 
         public void SaveCommunity()
         {
+            _logger.LogInformation("Saving Community");
             _communityRepo.Save();
         }
 
         public void SaveTopic()
         {
+            _logger.LogInformation("Saving Topic");
             _topicRepo.Save();
         }
 
         public void SaveLanguage()
         {
+            _logger.LogInformation("Saving Language");
             _languageRepo.Save();
         }
 
         public async Task SaveTopicAsync()
         {
+            _logger.LogInformation("Saving Topic Asynchronously");
             await _languageRepo.SaveAsync();
         }
 
         public async Task SaveResourceAsync()
         {
+            _logger.LogInformation("Saving Resource Asynchronously");
             await _resourceRepo.SaveAsync();
         }
 
         public async Task SaveCommunityAsync()
         {
+            _logger.LogInformation("Saving Community Asynchronously");
             await _communityRepo.SaveAsync();
         }
 
         public async Task SaveLanguageAsync()
         {
+            _logger.LogInformation("Saving Language Asynchronously");
             await _languageRepo.SaveAsync();
         }
     }
