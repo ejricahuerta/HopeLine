@@ -9,6 +9,7 @@ var isConnected = false;
 var requestingUser;
 var timeout;
 var room;
+var sendClick = 0;
 
 //var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
@@ -45,7 +46,7 @@ function registerHub() {
         addChatBubble(user, message);
         $("#message").animate({
             scrollTop: $('#message').prop("scrollHeight")
-        }, "slow");
+        }, "fast");
     });
 
     //when a room is created
@@ -201,8 +202,20 @@ $(function () {
     }
 });
 
+
 //When user send a message
 $("#sendButton").click(function (event) {
+    //Prevent Spam 
+    sendClick++;
+    console.log("sendClick: " + sendClick);
+    if (sendClick >= 3) {
+        $("#sendArea").addClass('d-none');
+        setTimeout(function () {
+            $("#sendArea").removeClass('d-none');
+        },5000);
+        console.log("DISABLED");
+    }
+    //////
     var message = $("#messageInput")
         .val()
         .trim();
@@ -226,6 +239,12 @@ $("#sendButton").click(function (event) {
         $("#messageInput").val(" ");
     }
 });
+
+//Prevent Spam
+setInterval(function () {
+    sendClick = 0;
+}, 1000);
+///////////////////////////
 
 $("#logout").click(function () {
     connection.invoke("RemoveUser", userId, room, isUser);
