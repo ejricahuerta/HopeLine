@@ -2,6 +2,7 @@
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace HopeLine.Service.CoreServices
     public class CommonResourceService : ICommonResource
     {
         private readonly IRepository<Language> _languageRepo;
+        private readonly ILogger<CommonResourceService> _logger;
         private readonly IRepository<Resource> _resourceRepo;
         private readonly IRepository<Community> _communityRepo;
         private readonly IRepository<Topic> _topicRepo;
@@ -25,12 +27,13 @@ namespace HopeLine.Service.CoreServices
         /// </summary>
         /// <param name="resourceRepo"></param>
         /// <param name="communityRepo"></param>
-        public CommonResourceService(IRepository<Resource> resourceRepo,
+        public CommonResourceService(ILogger<CommonResourceService> logger, IRepository<Resource> resourceRepo,
                                     IRepository<Community> communityRepo,
                                     IRepository<Language> languageRepo,
                                     IRepository<Topic> topicRepo)
         {
             _languageRepo = languageRepo;
+            _logger = logger;
             _resourceRepo = resourceRepo;
             _communityRepo = communityRepo;
             _topicRepo = topicRepo;
@@ -47,11 +50,12 @@ namespace HopeLine.Service.CoreServices
                     URL = resource.URL
                 };
                 _resourceRepo.Insert(_resource);
+                _logger.LogInformation("Inserting new resource -  {}", resource.Name);
                 return true;
             }
             catch (System.Exception)
             {
-
+                _logger.LogWarning("Unable to insert {}. ", resource.Name);
                 return false;
             }
         }
@@ -60,20 +64,21 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var _resource = new Community
+                var newresource = new Community
                 {
                     Id = resource.Id,
                     Name = resource.Name,
                     URL = resource.URL,
                     ImageURL = resource.ImageURL
                 };
-                _communityRepo.Insert(_resource);
+                _communityRepo.Insert(newresource);
+                _logger.LogInformation("Inserting new community -  {}", resource.Name);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 // TODO : Log error
-                System.Console.WriteLine("Error: " + e);
+                _logger.LogWarning("Unable to insert {}. ", resource.Name);
                 return false;
             }
         }
@@ -114,19 +119,20 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var _resource = new Resource
+                var oldresource = new Resource
                 {
                     Name = resource.Name,
                     Description = resource.Description,
                     ImageURL = resource.ImageURL,
                     URL = resource.URL
                 };
-                _resourceRepo.Update(_resource);
+                _resourceRepo.Update(oldresource);
+                _logger.LogInformation("Updating resource -  {}", resource.Name);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Error: " + e);
+                _logger.LogWarning("Unable to update {}. ", resource.Name);
                 return false;
             }
         }
@@ -135,20 +141,21 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var _resource = new Community
+                var oldresource = new Community
                 {
                     Name = resource.Name,
                     Description = resource.Description,
                     URL = resource.URL,
                     ImageURL = resource.ImageURL
                 };
-                _communityRepo.Update(_resource);
+                _communityRepo.Update(oldresource);
+                _logger.LogInformation("Updating community -  {}", resource.Name);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 // TODO: Error
-                System.Console.WriteLine("Error:" + e);
+                _logger.LogWarning("Unable to update {}. ", resource.Name);
                 return false;
             }
         }
@@ -168,12 +175,15 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-                throw new System.Exception("Unable to fetch Communites", ex);
+                _logger.LogWarning("Unable to fetch communities : {}", ex);
             }
+            return null;
         }
 
         public IEnumerable<LanguageModel> GetLanguages()
         {
+
+            _logger.LogInformation("Fetching Languages");
             return _languageRepo.GetAll(null).Select(c => new LanguageModel
             {
                 Name = c.Name,
@@ -181,11 +191,11 @@ namespace HopeLine.Service.CoreServices
                 ProfileLanguages = c.ProfileLanguages
             });
         }
-        //@Edmel, I changed the return from Resource to ResourceModel. Tell me if that is what you wanted
         public IEnumerable<ResourceModel> GetResources()
         {
             try
             {
+                _logger.LogInformation("Fetching Languages");
                 return _resourceRepo.GetAll(null).Select(c => new ResourceModel
                 {
                     Id = c.Id,
@@ -199,20 +209,22 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
 
-                throw new System.Exception("Unable to Fetch from Service", ex);
+                _logger.LogWarning("Unable to Fetch from Service: {}", ex);
             }
+            return null;
         }
 
         public bool RemoveCommunity(int id)
         {
             try
             {
+                _logger.LogInformation("Removing Community By ID :{}", id);
                 _communityRepo.Remove(id);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Error: " + e);
+                _logger.LogWarning("Unable to Remove Community by ID: {}", id);
                 return false;
             }
         }
@@ -222,11 +234,12 @@ namespace HopeLine.Service.CoreServices
             try
             {
                 _resourceRepo.Remove(id);
+                _logger.LogInformation("Removing Resource By ID :{}", id);
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Error: " + e);
+                _logger.LogWarning("Unable to Remove Resource by ID: {}", id);
                 return false;
             }
         }
@@ -235,6 +248,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
+                _logger.LogInformation("Fetching All Topics");
                 return _topicRepo.GetAll(null).Select(t => new TopicModel
                 {
                     Name = t.Name,
@@ -244,7 +258,8 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-                throw new System.Exception("Unable to Fetch Data:", ex);
+                _logger.LogWarning("Unable to Fetch Data: {}", ex);
+                return null;
             }
         }
     }
