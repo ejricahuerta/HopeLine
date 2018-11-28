@@ -173,7 +173,9 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
                 _logger.LogWarning("Unable to get Mentor Schedule: ", ex);
+
             }
+            return null;
 
         }
 
