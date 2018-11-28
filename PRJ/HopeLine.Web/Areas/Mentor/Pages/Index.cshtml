@@ -12,10 +12,8 @@
 
 
 
-
-<head>
+@section Styles {
     <link rel="stylesheet" , href="~/css/resources.css" />
-
     <style>
         .hidediv {
             display: none;
@@ -25,7 +23,8 @@
             display: block;
         }
     </style>
-</head>
+}
+
 
 <section class="mt-5">
     <div class="accordion" id="mentor">
@@ -83,15 +82,12 @@
                     <div class="col-md-10">
                         <h1>@Model.CurrentMentor.Username</h1>
                     </div>
-                    <div class="col-md-2">
-                        <input id="unhide" type="button" value="Go Chat" />
-                    </div>
                 </div>
                 <div class="row p-0 m-0">
 
                     <div class="col-md-8">
                         <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <form class="form"  method="post" id="registrationForm">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id hidden disabled>
@@ -160,36 +156,6 @@
 
                     </div>
 
-                    <!--chat content-->
-
-                    <input id="pin" value="@Model.PIN" hidden>
-                    <div class="chat col-md-4 shadow-sm hidediv" id="chatwindow" fixed>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3>
-                                    Chat
-                                </h3>
-                            </div>
-                            <div class="col-12 bg-light" style="height:500px; overflow-y:auto;" id="message">
-                                <div id="chatbox" class="card-body bg-clear">
-
-                                </div>
-                            </div>
-                            <div class="card-footer text-muted">
-                                <div class="form-row">
-                                    <div class="col-9">
-                                        <textarea class="form-control" id="messageInput" rows="1"></textarea>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="button" id="sendButton" class="btn btn-success" value="Send" autofocus />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--chat content-->
-                    <hr>
                     <!--video request modal-->
                     <div id="incomingCall" class="modal" tabindex="-1" role="dialog">
                         <div class="modal-dialog" role="document">
@@ -225,11 +191,9 @@
                     <div class="col-md-10">
                         <h1>Change Password</h1>
                     </div>
-
                 </div>
-
                 <div class="col-md-6">
-                    <form id="change-password-form" method="post">
+                    <fsorm id="change-password-form" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="Input.OldPassword">OldPassword</label>
@@ -293,7 +257,6 @@
 </section>
 
 
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
@@ -307,23 +270,6 @@
 
     </script>
     <script>
-        $(function () {
-            $("#unhide").click(function () {
-                console.log("fewafwgfWGRBGFRFWE")
-                var item = document.getElementById("chatwindow");
-                if (item) {
-                    if (item.className == "chat col-md-4 shadow-sm hidediv") {
-                        item.className = "chat col-md-4 shadow-sm unhidediv";
-                        $("#unhide").value = "Close"
-                    } else {
-                        item.className = "chat col-md-4 shadow-sm hidediv";
-                        $("#unhide").value = "Go Chat"
-                    }
-                }
-            });
-
-        });
-
         // Hit ENTER to send messages
         $(function () {
             $("#messageInput").keypress(function (enter) {
