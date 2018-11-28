@@ -210,10 +210,11 @@ $("#sendButton").click(function (event) {
     console.log("sendClick: " + sendClick);
     if (sendClick >= 3) {
         $("#sendArea").addClass('d-none');
+        alert("You entered messages too fast, please wait for 5 seconds");
         setTimeout(function () {
             $("#sendArea").removeClass('d-none');
-        },5000);
-        console.log("DISABLED");
+        }, 5000);
+
     }
     //////
     var message = $("#messageInput")
