@@ -25,8 +25,7 @@ namespace HopeLine.Web.Areas.Admin.Pages
     {
         private readonly IUserService _userService;
         private readonly ICommunication _communication;
-
-
+        
         /*For Change Password*/
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
@@ -81,13 +80,8 @@ namespace HopeLine.Web.Areas.Admin.Pages
             return Page();
             
         }
-
-        public async Task<IActionResult> OnGetAsync(string pin = null, string user = null, string returnUrl = null)
+        public async Task<IActionResult> OnPostAddMentorAsync()
         {
-            returnUrl = returnUrl = returnUrl ?? Url.Page("/Index", new { area = "Admin" });
-            var url = Url.Page("~/Index");
-           // returnUrl = returnUrl ?? Url.Content("~/");
-
             if (ModelState.IsValid)
             {
 
@@ -98,7 +92,7 @@ namespace HopeLine.Web.Areas.Admin.Pages
                 };
 
                 //TODO: include language
-                var userAcc = new UserAccount
+                var userAcc = new MentorAccount
                 {
                     UserName = RegisterViewModel.Username,
                     Email = RegisterViewModel.Username,
@@ -121,17 +115,24 @@ namespace HopeLine.Web.Areas.Admin.Pages
 
                     await _emailsender.SendEmailAsync(RegisterViewModel.Username, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    await _signInManager.SignInAsync(userAcc, isPersistent: false);
-                    System.Console.WriteLine("Redirectin to Index..");
-                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
             }
             System.Console.WriteLine("Unable to Add User...");
+            return Page();
+        }
+        //public async Task<IActionResult> OnGetAsync(string pin = null, string user = null, string returnUrl = null)
+        public IActionResult OnGet(string pin = null, string user = null, string returnUrl = null)
+        {
+            returnUrl = returnUrl = returnUrl ?? Url.Page("/Index", new { area = "Admin" });
+            var url = Url.Page("~/Index");
+           // returnUrl = returnUrl ?? Url.Content("~/");
+
+            
 
             Users = _userService.GetAllUsers().Select(c => new UserViewModel
             {
