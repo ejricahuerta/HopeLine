@@ -14,26 +14,32 @@
                 </div>
                 <div class="col-md-9 col-sm-12 rounded-right" style="height:480px;background-image: linear-gradient(to right, #102542, #235789);">
                     <div class="row m-1">
+                     
                         <div class="col-12 border mt-1" style="height:100px;">
                             <div class="">
                                 <div id="buttons" class="row justify-content-between mt-2">
-                                    <a id="topics" title="Check Selected Topics" href="" class="col-sm-12  d-sm-block d-none text-white mb-3">Topics</a>
                                     <div class="col-lg-3 col-md-4">
-                                    <a id="videoCallBtn" title="Call Mentor" href="" class="text-white m-2" style="font-size:30px;">
-                                        <i class="fas fa-phone-square" ></i></a>
-                                    <a id="endConversation" title="End Conversation" href="" class="text-white m-2" style="font-size:30px"><i class="fas fa-sign-out-alt"></i></a>
+                                    <button id="videoCallBtn" title="Call Mentor" class="btn btn-link text-white" style="font-size:30px;">
+                                        <i class="fas fa-phone-square" ></i></button>
+                                    <button id="endConversation" title="End Conversation"class=" btn btn-link text-white" style="font-size:30px"><i class="fas fa-sign-out-alt"></i></button>
                                     </div>
                                 </div>
+            
                             </div>
                         </div>
-                        <div id="chatbox" class="col-12 m-0 bg-light" style="height:300px;overflow-y:auto">
+                        <div id="requestChat" class="alert alert-light mt-2" style="display:none;">
+                            <h5>Chat with Mentor?</h5>
+                            <button id="requestChat" type="button" class="btn btn-outline-dark" >Yes</button>
+                            <button id="cancelRequest" type="button" class="btn btn-link" >Cancel</button>
+                        </div>                         
+                        <div id="chatbox" class="col-12 m-0 bg-light" style="height:300px;overflow-y:auto;display:none;">
                             <!--message area-->
                         </div>
-                        <div class="col-11 " style="bottom:10px;position:absolute;right:10px;">
+                        <div id="sendArea" class="col-11 " style="bottom:10px;position:absolute;right:10px;display:none;">
                             <div class="row justify-content-center">
                                 <textarea id="messageInput" class="col-md-9 col-xs-12 form-control" placeholder="type your message..."
                                     rows="1"></textarea>
-                                <button id="sendButton" title="Send Message" class="col-sm-2 d-sm-block d-none btn btn-outline-light m-1"><i
+                                <button id="sendButton" title="Send Message" class="col-sm-2 d-sm-block d-none btn btn-outline-light m-1 disabled"><i
                                         class="fas fa-angle-right"></i></button>
                             </div>
                         </div>
@@ -47,8 +53,7 @@
                         <a href="#" rel="modal:close" id="mentorFound" hidden></a>
             </div>
             <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
-            
-    <div id="disconnection" class="modal">
+        <div id="disconnection" class="modal">
         <p>You are disconnected from the chat</p>
         <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
     </div>

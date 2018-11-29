@@ -1,136 +1,150 @@
 //Twilio Connection API
-const videoTwilio = Twilio.Video;
+const Video = Twilio.Video;
+var token = $("#token").val();
+var activeRoom;
+var previewTracks;
+var identity;
+var roomName = $("#roomId").val();;
 console.log("In video.js");
+// Secret RARbIc5RQS63xThPOKxaQTX088PPd2Pl
+//SID SKf1fd0ea9a3e3d530efd1c76f53c3db08
+//var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2LTE1NDMxNzQ5ODgiLCJpc3MiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2Iiwic3ViIjoiQUM5YTE0M2UwOTdiYzg2ZDQ1OTI1MWRhODcxYzZmMWJjNSIsImV4cCI6MTU0MzE3ODU4OCwiZ3JhbnRzIjp7ImlkZW50aXR5IjoidGVzdCIsInZpZGVvIjp7InJvb20iOiJyb29tIn19fQ.lLg85aN8_mYHRXNcpzwLykj_uJc_SiMHf9_rm - 461V4";
+console.log("token is: " + token);
+
+
+// Attach the Tracks to the DOM.
+function attachTracks(tracks, container) {
+    tracks.forEach(function (track) {
+        container.appendChild(track.attach());
+    });
+}
+
+// Attach the Participant's Tracks to the DOM.
+function attachParticipantTracks(participant, container) {
+    var tracks = Array.from(participant.tracks.values());
+    attachTracks(tracks, container);
+}
+
+// Detach the Tracks from the DOM.
+function detachTracks(tracks) {
+    tracks.forEach(function (track) {
+        track.detach().forEach(function (detachedElement) {
+            detachedElement.remove();
+        });
+    });
+}
+
+// Detach the Participant's Tracks from the DOM.
+function detachParticipantTracks(participant) {
+    var tracks = Array.from(participant.tracks.values());
+    detachTracks(tracks);
+}
+
+// When we are about to transition away from this page, disconnect
+// from the room, if joined.
+window.addEventListener('beforeunload', leaveRoomIfJoined);
+
+// Obtain a token from the server in order to connect to the Room.
 $(document).ready(function () {
 
-    // Secret RARbIc5RQS63xThPOKxaQTX088PPd2Pl
-    //SID SKf1fd0ea9a3e3d530efd1c76f53c3db08
-    var roomId = $("#roomId").val();
-    var userId = $("#userId").val();
-    //var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2LTE1NDMxNzQ5ODgiLCJpc3MiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2Iiwic3ViIjoiQUM5YTE0M2UwOTdiYzg2ZDQ1OTI1MWRhODcxYzZmMWJjNSIsImV4cCI6MTU0MzE3ODU4OCwiZ3JhbnRzIjp7ImlkZW50aXR5IjoidGVzdCIsInZpZGVvIjp7InJvb20iOiJyb29tIn19fQ.lLg85aN8_mYHRXNcpzwLykj_uJc_SiMHf9_rm - 461V4";
-    var token = $("#token").val();
-    console.log("token is: " + token);
-
-    console.log("room is: " + roomId + " userId is: " + userId);
-
-    // Sending data
-    //createLocalTracks({
-    //    audio: true,
-    //    video: true
-    //}).then(localTrack => {
-    //        return connect(token, {
-    //            name: roomId,
-    //            tracks: localTrack
-    //        });
-    //    }).then(room => {
-    //        console.log('Connected to Room: ' + roomId);
-    //    });
-    
-
-    //const { connect } = videoTwilio.require('twilio-video');
-
-    //videoTwilio.connect(token, { name: roomId }).then(room => {
-    //    console.log(`Successfully joined a Room: ${room}`);
-    //    room.on('participantConnected', participant => {
-    //        console.log(`A remote Participant connected: ${participant}`);
-    //    });
-    //}, error => {
-    //    console.error(`Unable to connect to Room: ${error.message}`);
-    //});
-    console.log("Before entering room " + roomId);
-    videoTwilio.connect(token, {
-        name: roomId,
-        logLevel: 'debug'
-    }).then(room => {
-        console.log('Connected to Room ' + room. + " token is: " + token);
-        
-        room.participants.forEach(participantConnected);
-        room.on('participantConnected', participantConnected => {
-            console.log("Remote participant is: " + participantConnected);
-        }, function (error) {
-            console.log("Error::: " + error);
-            });
-
-        room.on('participantDisconnected', participantDisconnected => {
-            console.log("participant disconnected");
-        });
-            room.once('disconnected', error => room.participants.forEach(participantDisconnected));
-        });
-    console.log("After connecting to room");
-
-    //// Log your Client's LocalParticipant in the Room
-    //const localParticipant = room.localParticipant;
-    //console.log(`Connected to the Room as LocalParticipant "${localParticipant.identity}"`);
-
-    //// Log any Participants already connected to the Room
-    //room.participants.forEach(participant => {
-    //    console.log(`Participant "${participant.identity}" is connected to the Room`);
-    //});
-
-    //// Log new Participants as they connect to the Room
-    //room.once('participantConnected', participant => {
-    //    console.log(`Participant "${participant.identity}" has connected to the Room`);
-    //});
-
-    //// Log Participants as they disconnect from the Room
-    //room.once('participantDisconnected', participant => {
-    //    console.log(`Participant "${participant.identity}" has disconnected from the Room`);
-    //});
-
-    function participantConnected(participant) {
-        console.log('Participant "%s" connected', participant.identity);
-        
-        //const div = $("#participant-video");
-
-        const div = document.createElement('div');
-        div.id = participant.sid;
-        div.innerText = participant.identity + "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT";
-        console.log("In participant function");
-        participant.on('trackSubscribed', track => trackSubscribed(div, track));
-        participant.on('trackUnsubscribed', trackUnsubscribed);
-
-        participant.tracks.forEach(publication => {
-            if (publication.isSubscribed) {
-                trackSubscribed(div, publication.track);
-            }
-        });
-
-        document.body.appendChild(div);
-    }
-
-    function participantDisconnected(participant) {
-        console.log('Participant "%s" disconnected', participant.identity);
-        document.getElementById(participant.sid).remove();
-    }
-
-    function trackSubscribed(div, track) {
-        div.appendChild(track.attach());
-    }
-
-    function trackUnsubscribed(track) {
-        track.detach().forEach(element => element.remove());
-    }
-    
-    videoTwilio.connect(token, {
+    var connectOptions = {
+        name: roomName,
+        logLevel: 'debug',
+        video: true,
         audio: true,
-        name: roomId,
-        video: { width: 640 }
-    }).then(room => {
-        console.log(`Connected to Room: ` + roomId);
-        });
-    
-    //room.on('participantConnected', participant => {
-    //    console.log(`Participant "${participant.identity}" connected`);
+    };
 
-    //    participant.tracks.forEach(publication => {
-    //        if (publication.isSubscribed) {
-    //            const track = publication.track;
-    //            document.getElementById('remote-media-div').appendChild(track.attach());
-    //        }
-    //    });
+    if (previewTracks) {
+        connectOptions.tracks = previewTracks;
+    }
 
-    //    participant.on('trackSubscribed', track => {
-    //        document.getElementById('remote-media-div').appendChild(track.attach());
-    //    });
-    //});
+    // Join the Room with the token from the server and the
+    // LocalParticipant's Tracks.
+    Video.connect(token, connectOptions).then(roomJoined, function (error) {
+        console.log(error);
+    });
+
+    var localTracksPromise = previewTracks ?
+        Promise.resolve(previewTracks) :
+        Video.createLocalTracks();
+
+    localTracksPromise.then(function (tracks) {
+        window.previewTracks = previewTracks = tracks;
+        var previewContainer = document.getElementById('local-media');
+        if (!previewContainer.querySelector('video')) {
+            attachTracks(tracks, previewContainer);
+        }
+    }, function (error) {
+        console.error('Unable to access local media', error);
+        console.log('Unable to access Camera and Microphone');
+    });
 });
+
+
+
+// Successfully connected!
+function roomJoined(room) {
+    window.room = activeRoom = room;
+    console.log("Joined as '" + identity + "'");
+    // Attach LocalParticipant's Tracks, if not already attached.
+    var previewContainer = document.getElementById('local-media');
+    if (!previewContainer.querySelector('video')) {
+        attachParticipantTracks(room.localParticipant, previewContainer);
+    }
+
+    // Attach the Tracks of the Room's Participants.
+    room.participants.forEach(function (participant) {
+        console.log("Already in Room: '" + participant.identity + "'");
+        var previewContainer = document.getElementById('remote-media');
+        attachParticipantTracks(participant, previewContainer);
+    });
+
+    // When a Participant joins the Room, log the event.
+    room.on('participantConnected', function (participant) {
+        console.log("Joining: '" + participant.identity + "'");
+    });
+
+    // When a Participant adds a Track, attach it to the DOM.
+    room.on('trackAdded', function (track, participant) {
+        console.log(participant.identity + " added track: " + track.kind);
+        var previewContainer = document.getElementById('remote-media');
+        attachTracks([track], previewContainer);
+    });
+
+    // When a Participant removes a Track, detach it from the DOM.
+    room.on('trackRemoved', function (track, participant) {
+        console.log(participant.identity + " removed track: " + track.kind);
+        detachTracks([track]);
+    });
+
+    // When a Participant leaves the Room, detach its Tracks.
+    room.on('participantDisconnected', function (participant) {
+        console.log("Participant '" + participant.identity + "' left the room");
+        detachParticipantTracks(participant);
+    });
+
+    // Once the LocalParticipant leaves the room, detach the Tracks
+    // of all Participants, including that of the LocalParticipant.
+    room.on('disconnected', function () {
+        console.log('Left');
+        if (previewTracks) {
+            previewTracks.forEach(function (track) {
+                track.stop();
+            });
+            previewTracks = null;
+        }
+        detachParticipantTracks(room.localParticipant);
+        room.participants.forEach(detachParticipantTracks);
+        activeRoom = null;
+        document.getElementById('button-join').style.display = 'inline';
+        document.getElementById('button-leave').style.display = 'none';
+    });
+}
+
+
+// Leave Room.
+function leaveRoomIfJoined() {
+    if (activeRoom) {
+        activeRoom.disconnect();
+    }
+}

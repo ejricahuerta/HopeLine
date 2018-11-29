@@ -18,18 +18,8 @@
 </head>
 <body class="container-fluid bg-dark text-white" id="participant-video">
     <section class="row">
-        <div id="remote" class=" border" style="min-height:300px;">
-            <div id="local video" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
-
-                <video autoplay height="300px" width="200px"></video>
-                <script>
-                    const constraint = {
-                        video: true
-                    };
-
-                    const video = document.querySelector('video');
-                    navigator.mediaDevices.getUserMedia(constraint).then((stream) => { video.srcObject = stream });
-                </script>
+        <div id="remote-media" class=" border" style="min-height:300px;">
+            <div id="local-media" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
             </div>
         </div>
     </section>

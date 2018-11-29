@@ -57,7 +57,7 @@ namespace HopeLine.API.Hubs.v2
             {
                 _logger.LogInformation("Loading messages for {}", room);
                 var allMessages = _messageService.GetAllMessages(room);
-                allMessages.Reverse();
+                //allMessages.Reverse();
                 System.Console.WriteLine(" Count: " + allMessages.Count());
                 if (allMessages != null)
                 {
@@ -226,7 +226,6 @@ namespace HopeLine.API.Hubs.v2
             {
                 if (roomId != null)
                 {
-
                     await Clients.Group(roomId).SendAsync("CallMentor");
                 }
 
