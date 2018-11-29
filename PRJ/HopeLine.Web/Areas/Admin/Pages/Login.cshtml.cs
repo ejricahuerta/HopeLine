@@ -44,7 +44,7 @@ namespace HopeLine.Web.Areas.Admin.Pages {
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl = returnUrl ?? Url.Content("~/admin/index");
+            returnUrl = returnUrl = returnUrl ?? Url.Page("/Index",new { area = "Admin" });
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(LoginInput.Username);

@@ -13,11 +13,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using static HopeLine.Web.Areas.Identity.Pages.Account.ExternalLoginModel;
-
-
+using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Text.Encodings.Web;
 
 namespace HopeLine.Web.Areas.Admin.Pages
 {
+
+    [Authorize(Policy = "AdminOnly")]
+    
     public class Index : PageModel
     {
         private readonly IUserService _userService;
@@ -27,13 +30,18 @@ namespace HopeLine.Web.Areas.Admin.Pages
         /*For Change Password*/
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
+        private readonly IEmailSender _emailsender;
         private readonly ILogger<ChangePasswordModel> _logger;
 
-        public Index(IUserService commonResources, ICommunication communication)
+        public Index(IUserService commonResources, ICommunication communication, IEmailSender emailsender)
         {
             _userService = commonResources;
             _communication = communication;
+            _emailsender = emailsender;
         }
+
+        [BindProperty]
+        public RegisterViewModel RegisterViewModel { get; set; }
 
         [BindProperty]
        public InputModel Input { get; set; }
@@ -74,9 +82,56 @@ namespace HopeLine.Web.Areas.Admin.Pages
             
         }
 
-        public async Task<IActionResult> OnGetAsync(string pin = null, string user = null)
+        public async Task<IActionResult> OnGetAsync(string pin = null, string user = null, string returnUrl = null)
         {
+            returnUrl = returnUrl = returnUrl ?? Url.Page("/Index", new { area = "Admin" });
             var url = Url.Page("~/Index");
+           // returnUrl = returnUrl ?? Url.Content("~/");
+
+            if (ModelState.IsValid)
+            {
+
+                var profile = new Profile
+                {
+                    FirstName = RegisterViewModel.FirstName,
+                    LastName = RegisterViewModel.LastName
+                };
+
+                //TODO: include language
+                var userAcc = new UserAccount
+                {
+                    UserName = RegisterViewModel.Username,
+                    Email = RegisterViewModel.Username,
+                    Profile = profile
+
+                };
+
+                var result = await _userManager.CreateAsync(userAcc, RegisterViewModel.Password);
+                if (result.Succeeded)
+                {
+                    /// IEmailSender neeeded
+                    System.Console.WriteLine("New Account Created");
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(userAcc);
+
+                    var callbackUrl = Url.Page(
+                         "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { userId = userAcc.Id, code = code },
+                        protocol: Request.Scheme);
+
+                    await _emailsender.SendEmailAsync(RegisterViewModel.Username, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    await _signInManager.SignInAsync(userAcc, isPersistent: false);
+                    System.Console.WriteLine("Redirectin to Index..");
+                    return LocalRedirect(returnUrl);
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            System.Console.WriteLine("Unable to Add User...");
 
             Users = _userService.GetAllUsers().Select(c => new UserViewModel
             {
@@ -90,34 +145,29 @@ namespace HopeLine.Web.Areas.Admin.Pages
 
 
             //HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
-            /*
-                    CurrentMentor = new UserViewModel
-                    {
-                        Id = CurrentUser.Id,
-                        Username = CurrentUser.UserName,
-                        Email = CurrentUser.Email,
-                        AccountType = CurrentUser.AccountType.ToString(),
-                        Phone = CurrentUser.PhoneNumber
-                    };
-                    */
-            /* Profile Page Logic START */
-            Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
-            {
-                Id = m.Id,
-                FirstName = m.FirstName,
-                LastName = m.LastName,
-                Username = m.Username,
-                Email = m.Email,
-                AccountType = m.AccountType,
-                Phone = m.Phone
 
-            }).ToList();
-
-            //Specializations = _userService.GetMentorSpecializations(CurrentMentor.Id).Select(s => new SpecializationViewModel
+            //CurrentMentor = new UserViewModel
             //{
-            //    Name = s.Name,
-            //    Description = s.Description
+            //    Id = CurrentUser.Id,
+            //    Username = CurrentUser.UserName,
+            //    Email = CurrentUser.Email,
+            //    AccountType = CurrentUser.AccountType.ToString(),
+            //    Phone = CurrentUser.PhoneNumber
+            //};
+
+            /* Profile Page Logic START */
+            //Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
+            //{
+            //    Id = m.Id,
+            //    FirstName = m.FirstName,
+            //    LastName = m.LastName,
+            //    Username = m.Username,
+            //    Email = m.Email,
+            //    AccountType = m.AccountType,
+            //    Phone = m.Phone
+
             //}).ToList();
+
 
             /* Profile Logic END */
 
@@ -151,19 +201,9 @@ namespace HopeLine.Web.Areas.Admin.Pages
             //    System.Console.WriteLine("User: " + c.UserId);
             //    System.Console.WriteLine("mentor: " + c.MentorId);
             //}
-            /*Conversation Logic END */
+            //    /*Conversation Logic END */
             return Page();
         }
-
-
-
-
-        //public async Task<IActionResult> OnPostJoinListAsync() {
-
-
-
-
-        //}
 
 
 
