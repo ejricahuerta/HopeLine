@@ -6,9 +6,12 @@ $(document).ready(function () {
     // Secret RARbIc5RQS63xThPOKxaQTX088PPd2Pl
     //SID SKf1fd0ea9a3e3d530efd1c76f53c3db08
     var roomId = $("#roomId").val();
+    var userId = $("#userId").val();
     //var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2LTE1NDMxNzQ5ODgiLCJpc3MiOiJTS2NiMzgzOWNhNmIyYjRlOTE2ZTg3Yjk1MzlhZjk5NTg2Iiwic3ViIjoiQUM5YTE0M2UwOTdiYzg2ZDQ1OTI1MWRhODcxYzZmMWJjNSIsImV4cCI6MTU0MzE3ODU4OCwiZ3JhbnRzIjp7ImlkZW50aXR5IjoidGVzdCIsInZpZGVvIjp7InJvb20iOiJyb29tIn19fQ.lLg85aN8_mYHRXNcpzwLykj_uJc_SiMHf9_rm - 461V4";
     var token = $("#token").val();
     console.log("token is: " + token);
+
+    console.log("room is: " + roomId + " userId is: " + userId);
 
     // Sending data
     //createLocalTracks({
@@ -34,23 +37,26 @@ $(document).ready(function () {
     //}, error => {
     //    console.error(`Unable to connect to Room: ${error.message}`);
     //});
-
-    videoTwilio.connect(roomId, { loglevel: 'debug' });
+    console.log("Before entering room " + roomId);
     videoTwilio.connect(token, {
-        name: roomId
+        name: roomId,
+        logLevel: 'debug'
     }).then(room => {
-        console.log('Connected to Room ' + roomId + " token is: " + token);
+        console.log('Connected to Room ' + room. + " token is: " + token);
         
         room.participants.forEach(participantConnected);
         room.on('participantConnected', participantConnected => {
             console.log("Remote participant is: " + participantConnected);
-        });
+        }, function (error) {
+            console.log("Error::: " + error);
+            });
 
         room.on('participantDisconnected', participantDisconnected => {
             console.log("participant disconnected");
         });
-        room.once('disconnected', error => room.participants.forEach(participantDisconnected));
+            room.once('disconnected', error => room.participants.forEach(participantDisconnected));
         });
+    console.log("After connecting to room");
 
     //// Log your Client's LocalParticipant in the Room
     //const localParticipant = room.localParticipant;

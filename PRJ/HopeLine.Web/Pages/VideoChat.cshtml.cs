@@ -39,8 +39,18 @@ namespace HopeLine.Web.Pages
             {
                 if (roomId != null && GetTwilioToken())
                 {
+                    Console.Write("Id is: " + UserId + " inside OnGet");
                     RoomId = roomId;
-                    UserId = userId;
+
+                    if(userId == null)
+                    {
+                        UserId = "Empty";
+                    }
+                    else
+                    {
+
+                        UserId = userId;
+                    }
                     return Page();
                 }
                 else
@@ -63,9 +73,12 @@ namespace HopeLine.Web.Pages
                 var grant = new VideoGrant();
                 grant.Room = "cool room";
                 var grants = new HashSet<IGrant> { grant };
-                var identity = "user"; //TODO : change this
+                
+                var identity = UserId; //TODO : change this
                 // Create an Access Token generator
                 var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity: identity, grants: grants);
+
+                Console.Write("Id is: " + UserId + " token is: " + token);
 
                 //var token = new Token(APIConstant.TwilioAccountSID,
                 //                        APIConstant.TwilioApiSID,
