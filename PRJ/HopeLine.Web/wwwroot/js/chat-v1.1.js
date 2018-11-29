@@ -9,6 +9,8 @@ var connection = null;
 var isConnected = false;
 var requestingUser;
 var timeout;
+var room;
+var sendClick = 0;
 var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
@@ -59,6 +61,7 @@ function registerHub() {
         $("#chatbox").animate({
             scrollTop: $('#chatbox').prop("scrollHeight")
         }, 0);
+
     });
 
     //when a room is created
@@ -194,6 +197,11 @@ function notifyMentor() {
                 '</div>'
             )
             connection.invoke("RemoveUser", room, isUser);
+            alert("User has DISCONNECTED");
+            setTimeout(function () {
+                location.reload();
+            }, 500);
+
         }
     });
 }
@@ -248,15 +256,24 @@ $(function () {
     }
 });
 
+
 //When user send a message
 $("#sendButton").click(function (event) {
-    if (room != null) {
-
         var message = $("#messageInput")
             .val()
             .trim();
         if (message != "") {
+    //Prevent Spam 
+    sendClick++;
+    console.log("sendClick: " + sendClick);
+    if (sendClick >= 3) {
+        $("#sendArea").addClass('d-none');
+        alert("You entered messages too fast, please wait for 5 seconds");
+        setTimeout(function () {
+            $("#sendArea").removeClass('d-none');
+        }, 5000);
 
+    }
             console.log("Id :" + room);
             console.log("user: " + userId);
             console.log("message: " + message);
@@ -271,11 +288,18 @@ $("#sendButton").click(function (event) {
                     console.log("Message sent.")
                 });
 
+
             event.preventDefault();
             $("#messageInput").val(" ");
         }
     }
 });
+
+//Prevent Spam
+setInterval(function () {
+    sendClick = 0;
+}, 1000);
+///////////////////////////
 
 $("#logout").click(function () {
     isLoggedOut = true;
