@@ -37,11 +37,6 @@ namespace HopeLine.Web.Pages
         {
             try
             {
-                if (roomId != null && GetTwilioToken())
-                {
-                    Console.Write("Id is: " + UserId + " inside OnGet");
-                    RoomId = roomId;
-
                     if(userId == null)
                     {
                         UserId = "Empty";
@@ -51,6 +46,11 @@ namespace HopeLine.Web.Pages
 
                         UserId = userId;
                     }
+                if (roomId != null && GetTwilioToken())
+                {
+                    Console.Write("Id is: " + UserId + " inside OnGet");
+                    RoomId = roomId;
+
                     return Page();
                 }
                 else
@@ -76,7 +76,7 @@ namespace HopeLine.Web.Pages
                 
                 var identity = UserId; //TODO : change this
                 // Create an Access Token generator
-                var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity: identity, grants: grants);
+                var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity, grants: grants);
 
                 Console.Write("Id is: " + UserId + " token is: " + token);
 
