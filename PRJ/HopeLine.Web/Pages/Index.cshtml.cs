@@ -4,6 +4,7 @@ using HopeLine.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -13,12 +14,14 @@ namespace HopeLine.Web.Pages
 {
     public class IndexModel : PageModel
     {
+        private readonly ILogger<IndexModel> _logger;
         private readonly ICommonResource _commonResource;
         public readonly IUserService _userService;
         public readonly UserManager<HopeLineUser> _userManager;
 
-        public IndexModel(ICommonResource commonResource, IUserService userService, UserManager<HopeLineUser> userManager)
+        public IndexModel(ILogger<IndexModel> logger, ICommonResource commonResource, IUserService userService, UserManager<HopeLineUser> userManager)
         {
+            _logger = logger;
             _commonResource = commonResource;
             _userService = userService;
             _userManager = userManager;
@@ -36,6 +39,7 @@ namespace HopeLine.Web.Pages
         public IList<TopicViewModel> TopicsSelected { get; set; }
         public async Task<IActionResult> OnGetAsync()
         {
+
             HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
             if (CurrentUser != null)
             {
@@ -53,14 +57,6 @@ namespace HopeLine.Web.Pages
                 isUser = true;
             }
 
-            /*
-            var claim = User.Claims.FirstOrDefault(u => u.Type == "Account");
-            var url = Url.Page("/Index", new { Page = "Mentor" });
-            if (claim.Value == "Mentor")
-            {
-                return Redirect(url);
-            }
-            */
             Topics = _commonResource.GetTopics().Select(t => new TopicViewModel
             {
                 Id = t.Id,
@@ -72,7 +68,7 @@ namespace HopeLine.Web.Pages
 
         public IActionResult OnPost()
         {
-            // TempData["Selected"] = TopicsSelected.Select(t => t.Name).ToList();
+            _logger.LogInformation("Redirecting to Instant Chat");
             return LocalRedirect(Url.Page("/instantChat"));
         }
 

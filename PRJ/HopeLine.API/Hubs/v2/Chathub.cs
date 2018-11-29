@@ -5,6 +5,7 @@ using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
 
 namespace HopeLine.API.Hubs.v2
 {
@@ -21,14 +22,17 @@ namespace HopeLine.API.Hubs.v2
     public class ChatHub : Hub, IChat, ICall
     {
         private bool isConnected = false;
+
+        public readonly ILogger<ChatHub> _logger;
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
         private string CurrentRoom { get; set; }
 
         private DateTime DateConversationStarted { get; set; }
         private static string Mentor = "MentorRoomOnly";
-        public ChatHub(IMessage messageService, ICommunication communicationService)
+        public ChatHub(ILogger<ChatHub> logger, IMessage messageService, ICommunication communicationService)
         {
+            _logger = logger;
             _messageService = messageService;
             _communicationService = communicationService;
         }
@@ -36,13 +40,13 @@ namespace HopeLine.API.Hubs.v2
 
         public override Task OnDisconnectedAsync(Exception exception)
         {
-            Console.WriteLine("User has been disconnected...");
+            _logger.LogInformation("User has been disconnected...");
             return base.OnDisconnectedAsync(exception);
         }
 
         public override Task OnConnectedAsync()
         {
-            Console.WriteLine("User has connected...");
+            _logger.LogInformation("User has connected...");
             return base.OnConnectedAsync();
         }
 
@@ -51,7 +55,7 @@ namespace HopeLine.API.Hubs.v2
         {
             try
             {
-                System.Console.WriteLine(room);
+                _logger.LogInformation("Loading messages for {}", room);
                 var allMessages = _messageService.GetAllMessages(room);
                 allMessages.Reverse();
                 System.Console.WriteLine(" Count: " + allMessages.Count());
@@ -65,8 +69,7 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (System.Exception ex)
             {
-
-                throw new System.Exception("Unable to Load Data: ", ex);
+                _logger.LogCritical("Unable to Load Data: ", ex);
             }
         }
 
@@ -78,7 +81,7 @@ namespace HopeLine.API.Hubs.v2
                 UserName = user,
                 Text = message
             };
-            Console.WriteLine("Adding Message");
+            _logger.LogInformation("Adding message for " + user);
             _messageService.NewMessage(newmsg);
             await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
@@ -86,16 +89,16 @@ namespace HopeLine.API.Hubs.v2
         public async Task AddMentor(string mentorId)
         {
             var room = _messageService.GetRoomForUser(mentorId, false);
-            System.Console.WriteLine("Room: " + room);
             if (room != null)
             {
                 await Groups.AddToGroupAsync(Context.ConnectionId, room);
                 await Clients.Caller.SendAsync("Room", room);
             }
+
             try
             {
-                System.Console.WriteLine("Mentor available:" + mentorId);
                 await Groups.AddToGroupAsync(Context.ConnectionId, Mentor);
+                _logger.LogInformation("Added mentor to room: " + room);
             }
             catch (System.Exception ex)
             {
@@ -107,7 +110,7 @@ namespace HopeLine.API.Hubs.v2
         {
             try
             {
-                System.Console.WriteLine("Removing User" + userId);
+                _logger.LogInformation("Removing User from room", roomId);
                 await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
 
                 if (isUser)
@@ -122,23 +125,22 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (System.Exception ex)
             {
-
-                throw new Exception("Delete Process did not go through :", ex);
+                _logger.LogCritical("Unable to Proceed", ex);
             }
 
             //Updating Conversation
             if (CurrentRoom != null)
             {
                 var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
-                TimeSpan span = (conversation.DateOfConversation - DateTime.UtcNow);
-                conversation.Minutes = span.Minutes;
+                TimeSpan span = (conversation.DateOfConversation - DateTime.Now);
+
+                conversation.Minutes = (float)span.TotalSeconds;
                 var result = _communicationService.EditConversation(conversation);
                 if (!result)
                 {
-                    throw new Exception("Unable to Update Conversation from HUB");
+                    _logger.LogWarning("Unable to Proceed", CurrentRoom);
                 }
             }
-
         }
 
         public async Task AcceptUserRequest(string mentorId, string userId, string userConnectionId)
@@ -158,7 +160,7 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (System.Exception ex)
             {
-                throw new Exception("Unable to Accept Request: ", ex);
+                _logger.LogCritical("Unable to Accept Request.", room, userId, ex);
             }
 
             //Creating new Conversation
@@ -167,19 +169,18 @@ namespace HopeLine.API.Hubs.v2
                 PIN = room,
                 UserId = userId,
                 MentorId = mentorId,
-                DateOfConversation = DateTime.UtcNow
+                DateOfConversation = DateTime.Now
             });
 
             if (!result)
             {
-                throw new Exception("Unable to Add Conversation");
+                _logger.LogWarning("Adding Conversation Failed", room, userId);
             }
             else
             {
-                Console.WriteLine("Added Convo");
+                _logger.LogInformation("Adding Conversation", room, userId);
             }
         }
-
 
         public async Task RequestToTalk(string userId)
         {
@@ -200,25 +201,27 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Unable to completed request: " + ex);
+                _logger.LogInformation("Unable to Process Request for User: {} with Error: {}", userId, ex);
                 await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
             }
         }
 
         public async Task CallDisconnected(string roomId)
         {
+            _logger.LogInformation("Call has been disconnected");
             await Clients.Group(roomId).SendAsync("Disconnected");
         }
 
         public async Task ConnectCall(string roomId)
         {
+            _logger.LogInformation("Call Connected.");
             await Clients.Group(roomId).SendAsync("CallConnected");
 
         }
 
         public async Task RequestToVideoCall(string roomId)
         {
-            Console.WriteLine("Room when requested: " + roomId);
+            _logger.LogInformation("A request from room occured.", roomId);
             try
             {
                 if (roomId != null)
@@ -230,7 +233,7 @@ namespace HopeLine.API.Hubs.v2
             }
             catch (Exception ex)
             {
-                throw new Exception("Unable to process request: ", ex);
+                _logger.LogWarning("Unable to proceed request.", roomId, ex);
             }
         }
 
