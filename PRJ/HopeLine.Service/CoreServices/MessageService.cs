@@ -66,7 +66,7 @@ namespace HopeLine.Service.CoreServices
             try
             {
                 _logger.LogInformation("Returning All Messages for {}", roomId);
-                return _chatDb.Messages
+                return _chatDb.Messages.OrderBy(d => d.DateAdded)
                     .Where(m => m.RoomId == roomId)
                     .Select(mm => new MessageModel
                     {
