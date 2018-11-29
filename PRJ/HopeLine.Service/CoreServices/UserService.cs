@@ -2,6 +2,7 @@
 using HopeLine.DataAccess.Interfaces;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,16 @@ namespace HopeLine.Service.CoreServices
     /// </summary>
     public class UserService : IUserService
     {
+        private readonly ILogger<UserService> _logger;
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _convoRepo;
         private readonly IRepository<MentorSpecialization> _specializationRepo;
 
-        public UserService(IRepository<HopeLineUser> userRepo,
+        public UserService(ILogger<UserService> logger, IRepository<HopeLineUser> userRepo,
                             IRepository<Conversation> convoRepo,
                             IRepository<MentorSpecialization> specializationRepo)
         {
+            _logger = logger;
             _userRepo = userRepo;
             _convoRepo = convoRepo;
             _specializationRepo = specializationRepo;
@@ -53,9 +56,7 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-                //if any error, throw this
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service: {}", ex);
                 return null;
             }
         }
@@ -68,6 +69,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
+                _logger.LogInformation("Get All Users by {}", userType);
                 // for each value that has property value of this function param - userType
                 return _userRepo.GetAll()
                         .Where(a => a.AccountType.ToString().Contains(userType))
@@ -88,8 +90,7 @@ namespace HopeLine.Service.CoreServices
             catch (System.Exception ex)
             {
 
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service: {}", ex);
                 return null;
             }
 
@@ -103,6 +104,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
+                _logger.LogInformation("Get All Mentor - {} Activities", mentorId);
                 var activities = (_userRepo.Get((object)mentorId) as MentorAccount)
                    .Activities
                     .Select(n => new ActivityModel
@@ -115,8 +117,7 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service : {", ex);
                 return null;
             }
         }
@@ -130,7 +131,8 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var conversations = (_userRepo.Get((object)mentorId) as MentorAccount)
+
+                var conversations = (_userRepo.Get(mentorId) as MentorAccount)
                     .Conversations.Select(c => new ConversationModel
                     {
                         Id = c.Id,
@@ -141,19 +143,15 @@ namespace HopeLine.Service.CoreServices
                         PIN = c.PIN
 
                     });
+                _logger.LogInformation("Get All Mentor - {} Conversations", mentorId);
                 return conversations;
             }
             catch (System.Exception ex)
             {
-
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service : {}", ex);
                 return null;
             }
-
         }
-
-
         /// <summary>
         /// This function returns collection of schedule for mentor from repo
         /// </summary>
@@ -174,9 +172,10 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
+                _logger.LogWarning("Unable to get Mentor Schedule: ", ex);
 
-                throw new System.Exception("Unable to Process User Service: ", ex);
             }
+            return null;
 
         }
 
@@ -192,13 +191,12 @@ namespace HopeLine.Service.CoreServices
                         Description = s.Specialization.Description,
                         Name = s.Specialization.Name
                     });
-
+                _logger.LogInformation("Get Mentor - {} Specializations", mentorId);
                 return specializations;
             }
             catch (System.Exception ex)
             {
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service : {}", ex);
                 return null;
             }
         }
@@ -212,20 +210,20 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-                var activities = (_userRepo.Get((object)userId) as UserAccount)
+                var activities = (_userRepo.Get(userId) as UserAccount)
                    .Activities
                     .Select(n => new ActivityModel
                     {
                         DateOfActivity = n.DateAdded,
                         Description = n.Description
                     });
+                _logger.LogInformation("Get All User - {} Activities", userId);
                 return activities;
 
             }
             catch (System.Exception ex)
             {
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service :{} ", ex);
                 return null;
             }
         }
@@ -238,7 +236,7 @@ namespace HopeLine.Service.CoreServices
         {
             try
             {
-
+                _logger.LogInformation("get User - {} Activities", username);
                 return _convoRepo.GetAll()
                                 .Where(u => u.UserId == username)
                                 .Select(c => new ConversationModel
@@ -253,22 +251,22 @@ namespace HopeLine.Service.CoreServices
             }
             catch (System.Exception ex)
             {
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service : {}", ex);
                 return null;
             }
         }
 
         public IEnumerable<string> ListMentorIdByAvailability(bool available)
         {
-            throw new NotImplementedException();
+            _logger.LogTrace("Not Implemented");
+            return null;
         }
 
         public bool UpdateUserProfile(UserModel model)
         {
             try
             {
-                var user = _userRepo.Get((object)model.Id);
+                var user = _userRepo.Get(model.Id);
                 if (model.Username != null
                     && model.FirstName != null
                     && model.LastName != null && user != null)
@@ -277,13 +275,12 @@ namespace HopeLine.Service.CoreServices
                     user.Profile.LastName = model.LastName;
                     _userRepo.Update(user);
                 }
+                _logger.LogInformation("Updating User - {} Info", model.Id);
                 return true;
             }
             catch (System.Exception ex)
             {
-
-                //throw new System.Exception("Unable to process Service :", ex);
-                System.Console.WriteLine("Unable to process Service :", ex);
+                _logger.LogWarning("Unable to process Service: {}", ex);
                 return false;
             }
         }
