@@ -5,15 +5,14 @@ var identity;
 var roomName;
 var room;
 
-
-
-
-Video.connect($("#token", option).val(), {
+var option = {
     name: $("#roomId").val(),
     logLevel: 'debug'
     //include usermediastream here and present it in preview
     //tracks: stream
-}).then(room => {
+}
+
+Video.connect($("#token").val(), option).then(room => {
     console.log('Connected to Room "%s"', room.name);
 
     room.participants.forEach(participantConnected);
@@ -42,7 +41,6 @@ function participantConnected(participant) {
 
 function participantDisconnected(participant) {
     console.log('Participant "%s" disconnected', participant.identity);
-    document.getElementById(participant.sid).remove();
 }
 
 function trackSubscribed(div, track) {
