@@ -5,6 +5,19 @@ body {
     padding-bottom: 20px;
 }
 
+
+/*Bootstrap Navbar Override*/
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-image: linear-gradient(to right, #102542, #235789);
+    border-color: white;
+    border: hidden;
+    color: white
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
