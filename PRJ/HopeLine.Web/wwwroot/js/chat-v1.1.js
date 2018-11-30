@@ -1,6 +1,4 @@
 var userId = $("#userId") != null ? $("#userId").val() : null;
-var accountType = $("#accountType") != null ? $("#accountType").val() : null;
-var userId = $("#userId") != null ? $("#userId").val() : null;
 var topicsSelected = null;
 var onCall = false;
 var hasRequestedCall = false;
@@ -15,6 +13,8 @@ var sendClick = 0;
 var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
+
+
 //var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
 var url = "http://localhost:8000/";
@@ -41,11 +41,20 @@ function requestCallTime() {
         hasRequestedCall = false;
         connection.invoke(
             "SendMessage",
-            "system",
+            "HopeLine",
             "Mentor has not answered the call.",
             room
         );
     }, 40000);
+}
+
+function alertTime() {
+    $("#chatAlert").show();
+    console.log("Alert Fired.");
+    timeout = setTimeout(function () {
+        $("#chatAlert > p").remove();
+        $("#chatAlert").hide();   
+    }, 7000);
 }
 
 function registerHub() {
@@ -98,6 +107,7 @@ function registerHub() {
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
+        
         connection.invoke("LoadMessage", room);
         $("#sendArea").removeClass("d-none");
         $("#requestChat").hide();
@@ -107,6 +117,11 @@ function registerHub() {
         $("#mentorFound").click();
         $("#toggleChat").removeClass("disabled");
         timeout = null;
+        if (topicsSelected == null && isUser) {
+            console.log("topic  must pop")
+            $("#chatAlert").append("<p>You can select topics you want to talk about.</p>");
+            alertTime();
+        }
     });
 
     //register for users
@@ -238,19 +253,19 @@ function notifyMentor() {
 
 //adding each messages
 function addChatBubble(user, message) {
-    var classId = currentUser == user ? "border-primary" : "border-success";
-    classId = user == "system" ? "border-warning" : classId;
-    if (isUser) {
-        if (user.indexOf("Guest") != -1) {
-            name = "Guest";
-        } else if (user.indexOf("@") != -1) {
-            name = "Mentor";
-        } else {
-            name = user;
-        }
+    var classId;
+
+    if (user.indexOf("Guest") != -1) {
+        name = "Guest";
+        classId = "border-success";
+    } else if (user.indexOf("@") != -1) {
+        name = "Mentor";
+        classId = "border-primary";
     } else {
         name = user;
+        classId = "border-warning";
     }
+
 
     $("#chatbox").append(
         '<div id="message" class="msg mb-2">' +
@@ -327,7 +342,6 @@ $("#sendButton").click(function (event) {
 setInterval(function () {
     sendClick = 0;
 }, 1000);
-///////////////////////////
 
 $("#logout").click(function () {
     isLoggedOut = true;
@@ -348,12 +362,15 @@ $("#videoCallBtn").click(function () {
     if (!onCall && !hasRequestedCall) {
         connection.invoke(
             "SendMessage",
-            "system",
+            "HopeLine",
             "Call has been requested...Waiting for Mentor.",
             room
         );
         connection.invoke("RequestToVideoCall", room);
         requestCallTime();
+
+        $("#chatAlert").append("<p id=msg>You have requested to Talk to Mentor via Call.</p>");
+        alertTime();
         hasRequestedCall = true;
     }
 });
@@ -363,6 +380,8 @@ $("#acceptCall").click(function () {
     onCall = true;
     hasRequestedCall = true;
     mentorTimeOut = null;
+    $("#chatAlert").append("<p>Mentor has accepted the Call.</p>");
+    alertTime();
 });
 
 $("#toggleChat").click(function () {
@@ -393,4 +412,11 @@ $("#messageInput").click(function () {
         },
         0
     );
+});
+
+
+$("#loading").on("hide.bs.modal", function () {
+    console.log("modal hidden")
+    $("#chartAlert").append("<p>You Cancelled your Request.</p>");
+    alertTime();
 });

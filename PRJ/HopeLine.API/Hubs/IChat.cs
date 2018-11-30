@@ -11,6 +11,6 @@ namespace HopeLine.API.Hubs.v2
         Task RemoveUser(string userId, string roomId, bool isUser);
         Task LoadMessage(string room);
         Task SendMessage(string user, string message, string room);
-        Task AddTopics(List<int> ids);
+        Task AddTopics(string roomId, List<int> ids);
     }
 }

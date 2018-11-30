@@ -263,7 +263,7 @@ namespace HopeLine.API.Hubs.v2
                     }
                     else
                     {
-
+                    
                         _logger.LogInformation("No topics Selected");
 
                     }
