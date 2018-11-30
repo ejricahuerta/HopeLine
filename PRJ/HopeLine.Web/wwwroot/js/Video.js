@@ -1,26 +1,50 @@
+//https://media.twiliocdn.com/sdk/js/video/releases/2.0.0-beta2/docs/
+
+//FIXME : refactor have video on mentor page and instant chat
+
 const Video = Twilio.Video;
 var activeRoom;
 var previewTracks;
 var identity;
 var roomName;
 var room;
+var localStream;
+var option;
+var localMediaConstraints
 
-var option = {
-    name: $("#roomId").val(),
-    logLevel: 'debug'
-    //include usermediastream here and present it in preview
-    //tracks: stream
+
+room = $("#roomId").val();
+identity = $("#userId").val();
+// if identity is "guest" then 
+//set localMediaConstraints to video false
+localMediaConstraints = {
+    audio: true,
+    video: true
 }
 
-Video.connect($("#token").val(), option).then(room => {
-    console.log('Connected to Room "%s"', room.name);
+//creating local media to pass to twilio
+Video.createLocalVideoTrack(localMediaConstraints)
+    .then(track => {
+        option = {
+            room: room,
+            logLevel: 'debug',
+            tracks: Array.from(track)
+        }
 
-    room.participants.forEach(participantConnected);
-    room.on('participantConnected', participantConnected);
+        const local = $("#local-media");
+        local.append(track.attach());
+        return Video.connect($("#token").val(), option);
+    })
+    .then(room => {
+        console.log('Connected to Room "%s"', room.name);
 
-    room.on('participantDisconnected', participantDisconnected);
-    room.once('disconnected', error => room.participants.forEach(participantDisconnected));
-});
+        room.participants.forEach(participantConnected);
+        room.on('participantConnected', participantConnected);
+
+        room.on('participantDisconnected', participantDisconnected);
+        room.once('disconnected', error => room.participants.forEach(participantDisconnected));
+    });
+
 
 function participantConnected(participant) {
     console.log('Participant "%s" connected', participant.identity);

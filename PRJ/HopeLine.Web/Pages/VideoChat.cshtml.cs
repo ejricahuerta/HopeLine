@@ -80,9 +80,28 @@ namespace HopeLine.Web.Pages
             // Serialize the token as a JWT
             Console.WriteLine("Here is the token from the CS" + token.ToJwt());
 
-
-
-
+        }
+        public IActionResult OnPost(string roomId = null, string userId = null)
+        {
+            try
+            {
+                if (userId == null || roomId == null)
+                {
+                    Redirect("/Index");
+                }
+                else
+                {
+                    RoomId = roomId;
+                    UserId = userId;
+                    GetTwilioToken();
+                    return Page();
+                }
+            }
+            catch (System.Exception ex)
+            {
+                return NotFound();
+            }
+            return Redirect("/Index");
         }
     }
 }
