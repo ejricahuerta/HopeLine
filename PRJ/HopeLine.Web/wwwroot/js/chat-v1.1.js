@@ -15,6 +15,7 @@ var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
 var url = "http://hopeline.azurewebsites.net/";
+var mentorMsgReceived = 0;
 //comment out before pushing to master
 //var url = "http://localhost:8000/";
 
@@ -65,6 +66,8 @@ function registerHub() {
   connection.on("ReceiveMessage", function(user, message) {
     console.log("Receive Message");
     addChatBubble(user, message);
+      mentorMsgReceived++;
+      console.log("Mentor Message Received: " + mentorMsgReceived);
     $("#message").animate(
       {
         scrollTop: $("#message").prop("scrollHeight")
@@ -205,7 +208,6 @@ function notifyMentor() {
         event.preventDefault();
       });
     } else {
-      //FIXME: refactor this
       $("#chatbox").append(
         '<div class = "alert alert-info" role = "alert" >' +
           "User has DISCONNECTED!" +
