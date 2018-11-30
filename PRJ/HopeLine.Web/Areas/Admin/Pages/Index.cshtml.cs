@@ -82,46 +82,50 @@ namespace HopeLine.Web.Areas.Admin.Pages
         {
             if (ModelState.IsValid)
             {
-
-                var profile = new Profile
+                try
                 {
-                    FirstName = RegisterViewModel.FirstName,
-                    LastName = RegisterViewModel.LastName,
-                    
-                };
+                    var profile = new Profile
+                    {
+                        FirstName = RegisterViewModel.FirstName,
+                        LastName = RegisterViewModel.LastName,
 
-                //TODO: include language
-                var userAcc = new MentorAccount
-                {
-                    UserName = RegisterViewModel.Username,
-                    Email = RegisterViewModel.Username,
-                    PhoneNumber = RegisterViewModel.Phone,
-                    SIN = RegisterViewModel.SIN,
-                    Profile = profile
+                    };
 
-                };
+                    //TODO: include language
+                    var userAcc = new MentorAccount
+                    {
+                        UserName = RegisterViewModel.Username,
+                        Email = RegisterViewModel.Username,
+                        PhoneNumber = RegisterViewModel.Phone,
+                        SIN = RegisterViewModel.SIN,
+                        Profile = profile
 
-                var result = await _userManager.CreateAsync(userAcc, RegisterViewModel.Password);
-                if (result.Succeeded)
-                {
-                    /// IEmailSender neeeded
-                    System.Console.WriteLine("New Account Created");
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(userAcc);
+                    };
 
-                    var callbackUrl = Url.Page(
-                         "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { userId = userAcc.Id, code = code },
-                        protocol: Request.Scheme);
+                    var result = await _userManager.CreateAsync(userAcc, RegisterViewModel.Password);
+                    if (result.Succeeded)
+                    {
+                        /// IEmailSender neeeded
+                        System.Console.WriteLine("New Account Created");
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(userAcc);
 
-                    await _emailsender.SendEmailAsync(RegisterViewModel.Username, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        var callbackUrl = Url.Page(
+                             "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { userId = userAcc.Id, code = code },
+                            protocol: Request.Scheme);
+
+                        await _emailsender.SendEmailAsync(RegisterViewModel.Username, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    }
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                catch (System.Exception) {
+                    System.Console.WriteLine("Add mentor not working!");
                 }
-
             }
             System.Console.WriteLine("Unable to Add User...");
             return Page();
