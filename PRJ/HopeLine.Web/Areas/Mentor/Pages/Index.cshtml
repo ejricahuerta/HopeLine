@@ -15,61 +15,18 @@
 @section Styles {
     <link rel="stylesheet" , href="~/css/resources.css" />
 }
-
-
-<section class="mt-5">
-
-    <div class="accordion" id="mentor">
-        <!-- The sidebar -->
-        <div class="sidebar bg-dark">
-
-            <!-- Profile -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="profileHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#profile" style="color:rgba(255,255,255,.5)">
-                                Profile
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Chat -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="chatHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#changepassword" style="color:rgba(255,255,255,.5)">
-                                Change Password
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stat -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="statHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#stat" style="color:rgba(255,255,255,.5)">
-                                Statistics
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-
+    <div style="margin-top:100px"></div>
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+            <a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">Change Password</a>
+            <a class="list-group-item list-group-item-action" id="list-stat-list" data-toggle="list" href="#list-stat" role="tab" aria-controls="stat">Statistics</a>
         </div>
-        <!--Sidebar END-->
-        <!-- Page content -->
-        <div class="content accordion-group">
-            <!--Profile tab-->
-            <div id="profile" class="collapse container bootstrap snippet show" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 20px" active>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                 <div class="row">
                     <div class="col-md-10">
                         <h1>@Model.CurrentMentor.Username</h1>
@@ -79,7 +36,7 @@
 
                     <div class="col-md-8">
                         <hr>
-                        <form class="form"  method="post" id="registrationForm">
+                        <form class="form" method="post" id="registrationForm">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id hidden disabled>
@@ -148,25 +105,21 @@
 
                     </div>
 
-                   
+
 
                     <!--/tab-content-->
                     <!--/col-9-->
                 </div>
                 <!--/row-->
-
-
             </div>
-            <!--Profile END-->
-            <!-- Change Password START-->
-            <div id="changepassword" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
                 <div class="row">
                     <div class="col-md-10">
                         <h1>Change Password</h1>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <fsorm id="change-password-form" method="post">
+                    <form id="change-password-form" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="Input.OldPassword">OldPassword</label>
@@ -186,11 +139,8 @@
                         <button type="submit" class="btn btn-default">Update password</button>
                     </form>
                 </div>
-
             </div>
-            <!-- Change Password END-->
-            <!-- Conversation History START -->
-            <div id="stat" class="collapse container" data-parent="#mentor" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-stat" role="tabpanel" aria-labelledby="list-stat-list">
                 <table class="table">
                     <thead>
                         <tr>
@@ -215,18 +165,10 @@
 
                     </tbody>
                 </table>
-
             </div>
-            <!-- Conversation History END-->
-
-
         </div>
-
     </div>
-
-
-</section>
-
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

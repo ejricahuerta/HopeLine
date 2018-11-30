@@ -28,7 +28,24 @@
             background-color: #555;
             color: white;
         }
-
+/*
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-image: linear-gradient(to right, #102542, #235789);
+    border-color: white;
+}
+    */
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-image: linear-gradient(to right, #102542, #235789);
+    border-color: white;
+    border: hidden;
+    color: white
+}
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
     margin-left: 200px;
