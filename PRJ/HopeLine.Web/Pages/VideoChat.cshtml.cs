@@ -14,6 +14,8 @@ namespace HopeLine.Web.Pages
     {
         private readonly ICommunication _communicationService;
 
+
+        //TODO: put me back to where I was
         const string twilioAccountSid = "AC9a143e097bc86d459251da871c6f1bc5";
         const string twilioApiKey = "SKf1fd0ea9a3e3d530efd1c76f53c3db08";
         const string twilioApiSecret = "RARbIc5RQS63xThPOKxaQTX088PPd2Pl";
@@ -32,73 +34,54 @@ namespace HopeLine.Web.Pages
 
         [BindProperty]
         public string RoomId { get; set; }
-
         public IActionResult OnGet(string roomId = null, string userId = null)
         {
             try
             {
-                if (roomId != null && GetTwilioToken())
+                if (userId == null || roomId == null)
                 {
-                    Console.Write("Id is: " + UserId + " inside OnGet");
-                    RoomId = roomId;
-
-                    if(userId == null)
-                    {
-                        UserId = "Empty";
-                    }
-                    else
-                    {
-
-                        UserId = userId;
-                    }
-                    return Page();
+                    Redirect("/Index");
                 }
                 else
                 {
-                    return Redirect("/Index");
+                    RoomId = roomId;
+                    UserId = userId;
+                    GetTwilioToken();
+                    return Page();
                 }
             }
             catch (System.Exception ex)
             {
                 System.Console.WriteLine(ex);
-                return NotFound();
             }
+            return NotFound();
         }
 
         // get twilio token 
-        private bool GetTwilioToken()
+        private void GetTwilioToken()
         {
-            try
-            {
-                var grant = new VideoGrant();
-                grant.Room = "cool room";
-                var grants = new HashSet<IGrant> { grant };
-                
-                var identity = UserId; //TODO : change this
-                // Create an Access Token generator
-                var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity: identity, grants: grants);
+            var grant = new VideoGrant();
+            grant.Room = RoomId;
+            var grants = new HashSet<IGrant> { grant };
 
-                Console.Write("Id is: " + UserId + " token is: " + token);
+            var identity = UserId; //TODO : change this
+                                   // Create an Access Token generator
+            var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity, grants: grants);
 
-                //var token = new Token(APIConstant.TwilioAccountSID,
-                //                        APIConstant.TwilioApiSID,
-                //                        APIConstant.TwilioSecret,
-                //                        identity: identity,
-                //                        grants: grants);
-                Token = token.ToJwt();
-                //Console.WriteLine("Here is the token: " + token.ToJwt());
-                // Serialize the token as a JWT
-                Console.WriteLine("Here is the token from the CS" + token.ToJwt());
-                if (Token == null)
-                {
-                    return false;
-                }
-            }
-            catch (System.Exception)
-            {
-                return false;
-            }
-            return true;
+            Console.Write("Id is: " + UserId + " token is: " + token);
+
+            //var token = new Token(APIConstant.TwilioAccountSID,
+            //                        APIConstant.TwilioApiSID,
+            //                        APIConstant.TwilioSecret,
+            //                        identity: identity,
+            //                        grants: grants);
+            Token = token.ToJwt();
+            //Console.WriteLine("Here is the token: " + token.ToJwt());
+            // Serialize the token as a JWT
+            Console.WriteLine("Here is the token from the CS" + token.ToJwt());
+
+
+
 
         }
     }

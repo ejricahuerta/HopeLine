@@ -11,16 +11,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body class="container-fluid bg-dark text-white" id="participant-video">
-    <section class="row">
-        <div id="remote-media" class=" border" style="min-height:300px;">
-            <div id="local-media" class="border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;right:10px;">
+<section class="row">
+            <div id="local-media" class="border" style="min-height:50px;min-width:100px;max-witdh:200px;position:fixed;top:10px;right:10px;">
             </div>
+        <div id="remote-media" class=" border" style="min-height:100px;min-width:200px;max-witdh:300px;position:fixed;top:10px;left:10px;">
         </div>
     </section>
     <section class="row" style="bottom:20px;position:fixed;z-index:-1">
@@ -40,7 +39,7 @@
             </button>
         </div>
     </section>
-    
+
     <input id="token" type="hidden" value="@Model.Token" />
     <input id="roomId" type="hidden" value="@Model.RoomId" />
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
