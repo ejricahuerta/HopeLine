@@ -334,6 +334,8 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("ConversationId");
+
                     b.Property<string>("DateAdded");
 
                     b.Property<string>("Description")
@@ -345,6 +347,8 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<int?>("SpecializationId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ConversationId");
 
                     b.HasIndex("SpecializationId");
 
@@ -566,6 +570,10 @@ namespace HopeLine.DataAccess.Migrations
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
                 {
+                    b.HasOne("HopeLine.DataAccess.Entities.Conversation")
+                        .WithMany("Topics")
+                        .HasForeignKey("ConversationId");
+
                     b.HasOne("HopeLine.DataAccess.Entities.Specialization")
                         .WithMany("Topics")
                         .HasForeignKey("SpecializationId");
