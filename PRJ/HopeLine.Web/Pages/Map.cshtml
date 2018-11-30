@@ -12,8 +12,48 @@
     }
 }
 
+@section Styles{
+        <link rel="stylesheet" href="~/css/map.css" />
+}
+
+
 <div class="contain" style="margin-top: 90px;">
-    <script>
+    
+</div>
+    <input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
+    <label for="c1">
+        <div>&#x2714;</div>Hospital<br />
+    </label>
+    <input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
+    <label for="c2">
+        <div>&#x2714;</div>Pharmacy<br />
+    </label>
+
+    <input name="locationBox" value="health" type="checkbox" id="c3" onclick="searchType('spa',this)" />
+    <label for="c3">
+        <div>&#x2714;</div>Health club/Sauna<br />
+    </label>
+
+    <input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
+    <label for="c4">
+        <div>&#x2714;</div>Doctor<br />
+    </label>
+
+
+    <button class="button" onClick="clearMarkers()">Clear Markers</button>
+
+    <button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
+        Search area
+    </button>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
+
+    <div id="map" class="p-0 m-0"></div>
+        <div class="bg-light border-top container-fluid" style="bottom: 10px;">
+            <p class="float-right">Made by PRJ666-Group 07 ©2018. All Rights Reserved.</p>
+        </div>
+
+@section Scripts{
+<script>
 
         //DO NOT SEPERATE JAVASCRIPT TO ANOTHER FILE. Google api must work if javascript code is in the same file.
         //
@@ -143,26 +183,12 @@
         function searchType(locationType, isChecked) {
 
             if (isChecked.checked) {
+
                 searchLocation(locationType);
-                map.addListener('bounds_changed', function () {
-
-                    if (isChecked.checked) {
-                        window.setTimeout(function () {
-                            searchLocation(locationType);
-                    }, 400);
-                    }
-                });
-
 
             } else {
                 deleteMarkers(isChecked, locationType);
 
-                map.addListener('bounds_changed', function () {
-
-
-                    deleteMarkers(locationType);
-
-                });
             }
         }
         function searchLocation(locationType) {
@@ -259,39 +285,8 @@
         }
     </script>
 
-
-</div>
-    <input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('hospital',this)" />
-    <label for="c1">
-        <div>&#x2714;</div>Hospital<br />
-    </label>
-    <input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
-    <label for="c2">
-        <div>&#x2714;</div>Pharmacy<br />
-    </label>
-
-    <input name="locationBox" value="health" type="checkbox" id="c3" onclick="searchType('spa',this)" />
-    <label for="c3">
-        <div>&#x2714;</div>Health club/Sauna<br />
-    </label>
-
-    <input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
-    <label for="c4">
-        <div>&#x2714;</div>Doctor<br />
-    </label>
-
-
-    <button class="button" onClick="clearMarkers()">Clear Markers</button>
-
-    @*<button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
-        Search area
-    </button>*@
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
-
-    <div id="map" class="p-0 m-0"></div>
-
-
-
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFAuLDWD-TFRudMTWb-t2rUAzNyVFk3I&libraries=places&callback=initAutocomplete"
             async defer></script>
+}
+
 
