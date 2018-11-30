@@ -1,10 +1,5 @@
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using HopeLine.DataAccess.Entities;
-using HopeLine.Service.Interfaces;
-using HopeLine.Service.Models;
-using Microsoft.AspNetCore.SignalR;
 
 namespace HopeLine.API.Hubs.v2
 {
@@ -16,5 +11,6 @@ namespace HopeLine.API.Hubs.v2
         Task RemoveUser(string userId, string roomId, bool isUser);
         Task LoadMessage(string room);
         Task SendMessage(string user, string message, string room);
+        Task AddTopics(List<int> ids);
     }
 }
