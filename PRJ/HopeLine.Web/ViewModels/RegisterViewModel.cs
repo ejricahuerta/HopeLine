@@ -32,5 +32,9 @@ namespace HopeLine.Web.ViewModels
         [MinLength(6)]
         [MaxLength(20)]
         public string RetypePassword { get; set; }
+
+        [Required(ErrorMessage = "Invalid SIN")]
+        [MinLength(9)]
+        public string SIN { get; set; }
     }
 }

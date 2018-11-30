@@ -46,9 +46,6 @@ namespace HopeLine.Web.Areas.Admin.Pages
        public InputModel Input { get; set; }
 
         [BindProperty]
-        public UserViewModel CurrentMentor { get; set; }
-
-        [BindProperty]
         public List<ConversationViewModel> Conversations { get; set; }
 
         [BindProperty]
@@ -80,6 +77,7 @@ namespace HopeLine.Web.Areas.Admin.Pages
             return Page();
             
         }
+
         public async Task<IActionResult> OnPostAddMentorAsync()
         {
             if (ModelState.IsValid)
@@ -88,7 +86,8 @@ namespace HopeLine.Web.Areas.Admin.Pages
                 var profile = new Profile
                 {
                     FirstName = RegisterViewModel.FirstName,
-                    LastName = RegisterViewModel.LastName
+                    LastName = RegisterViewModel.LastName,
+                    
                 };
 
                 //TODO: include language
@@ -96,6 +95,8 @@ namespace HopeLine.Web.Areas.Admin.Pages
                 {
                     UserName = RegisterViewModel.Username,
                     Email = RegisterViewModel.Username,
+                    PhoneNumber = RegisterViewModel.Phone,
+                    SIN = RegisterViewModel.SIN,
                     Profile = profile
 
                 };
@@ -126,13 +127,61 @@ namespace HopeLine.Web.Areas.Admin.Pages
             return Page();
         }
         //public async Task<IActionResult> OnGetAsync(string pin = null, string user = null, string returnUrl = null)
-        public IActionResult OnGet(string pin = null, string user = null, string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string pin = null, string user = null, string returnUrl = null)
         {
             returnUrl = returnUrl = returnUrl ?? Url.Page("/Index", new { area = "Admin" });
             var url = Url.Page("~/Index");
-           // returnUrl = returnUrl ?? Url.Content("~/");
+            // returnUrl = returnUrl ?? Url.Content("~/");
 
-            
+            //HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
+
+            /* Profile Page Logic START */
+            Mentors = _userService.GetAllUsersByAccountType("Mentor").Select(m => new UserViewModel
+            {
+                Id = m.Id,
+                FirstName = m.FirstName,
+                LastName = m.LastName,
+                Username = m.Username,
+                Email = m.Email,
+                AccountType = m.AccountType,
+                Phone = m.Phone
+
+            }).ToList();
+
+
+            /* Profile Logic END */
+
+            /* Change Password START */
+            //var user_ = await _userManager.GetUserAsync(User);
+            //if (user_ == null)
+            //{
+            //    return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            //}
+
+            //var hasPassword = await _userManager.HasPasswordAsync(user_);
+            //if (!hasPassword)
+            //{
+            //    return RedirectToPage("./SetPassword");
+            //}
+            /* Change Password END */
+
+            /*Conversation Logic START*/
+            Conversations = _communication.GetConversations().Select(c => new ConversationViewModel
+            {
+                Id = c.Id,
+                PIN = c.PIN,
+                UserId = c.UserId,
+                //MentorId = c.MentorId,
+                Minutes = c.Minutes,
+                DateOfConversation = c.DateOfConversation.ToString()
+            }).ToList();
+            System.Console.WriteLine("Convo count = " + Conversations.Count());
+            foreach (var c in Conversations)
+            {
+                System.Console.WriteLine("User: " + c.UserId);
+                System.Console.WriteLine("mentor: " + c.MentorId);
+            }
+
 
             Users = _userService.GetAllUsers().Select(c => new UserViewModel
             {

@@ -88,7 +88,7 @@
             <div class="content accordion-group">
                 <!--Statistics Start-->
 
-                <div id="statistics" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
+                <div id="statistics" method="POST" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
                     <table class="table">
                         <thead>
                             <tr>
@@ -101,7 +101,7 @@
                         </thead>
 
                         <tbody>
-                    @*@foreach (var item in Model.Conversations)
+                    @foreach (var item in Model.Conversations)
                     {
                         <tr>
                             <td>@item.Id</td>
@@ -110,7 +110,7 @@
                             <td>@item.Minutes</td>
                             <td>@item.DateOfConversation</td>
                         </tr>
-                    }*@
+                    }
 
                 </tbody>
                     </table>
@@ -193,7 +193,7 @@
 
                     <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
                         <form class="col-xs-12 shadow-lg rounded p-5 m-0" method="POST">
-                            <h3 class="text-success">Register with HopeLine</h3>
+                            <h3 class="text-success">Mentor Registration for HopeLine</h3>
                             <br />
                             @{
                                 if (!ModelState.IsValid)
@@ -232,6 +232,29 @@
                                     </small>
                                 </div>
                             </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-6">
+                                    <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
+                                    <input asp-for="RegisterViewModel.Phone" type="text" class="form-control" id="phoneNumber" placeholder="Enter Phone number">
+                                    <small>
+                                        <span asp-validation-for="RegisterViewModel.Phone" class="text-danger"></span>
+                                    </small>
+                                </div>
+
+
+                                <div class="form-group col-6">
+                                    <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
+                                    <input asp-for="RegisterViewModel.SIN" type="text" class="form-control" id="phoneNumber" placeholder="Enter SIN">
+                                    <small>
+                                        <span asp-validation-for="RegisterViewModel.SIN" class="text-danger"></span>
+                                    </small>
+                                </div>
+                            </div>
+
+
+
                             <div class="row">
 
                                 <div class="form-group col-6">
@@ -255,10 +278,6 @@
 
                     <!--AddMentor End-->
                 </div>
-
-
-
-
 
                     <!--content accordion-group END-->
                 </div>
