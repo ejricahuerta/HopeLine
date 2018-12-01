@@ -1,3 +1,4 @@
+
 //https://media.twiliocdn.com/sdk/js/video/releases/2.0.0-beta2/docs/
 
 //FIXME : refactor have video on mentor page and instant chat
@@ -8,6 +9,7 @@ var previewTracks;
 var identity;
 var roomName;
 var room;
+
 var localStream;
 var option;
 var localMediaConstraints
@@ -41,6 +43,7 @@ Video.createLocalVideoTrack(localMediaConstraints)
         room.participants.forEach(participantConnected);
         room.on('participantConnected', participantConnected);
 
+
         room.on('participantDisconnected', participantDisconnected);
         room.once('disconnected', error => room.participants.forEach(participantDisconnected));
     });
@@ -70,6 +73,7 @@ function participantDisconnected(participant) {
 function trackSubscribed(div, track) {
     div.append(track.attach());
 }
+
 
 function trackUnsubscribed(track) {
     track.detach().forEach(element => element.remove());

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -54,17 +54,17 @@
 
     <section class="container-fluid p-0" style="height:100%;">
 
-        <div style="margin-top:70px;"></div> <!--white space? -->
+        <div style="margin-top:83px;"></div> <!--white space? -->
         @RenderBody()
         <div class="row ml-auto">
-            <div class="col-md-5 offset-md-7 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
+            <div id="toggleDiv" class="col-md-5 offset-md-7 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
                 <div id="incomingCall" class="alert alert-light mt-2" style="display:none;">
                     <h5>Incoming Call from User!</h5>
                     <button id="dismissCall"type="button" class="btn btn-secondary" data-dismiss="modal">Decline</button>
                     <button id="acceptCall"  class="btn btn-primary">Answer</button>
                 </div>
                 <div id="accordion" class="row border-top">
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-2 col-sm-3" id="chatwin">
                         <button id="toggleChat" class="btn btn-link text-white" data-toggle="collapse" data-target="#chat" aria-expanded="true" aria-controls="chat">Toggle Chat</button>
                     </div>
                 </div>

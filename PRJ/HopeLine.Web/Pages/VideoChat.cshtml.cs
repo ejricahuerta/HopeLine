@@ -70,6 +70,7 @@ namespace HopeLine.Web.Pages
 
             Console.Write("Id is: " + UserId + " token is: " + token);
 
+
             //var token = new Token(APIConstant.TwilioAccountSID,
             //                        APIConstant.TwilioApiSID,
             //                        APIConstant.TwilioSecret,
@@ -102,6 +103,7 @@ namespace HopeLine.Web.Pages
                 return NotFound();
             }
             return Redirect("/Index");
+
         }
     }
 }
