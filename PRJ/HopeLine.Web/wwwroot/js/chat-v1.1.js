@@ -274,7 +274,6 @@ setInterval(function () {
             '<span class="badge badge-light" id="sp">' +
             mentorMsgReceived +
             '</span>');
-        console.log("Badge Appended");
     } else {
         $("#sp").text(mentorMsgReceived);
         if (isToggleOpen) {
@@ -362,6 +361,7 @@ $("#endConversation").click(function() {
   isLoggedOut = true;
   $("#logout").click();
   //Rate
+    $("#loading").text("ewfeafewfewaeafe");
 });
 
 $("#videoCallBtn").click(function() {
@@ -420,3 +420,8 @@ $("#messageInput").click(function() {
     0
   );
 });
+
+//Rate Mnetor
+window.onbeforeunload = function (event) {
+    this.console.log("RATE MENTOR")
+}
