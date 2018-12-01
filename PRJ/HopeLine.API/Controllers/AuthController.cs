@@ -2,8 +2,11 @@
 using HopeLine.Security.Interfaces;
 using HopeLine.Security.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Security.Claims;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace HopeLine.API.Controllers
@@ -15,12 +18,16 @@ namespace HopeLine.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly ILogger<AuthController> _logger;
+        private readonly IEmailSender _emailSender;
         private readonly ITokenService _tokenService;
         private readonly UserManager<HopeLineUser> _userManager;
         private readonly SignInManager<HopeLineUser> _signInManager;
 
-        public AuthController(ITokenService tokenService, UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
+        public AuthController(ILogger<AuthController> logger, IEmailSender emailSender, ITokenService tokenService, UserManager<HopeLineUser> userManager, SignInManager<HopeLineUser> signInManager)
         {
+            _logger = logger;
+            _emailSender = emailSender;
             _tokenService = tokenService;
             _userManager = userManager;
             _signInManager = signInManager;
@@ -63,12 +70,23 @@ namespace HopeLine.API.Controllers
                     UserName = model.Username,
                     Email = model.Username
                 };
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var callbackUrl = Url.Page(
+                      "/Account/ResetPassword",
+                      pageHandler: null,
+                      values: new { userId = user.Id, code = code },
+                      protocol: Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(model.Username, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
                     var newuser = await _userManager.FindByEmailAsync(model.Username);
                     var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Mentor"));
-                    return Ok(_tokenService.GenerateToken(model.Username, newuser));
+
+                    return Ok();
                 }
 
             }

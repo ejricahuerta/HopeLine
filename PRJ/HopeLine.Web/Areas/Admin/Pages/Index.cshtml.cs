@@ -80,6 +80,7 @@ namespace HopeLine.Web.Areas.Admin.Pages
 
         public async Task<IActionResult> OnPostAddMentorAsync()
         {
+            Console.WriteLine("The Email is: " +  RegisterViewModel.Username);
             if (ModelState.IsValid)
             {
                 try
@@ -101,16 +102,17 @@ namespace HopeLine.Web.Areas.Admin.Pages
                         Profile = profile
 
                     };
-
-                    var result = await _userManager.CreateAsync(userAcc, RegisterViewModel.Password);
+                    var result = await _userManager.CreateAsync(userAcc);
+                        //await _userManager.CreateAsync(userAcc, RegisterViewModel.Password);
                     if (result.Succeeded)
                     {
                         /// IEmailSender neeeded
                         System.Console.WriteLine("New Account Created");
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(userAcc);
+                        var code = await _userManager.GeneratePasswordResetTokenAsync(userAcc);
+                            //_userManager.GenerateEmailConfirmationTokenAsync(userAcc);
 
                         var callbackUrl = Url.Page(
-                             "/Account/ConfirmEmail",
+                             "/Account/ResetPassword",
                             pageHandler: null,
                             values: new { userId = userAcc.Id, code = code },
                             protocol: Request.Scheme);

@@ -1,10 +1,8 @@
 ﻿@page
 @using HopeLine.Web.Areas.Admin.Pages
 @model Index
-@using Microsoft.AspNetCore.Identity
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@inject UserManager<HopeLine.DataAccess.Entities.HopeLineUser> UserManager
 @{
     //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     Layout = "/Pages/Shared/_mentorLayout.cshtml";
@@ -12,266 +10,266 @@
 }
 
 
-    <section class="mt-5">
-        <div class="accordion" id="admin">
-            <div class="sidebar bg-dark">
-                <!-- Profile -->
-                <div>
-                    <div class="card bg-dark">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <a class="btn nav-link mt-5 dropdown"  data-toggle="collapse" data-target="#statistics" style="color:rgba(255,255,255,.5)">
-                                    Statistics
-                                </a>
-                            </h5>
-                        </div>
+<section class="mt-5">
+    <div class="accordion" id="admin">
+        <div class="sidebar bg-dark">
+            <!-- Profile -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#statistics" style="color:rgba(255,255,255,.5)">
+                                Statistics
+                            </a>
+                        </h5>
                     </div>
                 </div>
-
-
-                <!-- Change Password-->
-                <div>
-                    <div class="card bg-dark">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <a class="btn nav-link mt-5 dropdown"  data-toggle="collapse" data-target="#changePassword" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
-                                    Change Password
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!--Personal Data -->
-                <div>
-                    <div class="card bg-dark">
-                        <div class="card-header" >
-                            <h5 class="mb-0">
-                                <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#addMentor" style="color:rgba(255,255,255,.5)">
-                                    Add Mentor
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Mentor List -->
-                <div>
-                    <div class="card bg-dark">
-                        <div class="card-header">
-                            <h5 class="mb-0">
-                                <a class="btn nav-link dropdown"   data-toggle="collapse" data-target="#mentorList" style="color:rgba(255,255,255,.5)">
-                                    Mentor List
-                                </a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <!--Sidebar END-->
-            <!-- Page content -->
-            <div class="content accordion-group">
-                <!--Statistics Start-->
 
-                <div id="statistics" method="POST" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">User Id</th>
-                                <th scope="col">PIN</th>
-                                <th scope="col">Minutes</th>
-                                <th scope="col">Date of Conversation</th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                    @foreach (var item in Model.Conversations)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.UserId</td>
-                            <td>@item.PIN</td>
-                            <td>@item.Minutes</td>
-                            <td>@item.DateOfConversation</td>
-                        </tr>
-                    }
-
-                </tbody>
-                    </table>
+            <!-- Change Password-->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#changePassword" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
+                                Change Password
+                            </a>
+                        </h5>
+                    </div>
                 </div>
+            </div>
 
-                <!--Statistics END-->
-                <!--Mentor Index START-->
 
-                <div id="mentorList" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
-                    <div class="row" style="margin-top:60px">
-                        <div class="col-md-4 float-left">
-                            <form method="POST">
-                                <input type="text" class="form-control" asp-for="QueryString">
-                                <input type="submit" asp-page-handler="Search" value="Go" />
+            <!--Personal Data -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#addMentor" style="color:rgba(255,255,255,.5)">
+                                Add Mentor
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <!--Mentor List -->
+            <div>
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#mentorList" style="color:rgba(255,255,255,.5)">
+                                Mentor List
+                            </a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Sidebar END-->
+        <!-- Page content -->
+        <div class="content accordion-group">
+            <!--Statistics Start-->
+
+            <div id="statistics" method="POST" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">Minutes</th>
+                            <th scope="col">Date of Conversation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Conversations)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserId</td>
+                                <td>@item.PIN</td>
+                                <td>@item.Minutes</td>
+                                <td>@item.DateOfConversation</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Statistics END-->
+            <!--Mentor Index START-->
+
+            <div id="mentorList" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
+                <div class="row" style="margin-top:60px">
+                    <div class="col-md-4 float-left">
+                        <form method="POST">
+                            <input type="text" class="form-control" asp-for="QueryString">
+                            <input type="submit" asp-page-handler="Search" value="Go" />
+                        </form>
+
+                        @*<form method="POST">
+                                <div>Name: <input /></div>
+                                <input type="submit" asp-page-handler="FirstName" value="Join" />
+                                <input type="submit" asp-page-handler="FirstName" value="JOIN UC" />
+                            </form>*@
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dropdown">
+                            <form method="post" asp-page-hander="FirstName">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Search by First Name
+                                </button>
                             </form>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item btn btn-primary">Mentor</button>
+                                <button class="dropdown-item  btn btn-primary">User</button>
 
-                            @*<form method="POST">
-                        <div>Name: <input /></div>
-                        <input type="submit" asp-page-handler="FirstName" value="Join" />
-                        <input type="submit" asp-page-handler="FirstName" value="JOIN UC" />
-                    </form>*@
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="dropdown">
-                                <form method="post" asp-page-hander="FirstName">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Search by First Name
-                                    </button>
-                                </form>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <button class="dropdown-item btn btn-primary">Mentor</button>
-                                    <button class="dropdown-item  btn btn-primary">User</button>
-
-                                </div>
                             </div>
                         </div>
-
                     </div>
 
-
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Account Type</th>
-                                <th scope="col">Email</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            @foreach (var item in Model.Users)
-                            {
-                                <tr>
-                                    <th scope="row">@Html.DisplayFor(modelitem => item.Id)</th>
-                                    <td>@Html.DisplayFor(modelitem => item.FirstName)</td>
-                                    <td>@Html.DisplayFor(modelitem => item.LastName)</td>
-                                    <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
-                                    <td>@Html.DisplayFor(modelitem => item.Email)</td>
-                                    <td>
-                                        <a class="btn btn-warning">
-                                            Manage
-                                        </a>
-                                    </td>
-                                </tr>
-
-
-                            }
-                        </tbody>
-                    </table>
-                    <!--Mentor Index End-->
                 </div>
 
-                <!--AddMentor Start-->
-                <div id="addMentor" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
 
-                    <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
-                        <form class="col-xs-12 shadow-lg rounded p-5 m-0" method="POST">
-                            <h3 class="text-success">Mentor Registration for HopeLine</h3>
-                            <br />
-                            @{
-                                if (!ModelState.IsValid)
-                                {
-                                    <div class="form-group alert alert-danger" role="alert">
-                                        Ops! Invalid Input. Please try again...
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="alert alert-info" role="alert">
-                                        Please fill all required textfields.
-                                    </div>
-                                }
-                            }
-                            <div class="form-group">
-                                <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
-                                <input asp-for="RegisterViewModel.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model.Users)
+                        {
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(modelitem => item.Id)</th>
+                                <td>@Html.DisplayFor(modelitem => item.FirstName)</td>
+                                <td>@Html.DisplayFor(modelitem => item.LastName)</td>
+                                <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
+                                <td>@Html.DisplayFor(modelitem => item.Email)</td>
+                                <td>
+                                    <a class="btn btn-warning">
+                                        Manage
+                                    </a>
+                                </td>
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+                <!--Mentor Index End-->
+            </div>
+
+            <!--AddMentor Start-->
+            <div id="addMentor" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
+
+                <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
+                    <form class="col-xs-12 shadow-lg rounded p-5 m-0" method="POST">
+                        <h3 class="text-success">Mentor Registration for HopeLine</h3>
+                        <br />
+                        <div asp-validation-summary="All">
+                            <span>Please correct the following errors</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
+                            <input asp-for="RegisterViewModel.Username" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
+                            <small>
+                                <span asp-validation-for="RegisterViewModel.Username" class="text-danger"></span>
+                            </small>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.FirstName" type="text" class="form-control required" id="fname" placeholder="Enter First Name">
                                 <small>
-                                    <span asp-validation-for="RegisterViewModel.Username" class="text-danger"></span>
+                                    <span asp-validation-for="RegisterViewModel.FirstName" class="text-danger"></span>
                                 </small>
                             </div>
-                            <div class="row">
-                                <div class="form-group col-6">
-                                    <label for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.FirstName" type="text" class="form-control required" id="fname" placeholder="Enter First Name">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.FirstName" class="text-danger"></span>
-                                    </small>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.LastName" type="text" class="form-control  required" id="lname" placeholder="Enter Last Name">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.LastName" class="text-danger"></span>
-                                    </small>
-                                </div>
+                            <div class="form-group col-6">
+                                <label for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.LastName" type="text" class="form-control  required" id="lname" placeholder="Enter Last Name">
+                                <small>
+                                    <span asp-validation-for="RegisterViewModel.LastName" class="text-danger"></span>
+                                </small>
                             </div>
+                        </div>
 
-                            <div class="row">
+                        <div class="row">
 
-                                <div class="form-group col-6">
-                                    <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.Phone" type="text" class="form-control" id="phoneNumber" placeholder="Enter Phone number">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.Phone" class="text-danger"></span>
-                                    </small>
-                                </div>
-
-
-                                <div class="form-group col-6">
-                                    <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.SIN" type="text" class="form-control" id="phoneNumber" placeholder="Enter SIN">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.SIN" class="text-danger"></span>
-                                    </small>
-                                </div>
+                            <div class="form-group col-6">
+                                <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.Phone" type="text" class="form-control" id="phoneNumber" placeholder="Enter Phone number">
+                                <small>
+                                    <span asp-validation-for="RegisterViewModel.Phone" class="text-danger"></span>
+                                </small>
                             </div>
 
 
-
-                            <div class="row">
-                                
-                                <div class="form-group col-6">
-                                    <label for="password"><small class="text-muted">Password</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
-                                    </small>
-                                </div>
-                                <div class="form-group col-6">
-                                    <label for="retype-password"><small class="text-muted">Re-type Password</small><span class="text-danger"> *</span></label>
-                                    <input asp-for="RegisterViewModel.RetypePassword" type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
-                                    <small>
-                                        <span asp-validation-for="RegisterViewModel.RetypePassword" class="text-danger"></span>
-                                    </small>
-                                </div>
+                            <div class="form-group col-6">
+                                <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.SIN" type="text" class="form-control" id="phoneNumber" placeholder="Enter SIN">
+                                <small>
+                                    <span asp-validation-for="RegisterViewModel.SIN" class="text-danger"></span>
+                                </small>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                        </div>
 
-                    <!--AddMentor End-->
+
+
+                        <div class="row">
+
+                            <div class="form-group col-6">
+                                <label for="password"><small class="text-muted">Password</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password" >
+                                <small>
+                                    <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
+                                </small>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="retype-password"><small class="text-muted">Re-type Password</small><span class="text-danger"> *</span></label>
+                                <input asp-for="RegisterViewModel.RetypePassword" type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
+                                <small>
+                                    <span asp-validation-for="RegisterViewModel.RetypePassword" class="text-danger"></span>
+                                </small>
+                            </div>
+                        </div>
+                        <button type="submit" asp-page-handler="AddMentor" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
 
-                    <!--content accordion-group END-->
-                </div>
-
+                <!--AddMentor End-->
             </div>
+
+            <!--content accordion-group END-->
+        </div>
+
+    </div>
 </section>
 
 
+@section Scripts {
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        //Creating Mentor
+
+        $("#name").val();
 
 
+
+
+    </script>
+}

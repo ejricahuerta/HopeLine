@@ -4,9 +4,9 @@ namespace HopeLine.Web.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Invalid Email Address")]
+        //[Required(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress)]
-        [MinLength(15)]
+        //[MinLength(15)]
         [MaxLength(50)]
         public string Username { get; set; }
 
