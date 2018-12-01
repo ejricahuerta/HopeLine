@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using static HopeLine.Web.Areas.Identity.Pages.Account.ExternalLoginModel;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Text.Encodings.Web;
+using HopeLine.Security.Models;
 
 namespace HopeLine.Web.Areas.Admin.Pages
 {
@@ -41,6 +42,9 @@ namespace HopeLine.Web.Areas.Admin.Pages
 
         [BindProperty]
         public RegisterViewModel RegisterViewModel { get; set; }
+
+        [BindProperty]
+        public RegisterModel RegisterModel { get; set; }
 
         [BindProperty]
        public InputModel Input { get; set; }

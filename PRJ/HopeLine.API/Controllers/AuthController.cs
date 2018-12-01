@@ -35,30 +35,30 @@ namespace HopeLine.API.Controllers
         }
 
         //TODO : needs to separate token builder and create new action for sending tokens
-        [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (model.Username.Length < 6)
-                {
-                    return UnprocessableEntity("Username Invalid...");
-                }
+        //[HttpPost]
+        //public async Task<IActionResult> Login([FromBody] LoginModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (model.Username.Length < 6)
+        //        {
+        //            return UnprocessableEntity("Username Invalid...");
+        //        }
 
-                if (model.IsGuest == false && model.Password.Length < 6)
-                {
-                    return UnprocessableEntity("Password Invalid...");
-                }
+        //        if (model.IsGuest == false && model.Password.Length < 6)
+        //        {
+        //            return UnprocessableEntity("Password Invalid...");
+        //        }
 
-                var token = await _tokenService.SignInUser(model.Username, model.Password, model.IsGuest);
+        //        var token = await _tokenService.SignInUser(model.Username, model.Password, model.IsGuest);
 
-                if (token != null)
-                {
-                    return Ok(token);
-                }
-            }
-            return BadRequest("Unable to Login...");
-        }
+        //        if (token != null)
+        //        {
+        //            return Ok(token);
+        //        }
+        //    }
+        //    return BadRequest("Unable to Login...");
+        //}
 
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
@@ -67,8 +67,8 @@ namespace HopeLine.API.Controllers
             {
                 var user = new MentorAccount
                 {
-                    UserName = model.Username,
-                    Email = model.Username
+                    UserName = model.UserName,
+                    Email = model.UserName
                 };
                 var result = await _userManager.CreateAsync(user);
 
@@ -81,12 +81,12 @@ namespace HopeLine.API.Controllers
                       values: new { userId = user.Id, code = code },
                       protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(model.Username, "Confirm your email",
+                    await _emailSender.SendEmailAsync(model.UserName, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    var newuser = await _userManager.FindByEmailAsync(model.Username);
+                    var newuser = await _userManager.FindByEmailAsync(model.UserName);
                     var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Mentor"));
 
-                    return Ok();
+                    return Ok("Add Mentor Success");
                 }
 
             }
