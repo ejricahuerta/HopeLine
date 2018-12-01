@@ -224,7 +224,7 @@
 
                             <div class="form-group col-6">
                                 <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control" id="Phone" placeholder="Enter SIN">
+                                <input type="text" class="form-control" id="SIN" placeholder="Enter SIN">
                                 <small>
                                     <span  class="text-danger"></span>
                                 </small>
@@ -249,7 +249,7 @@
                                      </small>
                                  </div>
                              </div>*@
-                            <button type="submit" id="registerMentor" class="btn btn-primary">Submit</button>
+                            <input type="button" id="registerMentor" class="btn btn-primary" value="Submit" />
                        
 
                     </form>
@@ -267,25 +267,28 @@
 
 @section Scripts {
 
-    <partial name="_ValidationScriptsPartial" />
     <script>
         //Creating Mentor
         $("#registerMentor").click(function () {
-                var RegisterModel = new Object();
-                RegisterModel.UserName = $('#UserName').val();
-                RegisterModel.FirstName = $('#FirstName').val();
-                RegisterModel.LastName = $('#LastName').val();
-                RegisterModel.Phone = $('#Phone').val();
-                RegisterModel.SIN = $('#SIN').val();
-                
+            var model = {
+                UserName: $('#UserName').val(),
+                FirstName: $('#FirstName').val(),
+                LastName: $('#LastName').val(),
+                Phone: $('#Phone').val(),
+                SIN: $('#SIN').val(),
+       
+            };
+            console.log(model["UserName"]); 
+            data =  JSON.stringify(model);
                 $.ajax({
-                    url: 'http://localhost:5000/api/Auth/Register',
-                    method: 'POST',
-                    headers: {
-                        'Access-Control-Allow-Origin': '*'
-                    },
+                    
+              
+                    url: 'http://localhost:5000/api/auth/register',
+                    method: 'post',
+                    ContentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-                    data: RegisterModel,
+                    data: data,
+                
 
                     success: function (data, textStatus, xhr) {
                         console.log(data);
@@ -301,4 +304,5 @@
             });
        
     </script>
+    <partial name="_ValidationScriptsPartial" />
 }
