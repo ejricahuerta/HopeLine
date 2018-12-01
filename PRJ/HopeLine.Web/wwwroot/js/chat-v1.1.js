@@ -67,7 +67,7 @@ function registerHub() {
     console.log("Receive Message");
     addChatBubble(user, message);
       mentorMsgReceived++;
-      console.log("Mentor Message Received: " + mentorMsgReceived);
+      
     $("#message").animate(
       {
         scrollTop: $("#message").prop("scrollHeight")
@@ -257,6 +257,36 @@ function addChatBubble(user, message) {
 //ALL JQUERY USER INTERACTIONS (ACTIONS)
 //Put your code here for all actions from html
 
+//Received messages for mentor chat
+setInterval(function () {
+    var isNull = $("#toggleChat > span").val() == null ? true : false;
+
+    if (isNull) {
+        $("#toggleChat").append(
+            '<span class="badge badge-light" id="sp">' +
+            mentorMsgReceived +
+            '</span>');
+        console.log("Badge Appended");
+    } else {
+        $("#sp").text(mentorMsgReceived);
+        /*var togglechat = $("#toggledchat").is(":hidden");
+        console.log("togglechat: " + togglechat);
+        if (togglechat) {
+            $("#sp").hide();
+            console.log("hide");
+        } else {
+           
+            console.log("show");
+ 
+        }*/
+    }
+   
+
+},100);
+    
+
+
+
 $(function() {
   if (userId != null) {
     console.log("UserId = " + userId);
@@ -363,7 +393,8 @@ $("#toggleChat").click(function() {
       scrollTop: $("#chatbox").prop("scrollHeight")
     },
     0
-  );
+    );
+    mentorMsgReceived = 0;
 });
 
 $("#messageInput").click(function() {
