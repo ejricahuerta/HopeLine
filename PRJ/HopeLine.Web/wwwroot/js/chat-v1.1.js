@@ -167,17 +167,24 @@ function notifyUser() {
       if (isLoggedOut) {
         connection.close();
       } else {
-        $("#sendArea").hide();
-        $("#openLoading").click();
-        $("#requestChat").show();
-        $("chatbox").hide();
-        findTime();
+          $("#sendArea").hide();
+
+          $("#openLoading").click();
+          $("#requestChat").show();
+          $("#requestChat").click(function () {
+              window.reload();
+          });
+            $("chatbox").hide();
+            findTime();
       }
       // else  chat is disconnected
     } else {
       $("chatbox").hide();
       $("sendArea").hide();
-      $("#requestChat").show();
+        $("#requestChat").show();
+        $("#requestChat").click(function () {
+            window.reload();
+        });
       //$("#loading").show();
       findTime();
       $("#modaltrigger").click();
@@ -269,16 +276,8 @@ setInterval(function () {
         console.log("Badge Appended");
     } else {
         $("#sp").text(mentorMsgReceived);
-        /*var togglechat = $("#toggledchat").is(":hidden");
-        console.log("togglechat: " + togglechat);
-        if (togglechat) {
-            $("#sp").hide();
-            console.log("hide");
-        } else {
-           
-            console.log("show");
- 
-        }*/
+        var ishidden = $("#toggleDiv").is(":hidden");
+        
     }
    
 

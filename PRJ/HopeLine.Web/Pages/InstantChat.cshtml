@@ -29,8 +29,8 @@
                         </div>
                         <div id="requestChat" class="alert alert-light mt-2" style="display:none;">
                             <h5>Chat with Mentor?</h5>
-                            <button id="requestChat" type="button" class="btn btn-outline-dark" >Yes</button>
-                            <button id="cancelRequest" type="button" class="btn btn-link" >Cancel</button>
+                            <a id="requestChat" type="button" class="btn btn-outline-dark" href="https://hopeline.azurewebsites.net/instantchat">Yes</a>
+                            <a id="cancelRequest" type="button" class="btn btn-link" href="https://hopeline.azurewebsites.net">Cancel</a>
                         </div>                         
                         <div id="chatbox" class="col-12 m-0 bg-light" style="height:300px;overflow-y:auto;display:none;">
                             <!--message area-->
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-           <div class="modal" id="loading" >
+           <div class="modal" id="loading">
                         Waiting for Mentor...
                         <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" />
                         <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
