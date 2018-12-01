@@ -16,6 +16,7 @@ var isLoggedOut = false;
 var room = null;
 var url = "http://hopeline.azurewebsites.net/";
 var mentorMsgReceived = 0;
+var isToggleOpen = false;
 //comment out before pushing to master
 //var url = "http://localhost:8000/";
 
@@ -276,7 +277,11 @@ setInterval(function () {
         console.log("Badge Appended");
     } else {
         $("#sp").text(mentorMsgReceived);
-        var ishidden = $("#toggleDiv").is(":hidden");
+        if (isToggleOpen) {
+            $("#sp").hide();
+        } else {
+            $("#sp").show();
+        }
         
     }
    
@@ -380,7 +385,12 @@ $("#acceptCall").click(function() {
   mentorTimeOut = null;
 });
 
-$("#toggleChat").click(function() {
+$("#toggleChat").click(function () {
+    if (isToggleOpen == false) {
+        isToggleOpen = true;
+    } else {
+        isToggleOpen = false;
+    }
   $("#message").animate(
     {
       scrollTop: $("#message").prop("scrollHeight")
