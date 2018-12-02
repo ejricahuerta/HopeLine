@@ -72,7 +72,7 @@ namespace HopeLine.Service.CoreServices
                 _logger.LogInformation("Get All Users by {}", userType);
                 // for each value that has property value of this function param - userType
                 return _userRepo.GetAll()
-                        .Where(a => a.AccountType.ToString().Contains(userType))
+                        .Where(a => Enum.GetName(typeof(Account), a.AccountType).Contains(userType))
                         .Select(u =>
                            //for each value map to usermodel
                            new UserModel
