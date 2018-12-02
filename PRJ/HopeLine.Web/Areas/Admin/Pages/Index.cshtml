@@ -197,24 +197,32 @@
     <script>
         //Creating Mentor
         $("#registerMentor").click(function () {
-            var model = {
-                UserName: $('#UserName').val(),
-                //FirstName: $('#FirstName').val(),
-                //LastName: $('#LastName').val(),
-                //Phone: $('#Phone').val(),
-                //SIN: $('#SIN').val(),
+            //var model = {
+            //    UserName: $('#UserName').val(),
+            //    FirstName: $('#FirstName').val(),
+            //    LastName: $('#LastName').val(),
+            //    Phone: $('#Phone').val(),
+            //    SIN: $('#SIN').val(),
 
-            };
-            console.log(model["UserName"]);
+            //};
+
+            var model = new Object();
+            model.UserName= $('#UserName').val();
+                model.FirstName=$('#FirstName').val();
+                model.LastName= $('#LastName').val();
+                model.Phone= $('#Phone').val();
+                model.SIN= $('#SIN').val();
+            //console.log(model["UserName"]);
             data = JSON.stringify(model);
             $.ajax({
 
-
+                type: "POST",
                 url: 'http://localhost:5000/api/auth/register',
-                method: 'post',
+               // method: 'post',
                 ContentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                data: data,
+               // data: data,
+               data: data,
 
 
                 success: function (data, textStatus, xhr) {
