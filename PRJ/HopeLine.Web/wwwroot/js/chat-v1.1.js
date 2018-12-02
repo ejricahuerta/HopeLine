@@ -359,9 +359,11 @@ $("#logout").click(function() {
 
 $("#endConversation").click(function() {
   isLoggedOut = true;
-  $("#logout").click();
-  //Rate
-    $("#loading").text("ewfeafewfewaeafe");
+    $("#logout").click();
+    //Rate
+    alert("wfewefew");
+   
+   
 });
 
 $("#videoCallBtn").click(function() {
@@ -423,5 +425,12 @@ $("#messageInput").click(function() {
 
 //Rate Mnetor
 window.onbeforeunload = function (event) {
-    this.console.log("RATE MENTOR")
+    
+    var rate = setInterval(function () {
+        $("#ratemodal").click();
+    }, 100);
+    #("#happy").click(function () {
+        clearInterval(rate);
+    })
+    console.log("fffffffffffffffffffffffffffffffff")
 }
