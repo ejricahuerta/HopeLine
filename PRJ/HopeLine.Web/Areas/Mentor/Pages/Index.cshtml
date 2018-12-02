@@ -7,7 +7,21 @@
 @{
     //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     Layout = "/Pages/Shared/_mentorLayout.cshtml";
-    var lastcon = Model.Conversations[Model.Conversations.Count - 1];
+    var lastcon = new Conversations{
+        Id=null,
+        
+
+    };
+    if (Model.Conversations[Model.Conversations.Count - 1] != null)
+    {
+        lastcon = Model.Conversations[Model.Conversations.Count - 1];
+
+    }
+    else
+    {
+        lastcon = Model.Conversations;
+
+    }
 }
 
 
