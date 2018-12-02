@@ -1,11 +1,11 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.API.Hubs.v2
 {
@@ -26,15 +26,18 @@ namespace HopeLine.API.Hubs.v2
         public readonly ILogger<ChatHub> _logger;
         private readonly IMessage _messageService;
         private readonly ICommunication _communicationService;
+        private readonly ICommonResource _commonResource;
+
         private string CurrentRoom { get; set; }
 
         private DateTime DateConversationStarted { get; set; }
         private static string Mentor = "MentorRoomOnly";
-        public ChatHub(ILogger<ChatHub> logger, IMessage messageService, ICommunication communicationService)
+        public ChatHub(ILogger<ChatHub> logger, IMessage messageService, ICommunication communicationService, ICommonResource commonResource)
         {
             _logger = logger;
             _messageService = messageService;
             _communicationService = communicationService;
+            _commonResource = commonResource;
         }
 
 
@@ -233,6 +236,47 @@ namespace HopeLine.API.Hubs.v2
             catch (Exception ex)
             {
                 _logger.LogWarning("Unable to proceed request.", roomId, ex);
+            }
+        }
+
+        public async Task AddTopics(string roomId, List<int> ids)
+        {
+            if (ids.Count() != 0)
+            {
+                try
+                {
+                    //get topics from service
+                    _logger.LogInformation("Fetching all Topics by ids: {}", ids);
+                    var allTopics = _commonResource.GetTopics();
+                    var topics = new List<TopicModel>();
+                    foreach (var id in ids)
+                    {
+                        var topic = allTopics.FirstOrDefault(t => t.Id == id);
+                        if (topic != null)
+                        {
+                            topics.Add(topic);
+                        }
+                    }
+                    if (topics != null)
+                    {
+                        await Clients.Group(roomId).SendAsync("Topics", topics.Select(t => t.Name));
+                    }
+                    else
+                    {
+                    
+                        _logger.LogInformation("No topics Selected");
+
+                    }
+                }
+                catch (Exception)
+                {
+                    _logger.LogWarning("Unable to Fetch Topics");
+
+                }
+            }
+            else
+            {
+                _logger.LogInformation("no Topics Selected");
             }
         }
 

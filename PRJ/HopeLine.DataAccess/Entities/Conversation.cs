@@ -31,5 +31,7 @@ namespace HopeLine.DataAccess.Entities
         [DataType(DataType.DateTime)]
         public string DateOfConversation { get; set; }
 
+        public ICollection<Topic> Topics { get; set; }
+
     }
 }
