@@ -1,3 +1,4 @@
+
 const Video = Twilio.Video;
 var activeRoom;
 var previewTracks;
@@ -8,54 +9,103 @@ var userId = $("#userId").val();
 
 var remoteTracks;
 var localTracks;
-var localVideoShow = true;
+var localAudioShow = false;
+var localVideoShow = false;
 var remoteVideoShow = false;
+var localVideoMedia;
+var localAudioMedia;
 
 
 
 
 var option = {
-    name: $("#roomId").val()
-    //include usermediastream here and present it in preview
-    //tracks: stream
+    name: $("#roomId").val(),
+    audio: false,
+    video: false
 }
 
 Video.connect($("#token").val(), option).then(room => { // Connect the to room
-    
+    console.log("updated1");
     
     console.log('Connected to Room "%s"', room.name);
     console.log('User name "%s"', userId);
-    var localTracksPromise = previewTracks ? // Get local video
-        Promise.resolve(previewTracks) :
-        Video.createLocalTracks();
+    
 
-    var localMedia;
+
     console.log("Creating local media");
     Video.createLocalVideoTrack().then(function (videoTrack) {
-        console.log("inside videoooo media");
-        localMedia = videoTrack;
+        console.log("inside video media");
+        localVideoMedia = videoTrack;
         $("#local-media").append(videoTrack.attach());
+        localVideoMedia.disable();
     });
-    //Video.createLocalVideoTrackPublication().then(function () {
-        
-    //});
+    Video.createLocalAudioTrack().then(function(audioTrack) {
+        console.log("inside audio media");
+        localAudioMedia = audioTrack;
+        $("#local-media").append(audioTrack.attach());
+        localAudioMedia.disable();
+    })
 
-    $("#video-button").click(function myfunction() {
-        console.log("clicking button");
-        if (!localVideoShow) {
-            localMedia.disable();
-            localVideoShow = true;
+    $("#close-button").click(function () {
+        room.disconnect();
+        alert("Video Disconnected");
+        window.close();
+    });
+
+    $("#mute-button").click(function () {
+        if (localAudioShow) {
+            prompt("Audio Disabled");
+            localAudioMedia.disable();
+            localAudioShow = false;
+            room.localParticipant.unpublishTrack(localAudioMedia);
         } else {
-            localMedia.enable();
-            localVideoShow = false;
+            prompt("Audio Enabled");
+            localAudioMedia.enable();
+            localAudioShow = true;
+            room.localParticipant.publishTrack(localAudioMedia);
         }
     });
+
+
+    $("#video-button").click(function() {
+        if (localVideoShow) {
+            prompt("Video Disabled");
+            console.log("clicking button to disable");
+            localVideoMedia.disable();
+            localVideoShow = false;
+            room.localParticipant.unpublishTrack(localVideoMedia);
+        } else {
+            prompt("Video Enabled");
+            console.log("clicking button to enable");
+            localVideoMedia.enable();
+            room.localParticipant.publishTrack(localVideoMedia);
+            localVideoShow = true;
+        }
+    });
+
+    room.on('trackPublished', function () {
+        console.log("track was published");
+    });
+    room.on('trackUnpublished', function () {
+        console.log("track was unpublished");
+    });
+
+    room.on('trackDisabled', function () {
+        console.log("track was disabled");
+    });
+
+    room.on('trackEnabled', function () {
+        console.log("track was enabled");
+    });
+
 
     room.participants.forEach(function (participant) { // When joining the room, gets the participants and adds their media to your screen. 
         console.log("Already in Room: '" + participant.identity + "'");
         var previewContainer = document.getElementById('remote-media');
         attachTracks(participant.tracks.val(), previewContainer);
     });
+
+    
     
     room.participants.forEach(participantConnected);
     room.on('participantConnected', participantConnected);
