@@ -44,6 +44,28 @@ namespace HopeLine.API.Controllers
                     var newuser = await _userManager.FindByEmailAsync("admin@hopeline.ca");
                     var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Admin"));
                 }
+
+                /*
+                 var prf = new Profile
+                {
+                    FirstName = "Emile",
+                    LastName = "Ohan"
+                };
+                var admin = new AdminAccount
+                {
+                    Profile = prf,
+                    Email = "emile.ohan@senecacollege.ca",
+                    UserName = "emile.ohan@senecacollege.ca",
+                    AccountType = Account.Admin
+                };
+                var result = await _userManager.CreateAsync(admin, "H0peL!ine");
+
+                if (result.Succeeded)
+                {
+                    var newuser = await _userManager.FindByEmailAsync("emile.ohan@senecacollege.ca");
+                    var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Admin"));
+                }
+                 */
                 return Ok("Newly Added!");
             }
             return Ok("Already Polulated!");
@@ -52,7 +74,7 @@ namespace HopeLine.API.Controllers
         {
             var mentors = new List<string>
             {
-                "tester1@gmail.com",  "tester2@gmail.com",  "tester3@gmail.com",
+                "tester1@gmail.com",  "tester2@gmail.com",  "tester3@gmail.com", "ziyi.shi@gmail.com", "eduardo.osorio@gmail.com", "edmel.ricahuerta@gmail.com", "edgar.giang@gmail.com"
             };
 
             if (_userManager.Users.Where(u => u.AccountType == Account.Mentor).Count() == 0)
