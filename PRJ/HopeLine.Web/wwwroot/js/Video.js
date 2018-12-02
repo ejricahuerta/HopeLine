@@ -19,66 +19,56 @@ var localAudioMedia;
 
 
 var option = {
-    name: $("#roomId").val(),
-    audio: false,
+    name: $("#roomId").val(), // Getting the room name to connect
+    audio: false, //Stop audio and video from connecting to the room automatically
     video: false
 }
 
 Video.connect($("#token").val(), option).then(room => { // Connect the to room
-    console.log("updated1");
     
     console.log('Connected to Room "%s"', room.name);
     console.log('User name "%s"', userId);
     
 
-
-    console.log("Creating local media");
-    Video.createLocalVideoTrack().then(function (videoTrack) {
-        console.log("inside video media");
-        localVideoMedia = videoTrack;
-        $("#local-media").append(videoTrack.attach());
-        localVideoMedia.disable();
+    
+    Video.createLocalVideoTrack().then(function (videoTrack) { //Creating Video media
+        localVideoMedia = videoTrack; //Saving the video media to use later
+        $("#local-media").append(videoTrack.attach()); //Adding video media to our webpage
+        localVideoMedia.disable(); //Disable it
     });
-    Video.createLocalAudioTrack().then(function(audioTrack) {
-        console.log("inside audio media");
-        localAudioMedia = audioTrack;
-        $("#local-media").append(audioTrack.attach());
-        localAudioMedia.disable();
+    Video.createLocalAudioTrack().then(function(audioTrack) { //Creating audio media
+        localAudioMedia = audioTrack; //Saving the audio media to use later
+        $("#local-media").append(audioTrack.attach()); //Adding audio media to our webpage
+        localAudioMedia.disable();//Disable it
     })
 
-    $("#close-button").click(function () {
+    $("#close-button").click(function () { //When the click on the close icon, disconnect from room and close window
         room.disconnect();
         alert("Video Disconnected");
         window.close();
     });
 
-    $("#mute-button").click(function () {
-        if (localAudioShow) {
-            prompt("Audio Disabled");
-            localAudioMedia.disable();
+    $("#mute-button").click(function () { //When clicking the mute button
+        if (localAudioShow) { //If not muted
+            localAudioMedia.disable(); //Disable self audio from own screen
             localAudioShow = false;
-            room.localParticipant.unpublishTrack(localAudioMedia);
-        } else {
-            prompt("Audio Enabled");
-            localAudioMedia.enable();
+            room.localParticipant.unpublishTrack(localAudioMedia); //Disable self audio from the room
+        } else { //If muted
+            localAudioMedia.enable(); //Enable self audio
             localAudioShow = true;
-            room.localParticipant.publishTrack(localAudioMedia);
+            room.localParticipant.publishTrack(localAudioMedia); //Enable self audio to room
         }
     });
 
 
-    $("#video-button").click(function() {
-        if (localVideoShow) {
-            prompt("Video Disabled");
-            console.log("clicking button to disable");
-            localVideoMedia.disable();
+    $("#video-button").click(function() { //When clicking the video button
+        if (localVideoShow) { //If video enabled
+            localVideoMedia.disable(); //Disable self video from own screen
             localVideoShow = false;
-            room.localParticipant.unpublishTrack(localVideoMedia);
-        } else {
-            prompt("Video Enabled");
-            console.log("clicking button to enable");
-            localVideoMedia.enable();
-            room.localParticipant.publishTrack(localVideoMedia);
+            room.localParticipant.unpublishTrack(localVideoMedia); //Disable self video from room
+        } else { //If video showing
+            localVideoMedia.enable(); //Enable self video to own screen
+            room.localParticipant.publishTrack(localVideoMedia); //Enable self video to room
             localVideoShow = true;
         }
     });
@@ -99,24 +89,22 @@ Video.connect($("#token").val(), option).then(room => { // Connect the to room
     });
 
 
-    room.participants.forEach(function (participant) { // When joining the room, gets the participants and adds their media to your screen. 
+    room.participants.forEach(function (participant) { // When joining the room, checks whos there
         console.log("Already in Room: '" + participant.identity + "'");
-        var previewContainer = document.getElementById('remote-media');
-        attachTracks(participant.tracks.val(), previewContainer);
     });
 
     
     
     room.participants.forEach(participantConnected);
-    room.on('participantConnected', participantConnected);
+    room.on('participantConnected', participantConnected); //When someone connects to room, run 'participantConnected function
 
-    room.on('participantDisconnected', participantDisconnected);
-    room.once('disconnected', error => room.participants.forEach(participantDisconnected));
-    thisroom = room;
+    room.on('participantDisconnected', participantDisconnected); //When someone disconnects from room, run 'participantDisconnected
+    room.once('disconnected', error => room.participants.forEach(participantDisconnected)); //If person randomally disconnects
+    thisroom = room; //Save room to global variable to user later
 });
 
 
-function attachTracks(tracks, container) {
+function attachTracks(tracks, container) { //Attach media to own screen
 
     if (!localVideoShow) {
         tracks.forEach(function (track) {
@@ -144,16 +132,16 @@ function participantConnected(participant) { // When a new person connects to th
 }
 
 
-function participantDisconnected(participant) {
+function participantDisconnected(participant) { //When someone disconnects, close window
     console.log('Participant "%s" disconnected', participant.identity);
     alert("Other user disconnected video chat");
     window.close();
 }
 
-function trackSubscribed(div, track) {
+function trackSubscribed(div, track) {//Attach media to screen
     div.append(track.attach());
 }
 
-function trackUnsubscribed(track) {
+function trackUnsubscribed(track) {//Remove media from screen
     track.detach().forEach(element => element.remove());
 }
