@@ -4,80 +4,34 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
-    Layout = "/Pages/Shared/_mentorLayout.cshtml";
+   
+    Layout = "/Pages/Shared/_AdminLayout.cshtml";
 
 }
 
 @section Styles {
     <link rel="stylesheet" , href="~/css/resources.css" />
-   
+
 }
-
-<section class="mt-5">
-    <div class="accordion" id="admin">
-        <div class="sidebar bg-dark">
-            <!-- Profile -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#statistics" style="color:rgba(255,255,255,.5)">
-                                Statistics
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+</head>
 
 
-            <!-- Change Password-->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#changePassword" style="color:rgba(255,255,255,.5)" href="ChangePassword.cshtml">
-                                Change Password
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <!--Personal Data -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#addMentor" style="color:rgba(255,255,255,.5)">
-                                Add Mentor
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!--Mentor List -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#mentorList" style="color:rgba(255,255,255,.5)">
-                                Mentor List
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
+<div style="margin-top:100px"></div>
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-stat-list" data-toggle="list" href="#list-stat" role="tab" aria-controls="stat">Statistics</a>
+            <a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">Change Password</a>
+            <a class="list-group-item list-group-item-action" id="list-addmentor-list" data-toggle="list" href="#list-addmentor" role="tab" aria-controls="addmentor">Add Mentor</a>
+            <a class="list-group-item list-group-item-action" id="list-mentorlist-list" data-toggle="list" href="#list-mentorlist" role="tab" aria-controls="mentorlist">Mentor List</a>
         </div>
-        <!--Sidebar END-->
-        <!-- Page content -->
-        <div class="content accordion-group">
-            <!--Statistics Start-->
-
-            <div id="statistics" method="POST" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px">
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-stat" role="tabpanel" aria-labelledby="list-stat-list">
                 <table class="table">
                     <thead>
                         <tr>
@@ -104,11 +58,69 @@
                     </tbody>
                 </table>
             </div>
+            <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
 
-            <!--Statistics END-->
-            <!--Mentor Index START-->
+            </div>
 
-            <div id="mentorList" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
+            <div class="tab-pane fade" id="list-addmentor" role="tabpanel" aria-labelledby="list-addmentor-list">
+                <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
+                    <form class="col-xs-12 shadow-lg rounded p-5 m-0">
+                        <h3 class="text-success">Mentor Registration for HopeLine</h3>
+                        <br />
+                        <div>
+                            <span>Please correct the following errors</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
+                            <input type="email" class="form-control" id="UserName" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
+                            <small>
+                                <span class="text-danger"></span>
+                            </small>
+                        </div>
+                       <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control required" id="FirstName" placeholder="Enter First Name">
+                                    <small>
+                                        <span class="text-danger"></span>
+                                    </small>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control  required" id="LastName" placeholder="Enter Last Name">
+                                    <small>
+                                        <span class="text-danger"></span>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-6">
+                                    <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
+                                    <input  type="text" class="form-control" id="Phone" placeholder="Enter Phone number">
+                                    <small>
+                                        <span  class="text-danger"></span>
+                                    </small>
+                                </div>
+
+
+                                <div class="form-group col-6">
+                                    <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="SIN" placeholder="Enter SIN">
+                                    <small>
+                                        <span  class="text-danger"></span>
+                                    </small>
+                                </div>
+                            </div>
+
+                        <input type="button" id="registerMentor" class="btn btn-primary" value="Submit" />
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="list-mentorlist" role="tabpanel" aria-labelledby="list-mentorlist-list">
                 <div class="row" style="margin-top:60px">
                     <div class="col-md-4 float-left">
                         <form method="POST">
@@ -120,7 +132,7 @@
                                 <div>Name: <input /></div>
                                 <input type="submit" asp-page-handler="FirstName" value="Join" />
                                 <input type="submit" asp-page-handler="FirstName" value="JOIN UC" />
-                            </form>*@
+                            </form>
 
                     </div>
                     <div class="col-md-4">
@@ -130,15 +142,14 @@
                                     Search by First Name
                                 </button>
                             </form>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <button class="dropdown-item btn btn-primary">Mentor</button>
                                 <button class="dropdown-item  btn btn-primary">User</button>
 
-                            </div>
+                            </div>*@
                         </div>
                     </div>
-
-                </div>
+                            
 
 
 
@@ -163,106 +174,22 @@
                                 <td>@Html.DisplayFor(modelitem => item.LastName)</td>
                                 <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
                                 <td>@Html.DisplayFor(modelitem => item.Email)</td>
-                                <td>
+                                @*<td>
                                     <a class="btn btn-warning">
                                         Manage
                                     </a>
-                                </td>
+                                </td>*@
                             </tr>
 
 
                         }
                     </tbody>
                 </table>
-                <!--Mentor Index End-->
             </div>
 
-            <!--AddMentor Start-->
-            <div id="addMentor" class="collapse container" data-parent="#admin" style="margin:0 auto; float:none; margin-top: 90px" active>
-
-                <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
-                    <form class="col-xs-12 shadow-lg rounded p-5 m-0">
-                        <h3 class="text-success">Mentor Registration for HopeLine</h3>
-                        <br />
-                        <div>
-                            <span>Please correct the following errors</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
-                            <input type="email" class="form-control" id="UserName" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
-                            <small>
-                                <span class="text-danger"></span>
-                            </small>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-6">
-                                <label for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control required" id="FirstName" placeholder="Enter First Name">
-                                <small>
-                                    <span class="text-danger"></span>
-                                </small>
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control  required" id="LastName" placeholder="Enter Last Name">
-                                <small>
-                                    <span class="text-danger"></span>
-                                </small>
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="form-group col-6">
-                                <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
-                                <input  type="text" class="form-control" id="Phone" placeholder="Enter Phone number">
-                                <small>
-                                    <span  class="text-danger"></span>
-                                </small>
-                            </div>
-
-
-                            <div class="form-group col-6">
-                                <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
-                                <input type="text" class="form-control" id="SIN" placeholder="Enter SIN">
-                                <small>
-                                    <span  class="text-danger"></span>
-                                </small>
-                            </div>
-                        </div>
-
-                        
-                        @*<div class="row">
-
-                                 <div class="form-group col-6">
-                                     <label for="password"><small class="text-muted">Password</small><span class="text-danger"> *</span></label>
-                                     <input asp-for="RegisterViewModel.Password" type="password" class="form-control" id="password" placeholder="Password" >
-                                     <small>
-                                         <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
-                                     </small>
-                                 </div>
-                                 <div class="form-group col-6">
-                                     <label for="retype-password"><small class="text-muted">Re-type Password</small><span class="text-danger"> *</span></label>
-                                     <input asp-for="RegisterViewModel.RetypePassword" type="password" class="form-control" id="retype-password" placeholder="Re-type Password">
-                                     <small>
-                                         <span asp-validation-for="RegisterViewModel.RetypePassword" class="text-danger"></span>
-                                     </small>
-                                 </div>
-                             </div>*@
-                            <input type="button" id="registerMentor" class="btn btn-primary" value="Submit" />
-                       
-
-                    </form>
-                </div>
-
-                <!--AddMentor End-->
-            </div>
-
-            <!--content accordion-group END-->
         </div>
-
     </div>
-</section>
+    </div>
 
 
 @section Scripts {
@@ -272,37 +199,37 @@
         $("#registerMentor").click(function () {
             var model = {
                 UserName: $('#UserName').val(),
-                FirstName: $('#FirstName').val(),
-                LastName: $('#LastName').val(),
-                Phone: $('#Phone').val(),
-                SIN: $('#SIN').val(),
-       
+                //FirstName: $('#FirstName').val(),
+                //LastName: $('#LastName').val(),
+                //Phone: $('#Phone').val(),
+                //SIN: $('#SIN').val(),
+
             };
-            console.log(model["UserName"]); 
-            data =  JSON.stringify(model);
-                $.ajax({
-                    
-              
-                    url: 'http://localhost:5000/api/auth/register',
-                    method: 'post',
-                    ContentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    data: data,
-                
+            console.log(model["UserName"]);
+            data = JSON.stringify(model);
+            $.ajax({
 
-                    success: function (data, textStatus, xhr) {
-                        console.log(data);
-                    },
 
-                    error: function (xhr, textStatus, errorThrown) {
-                        console.log('Error in Operation');
-                        console.log(errorThrown)
-                    }
+                url: 'http://localhost:5000/api/auth/register',
+                method: 'post',
+                ContentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: data,
 
-                  });
-                               
+
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                    console.log(errorThrown)
+                }
+
             });
-       
+
+        });
+
     </script>
     <partial name="_ValidationScriptsPartial" />
 }
