@@ -14,8 +14,10 @@ var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
 
+var url = "http://hopeline.azurewebsites.net/";
+var mentorMsgReceived = 0;
+var isToggleOpen = false;
 
-//var url = "http://hopeline.azurewebsites.net/";
 //comment out before pushing to master
 var url = "http://localhost:8000/";
 
@@ -57,10 +59,56 @@ function alertTime() {
     }, 7000);
 }
 
+
 function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#requestedCall").hide();
+
+  //when a user sent a message
+  connection.on("ReceiveMessage", function(user, message) {
+    console.log("Receive Message");
+    addChatBubble(user, message);
+      mentorMsgReceived++;
+      
+    $("#message").animate(
+      {
+        scrollTop: $("#message").prop("scrollHeight")
+      },
+      0
+    );
+    $("#chatbox").animate(
+      {
+        scrollTop: $("#chatbox").prop("scrollHeight")
+      },
+      0
+    );
+  });
+
+  //when a room is created
+  connection.on("Room", function(roomId) {
+    room = roomId;
+    connection.invoke("LoadMessage", room);
+    $("#sendArea").removeClass("d-none");
+    $("#requestChat").hide();
+    $("#sendArea").show();
+    $("#chatbox").show();
+    $("#loading").hide();
+    $("#mentorFound").click();
+    $("#toggleChat").removeClass("disabled");
+    timeout = null;
+  });
+
+  //register for users
+  if (!isUser) {
+    //notify mentors
+    notifyMentor();
+    //notify mentor for incoming call
+    connection.on("CallMentor", function() {
+      console.log("Notifying");
+      $("#incomingCall").show();
+      $("#requestedCall").show();
+      mentorTimeOut = setTimeout(function() {
         $("#incomingCall").hide();
         window.open(
             url + "VideoChat?roomId=" + room + "&userId=" + userId,
@@ -181,74 +229,81 @@ function startConnection() {
 
 //notifying user func
 function notifyUser() {
-    connection.on("NotifyUser", function (code) {
-        //if positive then remove loading and pop the send area
-        console.log("code:  " + code);
-        if (code == 1) {
-            isLoggedOut = false;
-            $("#loading").hide();
-            $("#requestChat").hide();
-            $("#sendArea").show();
-            $("#chatbox").show();
-            //if 0 then keep notify the mentor
-        } else if (code == 0) {
-            if (isLoggedOut) {
-                connection.close();
-            } else {
-                $("#sendArea").hide();
-                $("#openLoading").click();
-                $("#requestChat").show();
-                $("chatbox").hide();
-                findTime();
-            }
-            // else  chat is disconnected
-        } else {
+  connection.on("NotifyUser", function(code) {
+    //if positive then remove loading and pop the send area
+    console.log("code:  " + code);
+    if (code == 1) {
+      isLoggedOut = false;
+      $("#loading").hide();
+      $("#requestChat").hide();
+      $("#sendArea").show();
+      $("#chatbox").show();
+      //if 0 then keep notify the mentor
+    } else if (code == 0) {
+      if (isLoggedOut) {
+        connection.close();
+      } else {
+          $("#sendArea").hide();
+
+          $("#openLoading").click();
+          $("#requestChat").show();
+          $("#requestChat").click(function () {
+              window.reload();
+          });
             $("chatbox").hide();
-            $("sendArea").hide();
-            $("#requestChat").show();
-            //$("#loading").show();
             findTime();
-            $("#modaltrigger").click();
-        }
-    });
+      }
+      // else  chat is disconnected
+    } else {
+      $("chatbox").hide();
+      $("sendArea").hide();
+        $("#requestChat").show();
+        $("#requestChat").click(function () {
+            window.reload();
+        });
+      //$("#loading").show();
+      findTime();
+      $("#modaltrigger").click();
+    }
+  });
+
 }
 
 //notifying mentors func
 function notifyMentor() {
-    connection.on("NotifyMentor", function (user, userConnectionId, code) {
-        if (code == null) {
-            console.log("User Request Id :" + user);
-            $("#incominguser").append(
-                '<div class="alert alert-info " role=" alert ">' +
-                user +
-                ' is looking for company!<input id="mentorAccept" type="button" class="btn btn-link" value="Accept?"/></div>'
-            );
-            $("#mentorAccept").on("click", function (event) {
-                console.log("Mentor Accepting");
-                connection
-                    .invoke("AcceptUserRequest", userId, user, userConnectionId)
-                    .catch(function (err) {
-                        console.log(err.toString());
-                    });
-                $(this)
-                    .parent()
-                    .remove();
-                event.preventDefault();
-            });
-        } else {
-            //FIXME: refactor this
-            $("#chatbox").append(
-                '<div class = "alert alert-info" role = "alert" >' +
-                "User has DISCONNECTED!" +
-                "</div>"
-            );
-            connection.invoke("RemoveUser", room, isUser);
-            alert("User has DISCONNECTED");
-            setTimeout(function () {
-                location.reload();
-            }, 500);
-        }
-    });
+  connection.on("NotifyMentor", function(user, userConnectionId, code) {
+    if (code == null) {
+      console.log("User Request Id :" + user);
+      $("#incominguser").append(
+        '<div class="alert alert-info " role=" alert ">' +
+          user +
+          ' is looking for company!<input id="mentorAccept" type="button" class="btn btn-link" value="Accept?"/></div>'
+      );
+      $("#mentorAccept").on("click", function(event) {
+        console.log("Mentor Accepting");
+        connection
+          .invoke("AcceptUserRequest", userId, user, userConnectionId)
+          .catch(function(err) {
+            console.log(err.toString());
+          });
+        $(this)
+          .parent()
+          .remove();
+        event.preventDefault();
+      });
+    } else {
+      $("#chatbox").append(
+        '<div class = "alert alert-info" role = "alert" >' +
+          "User has DISCONNECTED!" +
+          "</div>"
+      );
+      connection.invoke("RemoveUser", room, isUser);
+      alert("User has DISCONNECTED");
+      setTimeout(function() {
+        location.reload();
+      }, 500);
+    }
+  });
 }
 
 //adding each messages
@@ -286,20 +341,46 @@ function addChatBubble(user, message) {
 //ALL JQUERY USER INTERACTIONS (ACTIONS)
 //Put your code here for all actions from html
 
-$(function () {
-    if (userId != null) {
-        console.log("UserId = " + userId);
-        console.log("pin = " + room);
 
-        connection = new signalR.HubConnectionBuilder()
-            // .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-            .withUrl("http://localhost:5000/v2/chatHub")
-            .build();
-        //register all methods
-        registerHub();
-        //start connection
-        startConnection();
+//Received messages for mentor chat
+setInterval(function () {
+    var isNull = $("#toggleChat > span").val() == null ? true : false;
+
+    if (isNull) {
+        $("#toggleChat").append(
+            '<span class="badge badge-light" id="sp">' +
+            mentorMsgReceived +
+            '</span>');
+    } else {
+        $("#sp").text(mentorMsgReceived);
+        if (isToggleOpen) {
+            $("#sp").hide();
+        } else {
+            $("#sp").show();
+        }
+        
     }
+   
+
+},100);
+    
+
+
+
+$(function() {
+  if (userId != null) {
+    console.log("UserId = " + userId);
+    console.log("pin = " + room);
+
+    connection = new signalR.HubConnectionBuilder()
+      .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+      // .withUrl("http://localhost:5000/v2/chatHub")
+      .build();
+    //register all methods
+    registerHub();
+    //start connection
+    startConnection();
+  }
 });
 
 //When user send a message
@@ -352,10 +433,12 @@ $("#logout").click(function () {
     }
 });
 
+
 $("#endConversation").click(function () {
     isLoggedOut = true;
     $("#logout").click();
     //Rate
+
 });
 
 $("#videoCallBtn").click(function () {
@@ -385,18 +468,24 @@ $("#acceptCall").click(function () {
 });
 
 $("#toggleChat").click(function () {
-    $("#message").animate(
-        {
-            scrollTop: $("#message").prop("scrollHeight")
-        },
-        0
+    if (isToggleOpen == false) {
+        isToggleOpen = true;
+    } else {
+        isToggleOpen = false;
+    }
+  $("#message").animate(
+    {
+      scrollTop: $("#message").prop("scrollHeight")
+    },
+    0
+  );
+  $("#chatbox").animate(
+    {
+      scrollTop: $("#chatbox").prop("scrollHeight")
+    },
+    0
     );
-    $("#chatbox").animate(
-        {
-            scrollTop: $("#chatbox").prop("scrollHeight")
-        },
-        0
-    );
+    mentorMsgReceived = 0;
 });
 
 $("#messageInput").click(function () {
@@ -414,9 +503,13 @@ $("#messageInput").click(function () {
     );
 });
 
-
-$("#loading").on("hide.bs.modal", function () {
-    console.log("modal hidden")
-    $("#chartAlert").append("<p>You Cancelled your Request.</p>");
-    alertTime();
-});
+//Rate Mnetor
+window.onbeforeunload = function (event) {
+    var rate = setInterval(function () {
+        $("#ratemodal").click();
+    }, 100);
+    #("#happy").click(function () {
+        clearInterval(rate);
+    })
+    console.log("fffffffffffffffffffffffffffffffff")
+}

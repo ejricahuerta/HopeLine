@@ -15,84 +15,20 @@
 @section Styles {
     <link rel="stylesheet" , href="~/css/resources.css" />
 }
-
-
-<section class="mt-5">
-    <div class="accordion" id="resources">
-        <!-- The sidebar -->
-        <div class="sidebar bg-dark">
-            <!-- Welcome -->
-            <div hidden>
-                <div class="card bg-dark">
-                    <div class="card-header" id="welcomeHeader">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link mt-5 dropdown" data-toggle="collapse" data-target="#welcome">
-                                Welcome
-                            </button>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Depression -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="depressionHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link mt-5 dropdown" data-toggle="collapse" data-target="#depression" style="color:rgba(255,255,255,.5)">
-                                Depression
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Anxiety -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="anxietyHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#anxiety" style="color:rgba(255,255,255,.5)">
-                                Anxiety
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bullying -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="bullyingHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#bullying" style="color:rgba(255,255,255,.5)">
-                                Bullying
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Suicide -->
-            <div>
-                <div class="card bg-dark">
-                    <div class="card-header" id="suicideHeader">
-                        <h5 class="mb-0">
-                            <a class="btn nav-link dropdown" data-toggle="collapse" data-target="#suicide" style="color:rgba(255,255,255,.5)">
-                                Suicide
-                            </a>
-                        </h5>
-                    </div>
-                </div>
-            </div>
+<div style="margin-top:100px"></div>
+<div class="row mt-5">
+    <div class="col-3">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a hidden class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Welcome</a>
+            <a class="list-group-item list-group-item-action" id="list-depression-list" data-toggle="list" href="#list-depression" role="tab" aria-controls="profile">Depression</a>
+            <a class="list-group-item list-group-item-action" id="list-anxiety-list" data-toggle="list" href="#list-anxiety" role="tab" aria-controls="messages">Anxiety</a>
+            <a class="list-group-item list-group-item-action" id="list-bullying-list" data-toggle="list" href="#list-bullying" role="tab" aria-controls="settings">Bullying</a>
+            <a class="list-group-item list-group-item-action" id="list-suicide-list" data-toggle="list" href="#list-suicide" role="tab" aria-controls="settings">Suicide</a>
         </div>
-
-        <!-- Page content -->
-        <div class="content accordion-group">
-
-
-            <div id="welcome" class="collapse show card mb-3" data-parent="#resources" style="margin:0 auto; float:none; margin-top: 90px">
+    </div>
+    <div class="col-9">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                 <h2 class="text-center">Welcome</h2>
                 <div class="card-body">
                     <h3 class="card-title">Welcome to Resources</h3>
@@ -100,8 +36,7 @@
                     <p class="card-text">Please check out our category for details</p>
                 </div>
             </div>
-
-            <div id="depression" class="collapse" data-parent="#resources" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-depression" role="tabpanel" aria-labelledby="list-depression-list">
                 <h2 class="text-center">Depression</h2>
                 <div class="card-deck">
                     @foreach (var item in Model.DepressionRes)
@@ -113,19 +48,13 @@
                                 <p class="card-text">
                                     @Html.DisplayFor(modelitem => item.Description)
                                 </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary">Go</a></p>
+                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
                             </div>
                         </div>
                     }
                 </div>
             </div>
-
-
-
-
-
-
-            <div id="anxiety" class="collapse" data-parent="#resources" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-anxiety" role="tabpanel" aria-labelledby="list-anxiety-list">
                 <h2 class="text-center">Anxiety</h2>
                 <hr />
                 <div class="card-deck">
@@ -138,15 +67,13 @@
                                 <p class="card-text">
                                     @Html.DisplayFor(modelitem => item.Description)
                                 </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary">Go</a></p>
+                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
                             </div>
                         </div>
                     }
                 </div>
             </div>
-
-
-            <div id="bullying" class="collapse" data-parent="#resources" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-bullying" role="tabpanel" aria-labelledby="list-bullying-list">
                 <h2 class="text-center">Bullying</h2>
                 <hr />
                 <div class="card-deck">
@@ -159,15 +86,13 @@
                                 <p class="card-text">
                                     @Html.DisplayFor(modelitem => item.Description)
                                 </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary">Go</a></p>
+                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
                             </div>
                         </div>
                     }
                 </div>
             </div>
-
-
-            <div id="suicide" class="collapse" data-parent="#resources" style="margin:0 auto; float:none; margin-top: 90px">
+            <div class="tab-pane fade" id="list-suicide" role="tabpanel" aria-labelledby="list-suicide-list">
                 <h2 class="text-center">Suicide</h2>
                 <hr />
                 <div class="card-deck">
@@ -180,21 +105,12 @@
                                 <p class="card-text">
                                     @Html.DisplayFor(modelitem => item.Description)
                                 </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary">Go</a></p>
+                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
                             </div>
                         </div>
                     }
                 </div>
             </div>
         </div>
-
     </div>
-        <div class="bg-light border-top container-fluid" style="bottom: 10px;">
-            <p class="float-right">Made by PRJ666-Group 07 ©2018. All Rights Reserved.</p>
-        </div>
-
-</section>
-
-@section Scripts {
-    
-}
+</div>
