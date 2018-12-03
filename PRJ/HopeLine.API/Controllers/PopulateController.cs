@@ -74,7 +74,19 @@ namespace HopeLine.API.Controllers
         {
             var mentors = new List<string>
             {
+                /*
                 "tester1@gmail.com",  "tester2@gmail.com",  "tester3@gmail.com", "ziyi.shi@gmail.com", "eduardo.osorio@gmail.com", "edmel.ricahuerta@gmail.com", "edgar.giang@gmail.com"
+                */
+                "joshua.truman@gmail.com",
+                "dorothy.ransdell@gmail.com",
+                "randy.taylor@gmail.com",
+                "colette.katzman@gmail.com",
+                "hermelind.decarlo@gmail.com",
+                "mitchell.baker@gmail.com",
+                "jackie.bell@gmail.com",
+                "helen.hoyt@gmail.com",
+                "ross.portis@gmail.com",
+                "ronald.costello@gmail.com"
             };
 
             if (_userManager.Users.Where(u => u.AccountType == Account.Mentor).Count() == 0)
