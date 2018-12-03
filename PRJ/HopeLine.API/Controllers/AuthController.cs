@@ -65,11 +65,18 @@ namespace HopeLine.API.Controllers
         {
             if (ModelState.IsValid)
             {
+                var prf = new Profile {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+
                 var user = new MentorAccount
                 {
                     UserName = model.UserName,
-                    Email = model.UserName
+                    Email = model.UserName,
+                    Profile = prf
                 };
+
                 var result = await _userManager.CreateAsync(user);
 
                 if (result.Succeeded)
@@ -82,13 +89,11 @@ namespace HopeLine.API.Controllers
                       protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(model.UserName, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        $"Please confirm your account and Create a Password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
                     var newuser = await _userManager.FindByEmailAsync(model.UserName);
                     var claimres = await _userManager.AddClaimAsync(newuser, new Claim("Account", "Mentor"));
-
                     return Ok("Add Mentor Success");
                 }
-
             }
             return BadRequest("Unable to Process Registration...");
         }
