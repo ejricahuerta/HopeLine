@@ -64,6 +64,12 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#requestedCall").hide();
+        window.open(
+            url + "VideoChat?roomId=" + room + "&userId=" + userId,
+            "HopeLine-Call",
+            "_blank",
+            "toolbar=0,menubar=0"
+        );
     });
 
     //when a user sent a message
@@ -72,8 +78,12 @@ function registerHub() {
         addChatBubble(user, message);
         mentorMsgReceived++;
 
-        $("#message").animate({ scrollTop: $("#message").prop("scrollHeight") }, 0);
-        $("#chatbox").animate({ scrollTop: $("#chatbox").prop("scrollHeight") }, 0);
+        $("#message").animate({
+            scrollTop: $("#message").prop("scrollHeight")
+        }, 0);
+        $("#chatbox").animate({
+            scrollTop: $("#chatbox").prop("scrollHeight")
+        }, 0);
     });
 
     //when a room is created
@@ -97,8 +107,7 @@ function registerHub() {
             topics.forEach(function (topic) {
                 $("#topics").append('<tr>' + topic + '</tr>');
             });
-        }
-        else {
+        } else {
             $("#topics").append('<tr>' + "No Topic Selected" + '</tr>')
         }
     });
@@ -107,6 +116,14 @@ function registerHub() {
         //notify mentors
         notifyMentor();
         //notify mentor for incoming call
+        connection.on("CallMentor", function() {
+            console.log("Notifying");
+            $("#incomingCall").show();
+            $("#requestedCall").show();
+            mentorTimeOut = setTimeout(function() {
+              $("#incomingCall").hide();
+            }, 40000);
+          });
     } else {
         //notify user
         notifyUser();
@@ -189,24 +206,8 @@ function notifyUser() {
 //notifying mentors func
 function notifyMentor() {
 
-    connection.on("CallMentor", function () {
-        console.log("Notifying");
-        $("#incomingCall").show();
-        $("#requestedCall").show();
-        mentorTimeOut = setTimeout(function () {
-            $("#incomingCall").hide();
-            window.open(
-                url + "VideoChat?roomId=" + room + "&userId=" + userId,
-                "HopeLine-Call",
-                "_blank",
-                "toolbar=0,menubar=0"
-            );
-            timeout = null;
-        });
-    });
 
     connection.on("NotifyMentor", function (user, userConnectionId, code) {
-
         if (code == null) {
             console.log("User Request Id :" + user);
             $("#incominguser").append(
@@ -406,14 +407,12 @@ $("#toggleChat").click(function () {
     } else {
         isToggleOpen = false;
     }
-    $("#message").animate(
-        {
+    $("#message").animate({
             scrollTop: $("#message").prop("scrollHeight")
         },
         0
     );
-    $("#chatbox").animate(
-        {
+    $("#chatbox").animate({
             scrollTop: $("#chatbox").prop("scrollHeight")
         },
         0
@@ -422,14 +421,12 @@ $("#toggleChat").click(function () {
 });
 
 $("#messageInput").click(function () {
-    $("#message").animate(
-        {
+    $("#message").animate({
             scrollTop: $("#message").prop("scrollHeight")
         },
         0
     );
-    $("#chatbox").animate(
-        {
+    $("#chatbox").animate({
             scrollTop: $("#chatbox").prop("scrollHeight")
         },
         0
