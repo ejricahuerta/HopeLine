@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HopeLine.DataAccess.Migrations
 {
-    public partial class INIT : Migration
+    public partial class RevampEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,19 +40,18 @@ namespace HopeLine.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Maps",
+                name: "Languages",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DateAdded = table.Column<string>(nullable: true),
-                    XCoordinate = table.Column<double>(nullable: false),
-                    YCoordinate = table.Column<double>(nullable: false),
-                    Radius = table.Column<double>(nullable: false)
+                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    CountryOrigin = table.Column<string>(maxLength: 40, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Maps", x => x.Id);
+                    table.PrimaryKey("PK_Languages", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,6 +118,30 @@ namespace HopeLine.DataAccess.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProfileLanguages",
+                columns: table => new
+                {
+                    ProfileId = table.Column<int>(nullable: false),
+                    LanguageId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProfileLanguages", x => new { x.ProfileId, x.LanguageId });
+                    table.ForeignKey(
+                        name: "FK_ProfileLanguages_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProfileLanguages_Profiles_ProfileId",
+                        column: x => x.ProfileId,
+                        principalTable: "Profiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -228,62 +251,16 @@ namespace HopeLine.DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     DateAdded = table.Column<string>(nullable: true),
-                    PIN = table.Column<string>(maxLength: 10, nullable: false),
+                    PIN = table.Column<string>(maxLength: 30, nullable: false),
                     MentorId = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false),
                     Minutes = table.Column<float>(nullable: false),
-                    DateOfConversation = table.Column<string>(nullable: true)
+                    DateOfConversation = table.Column<string>(nullable: true),
+                    MentorAccountId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Conversations", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Languages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    DateAdded = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
-                    CountryOrigin = table.Column<string>(maxLength: 40, nullable: false),
-                    ConversationId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Languages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Languages_Conversations_ConversationId",
-                        column: x => x.ConversationId,
-                        principalTable: "Conversations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProfileLanguages",
-                columns: table => new
-                {
-                    ProfileId = table.Column<int>(nullable: false),
-                    LanguageId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProfileLanguages", x => new { x.ProfileId, x.LanguageId });
-                    table.ForeignKey(
-                        name: "FK_ProfileLanguages_Languages_LanguageId",
-                        column: x => x.LanguageId,
-                        principalTable: "Languages",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProfileLanguages_Profiles_ProfileId",
-                        column: x => x.ProfileId,
-                        principalTable: "Profiles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -439,14 +416,9 @@ namespace HopeLine.DataAccess.Migrations
                 column: "ScheduleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Conversations_MentorId",
+                name: "IX_Conversations_MentorAccountId",
                 table: "Conversations",
-                column: "MentorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Languages_ConversationId",
-                table: "Languages",
-                column: "ConversationId");
+                column: "MentorAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MentorSpecializations_SpecializationId",
@@ -514,12 +486,12 @@ namespace HopeLine.DataAccess.Migrations
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Conversations_AspNetUsers_MentorId",
+                name: "FK_Conversations_AspNetUsers_MentorAccountId",
                 table: "Conversations",
-                column: "MentorId",
+                column: "MentorAccountId",
                 principalTable: "AspNetUsers",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MentorSpecializations_AspNetUsers_MentorAccountId",
@@ -566,7 +538,7 @@ namespace HopeLine.DataAccess.Migrations
                 name: "Communities");
 
             migrationBuilder.DropTable(
-                name: "Maps");
+                name: "Conversations");
 
             migrationBuilder.DropTable(
                 name: "MentorSpecializations");
@@ -591,9 +563,6 @@ namespace HopeLine.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Specializations");
-
-            migrationBuilder.DropTable(
-                name: "Conversations");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

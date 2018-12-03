@@ -197,24 +197,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.Map", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DateAdded");
-
-                    b.Property<double>("Radius");
-
-                    b.Property<double>("XCoordinate");
-
-                    b.Property<double>("YCoordinate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Maps");
-                });
-
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
                 {
                     b.Property<string>("MentorAccountId");
@@ -334,8 +316,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ConversationId");
-
                     b.Property<string>("DateAdded");
 
                     b.Property<string>("Description")
@@ -347,8 +327,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<int?>("SpecializationId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ConversationId");
 
                     b.HasIndex("SpecializationId");
 
@@ -472,16 +450,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("AdminAccount");
                 });
 
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.GuestAccount", b =>
-                {
-                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
-
-
-                    b.ToTable("GuestAccount");
-
-                    b.HasDiscriminator().HasValue("GuestAccount");
-                });
-
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
@@ -570,10 +538,6 @@ namespace HopeLine.DataAccess.Migrations
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Topic", b =>
                 {
-                    b.HasOne("HopeLine.DataAccess.Entities.Conversation")
-                        .WithMany("Topics")
-                        .HasForeignKey("ConversationId");
-
                     b.HasOne("HopeLine.DataAccess.Entities.Specialization")
                         .WithMany("Topics")
                         .HasForeignKey("SpecializationId");

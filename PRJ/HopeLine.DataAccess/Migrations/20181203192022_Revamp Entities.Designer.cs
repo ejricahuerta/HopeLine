@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HopeLine.DataAccess.Migrations
 {
     [DbContext(typeof(HopeLineDbContext))]
-    [Migration("20181125193711_INIT")]
-    partial class INIT
+    [Migration("20181203192022_Revamp Entities")]
+    partial class RevampEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,6 +94,8 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<string>("DateOfConversation");
 
+                    b.Property<string>("MentorAccountId");
+
                     b.Property<string>("MentorId")
                         .IsRequired();
 
@@ -101,15 +103,14 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.Property<string>("PIN")
                         .IsRequired()
-                        .HasMaxLength(10);
+                        .HasMaxLength(30);
 
-                    b.Property<string>("UserId");
-
-                    b.Property<string>("UserName");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MentorId");
+                    b.HasIndex("MentorAccountId");
 
                     b.ToTable("Conversations");
                 });
@@ -183,8 +184,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ConversationId");
-
                     b.Property<string>("CountryOrigin")
                         .IsRequired()
                         .HasMaxLength(40);
@@ -197,27 +196,7 @@ namespace HopeLine.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConversationId");
-
                     b.ToTable("Languages");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.Map", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DateAdded");
-
-                    b.Property<double>("Radius");
-
-                    b.Property<double>("XCoordinate");
-
-                    b.Property<double>("YCoordinate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Maps");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
@@ -473,16 +452,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("AdminAccount");
                 });
 
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.GuestAccount", b =>
-                {
-                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
-
-
-                    b.ToTable("GuestAccount");
-
-                    b.HasDiscriminator().HasValue("GuestAccount");
-                });
-
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>
                 {
                     b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
@@ -524,10 +493,9 @@ namespace HopeLine.DataAccess.Migrations
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.Conversation", b =>
                 {
-                    b.HasOne("HopeLine.DataAccess.Entities.MentorAccount", "Mentor")
+                    b.HasOne("HopeLine.DataAccess.Entities.MentorAccount")
                         .WithMany("Conversations")
-                        .HasForeignKey("MentorId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MentorAccountId");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.HopeLineUser", b =>
@@ -535,13 +503,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasOne("HopeLine.DataAccess.Entities.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.Language", b =>
-                {
-                    b.HasOne("HopeLine.DataAccess.Entities.Conversation")
-                        .WithMany("LanguageUsed")
-                        .HasForeignKey("ConversationId");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
