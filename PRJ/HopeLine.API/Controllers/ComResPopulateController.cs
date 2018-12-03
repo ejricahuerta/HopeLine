@@ -33,35 +33,35 @@ namespace HopeLine.API.Controllers
                     //Populate topics
                 new TopicModel
                 {
-                    Name = "Mental Disorder",
-                    Description = "A mental disorder, also called a mental illness[2] or psychiatric disorder, is a behavioral or mental pattern that causes significant distress or impairment of personal functioning.[3] Such features may be persistent, relapsing and remitting, or occur as a single episode. Many disorders have been described, with signs and symptoms that vary widely between specific disorders.[4][5] Such disorders may be diagnosed by a mental health professional."
+                    Name = "Emotional well-being",
+                    Description = "The implications of decreased emotional well-being are related to mental health concerns such as stress, depression, and anxiety. These in turn can contribute to physical ill-health such as digestive disorders, sleep disturbances, and general lack of energy.[1] The profile of a person prone to emotional distress is usually someone with low self-esteem, pessimistic, emotionally sensitive, very self-critical…, people who need to constantly assert themselves through their behavior. "
                 },
                 new TopicModel
                 {
-                    Name = "Eating Disorder",
-                    Description = "An eating disorder is a mental disorder defined by abnormal eating habits that negatively affect a person's physical or mental health.[1] They include binge eating disorder where people eat a large amount in a short period of time, anorexia nervosa where people eat very little and thus have a low body weight, bulimia nervosa where people eat a lot and then try to rid themselves of the food, pica where people eat non-food items, rumination disorder where people regurgitate food, avoidant/restrictive food intake disorder where people have a lack of interest in food, and a group of other specified feeding or eating disorders.[1] Anxiety disorders, depression, and substance abuse are common among people with eating disorders.[2] These disorders do not include obesity.[1]"
+                    Name = "Bullying & abuse",
+                    Description = "Bullying is the use of force, threat, or coercion to abuse, intimidate or aggressively dominate others. The behavior is often repeated and habitual. One essential prerequisite is the perception, by the bully or by others, of an imbalance of social or physical power, which distinguishes bullying from conflict."
                 },
                  new TopicModel
                 {
-                    Name = "Anxiety",
-                    Description = "Anxiety is an emotion characterized by an unpleasant state of inner turmoil, often accompanied by nervous behaviour such as pacing back and forth, somatic complaints, and rumination.[1] It is the subjectively unpleasant feelings of dread over anticipated events, such as the feeling of imminent death.[2][need quotation to verify] Anxiety is not the same as fear, which is a response to a real or perceived immediate threat,[3] whereas anxiety involves the expectation of future threat.[3] Anxiety is a feeling of uneasiness and worry, usually generalized and unfocused as an overreaction to a situation that is only subjectively seen as menacing.[4] It is often accompanied by muscular tension,[3] restlessness, fatigue and problems in concentration. Anxiety can be appropriate, but when experienced regularly the individual may suffer from an anxiety disorder.[3]"
+                    Name = "School & work",
+                    Description = "Daily issues related to school and work."
                 },
                     new TopicModel
                 {
-                    Name = "Schizophrenia",
-                    Description = "Schizophrenia is a mental disorder characterized by abnormal behavior and a decreased ability to understand reality.[2] Common symptoms include false beliefs, unclear or confused thinking, hearing voices that others do not, reduced social engagement and emotional expression, and a lack of motivation.[2][3] People with schizophrenia often have additional mental health problems such as anxiety, depressive, or substance-use disorders.[11] Symptoms typically come on gradually, begin in young adulthood, and in many cases never resolve.[3][5]"
+                    Name = "Sex & relationships",
+                    Description = "Sex & relationships related issues"
                 }, new TopicModel
                 {
-                    Name = "Bipolar Disorder",
-                    Description = "Bipolar disorder, previously known as manic depression, is a mental disorder that causes periods of depression and periods of abnormally elevated mood.[3][4][6] The elevated mood is significant and is known as mania or hypomania, depending on its severity, or whether symptoms of psychosis are present.[3] During mania, an individual behaves or feels abnormally energetic, happy, or irritable.[3] Individuals often make poorly thought out decisions with little regard to the consequences.[4] The need for sleep is usually reduced during manic phases.[4] During periods of depression, there may be crying, a negative outlook on life, and poor eye contact with others.[3] The risk of suicide among those with the illness is high at greater than 6 percent over 20 years, while self-harm occurs in 30�C40 percent.[3] Other mental health issues such as anxiety disorders and substance use disorder are commonly associated with bipolar disorder.[3]"
+                    Name = "Friends & family",
+                    Description = "Family and friends related issues"
                 },new TopicModel
                 {
-                    Name = "Mood Disorder",
-                    Description = "Mood disorder, also known as mood (affective) disorders, is a group of conditions where a disturbance in the person's mood is the main underlying feature.[1] The classification is in the Diagnostic and Statistical Manual of Mental Disorders (DSM) and International Classification of Diseases (ICD)."
+                    Name = "Identity",
+                    Description = "Identity related issues"
                 }, new TopicModel
                 {
-                    Name = "Depression",
-                    Description = "Depression, a state of low mood and aversion to activity, can affect a person's thoughts, behavior, tendencies, feelings, and sense of well-being. A depressed mood is a normal temporary reaction to life events - such as loss of a loved one. It is also a symptom of some physical diseases and a side effect of some drugs and medical treatments. Depressed mood may also be a symptom of some mood disorders such as major depressive disorder or dysthymia.[2]"
+                    Name = "Physical health",
+                    Description = "Physical health related issues"
                 }
                 };
 
@@ -172,14 +172,14 @@ namespace HopeLine.API.Controllers
                     new ResourceModel
                     {
                         Name = "7 tips to help with stress and anxiety",
-                        Description = "It��s totally normal to feel stressed or anxious from time to time, but there��s lots of things you can do to feel a bit better. Remember: there��s a difference between feeling stressed every now and then, and experiencing ongoing anxiety.",
+                        Description = "It??s totally normal to feel stressed or anxious from time to time, but there??s lots of things you can do to feel a bit better. Remember: there??s a difference between feeling stressed every now and then, and experiencing ongoing anxiety.",
                         URL = "https://au.reachout.com/articles/7-tips-to-help-with-stress-and-anxiety",
                         ImageURL = "http://www.daytonreachout.org/images/reachoutlogo2.jpg",
                     },
                     new ResourceModel
                     {
                         Name = "Ways to take care of yourself if you're being bullied",
-                        Description = "If you��re experiencing bullying, looking after yourself can help you reduce your stress and feel more positive and hopeful. We chatted to a bunch of young people who��d experienced bullying and they shared their own self-care tips.",
+                        Description = "If you??re experiencing bullying, looking after yourself can help you reduce your stress and feel more positive and hopeful. We chatted to a bunch of young people who??d experienced bullying and they shared their own self-care tips.",
                         URL = "https://au.reachout.com/articles/ways-to-take-care-of-yourself-if-youre-being-bullied",
                         ImageURL = "http://www.daytonreachout.org/images/reachoutlogo2.jpg"
                     },
