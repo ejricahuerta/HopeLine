@@ -1,8 +1,7 @@
-﻿using HopeLine.DataAccess.Entities.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using HopeLine.DataAccess.Entities.Base;
 
-namespace HopeLine.DataAccess.Entities
-{
+namespace HopeLine.DataAccess.Entities {
     //TODO : add props
 
     /// <summary>
@@ -10,18 +9,15 @@ namespace HopeLine.DataAccess.Entities
     /// speak about with the mentor and chooses before they
     /// connect with them
     /// </summary>
-    public class Topic : BaseEntity
-    {
-        public Topic()
-        {
-            Name = "";
-            Description = "";
+    public class Topic : BaseEntity {
+        public Topic () {
+
         }
 
         [Required]
         public string Name { get; set; }
 
-        [StringLength(500)]
+        [StringLength (500)]
         public string Description { get; set; }
     }
 }

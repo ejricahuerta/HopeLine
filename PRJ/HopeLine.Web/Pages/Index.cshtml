@@ -41,20 +41,15 @@
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="slider-content">
-                      
-                      <!-- layer 1 -->
-                      <div class="layer-1-1 f wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
-                          <h2 class="title1">Welcome to HopeLine</h2>
-                      </div>
                       <!-- layer 2 -->
                       <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
                           <h1 class="title2">We're here to help you. Click the button below to speak to a mentor</h1>
                       </div>
                       <!-- layer 3 -->
-                      <div class="layer-1-3  wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                          <a class="btn btn-primary btn-lg" asp-page="/InstantChat" >
+                      <div class="layer-1-3  wow slideInUp mt-2" data-wow-duration="2s" data-wow-delay=".2s">
+                          <a class="btn btn-primary btn-lg p-3" asp-page="/InstantChat" >
                               Click here to talk
-                              to a mentor
+                              to a Mentor
                           </a>
                           <!--<a class="ready-btn page-scroll" href="#about">Learn More</a>-->
                       </div>
@@ -74,7 +69,7 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="section-headline text-center">
-              <h2>About HopeLine</h2>
+              <h2 class="text-success">About HopeLine</h2>
             </div>
           </div>
         </div>
@@ -86,15 +81,18 @@
             <div class="well-middle">
               <div class="single-well">
                 <a href="#">
-                  <h4 class="sec-head">Our services</h4>
+                  <h4 class="sec-head"></h4>
                 </a>
                 <p>
                   Hopeline is a multiplatform suicide prevention and mental health wellness application. We are
-                  dedicated to spreading awareness of mental health issues and
+                  dedicated on spreading awareness of mental health issues and
                   to try our best to provide advice and guidance to anybody suffering from any sort of mental health
-                  issues. Our application provides the following:
+                  issues. We provides the following:
                 </p>
                 <ul>
+                  <li>
+                    <i class="fa fa-check"></i> Free and totally private online Mentoring
+                  </li>
                   <li>
                     <i class="fa fa-check"></i> IOS Compatibility
                   </li>
@@ -106,9 +104,6 @@
                   </li>
                   <li>
                     <i class="fa fa-check"></i> Links to other organizations that provide similar services
-                  </li>
-                  <li>
-                    <i class="fa fa-check"></i> Free online Mentoring
                   </li>
                 </ul>
               </div>
@@ -122,26 +117,26 @@
     <!-- End About area -->
 
     <!-- Start Service area -->
-    <div id="services" class="services-area area-padding">
-      <div class="container">
+    <div id="services" class="services-area area-padding border-bottom">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="col-md-12 col-sm-12 col-xs-12 mb-2">
             <div class="section-headline services-head text-center">
-              <h2>What we Offer</h2>
+              <h2 class="text-success">What we Offer</h2>
             </div>
           </div>
         </div>
-        <div class="row text-center">
+        <div class="row justify-content-center">
           <div class="services-contents"></div>
           <!-- Start Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#F0F66E">
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href=@Url.Page("/InstantChat")>
                     <i class="fa fa-comments"></i>
+                  <h4 class="mt-1">Live Chat</h4>
                   </a>
-                  <h4>Live Chat</h4>
                   <p>
                     You can choose live chat to communicate with a mentor through texting on your phone or
                     typing through your computer.
@@ -151,14 +146,14 @@
               <!-- end about-details -->
             </div>
           </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-3 col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#F0F8EA">
             <div class="about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href=@Url.Page("/InstantChat")>
                     <i class="fa fa-camera-retro"></i>
+                  <h4 class="mt-1">Video Chat</h4>
                   </a>
-                  <h4>Video Chat</h4>
                   <p>
                     Video chat enables you to speak with a mentor through the webcam or your phones camera.
                   </p>
@@ -167,15 +162,15 @@
               <!-- end about-details -->
             </div>
           </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
+          <div class="col-md-3 col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#FF5A5F">
+            <!-- end col-md-3 -->
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href=@Url.Page("/InstantChat")>
                     <i class="fa fa-volume-up"></i>
+                  <h4 class="mt-1">Audio Chat</h4>
                   </a>
-                  <h4>Audio Chat</h4>
                   <p>
                     If you prefer to listen and speak instead of typing or video chat then audio chat will provide for
                     you.
@@ -185,15 +180,36 @@
               <!-- end about-details -->
             </div>
           </div>
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-3 col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#C1DEA4">
+            <!-- end col-md-3 -->
+            <div class=" about-move">
+              <div class="services-details">
+                <div class="single-services">
+                  <a class="services-icon" href=@Url.Page("/Map")>
+                    <i class="fa fa-map"></i>
+                  <h4 class="mt-1">Map Page</h4>
+                  </a>
+                  <p>
+                    Our map page is a customized google map that provides geolocation,search functionality, and a
+                    custom search filter that would
+                    show the nearest hospitals, pharmacies, medical institutions, and doctors.
+                  </p>
+                </div>
+              </div>
+              <!-- end about-details -->
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#B486A2">
+            <!-- end col-md-3 -->
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href=@Url.Page("/Resources")>
                     <i class="fa fa-link"></i>
+                  <h4 class="mt-1">Resources Page </h4>
                   </a>
-                  <h4>Resources Page </h4>
                   <p>
                     Resources page is a collection of links to topics related to mental health or other life issues. If
                     you want to learn more
@@ -206,15 +222,15 @@
             </div>
           </div>
           <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
+          <div class="col-md-3  col-sm-6 col-xs-12 shadow-lg rounded m-3" style="background-color:#F7D494">
+            <!-- end col-md-3 -->
             <div class=" about-move">
               <div class="services-details">
                 <div class="single-services">
                   <a class="services-icon" href=@Url.Page("/Community")>
                     <i class="fa fa-window-restore"></i>
+                  <h4 class="mt-1">Community Page</h4>
                   </a>
-                  <h4>Community Page</h4>
                   <p>
                     Community page is a collection of links to other organizations that provide a similar cause to ours
                     which includes
@@ -228,77 +244,58 @@
             </div>
           </div>
           <!-- End Left services -->
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <!-- end col-md-4 -->
-            <div class=" about-move">
-              <div class="services-details">
-                <div class="single-services">
-                  <a class="services-icon" href=@Url.Page("/Map")>
-                    <i class="fa fa-map"></i>
-                  </a>
-                  <h4>Map Page</h4>
-                  <p>
-                    Our map page is a customized google map that provides geolocation,search functionality, and a
-                    custom search filter that would
-                    show the nearest hospitals, pharmacies, medical institutions, and doctors.
-                  </p>
-                </div>
-              </div>
-              <!-- end about-details -->
-            </div>
-          </div>
+         
 
         </div>
       </div>
     </div>
     <!-- End Service area -->
-
-
-
-
-    <!-- Start contact Area -->
-    <div id="contact" class="contact-area">
-      <div class="contact-inner area-padding">
-        <div class="contact-overly"></div>
-        <div class="container ">
-            <div class="row">
+        <div class="container">
+            <div class="row mt-4 justify-content-center">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="section-headline text-center">
-                        <h2>Become a Mentor</h2>
+                        <h2 class="text-success">Become a Mentor</h2>
+                          <h4>Are you a Professional or a Graduating Student? <br/> or Maybe you just want to volunteer? </h4>
                     </div>
                 </div>
-            </div>
           
-            <div class="col-md-12 col-sm-12 col-xs-12">
-
+                <div class="col-md-8 col-sm-12">
                 <!-- Start  contact -->
-                <form size="550">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="col-md-12 col-sm-12 col-xs-12" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <form class="form rounded shadow-lg p-5">
+                          <p>
+                            Fill up the form so you can start helping.
+                          </p>
+                    <div class="form-group ml-auto">
+                      <label for="fullname">Full Name</label>
+                      <input type="text" class="form-control" id="fullname" placeholder="First and Last Name">
                     </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <label for="exampleInputPassword1">Full name</label>
-                        <input type="Text" class="col-md-12 col-sm-12 col-xs-12" id="exampleInputPassword1" placeholder="Full Name">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input  id="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" style="width:100%">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-          
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <input type='file' name='upload'><h7>Attatch CV/Resume</h7>
-                     </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <br>
-                        <br>
-                </form>
+                    <div class="form-group">
+                      <label for="file">Resume with Cover Letter</label>
+                      <input type="file" class="form-control-file" id="file">
+                    </div>
+                    <div class="form-group form-check">
+                      <input type="checkbox" class="form-check-input" id="isvolunteer">
+                      <label class="form-check-label" for="isvolunteer">Volunteer?</label>
+                    </div>
+                    <div class="form-group">
+                    <button type="submit" class=" btn btn-primary">Submit</button>
+                    </div>
+                  </form>
                 <br>
                 <br>
             </div>
-
-            <div class="row">
+        </div>
+            <div class="row justify-content-center">
                 <br>
                 <br>
                 <!-- End Left contact -->
                 <!-- Start contact icon column -->
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="contact-icon text-center">
                         <div class="single-icon">
                             <i class="fa fa-phone"></i>
@@ -310,19 +307,19 @@
                     </div>
                 </div>
                 <!-- Start contact icon column -->
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="contact-icon text-center">
                         <div class="single-icon">
                             <i class="fas fa-envelope-open"></i>
                             <p>
                                 Email: prj56607@outlook.com<br>
-                                <span>Web: hopeline.azurewebsites.com</span>
+                                <span>Web: hopeline.azurewebsites.net</span>
                             </p>
                         </div>
                     </div>
                 </div>
                 <!-- Start contact icon column -->
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-6  col-xs-12">
                     <div class="contact-icon text-center">
                         <div class="single-icon">
                             <i class="fas fa-map-marker"></i>
@@ -335,12 +332,6 @@
                 </div>
             </div>
 
-        </div>
-      </div>
-    </div>
-        <div class="bg-light border-top container-fluid" style="bottom: 10px;">
-            <p class="float-right">Made by PRJ666-Group 07 ©2018. All Rights Reserved.</p>
-        </div>
 @section Scripts{
     <script src="~/js/jquery-3.3.1.js"></script>
     <script src="~/lib/jquery/jquery.min.js"></script>

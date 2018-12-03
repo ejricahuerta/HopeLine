@@ -1,4 +1,4 @@
-var userId = $("#userId") != null ? $("#userId").val() : null;
+var userId = $("#userId").val();
 var topicsSelected = null;
 var onCall = false;
 var hasRequestedCall = false;
@@ -14,7 +14,7 @@ var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
 
-var url = "http://hopeline.azurewebsites.net/";
+//url = "http://hopeline.azurewebsites.net/";
 var mentorMsgReceived = 0;
 var isToggleOpen = false;
 
@@ -55,7 +55,7 @@ function alertTime() {
     console.log("Alert Fired.");
     timeout = setTimeout(function () {
         $("#chatAlert > p").remove();
-        $("#chatAlert").hide();   
+        $("#chatAlert").hide();
     }, 7000);
 }
 
@@ -64,98 +64,31 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#requestedCall").hide();
-
-  //when a user sent a message
-  connection.on("ReceiveMessage", function(user, message) {
-    console.log("Receive Message");
-    addChatBubble(user, message);
-      mentorMsgReceived++;
-      
-    $("#message").animate(
-      {
-        scrollTop: $("#message").prop("scrollHeight")
-      },
-      0
-    );
-    $("#chatbox").animate(
-      {
-        scrollTop: $("#chatbox").prop("scrollHeight")
-      },
-      0
-    );
-  });
-
-  //when a room is created
-  connection.on("Room", function(roomId) {
-    room = roomId;
-    connection.invoke("LoadMessage", room);
-    $("#sendArea").removeClass("d-none");
-    $("#requestChat").hide();
-    $("#sendArea").show();
-    $("#chatbox").show();
-    $("#loading").hide();
-    $("#mentorFound").click();
-    $("#toggleChat").removeClass("disabled");
-    timeout = null;
-  });
-
-  //register for users
-  if (!isUser) {
-    //notify mentors
-    notifyMentor();
-    //notify mentor for incoming call
-    connection.on("CallMentor", function() {
-      console.log("Notifying");
-      $("#incomingCall").show();
-      $("#requestedCall").show();
-      mentorTimeOut = setTimeout(function() {
-        $("#incomingCall").hide();
         window.open(
             url + "VideoChat?roomId=" + room + "&userId=" + userId,
             "HopeLine-Call",
             "_blank",
             "toolbar=0,menubar=0"
         );
-        timeout = null;
     });
-
-
-    //When Topics are selected
-    connection.on("Topics", function (topics) {
-        if (topics != null) {
-            topicsSelected = topics;
-            topics.forEach(function (topic) {
-                $("#topics").append('<tr>' + topic + '</tr>');
-            });
-        }
-        else {
-            $("#topics").append('<tr>' + "No Topic Selected" + '</tr>')
-        }
-    });
-
 
     //when a user sent a message
     connection.on("ReceiveMessage", function (user, message) {
         console.log("Receive Message");
         addChatBubble(user, message);
-        $("#message").animate(
-            {
-                scrollTop: $("#message").prop("scrollHeight")
-            },
-            0
-        );
-        $("#chatbox").animate(
-            {
-                scrollTop: $("#chatbox").prop("scrollHeight")
-            },
-            0
-        );
+        mentorMsgReceived++;
+
+        $("#message").animate({
+            scrollTop: $("#message").prop("scrollHeight")
+        }, 0);
+        $("#chatbox").animate({
+            scrollTop: $("#chatbox").prop("scrollHeight")
+        }, 0);
     });
 
     //when a room is created
     connection.on("Room", function (roomId) {
         room = roomId;
-        
         connection.invoke("LoadMessage", room);
         $("#sendArea").removeClass("d-none");
         $("#requestChat").hide();
@@ -165,32 +98,38 @@ function registerHub() {
         $("#mentorFound").click();
         $("#toggleChat").removeClass("disabled");
         timeout = null;
-        if (topicsSelected == null && isUser) {
-            console.log("topic  must pop")
-            $("#chatAlert").append("<p>You can select topics you want to talk about.</p>");
-            alertTime();
-        }
     });
 
+    //When Topics are selected
+    connection.on("Topics", function (topics) {
+        if (topics != null) {
+            topicsSelected = topics;
+            topics.forEach(function (topic) {
+                $("#topics").append('<tr>' + topic + '</tr>');
+            });
+        } else {
+            $("#topics").append('<tr>' + "No Topic Selected" + '</tr>')
+        }
+    });
     //register for users
     if (!isUser) {
         //notify mentors
         notifyMentor();
         //notify mentor for incoming call
-        connection.on("CallMentor", function () {
+        connection.on("CallMentor", function() {
             console.log("Notifying");
             $("#incomingCall").show();
             $("#requestedCall").show();
-            mentorTimeOut = setTimeout(function () {
-                $("#incomingCall").hide();
+            mentorTimeOut = setTimeout(function() {
+              $("#incomingCall").hide();
             }, 40000);
-        });
+          });
     } else {
         //notify user
         notifyUser();
     }
-}
 
+}
 // starts the connection
 function startConnection() {
     connection
@@ -229,81 +168,78 @@ function startConnection() {
 
 //notifying user func
 function notifyUser() {
-  connection.on("NotifyUser", function(code) {
-    //if positive then remove loading and pop the send area
-    console.log("code:  " + code);
-    if (code == 1) {
-      isLoggedOut = false;
-      $("#loading").hide();
-      $("#requestChat").hide();
-      $("#sendArea").show();
-      $("#chatbox").show();
-      //if 0 then keep notify the mentor
-    } else if (code == 0) {
-      if (isLoggedOut) {
-        connection.close();
-      } else {
-          $("#sendArea").hide();
-
-          $("#openLoading").click();
-          $("#requestChat").show();
-          $("#requestChat").click(function () {
-              window.reload();
-          });
+    connection.on("NotifyUser", function (code) {
+        //if positive then remove loading and pop the send area
+        console.log("code:  " + code);
+        if (code == 1) {
+            isLoggedOut = false;
+            $("#loading").hide();
+            $("#requestChat").hide();
+            $("#sendArea").show();
+            $("#chatbox").show();
+            //if 0 then keep notify the mentor
+        } else if (code == 0) {
+            $("#sendArea").hide();
+            $("#openLoading").click();
+            $("#requestChat").show();
+            $("#requestChat").click(function () {
+                window.reload();
+            });
             $("chatbox").hide();
             findTime();
-      }
-      // else  chat is disconnected
-    } else {
-      $("chatbox").hide();
-      $("sendArea").hide();
-        $("#requestChat").show();
-        $("#requestChat").click(function () {
-            window.reload();
-        });
-      //$("#loading").show();
-      findTime();
-      $("#modaltrigger").click();
-    }
-  });
+
+        } else {
+            $("chatbox").hide();
+            $("sendArea").hide();
+            $("#requestChat").show();
+            $("#requestChat").click(function () {
+                window.reload();
+            });
+            //$("#loading").show();
+            findTime();
+            $("#modaltrigger").click();
+        }
+    });
 
 }
 
 //notifying mentors func
 function notifyMentor() {
-  connection.on("NotifyMentor", function(user, userConnectionId, code) {
-    if (code == null) {
-      console.log("User Request Id :" + user);
-      $("#incominguser").append(
-        '<div class="alert alert-info " role=" alert ">' +
-          user +
-          ' is looking for company!<input id="mentorAccept" type="button" class="btn btn-link" value="Accept?"/></div>'
-      );
-      $("#mentorAccept").on("click", function(event) {
-        console.log("Mentor Accepting");
-        connection
-          .invoke("AcceptUserRequest", userId, user, userConnectionId)
-          .catch(function(err) {
-            console.log(err.toString());
-          });
-        $(this)
-          .parent()
-          .remove();
-        event.preventDefault();
-      });
-    } else {
-      $("#chatbox").append(
-        '<div class = "alert alert-info" role = "alert" >' +
-          "User has DISCONNECTED!" +
-          "</div>"
-      );
-      connection.invoke("RemoveUser", room, isUser);
-      alert("User has DISCONNECTED");
-      setTimeout(function() {
-        location.reload();
-      }, 500);
-    }
-  });
+
+
+    connection.on("NotifyMentor", function (user, userConnectionId, code) {
+        if (code == null) {
+            console.log("User Request Id :" + user);
+            $("#incominguser").append(
+                '<div class="alert alert-info " role=" alert ">' +
+                user +
+                ' is looking for company!<input id="mentorAccept" type="button" class="btn btn-link" value="Accept?"/></div>'
+            );
+            $("#mentorAccept").on("click", function (event) {
+                console.log("Mentor Accepting");
+                connection
+                    .invoke("AcceptUserRequest", userId, user, userConnectionId)
+                    .catch(function (err) {
+                        console.log(err.toString());
+                    });
+                $(this)
+                    .parent()
+                    .remove();
+                event.preventDefault();
+            });
+        } else {
+            $("#chatbox").append(
+                '<div class = "alert alert-info" role = "alert" >' +
+                "User has DISCONNECTED!" +
+                "</div>"
+            );
+            connection.invoke("RemoveUser", room, isUser);
+            alert("User has DISCONNECTED");
+            setTimeout(function () {
+                location.reload();
+            }, 500);
+        }
+    });
 }
 
 //adding each messages
@@ -344,11 +280,9 @@ function addChatBubble(user, message) {
 
 //Received messages for mentor chat
 setInterval(function () {
-    var isNull = $("#toggleChat > span").val() == null ? true : false;
-
-    if (isNull) {
+    if ($("#toggleChat > span").val() == null) {
         $("#toggleChat").append(
-            '<span class="badge badge-light" id="sp">' +
+            '<span class="badge badge-light ml-1 mb-1" id="sp">' +
             mentorMsgReceived +
             '</span>');
     } else {
@@ -358,29 +292,29 @@ setInterval(function () {
         } else {
             $("#sp").show();
         }
-        
+
     }
-   
-
-},100);
-    
 
 
+}, 100);
 
-$(function() {
-  if (userId != null) {
-    console.log("UserId = " + userId);
-    console.log("pin = " + room);
 
-    connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-      // .withUrl("http://localhost:5000/v2/chatHub")
-      .build();
-    //register all methods
-    registerHub();
-    //start connection
-    startConnection();
-  }
+
+
+$(function () {
+    if (userId != null) {
+        console.log("UserId = " + userId);
+        console.log("pin = " + room);
+
+        connection = new signalR.HubConnectionBuilder()
+            //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+            .withUrl("http://localhost:5000/v2/chatHub")
+            .build();
+        //register all methods
+        registerHub();
+        //start connection
+        startConnection();
+    }
 });
 
 //When user send a message
@@ -473,30 +407,26 @@ $("#toggleChat").click(function () {
     } else {
         isToggleOpen = false;
     }
-  $("#message").animate(
-    {
-      scrollTop: $("#message").prop("scrollHeight")
-    },
-    0
-  );
-  $("#chatbox").animate(
-    {
-      scrollTop: $("#chatbox").prop("scrollHeight")
-    },
-    0
+    $("#message").animate({
+            scrollTop: $("#message").prop("scrollHeight")
+        },
+        0
+    );
+    $("#chatbox").animate({
+            scrollTop: $("#chatbox").prop("scrollHeight")
+        },
+        0
     );
     mentorMsgReceived = 0;
 });
 
 $("#messageInput").click(function () {
-    $("#message").animate(
-        {
+    $("#message").animate({
             scrollTop: $("#message").prop("scrollHeight")
         },
         0
     );
-    $("#chatbox").animate(
-        {
+    $("#chatbox").animate({
             scrollTop: $("#chatbox").prop("scrollHeight")
         },
         0
@@ -508,7 +438,7 @@ window.onbeforeunload = function (event) {
     var rate = setInterval(function () {
         $("#ratemodal").click();
     }, 100);
-    #("#happy").click(function () {
+    $("#happy").click(function () {
         clearInterval(rate);
     })
     console.log("fffffffffffffffffffffffffffffffff")

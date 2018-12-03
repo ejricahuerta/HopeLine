@@ -76,8 +76,8 @@
                 </div>
                 <div id="sendArea" class="col-11 " style="bottom:10px;position:absolute;right:10px;display:none;">
                     <div class="row justify-content-center">
-                        <textarea id="messageInput" class="col-md-9 col-xs-12 form-control" placeholder="type your message..."
-                                  rows="1"></textarea>
+                        <textarea id="messageInput" class="col-md-9 col-xs-12 form-control" title="" placeholder="type your message..."
+                                  rows="1" maxlength="1000"></textarea>
 
                         <button id="sendButton" title="Send Message" class="col-sm-2 d-sm-block d-none btn btn-outline-light m-1">
 
@@ -89,6 +89,7 @@
         </div>
 
     </div>
+
     <div class="modal" id="loading">
         Waiting for Mentor...
         <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" />
@@ -122,20 +123,8 @@
     <p hidden><a id="ratemodal" href="#rating" rel="modal:open"></a></p>
 </section>
 
-<div class="modal" id="loading">
-    Waiting for Mentor...
-    <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" />
-    <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
-    <a href="#" rel="modal:close" id="mentorFound" hidden></a>
-</div>
-<p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
-<div id="disconnection" class="modal">
-    <p>You are disconnected from the chat</p>
-    <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
-</div>
-<p hidden><a id="modaltrigger" href="#disconnection" rel="modal:open"></a></p>
-
 @section Scripts {
+
     <script src="~/js/chat-v1.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script>

@@ -1,32 +1,29 @@
-﻿
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
-namespace HopeLine.DataAccess.Entities
-{
-        public enum Account
-        {
-            Admin, Mentor, User, Guest
-        }
+namespace HopeLine.DataAccess.Entities {
+    public enum Account {
+        Admin,
+        Mentor,
+        User,
+        Guest
+    }
 
     //TODO : create own Identity User
 
     /// <summary>
     ///  This class is an extension of Identity provided by netcore 2 identity framework
     /// </summary>
-    public class HopeLineUser : IdentityUser
-    {
+    public class HopeLineUser : IdentityUser {
         /// <summary>
         /// These are types of user
         /// </summary>
-        public HopeLineUser()
-        {
-            DateAdded = DateTime.UtcNow.ToString();
-            Activities = new List<Activity>();
-            if (AccountType == Account.Guest)
-            {
+        public HopeLineUser () {
+            DateAdded = DateTime.Now.ToString ("MM/dd/yyyy HH:mm:ss");
+            Activities = new List<Activity> ();
+            if (AccountType == Account.Guest) {
                 Profile = null;
             }
         }
@@ -34,7 +31,7 @@ namespace HopeLine.DataAccess.Entities
         public Account AccountType { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
+        [DataType (DataType.DateTime)]
         public string DateAdded { get; set; }
 
         public Profile Profile { get; set; }

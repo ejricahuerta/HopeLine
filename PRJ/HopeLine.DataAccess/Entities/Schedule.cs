@@ -12,9 +12,7 @@ namespace HopeLine.DataAccess.Entities
     public class Schedule : BaseEntity
     {
         //TODO : need to decide about this class func - Eduardo
-
         public bool Available { get; set; }
-
         public ICollection<Shift> Shifts { get; set; }
 
     }

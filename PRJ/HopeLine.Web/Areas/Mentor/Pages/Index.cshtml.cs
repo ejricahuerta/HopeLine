@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using HopeLine.DataAccess.Entities;
 using HopeLine.Service.Interfaces;
 using HopeLine.Web.Areas.Identity.Pages.Account.Manage;
@@ -12,7 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using static HopeLine.Web.Areas.Identity.Pages.Account.ExternalLoginModel;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HopeLine.Web.Areas.Mentor.Pages
 {
@@ -48,6 +46,11 @@ namespace HopeLine.Web.Areas.Mentor.Pages
             _logger = logger;
         }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
+        [BindProperty]
+        public InputModel Input { get; set; }
 
         [BindProperty]
         public string UserName { get; set; }
@@ -62,17 +65,16 @@ namespace HopeLine.Web.Areas.Mentor.Pages
         public List<SpecializationViewModel> Specializations { get; set; }
 
         /*For Change Password*/
-        [BindProperty]
-        public InputModel Input { get; set; }
 
-        [TempData]
-        public string StatusMessage { get; set; }
         /* Password Change End */
 
         /*Conversation START*/
         [BindProperty]
         public List<ConversationViewModel> Conversations { get; set; }
         /*Conversation END*/
+
+        [BindProperty]
+        public ConversationViewModel LastConversation { get; set; }
 
         /*Change Password START*/
         public class InputModel
@@ -153,12 +155,15 @@ namespace HopeLine.Web.Areas.Mentor.Pages
                 UserId = c.UserId,
                 MentorId = c.MentorId,
                 Minutes = c.Minutes,
-                DateOfConversation = c.DateOfConversation.ToString ()
-            }).ToList ();
-            System.Console.WriteLine ("Convo count = " + Conversations.Count ());
-            foreach (var c in Conversations) {
-                System.Console.WriteLine ("User: " + c.UserId);
-                System.Console.WriteLine ("mentor: " + c.MentorId);
+                DateOfConversation = c.DateOfConversation.ToString()
+            }).OrderBy(d => d.DateOfConversation).ToList();
+
+
+            System.Console.WriteLine("Convo count = " + Conversations.Count());
+            foreach (var c in Conversations)
+            {
+                System.Console.WriteLine("User: " + c.UserId);
+                System.Console.WriteLine("mentor: " + c.MentorId);
             }
             return Page();
         }
