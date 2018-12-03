@@ -5,8 +5,77 @@ body {
     padding-bottom: 20px;
 }
 
+a {
+    color: #00CED1
+}
+
+a:hover {
+    color: #3EC1D5 !important;
+
+}
+
 
 /*Bootstrap Navbar Override*/
+
+.text-success {
+    color: #214F4B !important;
+}
+
+.text-primary {
+    color: #102542 !important;
+}
+
+.bg-primary {
+    color: #102542;
+}
+
+.border-success {
+    border-color: #2AFC98 !important;
+}
+
+.border-primary {
+    border-color: #00CED1 !important;
+}
+
+
+
+
+.btn.btn-lg {
+    padding: 50px;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+.btn-primary {
+    background-color: #47A8BD;
+    border-color: #47A8BD;
+}
+
+.btn-success {
+    background-color: #16C172;
+    border-color: #2AFC98;
+}
+
+.btn-success:hover {
+    background-color: #2AFC98;
+    border-color: #2AFC98;
+}
+
+
+.btn-primary:hover {
+    color: #000 !important;
+    background-color: #00CED1;
+    border-color: #00CED1;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #2AFC98;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem #2AFC98;
+}
+
 .list-group-item {
     position: relative;
     display: block;
@@ -53,3 +122,5 @@ body {
 input[type=checkbox] {
     -webkit-appearance: checkbox;
 }
+
+s
