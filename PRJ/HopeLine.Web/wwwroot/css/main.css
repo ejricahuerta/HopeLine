@@ -3,7 +3,7 @@
 
 body {
     padding-top: 50px;
-	font-size: 16px;
+    font-size: 16px;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -13,19 +13,19 @@ body {
 
 }
 
-.header{
-	overflow: hidden;
+.header {
+    overflow: hidden;
 }
 
 
-.well .well{
+.well .well {
     background-color: white;
-   }
- 
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
-  padding-left: 15px; 
-  padding-right: 15px; 
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -35,15 +35,9 @@ body {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
 
-
-ul, li {
+ul,
+li {
     padding: 0;
     margin: 0;
 }
@@ -54,7 +48,7 @@ li {
 
 /*Navbar Settings*/
 
-.fixed-top{
+.fixed-top {
     position: fixed;
     top: 0;
     right: 0;
@@ -63,7 +57,7 @@ li {
 
 }
 
-.bg-dark{
+.bg-dark {
     background-color: white;
 
 }
@@ -75,17 +69,17 @@ li {
 
 .navbar-inverse {
     background-color: lightgreen;
-	border-color: lightgreen;
+    border-color: lightgreen;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-	color: white;
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
 }
 
 
 .nav-link {
-display: block;
-padding: .5rem 4rem;
+    display: block;
+    padding: .5rem 4rem;
 
 }
 
@@ -105,6 +99,7 @@ padding: .5rem 4rem;
     color: white;
     border-color: white;
 }
+
 .navbar-toggler {
     padding: .25rem .75rem;
     font-size: 1.25rem;
@@ -114,22 +109,31 @@ padding: .5rem 4rem;
     border-radius: .25rem;
 }
 
- button, select {
+button,
+select {
     text-transform: none;
 }
-button, input {
+
+button,
+input {
     overflow: visible;
 }
-button, input, optgroup, select, textarea {
+
+button,
+input,
+optgroup,
+select,
+textarea {
     margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
 }
+
 button {
     border-radius: 0;
 }
- 
+
 
 
 /*********************/
@@ -141,22 +145,22 @@ button {
     height: 100vh;
 }
 
-    .fade-carousel .carousel-inner .item {
-        height: 100vh;
-    }
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
 
-    .fade-carousel .carousel-indicators > li {
-        margin: 0 2px;
-        background-color: #f39c12;
-        border-color: #f39c12;
-        opacity: .7;
-    }
+.fade-carousel .carousel-indicators>li {
+    margin: 0 2px;
+    background-color: #f39c12;
+    border-color: #f39c12;
+    opacity: .7;
+}
 
-        .fade-carousel .carousel-indicators > li.active {
-            width: 10px;
-            height: 10px;
-            opacity: 1;
-        }
+.fade-carousel .carousel-indicators>li.active {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+}
 
 /********************************/
 /*          Hero Headers        */
@@ -169,20 +173,20 @@ button {
     color: #fff;
     text-align: center;
     text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
-    -webkit-transform: translate3d(-50%,-50%,0);
-    -moz-transform: translate3d(-50%,-50%,0);
-    -ms-transform: translate3d(-50%,-50%,0);
-    -o-transform: translate3d(-50%,-50%,0);
-    transform: translate3d(-50%,-50%,0);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, .75);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -o-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
 }
 
-    .hero h1 {
-        font-size: 6em;
-        font-weight: bold;
-        margin: 0;
-        padding: 0;
-    }
+.hero h1 {
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
 
 .fade-carousel .carousel-inner .item .hero {
     opacity: 0;
@@ -231,11 +235,11 @@ button {
     margin: 20px auto;
 }
 
-.btn-success{
-	display: block! important;
-	margin-left:auto !important;
-	margin-right: auto !important;
-	
+.btn-success {
+    display: block ! important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+
 }
 
 
@@ -284,9 +288,9 @@ footer {
     background-color: lightgreen;
     min-height: 350px;
     font-family: 'Open Sans', sans-serif;
-    width:100%;
+    width: 100%;
 
-    
+
 }
 
 .footer-col {
@@ -307,49 +311,49 @@ footer {
     margin-bottom: 15px;
 }
 
-    .footer-col p i {
-        width: 20px;
-        color: #999;
-    }
+.footer-col p i {
+    width: 20px;
+    color: #999;
+}
 
 .footer-ul {
     list-style-type: none;
-    padding-left: 0; 
+    padding-left: 0;
     margin-left: 2px;
 }
 
-    .footer-ul li {
-        line-height: 29px;
-        font-size: 12px;
-    }
+.footer-ul li {
+    line-height: 29px;
+    font-size: 12px;
+}
 
-        .footer-ul li a {
-            color: #a0a3a4;
-            transition: color 0.2s linear 0s, background 0.2s linear 0s;
-        }
+.footer-ul li a {
+    color: #a0a3a4;
+    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+}
 
-    .footer-ul i {
-        margin-right: 10px;
-    }
+.footer-ul i {
+    margin-right: 10px;
+}
 
-    .footer-ul li a:hover {
-        transition: color 0.2s linear 0s, background 0.2s linear 0s;
-        color: #ff670f;
-    }
+.footer-ul li a:hover {
+    transition: color 0.2s linear 0s, background 0.2s linear 0s;
+    color: #ff670f;
+}
 
 .copyright {
     min-height: 40px;
     background-color: lightgreen;
-    
+
 
 }
 
-    .copyright p {
-        text-align: left; 
-        color: #FFF;
-        padding: 10px 0;
-        margin-bottom: 0;
-    }
+.copyright p {
+    text-align: left;
+    color: #FFF;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
 
 .heading7 {
     font-size: 21px;
@@ -364,10 +368,10 @@ footer {
     line-height: 20px;
 }
 
-    .post p span {
-        display: block;
-        color: #8f8f8f;
-    }
+.post p span {
+    display: block;
+    color: #8f8f8f;
+}
 
 .bottom_ul {
     list-style-type: none;
@@ -375,22 +379,22 @@ footer {
     margin-bottom: 0;
 }
 
-    .bottom_ul li {
-        float: left;
-        line-height: 40px;
-    }
+.bottom_ul li {
+    float: left;
+    line-height: 40px;
+}
 
-        .bottom_ul li:after {
-            content: "/";
-            color: #FFF;
-            margin-right: 8px;
-            margin-left: 8px;
-        }
+.bottom_ul li:after {
+    content: "/";
+    color: #FFF;
+    margin-right: 8px;
+    margin-left: 8px;
+}
 
-        .bottom_ul li a {
-            color: #FFF;
-            font-size: 12px;
-        }
+.bottom_ul li a {
+    color: #FFF;
+    font-size: 12px;
+}
 
 .social-icon {
     width: 30px;
@@ -425,30 +429,31 @@ footer {
 }
 
 /*Padding and adjustments to properly align elements for class py-5*/
-.py-5, .py-6{
- 
-  padding-top: 8rem !important;
-  padding-bottom: 8rem !important;
-  background: no-repeat center center scroll;
-  
+.py-5,
+.py-6 {
+
+    padding-top: 8rem !important;
+    padding-bottom: 8rem !important;
+    background: no-repeat center center scroll;
+
 }
 
 
 
-.d-block{
-	display: block !important;
+.d-block {
+    display: block !important;
 }
 
 .d-block {
-	display: block !important;
+    display: block !important;
 }
 
 
 
-.submit{
-	
-	color:white;
-	background-color:lightgreen;
+.submit {
+
+    color: white;
+    background-color: lightgreen;
 }
 
 
@@ -459,4 +464,5 @@ footer {
 element.style {
     margin-top: 60px;
 }
+
 /*  FOOTER CSS END  */
