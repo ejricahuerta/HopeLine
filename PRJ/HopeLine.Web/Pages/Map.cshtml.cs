@@ -8,16 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HopeLine.Web.Pages
-{
-    public class MapModel : PageModel
-    {
+namespace HopeLine.Web.Pages {
+    public class MapModel : PageModel {
         private readonly ICommonResource _commonResource;
         public readonly IUserService _userService;
         public readonly UserManager<HopeLineUser> _userManager;
 
-        public MapModel(ICommonResource commonResources, IUserService userService, UserManager<HopeLineUser> userManager)
-        {
+        public MapModel (ICommonResource commonResources, IUserService userService, UserManager<HopeLineUser> userManager) {
             _commonResource = commonResources;
             _userService = userService;
             _userManager = userManager;
@@ -26,27 +23,20 @@ namespace HopeLine.Web.Pages
         [BindProperty]
         public bool isUser { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
-        {
-            HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
+        public async Task<IActionResult> OnGetAsync () {
+            HopeLineUser CurrentUser = await _userManager.GetUserAsync (User);
 
-            if (CurrentUser != null)
-            {
-                if (CurrentUser.AccountType == DataAccess.Entities.Account.User || CurrentUser.AccountType == DataAccess.Entities.Account.Guest)
-                {
+            if (CurrentUser != null) {
+                if (CurrentUser.AccountType == DataAccess.Entities.Account.Admin || CurrentUser.AccountType == DataAccess.Entities.Account.Mentor) {
                     isUser = true;
-                }
-                else
-                {
+                } else {
                     isUser = false;
                 }
-            }
-            else
-            {
+            } else {
                 isUser = true;
             }
 
-            return Page();
+            return Page ();
         }
     }
 }
