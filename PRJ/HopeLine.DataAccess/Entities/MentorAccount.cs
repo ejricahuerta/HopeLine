@@ -12,13 +12,14 @@ namespace HopeLine.DataAccess.Entities
         /// </summary>
         public MentorAccount()
         {
+        
             AccountType = Account.Mentor;
             MentorSpecializations = new List<MentorSpecialization>();
             Conversations = new List<Conversation>();
             Schedules = new List<Schedule>();
         }
+
         public string SIN { get; set; }
-        //TODO : add more properties like availabilitie and Schedule
         public ICollection<Schedule> Schedules { get; set; }
         public ICollection<Conversation> Conversations { get; set; }
         public ICollection<MentorSpecialization> MentorSpecializations { get; set; }
