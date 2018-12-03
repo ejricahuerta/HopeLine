@@ -210,7 +210,7 @@
             model.UserName= $('#UserName').val();
                 model.FirstName=$('#FirstName').val();
                 model.LastName= $('#LastName').val();
-                model.Phone= $('#Phone').val();
+                model.Phone= (int)$('#Phone').val();
                 model.SIN= $('#SIN').val();
             //console.log(model["UserName"]);
             data = JSON.stringify(model);
