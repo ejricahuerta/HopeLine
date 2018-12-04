@@ -187,7 +187,7 @@ namespace HopeLine.API.Hubs.v2 {
             }
         }
 
-        public async Task AddTopics (string roomId, List<int> ids) {
+        public async Task AddTopics (string roomId, IList<int> ids) {
             if (ids.Count () != 0) {
                 try {
                     //get topics from service
@@ -200,30 +200,25 @@ namespace HopeLine.API.Hubs.v2 {
                             topics.Add (topic);
                         }
                     }
-                    if (topics != null) {
-                        await Clients.Group (roomId).SendAsync ("Topics", topics.Select (t => t.Name));
-                    } else {
-
-                        _logger.LogInformation ("No topics Selected");
-
-                    }
-                } catch (Exception) {
-                    _logger.LogWarning ("Unable to Fetch Topics");
-
+                    await Clients.Group (roomId).SendAsync ("Topics", topics.Select (t => t.Name));
                 }
-            } else {
-                _logger.LogInformation ("no Topics Selected");
-            }
-        }
+            } catch (Exception) {
+                _logger.LogWarning ("Unable to Fetch Topics");
 
-        public async Task Rate (string roomId, int rating) {
-            var conversation = _communicationService.GetConversationByPIN (roomId);
-            if (conversation == null) {
-                Rating rate = (Rating) rating;
-                conversation.Rating = rate;
-                _communicationService.EditConversation (conversation);
             }
-
+        } else {
+            _logger.LogInformation ("no Topics Selected");
         }
     }
+
+    public async Task Rate (string roomId, int rating) {
+        var conversation = _communicationService.GetConversationByPIN (roomId);
+        if (conversation == null) {
+            Rating rate = (Rating) rating;
+            conversation.Rating = rate;
+            _communicationService.EditConversation (conversation);
+        }
+
+    }
+}
 }
