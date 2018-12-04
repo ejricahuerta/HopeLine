@@ -14,7 +14,7 @@ var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
 var topicIds = [];
-url = "http://hopeline.azurewebsites.net/";
+url = "https://hopeline.azurewebsites.net/";
 var mentorMsgReceived = 0;
 var isToggleOpen = false;
 var hasRequested = false;
