@@ -137,7 +137,6 @@ namespace HopeLine.Web.Areas.Mentor.Pages {
                     PIN = c.PIN,
                     UserId = c.UserId,
                     MentorId = c.MentorId,
-                    Minutes = c.Minutes,
                     DateOfConversation = c.DateOfConversation.ToString (),
                     Rating = c.Rating
             }).OrderBy (d => d.DateOfConversation).ToList ();

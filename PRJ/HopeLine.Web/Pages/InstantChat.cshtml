@@ -28,7 +28,7 @@
         <img src="~/images/milkyway.jpg" class="img img-fluid">
     </div>
     <div  id="ChatWidget" class="row m-1 shadow-lg rounded-top" style="display:none;">
-        <div id="topicsOnLeft" class="col-3 border-right d-none d-md-block text-center text-white" style="height:480px;  background-color: #102542;dipslay:none;">
+        <div id="topicsOnLeft" class="col-3 border-right d-none  d-md-block text-center text-white" style="height:480px;  background-color: #102542;>
             <h4 class="text-white">Topics</h4>
             @foreach (var item in Model.Topics)
             {
@@ -42,7 +42,7 @@
             }
             <button id="updateTopics" class="btn btn-primary mt-2"  title="Add topics you want to talk about with Mentor">Update</button>
         </div>
-        <div id="topicsOnTop" class="col-md-12 d-md-none d-sm-block text-white pt-2" style="background-image: linear-gradient(to right, #102542, #235789);display:none;">
+        <div id="topicsOnTop" class="col-12 d-sm-block d-md-none text-white pt-2" style="background-image: linear-gradient(to right, #102542, #235789)">
             <div class="btn-group ml-2">
                 <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Topics
