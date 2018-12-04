@@ -106,23 +106,25 @@ function registerHub() {
     $("#toggleChat").removeClass("disabled");
     timeout = null;
   });
-
   //When Topics are selected
   connection.on("Topics", function (topics) {
     var alltopics = "";
+    $("#topics").show();
     if (topics != null) {
-      $("#topicsOnLeft").hide();
-      $("#topicsOnTop").hide();
       topicsSelected = topics;
       topics.forEach(function (topic) {
         alltopics = alltopics + " " + topic;
       });
       $("#topics").append(alltopics);
+      $("#topicsOnLeft").hide();
+      $("#topicsOnTop").hide();
     } else {
       $("#topicsOnLeft").show();
       $("#topicsOnTop").show();
       $("#topics").append("No Topic Selected");
+
     }
+    $("")
   });
   //register for users
   if (!isUser) {
@@ -164,11 +166,15 @@ function startConnection() {
           console.log("Unable to add mentor : " + err.toString());
         });
       }
-      // load message regardless
-      connection.invoke("LoadMessage", room).catch(function (err) {
-        return console.error(err.toString());
-      });
+
       if (room == null) {
+        // load message regardless
+        connection.invoke("LoadMessage", room).catch(function (err) {
+          return console.error(err.toString());
+        });
+        connection.invoke("GetTopics", room, isUser).catch(function (err) {
+          return console.error(err.toString());
+        });
         $("#chat").removeClass("show");
         $("#toggleChat").addClass("disabled");
       } else {
@@ -425,13 +431,17 @@ $("#messageInput").click(function () {
 });
 
 $("input[type=checkbox]").on("click", function () {
-  console.log("Selected: " + $("input:checked").val());
-  topicIds.push(parseInt($("input:checked").val()));
+  if ($("input:checked").val() !== null) {
+    console.log("Selected: " + $("input:checked").val());
+    topicIds.push(parseInt($("input:checked").val()));
+  }
 });
 
 $("#updateTopics").click(function () {
   if (topicIds.length > 0) {
     connection.invoke("AddTopics", room, topicIds);
+    $("#topicsOnLeft").hide();
+    $("#topicsOnTop").hide();
   }
 });
 
@@ -441,16 +451,16 @@ $("#loading").on("hidden.bs.modal", function (e) {
     alertTime();
     setTimeout(function () {
       window.location.replace(url);
-    }, 7000);
+    }, 3000);
   }
 });
 
 //Rate Mnetor
-window.onbeforeunload = function (event) {
-  var rate = setInterval(function () {
-    $("#ratemodal").modal("toggle");
-  }, 100);
-  $("#happy").click(function () {
-    clearInterval(rate);
-  });
-};
+// window.onbeforeunload = function (event) {
+//   var rate = setInterval(function () {
+//     $("#ratemodal").modal("toggle");
+//   }, 100);
+//   $("#happy").click(function () {
+//     clearInterval(rate);
+//   });
+// };
