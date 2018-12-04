@@ -1,5 +1,3 @@
-
-
 const Video = Twilio.Video;
 var activeRoom;
 var previewTracks;
@@ -16,9 +14,6 @@ var remoteVideoShow = false;
 var localVideoMedia;
 var localAudioMedia;
 
-
-
-
 var option = {
     name: $("#roomId").val(), // Getting the room name to connect
     audio: false, //Stop audio and video from connecting to the room automatically
@@ -26,26 +21,26 @@ var option = {
 }
 
 Video.connect($("#token").val(), option).then(room => { // Connect the to room
-    
+
     console.log('Connected to Room "%s"', room.name);
     console.log('User name "%s"', userId);
-    
 
-    
+
+
     Video.createLocalVideoTrack().then(function (videoTrack) { //Creating Video media
         localVideoMedia = videoTrack; //Saving the video media to use later
         $("#local-media").append(videoTrack.attach()); //Adding video media to our webpage
         localVideoMedia.disable(); //Disable it
     });
-    Video.createLocalAudioTrack().then(function(audioTrack) { //Creating audio media
+    Video.createLocalAudioTrack().then(function (audioTrack) { //Creating audio media
         localAudioMedia = audioTrack; //Saving the audio media to use later
         $("#local-media").append(audioTrack.attach()); //Adding audio media to our webpage
-        localAudioMedia.disable();//Disable it
+        localAudioMedia.disable(); //Disable it
     })
 
     $("#close-button").click(function () { //When the click on the close icon, disconnect from room and close window
         room.disconnect();
-        alert("Video Disconnected");
+
         window.close();
     });
 
@@ -62,15 +57,18 @@ Video.connect($("#token").val(), option).then(room => { // Connect the to room
     });
 
 
-    $("#video-button").click(function() { //When clicking the video button
+    $("#video-button").click(function () { //When clicking the video button
         if (localVideoShow) { //If video enabled
             localVideoMedia.disable(); //Disable self video from own screen
             localVideoShow = false;
+            $("#local-media > video ").remove();
+
             room.localParticipant.unpublishTrack(localVideoMedia); //Disable self video from room
         } else { //If video showing
             localVideoMedia.enable(); //Enable self video to own screen
             room.localParticipant.publishTrack(localVideoMedia); //Enable self video to room
             localVideoShow = true;
+            $("#local-media").append(localVideoMedia.attach());
         }
     });
 
@@ -94,8 +92,8 @@ Video.connect($("#token").val(), option).then(room => { // Connect the to room
         console.log("Already in Room: '" + participant.identity + "'");
     });
 
-    
-    
+
+
     room.participants.forEach(participantConnected);
     room.on('participantConnected', participantConnected); //When someone connects to room, run 'participantConnected function
 
@@ -136,11 +134,11 @@ function participantDisconnected(participant) { //When someone disconnects, clos
     console.log('Participant "%s" disconnected', participant.identity);
 }
 
-function trackSubscribed(div, track) {//Attach media to screen
+function trackSubscribed(div, track) { //Attach media to screen
     div.append(track.attach());
 }
 
-function trackUnsubscribed(track) {//Remove media from screen
+function trackUnsubscribed(track) { //Remove media from screen
 
     track.detach().forEach(element => element.remove());
 }

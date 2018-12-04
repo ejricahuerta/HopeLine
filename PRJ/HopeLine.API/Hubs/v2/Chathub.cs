@@ -11,11 +11,6 @@ namespace HopeLine.API.Hubs.v2 {
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
-    public enum MentorStatus {
-        Finding = 0,
-        Connected = 1,
-        Error = -1
-    }
 
     public class ChatHub : Hub, IChat, ICall {
         private bool isConnected = false;
@@ -201,24 +196,28 @@ namespace HopeLine.API.Hubs.v2 {
                         }
                     }
                     await Clients.Group (roomId).SendAsync ("Topics", topics.Select (t => t.Name));
+                } catch (Exception) {
+                    _logger.LogWarning ("Unable to Fetch Topics");
+
                 }
-            } catch (Exception) {
-                _logger.LogWarning ("Unable to Fetch Topics");
-
+            } else {
+                _logger.LogInformation ("No Topics Selected");
             }
-        } else {
-            _logger.LogInformation ("no Topics Selected");
-        }
-    }
-
-    public async Task Rate (string roomId, int rating) {
-        var conversation = _communicationService.GetConversationByPIN (roomId);
-        if (conversation == null) {
-            Rating rate = (Rating) rating;
-            conversation.Rating = rate;
-            _communicationService.EditConversation (conversation);
         }
 
+        public void Rate (string roomId, int rating) {
+            var conversation = _communicationService.GetConversationByPIN (roomId);
+            if (conversation == null) {
+                Rating rate = (Rating) rating;
+                conversation.Rating = rate;
+                _communicationService.EditConversation (conversation);
+            }
+        }
     }
-}
+    public enum MentorStatus {
+        Finding = 0,
+        Connected = 1,
+        Error = -1
+    }
+
 }
