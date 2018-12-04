@@ -182,6 +182,23 @@ namespace HopeLine.API.Hubs.v2 {
             }
         }
 
+        public async Task GetTopics (string userId, bool isUser) {
+            var room = _messageService.GetRoomForUser (userId, isUser);
+            var ids = _messageService.GetTopics (room);
+            var allTopics = _commonResource.GetTopics ();
+            var topics = new List<TopicModel> ();
+            var stringTopics = "";
+            foreach (var id in ids) {
+                var topic = allTopics.FirstOrDefault (t => t.Id == id);
+                if (topic != null) {
+                    topics.Add (topic);
+                    stringTopics = stringTopics + " " + topic.Name;
+                }
+            }
+            await Clients.Group (room).SendAsync ("Topics", topics.Select (t => t.Name));
+            await Clients.Caller.SendAsync ("ReceiveMessage", "HopeLine", "You have selected the following Topics: " + stringTopics);
+        }
+
         public async Task AddTopics (string roomId, IList<int> ids) {
             if (ids.Count () != 0) {
                 try {
@@ -195,6 +212,7 @@ namespace HopeLine.API.Hubs.v2 {
                             topics.Add (topic);
                         }
                     }
+                    _messageService.AddTopicsToRoom (roomId, topics.Select (t => t.Id).ToList ());
                     await Clients.Group (roomId).SendAsync ("Topics", topics.Select (t => t.Name));
                 } catch (Exception) {
                     _logger.LogWarning ("Unable to Fetch Topics");
