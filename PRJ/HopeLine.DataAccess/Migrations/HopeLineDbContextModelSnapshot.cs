@@ -103,6 +103,8 @@ namespace HopeLine.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
+                    b.Property<int>("Rating");
+
                     b.Property<string>("UserId")
                         .IsRequired();
 
@@ -195,24 +197,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.Map", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("DateAdded");
-
-                    b.Property<double>("Radius");
-
-                    b.Property<double>("XCoordinate");
-
-                    b.Property<double>("YCoordinate");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Maps");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorSpecialization", b =>
@@ -466,16 +450,6 @@ namespace HopeLine.DataAccess.Migrations
                     b.ToTable("AdminAccount");
 
                     b.HasDiscriminator().HasValue("AdminAccount");
-                });
-
-            modelBuilder.Entity("HopeLine.DataAccess.Entities.GuestAccount", b =>
-                {
-                    b.HasBaseType("HopeLine.DataAccess.Entities.HopeLineUser");
-
-
-                    b.ToTable("GuestAccount");
-
-                    b.HasDiscriminator().HasValue("GuestAccount");
                 });
 
             modelBuilder.Entity("HopeLine.DataAccess.Entities.MentorAccount", b =>

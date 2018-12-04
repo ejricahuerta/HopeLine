@@ -8,52 +8,42 @@
     }
     else
     {
-        Layout = "/Pages/Shared/_mentorLayout.cshtml";
+        Layout = "/Pages/Shared/_MentorLayout.cshtml";
+
     }
 }
 
 @section Styles{
-        <link rel="stylesheet" href="~/css/map.css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
+          rel="stylesheet">
+    <link rel="stylesheet" href="~/css/map.css" />
 }
-
-
-<div class="contain" style="margin-top: 90px;">
-    
-</div>
-    <input name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('Hospital',this)" />
-    <label for="c1">
-        <div>&#x2714;</div>Hospital<br />
-    </label>
-    <input name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)" />
-    <label for="c2">
-        <div>&#x2714;</div>Pharmacy<br />
-    </label>
-
-    <input name="locationBox" value="health" type="checkbox" id="c3" onclick="searchType('spa',this)" />
-    <label for="c3">
-        <div>&#x2714;</div>Health club/Sauna<br />
-    </label>
-
-    <input name="locationBox" value="doctor" type="checkbox" id="c4" onclick="searchType('doctor',this)" />
-    <label for="c4">
-        <div>&#x2714;</div>Doctor<br />
-    </label>
-
-
-    <button class="button" onClick="clearMarkers()">Clear Markers</button>
-
-    <button class="button" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);searchType('spa',c4)">
-        Search area
-    </button>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px ;width:50% ;height:4%; font-size:14px">
-
-    <div id="map" class="p-0 m-0"></div>
-        <div class="bg-light border-top container-fluid" style="bottom: 10px;">
-            <p class="float-right">Made by PRJ666-Group 07 ©2018. All Rights Reserved.</p>
+<div class="container-fluid p-0 m-0 " style="height:600px;margin-top:100px;">
+    <div class="row m-0 p-0 justify-content-center">
+    <form class="col-md-4 col-sm-12 mb-4 p-5">
+        <h3 class="text-success">Map Filters</h3>
+        <div class="form-check p-2">
+            <input class="form-check-input" name="locationBox" value="Hospital" type="checkbox" id="c1" onclick="searchType('hospital',this)" />
+            <label class="form-check-label" for="c1">
+                Hospital
+            </label>
         </div>
-
+        <div class="form-check p-2">
+            <input class="form-check-input" name="locationBox" value="pharmacy" type="checkbox" id="c2" onclick="searchType('pharmacy',this)"/>
+            <label class="form-check-label" for="c2">Pharmacy</label>
+        </div>
+        <div class="form-check p-2">
+            <input class="form-check-input" name="locationBox" value="doctor" type="checkbox" id="c3" onclick="searchType('doctor',this)" />
+            <label class="form-check-label" for="c3">Doctor</label>
+        </div>    
+        <input class="btn btn-outline-dark m-2" onClick="clearMarkers()" value="Clear Markers" />
+        <input class="btn btn-outline-dark m-" onClick="searchType('hospital',c1);searchType('pharmacy',c2);searchType('doctor',c3);"  value="Search Area"/>
+        <input id="pac-input" class="form-control" type="text" placeholder="Search Box" style="margin-left:50px; margin-top:20px;" />
+    </form>
+    <div id="map" class="col-md-8 col-sm-12 mt-1 p-0"></div>
+</div>
 @section Scripts{
-<script>
+    <script>
 
         //DO NOT SEPERATE JAVASCRIPT TO ANOTHER FILE. Google api must work if javascript code is in the same file.
         //

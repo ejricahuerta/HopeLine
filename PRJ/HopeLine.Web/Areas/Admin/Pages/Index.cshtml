@@ -1,97 +1,243 @@
 ﻿@page
+@using HopeLine.Web.Areas.Admin.Pages
+@model Index
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Admin Home";
-    Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
+   
+    Layout = "/Pages/Shared/_AdminLayout.cshtml";
+
 }
 
-    <div class="row">
-        <div class="col-md-4 float-left">
-            <input type="text" value="Search" />
-        </div>
-        <div class="col-md-4">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Search by account type
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <button class="dropdown-item btn btn-primary">Mentor</button>
-                    <button class="dropdown-item  btn btn-primary">User</button>
+@section Styles {
+    <link rel="stylesheet" , href="~/css/resources.css" />
 
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+</head>
+
+
+<div style="margin-top:100px"></div>
+<div class="row">
+    <div class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-stat-list" data-toggle="list" href="#list-stat" role="tab" aria-controls="stat">Statistics</a>
+            <a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">Change Password</a>
+            <a class="list-group-item list-group-item-action" id="list-addmentor-list" data-toggle="list" href="#list-addmentor" role="tab" aria-controls="addmentor">Add Mentor</a>
+            <a class="list-group-item list-group-item-action" id="list-mentorlist-list" data-toggle="list" href="#list-mentorlist" role="tab" aria-controls="mentorlist">Mentor List</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="list-stat" role="tabpanel" aria-labelledby="list-stat-list">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">PIN</th>
+                            <th scope="col">Minutes</th>
+                            <th scope="col">Date of Conversation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Conversations)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.UserId</td>
+                                <td>@item.PIN</td>
+                                <td>@item.Minutes</td>
+                                <td>@item.DateOfConversation</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
+
+            </div>
+
+            <div class="tab-pane fade" id="list-addmentor" role="tabpanel" aria-labelledby="list-addmentor-list">
+                <div class="row mentor-login justify-content-center mb-5" style="margin-top:100px;">
+                    <form class="col-xs-12 shadow-lg rounded p-5 m-0">
+                        <h3 class="text-success">Mentor Registration for HopeLine</h3>
+                        <br />
+                        <div>
+                            <span>Please correct the following errors</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><small class="text-muted">Email Address</small><span class="text-danger"> *</span></label>
+                            <input type="email" class="form-control" id="UserName" aria-describedby="emailHelp" placeholder="Enter Email" autofocus>
+                            <small>
+                                <span class="text-danger"></span>
+                            </small>
+                        </div>
+                       <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="fname"><small class="text-muted">First Name</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control required" id="FirstName" placeholder="Enter First Name">
+                                    <small>
+                                        <span class="text-danger"></span>
+                                    </small>
+                                </div>
+                                <div class="form-group col-6">
+                                    <label for="lname"><small class="text-muted">Last Name</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control  required" id="LastName" placeholder="Enter Last Name">
+                                    <small>
+                                        <span class="text-danger"></span>
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-6">
+                                    <label for="phoneNumber"><small class="text-muted">Phone Number</small><span class="text-danger"> *</span></label>
+                                    <input  type="text" class="form-control" id="Phone" placeholder="Enter Phone number">
+                                    <small>
+                                        <span  class="text-danger"></span>
+                                    </small>
+                                </div>
+
+
+                                <div class="form-group col-6">
+                                    <label for="SIN"><small class="text-muted">SIN</small><span class="text-danger"> *</span></label>
+                                    <input type="text" class="form-control" id="SIN" placeholder="Enter SIN">
+                                    <small>
+                                        <span  class="text-danger"></span>
+                                    </small>
+                                </div>
+                            </div>
+
+                        <input type="button" id="registerMentor" class="btn btn-primary" value="Submit" />
+
+                    </form>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-success">Add mentor</button>
-        </div>
 
-    </div>
-<hr />
-<div class="container">
-    <div class="row">
-        <b class="col-md-2">Id</b>
-        <b class="col-md-2">First&nbsp;Name</b>
-        <b class="col-md-2">Last&nbsp;Name</b>
-        <b class="col-md-2">Account&nbsp;Type</b>
-        <b class="col-md-4">Manage</b>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000001</div>
-        <div class="col-md-2">John</div>
-        <div class="col-md-2">Doe</div>
-        <div class="col-md-2">User</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
+            <div class="tab-pane fade" id="list-mentorlist" role="tabpanel" aria-labelledby="list-mentorlist-list">
+                <div class="row" style="margin-top:60px">
+                    <div class="col-md-4 float-left">
+                        <form method="POST">
+                            <input type="text" class="form-control" asp-for="QueryString">
+                            <input type="submit" asp-page-handler="Search" value="Go" />
+                        </form>
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000002</div>
-        <div class="col-md-2">Steve</div>
-        <div class="col-md-2">Smith</div>
-        <div class="col-md-2">Mentor</div>
-        <div class="col-md-4">
-            <a class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
+                        @*<form method="POST">
+                                <div>Name: <input /></div>
+                                <input type="submit" asp-page-handler="FirstName" value="Join" />
+                                <input type="submit" asp-page-handler="FirstName" value="JOIN UC" />
+                            </form>
 
-    <hr />
-    <div class="row">
-        <div class="col-md-2">000003</div>
-        <div class="col-md-2">Jack</div>
-        <div class="col-md-2">Peng</div>
-        <div class="col-md-2">Admin</div>
-        <div class="col-md-4">
-            <a href="ManageAccounts.cshtml" class="btn btn-warning">
-                Manage
-            </a>
-        </div>
-    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="dropdown">
+                            <form method="post" asp-page-hander="FirstName">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Search by First Name
+                                </button>
+                            </form>
+                            @*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item btn btn-primary">Mentor</button>
+                                <button class="dropdown-item  btn btn-primary">User</button>
 
-    <!--
+                            </div>*@
+                        </div>
+                    </div>
+                            
 
-        foreach (var item in collection)
-        {
-            <hr />
-        <div class="row">
-            <div class="col-md-2">item.Id</div>
-            <div class="col-md-2">item.FirstName</div>
-            <div class="col-md-2">item.LastName</div>
-            <div class="col-md-2">item.AccountType</div>
-            <div class="col-md-4">
-                <a class="btn btn-warning">
-                    Manage
-                </a>
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model.Users)
+                        {
+                            <tr>
+                                <th scope="row">@Html.DisplayFor(modelitem => item.Id)</th>
+                                <td>@Html.DisplayFor(modelitem => item.FirstName)</td>
+                                <td>@Html.DisplayFor(modelitem => item.LastName)</td>
+                                <td>@Html.DisplayFor(modelitem => item.AccountType)</td>
+                                <td>@Html.DisplayFor(modelitem => item.Email)</td>
+                                @*<td>
+                                    <a class="btn btn-warning">
+                                        Manage
+                                    </a>
+                                </td>*@
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
             </div>
+
         </div>
-        }
-
-        -->
-</div>
+    </div>
+    </div>
 
 
+@section Scripts {
+
+    <script>
+        //Creating Mentor
+        $("#registerMentor").click(function () {
+            //var model = {
+            //    UserName: $('#UserName').val(),
+            //    FirstName: $('#FirstName').val(),
+            //    LastName: $('#LastName').val(),
+            //    Phone: $('#Phone').val(),
+            //    SIN: $('#SIN').val(),
+
+            //};
+
+            var model = new Object();
+            model.UserName= $('#UserName').val();
+                model.FirstName=$('#FirstName').val();
+                model.LastName= $('#LastName').val();
+                model.Phone= (int)$('#Phone').val();
+                model.SIN= $('#SIN').val();
+            //console.log(model["UserName"]);
+            data = JSON.stringify(model);
+            $.ajax({
+
+                type: "POST",
+                url: 'http://localhost:5000/api/auth/register',
+               // method: 'post',
+                ContentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+               // data: data,
+               data: data,
+
+
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                    console.log(errorThrown)
+                }
+
+            });
+
+        });
+
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

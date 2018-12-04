@@ -1,6 +1,5 @@
-var userId = $("#userId") != null ? $("#userId").val() : null;
-var accountType = $("#accountType") != null ? $("#accountType").val() : null;
-var userId = $("#userId") != null ? $("#userId").val() : null;
+var userId = $("#userId").val();
+var topicsSelected = null;
 var onCall = false;
 var hasRequestedCall = false;
 var currentUser = userId;
@@ -14,23 +13,27 @@ var sendClick = 0;
 var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
-var url = "http://hopeline.azurewebsites.net/";
+var topicIds = [];
+//url = "http://hopeline.azurewebsites.net/";
+var mentorMsgReceived = 0;
+var isToggleOpen = false;
+
 //comment out before pushing to master
-//var url = "http://localhost:8000/";
+var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
-  .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-  //.withUrl("http://localhost:5000/v2/chatHub")
+  //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+  .withUrl("http://localhost:5000/v2/chatHub")
   .build();
 
 //ALL FUNCTIONS FOR THIS FILE
 // put all functions after this line
 function findTime() {
   timeout = setTimeout(function() {
-    $("#loading").text("Unable to Find Mentor...");
-    $("#loading").append(
-      '<a href="' + url + '/instantChat" class="btn btn-info">Retry</a>'
-    );
+    $("#loadingheader").text("Unable to Find Mentor...");
+    $("#imgLoading").hide();
+    $("#retryLoading").show();
+    $("#cancelLoading").hide();
   }, 20000);
 }
 
@@ -40,31 +43,41 @@ function requestCallTime() {
     hasRequestedCall = false;
     connection.invoke(
       "SendMessage",
-      "system",
+      "HopeLine",
       "Mentor has not answered the call.",
       room
     );
   }, 40000);
 }
 
+function alertTime() {
+  $("#chatAlert").show();
+  console.log("Alert Fired.");
+  timeout = setTimeout(function() {
+    $("#chatAlert > p").remove();
+    $("#chatAlert").hide();
+  }, 7000);
+}
+
 function registerHub() {
   //when a  call is connected
   connection.on("CallConnected", function() {
     $("#requestedCall").hide();
-    $("#incomingCall").hide();
+    $("#callWindow").show();
     window.open(
       url + "VideoChat?roomId=" + room + "&userId=" + userId,
       "HopeLine-Call",
       "_blank",
       "toolbar=0,menubar=0"
     );
-    timeout = null;
   });
 
   //when a user sent a message
   connection.on("ReceiveMessage", function(user, message) {
     console.log("Receive Message");
     addChatBubble(user, message);
+    mentorMsgReceived++;
+
     $("#message").animate(
       {
         scrollTop: $("#message").prop("scrollHeight")
@@ -83,16 +96,34 @@ function registerHub() {
   connection.on("Room", function(roomId) {
     room = roomId;
     connection.invoke("LoadMessage", room);
+    $("#ChatWidget").show();
+    $("#Logo").hide();
+    $("#loading").modal("hide");
     $("#sendArea").removeClass("d-none");
-    $("#requestChat").hide();
     $("#sendArea").show();
     $("#chatbox").show();
-    $("#loading").hide();
     $("#mentorFound").click();
     $("#toggleChat").removeClass("disabled");
     timeout = null;
   });
 
+  //When Topics are selected
+  connection.on("Topics", function(topics) {
+    var alltopics = "";
+    if (topics != null) {
+      $("#topicsOnLeft").hide();
+      $("#topicsOnTop").hide();
+      topicsSelected = topics;
+      topics.forEach(function(topic) {
+        alltopics = alltopics + " " + topic;
+      });
+      $("#topics").append(alltopics);
+    } else {
+      $("#topicsOnLeft").show();
+      $("#topicsOnTop").show();
+      $("#topics").append("No Topic Selected");
+    }
+  });
   //register for users
   if (!isUser) {
     //notify mentors
@@ -111,7 +142,6 @@ function registerHub() {
     notifyUser();
   }
 }
-
 // starts the connection
 function startConnection() {
   connection
@@ -155,26 +185,22 @@ function notifyUser() {
     console.log("code:  " + code);
     if (code == 1) {
       isLoggedOut = false;
-      $("#loading").hide();
-      $("#requestChat").hide();
       $("#sendArea").show();
       $("#chatbox").show();
-      //if 0 then keep notify the mentor
+      $("#loading").modal("hide");
     } else if (code == 0) {
-      if (isLoggedOut) {
-        connection.close();
-      } else {
-        $("#sendArea").hide();
-        $("#openLoading").click();
-        $("#requestChat").show();
-        $("chatbox").hide();
-        findTime();
-      }
-      // else  chat is disconnected
+      $("#Logo").show();
+      $("#ChatWidget").hide();
+      $("#sendArea").hide();
+      $("#openLoading").click();
+      $("#retryLoading").hide();
+      $("#cancelLoading").show();
+      $("#imgLoading").show();
+      $("chatbox").hide();
+      findTime();
     } else {
       $("chatbox").hide();
       $("sendArea").hide();
-      $("#requestChat").show();
       //$("#loading").show();
       findTime();
       $("#modaltrigger").click();
@@ -205,35 +231,31 @@ function notifyMentor() {
         event.preventDefault();
       });
     } else {
-      //FIXME: refactor this
-      $("#chatbox").append(
-        '<div class = "alert alert-info" role = "alert" >' +
-          "User has DISCONNECTED!" +
-          "</div>"
-      );
       connection.invoke("RemoveUser", room, isUser);
-      alert("User has DISCONNECTED");
+      $("#chatAlert").append(
+        '<p class="mt-3">User has been disconnected...</p>'
+      );
+      alertTime();
       setTimeout(function() {
         location.reload();
-      }, 500);
+      }, 7000);
     }
   });
 }
 
 //adding each messages
 function addChatBubble(user, message) {
-  var classId = currentUser == user ? "border-primary" : "border-success";
-  classId = user == "system" ? "border-warning" : classId;
-  if (isUser) {
-    if (user.indexOf("Guest") != -1) {
-      name = "Guest";
-    } else if (user.indexOf("@") != -1) {
-      name = "Mentor";
-    } else {
-      name = user;
-    }
+  var classId;
+
+  if (user.indexOf("Guest") != -1) {
+    name = "Guest";
+    classId = "border-success";
+  } else if (user.indexOf("@") != -1) {
+    name = "Mentor";
+    classId = "border-primary";
   } else {
     name = user;
+    classId = "border-warning";
   }
 
   $("#chatbox").append(
@@ -245,7 +267,7 @@ function addChatBubble(user, message) {
       "</small>" +
       '<div class="' +
       classId +
-        ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;  overflow-wrap: break-word;word-wrap: break-word;hyphens: auto;">' +
+      ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;  overflow-wrap:break-word;word-wrap: break-word;hyphens: auto;">' +
       message +
       "</div></div>"
   );
@@ -255,14 +277,32 @@ function addChatBubble(user, message) {
 //ALL JQUERY USER INTERACTIONS (ACTIONS)
 //Put your code here for all actions from html
 
+//Received messages for mentor chat
+setInterval(function() {
+  if ($("#toggleChat > span").val() == null) {
+    $("#toggleChat").append(
+      '<span class="badge badge-light ml-1 mb-1" id="sp">' +
+        mentorMsgReceived +
+        "</span>"
+    );
+  } else {
+    $("#sp").text(mentorMsgReceived);
+    if (isToggleOpen) {
+      $("#sp").hide();
+    } else {
+      $("#sp").show();
+    }
+  }
+}, 100);
+
 $(function() {
   if (userId != null) {
     console.log("UserId = " + userId);
     console.log("pin = " + room);
 
     connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-      // .withUrl("http://localhost:5000/v2/chatHub")
+      //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+      .withUrl("http://localhost:5000/v2/chatHub")
       .build();
     //register all methods
     registerHub();
@@ -282,17 +322,14 @@ $("#sendButton").click(function(event) {
     console.log("sendClick: " + sendClick);
     if (sendClick >= 3) {
       $("#sendArea").addClass("d-none");
-      alert("You entered messages too fast, please wait for 5 seconds");
+      $("#chatAlert").append(
+        "<p>You entered messages too fast, please wait for 5 seconds</p>"
+      );
+      alertTime();
       setTimeout(function() {
         $("#sendArea").removeClass("d-none");
       }, 5000);
     }
-    console.log("Id :" + room);
-    console.log("user: " + userId);
-    console.log("message: " + message);
-
-    console.log("Sending Message");
-    console.log("room " + room);
     connection
       .invoke("SendMessage", currentUser, message, room)
       .catch(function(err) {
@@ -311,7 +348,6 @@ $("#sendButton").click(function(event) {
 setInterval(function() {
   sendClick = 0;
 }, 1000);
-///////////////////////////
 
 $("#logout").click(function() {
   isLoggedOut = true;
@@ -332,12 +368,17 @@ $("#videoCallBtn").click(function() {
   if (!onCall && !hasRequestedCall) {
     connection.invoke(
       "SendMessage",
-      "system",
+      "HopeLine",
       "Call has been requested...Waiting for Mentor.",
       room
     );
     connection.invoke("RequestToVideoCall", room);
     requestCallTime();
+
+    $("#chatAlert").append(
+      "<p id=msg>You have requested to Talk to Mentor via Call.</p>"
+    );
+    alertTime();
     hasRequestedCall = true;
   }
 });
@@ -347,9 +388,18 @@ $("#acceptCall").click(function() {
   onCall = true;
   hasRequestedCall = true;
   mentorTimeOut = null;
+  $("#chatAlert").append("<p>Mentor has accepted the Call.</p>");
+  alertTime();
+  timeout = null;
+  connection.invoke("SendMessage", "HopeLine", "Call Connected.", room);
 });
 
 $("#toggleChat").click(function() {
+  if (isToggleOpen == false) {
+    isToggleOpen = true;
+  } else {
+    isToggleOpen = false;
+  }
   $("#message").animate(
     {
       scrollTop: $("#message").prop("scrollHeight")
@@ -362,6 +412,7 @@ $("#toggleChat").click(function() {
     },
     0
   );
+  mentorMsgReceived = 0;
 });
 
 $("#messageInput").click(function() {
@@ -378,3 +429,34 @@ $("#messageInput").click(function() {
     0
   );
 });
+
+$("input[type=checkbox]").on("click", function() {
+  console.log("Selected: " + $("input:checked").val());
+  topicIds.push(parseInt($("input:checked").val()));
+});
+
+$("#updateTopics").click(function() {
+  if (topicIds.length > 0) {
+    connection.invoke("AddTopics", room, topicIds);
+  }
+});
+
+$("#loading").on("hidden.bs.modal", function(e) {
+  if (room == null) {
+    $("#chatAlert").append("<p>Redirecting to Home Page..</p>");
+    alertTime();
+    setTimeout(function() {
+      window.location.replace(url);
+    }, 7000);
+  }
+});
+
+//Rate Mnetor
+window.onbeforeunload = function(event) {
+  var rate = setInterval(function() {
+    $("#ratemodal").modal("toggle");
+  }, 100);
+  $("#happy").click(function() {
+    clearInterval(rate);
+  });
+};

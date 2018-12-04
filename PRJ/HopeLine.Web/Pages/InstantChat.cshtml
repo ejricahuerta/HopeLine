@@ -5,64 +5,141 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
     ViewData["Title"] = "Talk to Mentor";
 }
-
+@section Styles {
+        <style>
+        #local-media{
+            position:fixed;
+            top:10px;
+            right:10px;
+            z-index: 5
+        }
+        #local-media video {
+            max-height: 200px;
+            max-width: 200px;
+        }
+        
+    </style>
+}
 <input id="isUser" value=@Model.IsUser hidden />
 <section class="container" style="margin-top:200px;">
-    <div class="row m-1 shadow-lg">
-                <div class="col-3 rounded-left border-right d-none d-md-block text-white" style="height:480px;  background-color: #102542">
-                    <h4 class="text-center text-white mt-2">Topics You Have Selected</h4>
+    <div id="chatAlert" class="alert alert-info" style="display:none;">
+    </div>
+    <div id="Logo" style="display:none;">
+        <img src="~/images/milkyway.jpg" class="img img-fluid">
+    </div>
+    <div  id="ChatWidget" class="row m-1 shadow-lg rounded-top" style="display:none;">
+        <div id="topicsOnLeft" class="col-3 border-right d-none d-md-block text-center text-white" style="height:480px;  background-color: #102542;dipslay:none;">
+            <h4 class="text-white">Topics</h4>
+            @foreach (var item in Model.Topics)
+            {
+                <div class="form-check text-left ml-4">
+                    <input class="form-check-input" type="checkbox" value="@item.Id" id="@item.Id">
+                    <label class="form-check-label" for="@item.Id">
+                        @item.Name
+                    </label>
+
                 </div>
-                <div class="col-md-9 col-sm-12 rounded-right" style="height:480px;background-image: linear-gradient(to right, #102542, #235789);">
-                    <div class="row m-1">
-                     
-                        <div class="col-12 border mt-1" style="height:100px;">
-                            <div class="">
-                                <div id="buttons" class="row justify-content-between mt-2">
-                                    <div class="col-lg-3 col-md-4">
-                                    <button id="videoCallBtn" title="Call Mentor" class="btn btn-link text-white" style="font-size:30px;">
-                                        <i class="fas fa-phone-square" ></i></button>
-                                    <button id="endConversation" title="End Conversation"class=" btn btn-link text-white" style="font-size:30px"><i class="fas fa-sign-out-alt"></i></button>
-                                    </div>
-                                </div>
-            
+            }
+            <button id="updateTopics" class="btn btn-primary mt-2"  title="Add topics you want to talk about with Mentor">Update</button>
+        </div>
+        <div id="topicsOnTop" class="col-md-12 d-md-none d-sm-block text-white pt-2" style="background-image: linear-gradient(to right, #102542, #235789);display:none;">
+            <div class="btn-group ml-2">
+                <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Topics
+                </button>
+                <div class="dropdown-menu p-2">
+                    @foreach (var item in Model.Topics)
+                    {
+                        <div class="form-check text-left">
+                            <input class="form-check-input" type="checkbox" value="" id="@item.Id">
+                            <label class="form-check-label" for="@item.Id">
+                                @item.Name
+                            </label>
+                        </div>
+                    }
+                    <button id="updateTopics" type="button" class="btn btn-primary mt-2" data-toggle="tooltip" data-placement="bottom" title="Add topics you want to talk about wiht Mentor">Update</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12" style="height:480px;background-image: linear-gradient(to right, #102542, #235789);">
+            <div class="row mr-1 ml-1">
+                <div class="col-12 border rounded mt-3" style="height:80px;">
+                    <div class="float-right">
+                        <div id="buttons" class=" mt-2">
+                            <div class=" mr-3">
+
+                                <button id="videoCallBtn" title="Call Mentor" class="btn btn-link text-white" style="font-size:30px;">
+                                    <i class="fas fa-phone-square"></i>
+                                </button>
+                                <button id="endConversation" title="End Conversation" class=" btn btn-link text-white" style="font-size:30px"><i class="fas fa-sign-out-alt"></i></button>
                             </div>
                         </div>
-                        <div id="requestChat" class="alert alert-light mt-2" style="display:none;">
-                            <h5>Chat with Mentor?</h5>
-                            <button id="requestChat" type="button" class="btn btn-outline-dark" >Yes</button>
-                            <button id="cancelRequest" type="button" class="btn btn-link" >Cancel</button>
-                        </div>                         
-                        <div id="chatbox" class="col-12 m-0 bg-light" style="height:300px;overflow-y:auto;display:none;">
-                            <!--message area-->
+
+                    </div>
+                </div>
+
+                <div id="chatbox" class="col-12 m-0 bg-light" style="height:300px;overflow-y:auto;display:none;">
+                    <!--message area-->
+                </div>
+                <div id="sendArea" class="col-12" style="bottom:10px;position:absolute;right:10px;display:none;">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9 col-md-9 col-xs-11">
+                            <textarea id="messageInput" class="form-control m-1" title="" placeholder="type your message..."
+                                    rows="1" maxlength="1000"></textarea>
                         </div>
-                        <div id="sendArea" class="col-11 " style="bottom:10px;position:absolute;right:10px;display:none;">
-                            <div class="row justify-content-center">
-                                <textarea id="messageInput" class="col-md-9 col-xs-12 form-control" placeholder="type your message..."
-                                    rows="1"></textarea>
-                                <button id="sendButton" title="Send Message" class="col-sm-2 d-sm-block d-none btn btn-outline-light m-1 disabled"><i
-                                        class="fas fa-angle-right"></i></button>
-                            </div>
-                        </div>
+                            <button id="sendButton" title="Send Message" class="col-md-2 d-md-block d-none btn btn-outline-light m-1">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-           <div class="modal" id="loading" >
-                        Waiting for Mentor...
-                        <img src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px" />
-                        <a href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
-                        <a href="#" rel="modal:close" id="mentorFound" hidden></a>
-            </div>
-            <p hidden><a id="openLoading" href="#loading" rel="modal:open"></a></p>
-        <div id="disconnection" class="modal">
-        <p>You are disconnected from the chat</p>
-        <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
+        </div>
     </div>
-    <p hidden><a id="modaltrigger" href="#disconnection" rel="modal:open"></a></p>
+<div class="modal" id="loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loadingheader">Waiting for Mentor...</h5>
+        <img id="imgLoading" src="/images/logo_loading.jpeg" alt="image" class="img img-fluid rounded-circle fa-spin" style="height:25px; width:25px;display:none;" />
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div  class="modal-body float-left">
+            <a id="cancelLoading" title="Cancel Request" href="@Url.Page("/index")" class="btn btn-primary">Cancel</a>
+            <a  id="retryLoading" title="Retry" href="@Url.Page("/InstantChat")" class="btn btn-primary" style="display:none;" >Retry</a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p hidden><a id="openLoading"  data-toggle="modal" data-target="#loading"></a></p>
+<div id="disconnection" class="modal" tabindex="-1" role="dialog" aria-labelledby="disconnectModal" aria-hidden="true">
+    <p>You are disconnected from the chat</p>
+    <a href="http://hopeline.azurewebsites.net/InstantChat" class="btn btn-primary">Reconnect</a>
+</div>
+    <p hidden><a id="modaltrigger" data-toggle="modal" data-target="#disconnection"></a></p>
+    <div id="rating" class="modal" role="dialog" aria-labelledby="disconnectModal" aria-hidden="true">
+        <form>
+            <div>
+                <input id="happy" name="rate" type="radio" class="with-font" value="sel" />
+                <label for="happy"><i class="far fa-smile-beam"></i></label>
+            </div>
+            <div>
+                <input id="okay" name="rate" type="radio" class="with-font" value="sel" />
+                <label for="okay"><i class="far fa-meh"></i></label>
+            </div>
+            <div>
+                <input id="unhappy" name="rate" type="radio" class="with-font" value="sel" />
+                <label for="unhappy"><i class="far fa-sad-tear"></i></label>
+            </div>
+        </form>
+    </div>
+    <p hidden><a id="ratemodal" href="#rating" rel="modal:open"></a></p>
 </section>
 
 @section Scripts {
     <script src="~/js/chat-v1.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script>
         filter = $('#myInput').val();
         // Hit ENTER to send messages

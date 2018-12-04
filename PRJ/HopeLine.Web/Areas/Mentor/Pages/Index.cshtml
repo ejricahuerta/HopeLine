@@ -7,7 +7,7 @@
 @{
     //Layout = "/Areas/Identity/Pages/Account/Manage/_Layout.cshtml";
     Layout = "/Pages/Shared/_mentorLayout.cshtml";
-
+    ViewData["Title"] = "Mentor";
 }
 
 
@@ -15,21 +15,57 @@
 @section Styles {
     <link rel="stylesheet" , href="~/css/resources.css" />
 }
-    <div style="margin-top:100px"></div>
-<div class="row">
-    <div class="col-4">
+<div style="margin-top:100px"></div>
+<div class="row justify-content-center">
+    <div class="col-md-2 col-sm-11">
         <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+            <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
             <a class="list-group-item list-group-item-action" id="list-password-list" data-toggle="list" href="#list-password" role="tab" aria-controls="password">Change Password</a>
             <a class="list-group-item list-group-item-action" id="list-stat-list" data-toggle="list" href="#list-stat" role="tab" aria-controls="stat">Statistics</a>
         </div>
     </div>
-    <div class="col-8">
+    <div class="col-md-10 col-sm-12">
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+            <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                <div class="jumbotron m-1">
+                    <h1 class="display-4">Hello, @Model.CurrentMentor.FirstName&nbsp;@Model.CurrentMentor.LastName</h1>
+                    <p class="lead">Welcome Back!</p>
+                    <hr class="my-4">
+                    @if (Model.LastConversation != null)
+                    {
+                        <p>Your Last Conversation:</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">User Id</th>
+                                    <th scope="col">PIN</th>
+                                    <th scope="col">Minutes</th>
+                                    <th scope="col">Date of Conversation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.LastConversation.Id</td>
+                                    <td>@Model.LastConversation.UserId</td>
+                                    <td>@Model.LastConversation.PIN</td>
+                                    <td>@Model.LastConversation.Minutes</td>
+                                    <td>@Model.LastConversation.DateOfConversation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>You have no past Conversations.</p>
+                    }
+                </div>
+            </div>
+            <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                 <div class="row">
                     <div class="col-md-10">
-                        <h1>@Model.CurrentMentor.Username</h1>
+                        <h1>@Model.CurrentMentor.FirstName&nbsp;@Model.CurrentMentor.LastName</h1>
                     </div>
                 </div>
                 <div class="row p-0 m-0">
@@ -39,17 +75,16 @@
                         <form class="form" method="post" id="registrationForm">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id hidden disabled>
+                                    <label type="text" class="form-control" name="mentorId" id="mentorId" placeholder=@Model.CurrentMentor.Id hidden></label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">
-                                            <h4>Email</h4>
+                                            <h4>Email:</h4>
                                         </label>
-                                        <input type="email" class="form-control" name="email" id="email" placeholder=@Model.CurrentMentor.Email
-                                               title="enter your email." disabled>
+                                        <h3>@Model.CurrentMentor.Email</h3>
                                     </div>
                                 </div>
 
@@ -58,13 +93,13 @@
 
 
                                         <label for="phone">
-                                            <h4>Phone Number</h4>
+                                            <h4>Phone Number:</h4>
                                         </label>
-                                        <input type="text" class="form-control" name="phone" id="phone" value=@Model.CurrentMentor.Phone>
+                                        <h3>@Model.CurrentMentor.Phone</h3>
                                     </div>
                                 </div>
                             </div>
-
+                            <hr />
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -73,7 +108,7 @@
                                         <label for="username">
                                             <h4>First Name</h4>
                                         </label>
-                                        <input type="text" class="form-control" name="username" id="username" value=@Model.CurrentMentor.FirstName>
+                                        <h3>@Model.CurrentMentor.FirstName</h3>
                                     </div>
                                 </div>
 
@@ -84,22 +119,12 @@
                                         <label for="username">
                                             <h4>Last Name</h4>
                                         </label>
-                                        <input type="text" class="form-control" name="username" id="username" value=@Model.CurrentMentor.LastName>
+                                        <h3>@Model.CurrentMentor.LastName</h3>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="form-group">
 
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit">
-                                        <i class="glyphicon glyphicon-ok-sign"></i>
-                                        Save
-                                    </button>
-
-                                </div>
-                            </div>
 
                         </form>
 
@@ -112,6 +137,7 @@
                 </div>
                 <!--/row-->
             </div>
+
             <div class="tab-pane fade" id="list-password" role="tabpanel" aria-labelledby="list-password-list">
                 <div class="row">
                     <div class="col-md-10">
@@ -140,6 +166,7 @@
                     </form>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="list-stat" role="tabpanel" aria-labelledby="list-stat-list">
                 <table class="table">
                     <thead>

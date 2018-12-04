@@ -1,30 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>@ViewData["Title"] - HopeLine </title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
-      rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<link rel="stylesheet" href="~/css/site.css" />
-<link rel="stylesheet" href="~/css/main.css" />
-<link href="~/css/style.css" rel="stylesheet">
-@RenderSection("Styles", false)
-<!--
-    <link href="~/css/index.css" rel="stylesheet" />
-    <link href="~/css/flexslides.css" rel="stylesheet" />
-    <link href="~/lib/nivo-slider/css/nivo-slider.css" rel="stylesheet" />
-    <link href="~/lib/owlcarousel/owl.carousel.css" rel="stylesheet">
-    <link href="~/lib/owlcarousel/owl.transitions.css" rel="stylesheet">
-    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="~/lib/venobox/venobox.css" rel="stylesheet">
-    <link href="~/css/nivo-slider-theme.css" rel="stylesheet">
-    <link href="~/css/responsive.css" rel="stylesheet">
-    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - HopeLine </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link href="~/css/style.css" rel="stylesheet">
+    @RenderSection("Styles", false)
+    <!--
+        <link href="~/css/index.css" rel="stylesheet" />
+        <link href="~/css/flexslides.css" rel="stylesheet" />
+        <link href="~/lib/nivo-slider/css/nivo-slider.css" rel="stylesheet" />
+        <link href="~/lib/owlcarousel/owl.carousel.css" rel="stylesheet">
+        <link href="~/lib/owlcarousel/owl.transitions.css" rel="stylesheet">
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="~/lib/venobox/venobox.css" rel="stylesheet">
+        <link href="~/css/nivo-slider-theme.css" rel="stylesheet">
+        <link href="~/css/responsive.css" rel="stylesheet">
+        -->
 </head>
 <body class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top pb-sm-3 mt-sm-0">
@@ -52,23 +52,28 @@
         </div>
     </nav>
 
-    <section class="container-fluid p-0" style="height:100%;">
+    <section class="container-fluid p-0" >
 
         <div style="margin-top:83px;"></div> <!--white space? -->
         @RenderBody()
-        <div class="row ml-auto">
-            <div class="col-md-5 offset-md-7 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
+        <div class="row ml-auto" style="z-index:10">
+            <div id="toggleDiv" class="col-md-5 offset-md-7 col-sm-12 rounded-top" style="bottom:0px;position:fixed;background-image: linear-gradient(to right, #102542, #235789);">
+                <div id="chatAlert" class="alert alert-info mt-2" style="display:none;">
+                </div>
                 <div id="incomingCall" class="alert alert-light mt-2" style="display:none;">
                     <h5>Incoming Call from User!</h5>
-                    <button id="dismissCall"type="button" class="btn btn-secondary" data-dismiss="modal">Decline</button>
-                    <button id="acceptCall"  class="btn btn-primary">Answer</button>
+                    <button id="dismissCall" type="button" class="btn btn-secondary" data-dismiss="modal">Decline</button>
+                    <button id="acceptCall" class="btn btn-primary">Answer</button>
+                </div>
+                <div id="topics">
+
                 </div>
                 <div id="accordion" class="row border-top">
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-2 col-sm-3" id="chatwin">
                         <button id="toggleChat" class="btn btn-link text-white" data-toggle="collapse" data-target="#chat" aria-expanded="true" aria-controls="chat">Toggle Chat</button>
                     </div>
                 </div>
-                <div id="chat" class="collapse show" aria-labelledby="chat" data-parent="#accordion">
+                <div id="chat" class="collapse" aria-labelledby="chat" data-parent="#accordion">
                     <div id="chatbox" class="col-12 bg-light" style="height:380px;overflow-y:auto">
                         <!--message area-->
                     </div>
@@ -83,17 +88,19 @@
         </div>
         <div id="incominguser" style="left:20px;bottom:20px; position:fixed"></div>
     </section>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.js"integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!--
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!-- JavaScript Libraries -->
-    <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/js/site.js"></script>
     <script src="~/js/signalr.min.js"></script>
     <script src="~/js/chat-v1.1.js"></script>
     <!--
     <script src="~/js/jquery-3.3.1.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="~/lib/venobox/venobox.min.js"></script>
     <script src="~/lib/knob/jquery.knob.js"></script>

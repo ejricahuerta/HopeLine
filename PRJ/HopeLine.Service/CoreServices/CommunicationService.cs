@@ -27,6 +27,7 @@ namespace HopeLine.Service.CoreServices {
                     Minutes = conversation.Minutes,
                     MentorId = conversation.MentorId,
                     DateOfConversation = conversation.DateOfConversation.ToString (),
+                    Rating = (int) conversation.Rating
                 };
                 _conversationRepo.Insert (newConversation);
                 _conversationRepo.Save ();
@@ -46,6 +47,8 @@ namespace HopeLine.Service.CoreServices {
                 oldConversation.Minutes = conversation.Minutes;
                 oldConversation.MentorId = conversation.MentorId;
                 oldConversation.DateOfConversation = conversation.DateOfConversation.ToString ();
+                oldConversation.Rating = (int) conversation.Rating;
+
                 _conversationRepo.Update (oldConversation);
                 _conversationRepo.Save ();
                 return true;

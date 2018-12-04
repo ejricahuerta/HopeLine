@@ -1,4 +1,5 @@
 
+
 const Video = Twilio.Video;
 var activeRoom;
 var previewTracks;
@@ -122,7 +123,6 @@ function participantConnected(participant) { // When a new person connects to th
 
     participant.on('trackSubscribed', track => trackSubscribed(div, track));
     participant.on('trackUnsubscribed', trackUnsubscribed);
-    
     participant.tracks.forEach(publication => {
         if (publication.isSubscribed) {
             trackSubscribed(div, publication.track);
@@ -134,8 +134,6 @@ function participantConnected(participant) { // When a new person connects to th
 
 function participantDisconnected(participant) { //When someone disconnects, close window
     console.log('Participant "%s" disconnected', participant.identity);
-    alert("Other user disconnected video chat");
-    window.close();
 }
 
 function trackSubscribed(div, track) {//Attach media to screen
@@ -143,5 +141,6 @@ function trackSubscribed(div, track) {//Attach media to screen
 }
 
 function trackUnsubscribed(track) {//Remove media from screen
+
     track.detach().forEach(element => element.remove());
 }
