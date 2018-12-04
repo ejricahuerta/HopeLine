@@ -8,6 +8,7 @@ var isConnected = false;
 var requestingUser;
 var timeout;
 var room;
+var hasSelected = false;
 var sendClick = 0;
 var mentorTimeOut;
 var isLoggedOut = false;
@@ -16,6 +17,7 @@ var topicIds = [];
 url = "http://hopeline.azurewebsites.net/";
 var mentorMsgReceived = 0;
 var isToggleOpen = false;
+var hasRequested = false;
 
 //comment out before pushing to master
 // var url = "http://localhost:8000/";
@@ -60,8 +62,7 @@ function alertTime() {
 function registerHub() {
   //when a  call is connected
   connection.on("CallConnected", function () {
-    mentorTimeOut = null;
-    timeout = null;
+    clearTimeout(mentorTimeOut);
     $("#requestedCall").hide();
     $("#callWindow").show();
     window.open(
@@ -122,7 +123,6 @@ function registerHub() {
       $("#topics").append("No Topic Selected");
 
     }
-    $("")
   });
   //register for users
   if (!isUser) {
@@ -192,7 +192,7 @@ function notifyUser() {
       $("#sendArea").show();
       $("#chatbox").show();
       $("#loading").modal("hide");
-    } else if (code == 0) {
+    } else {
       $("#Logo").show();
       $("#ChatWidget").hide();
       $("#sendArea").hide();
@@ -202,12 +202,6 @@ function notifyUser() {
       $("#imgLoading").show();
       $("chatbox").hide();
       findTime();
-    } else {
-      $("chatbox").hide();
-      $("sendArea").hide();
-      //$("#loading").show();
-      findTime();
-      $("#modaltrigger").click();
     }
   });
 }
@@ -369,7 +363,7 @@ $("#endConversation").click(function () {
 });
 
 $("#videoCallBtn").click(function () {
-  if (!onCall) {
+  if (!onCall && !hasRequested) {
     connection.invoke(
       "SendMessage",
       "HopeLine",
@@ -382,15 +376,21 @@ $("#videoCallBtn").click(function () {
       "<p id=msg>You have requested to Talk to Mentor via Call. Please Make sure allow pop-ups on you browser.</p>"
     );
     alertTime();
+    hasRequested = true;
+  } else {
+    $("#chatAlert").append(
+      "<p>You already Requested to Call with Mentor.</p>"
+    );
   }
 });
 
 $("#acceptCall").click(function () {
+  $("#incomingCall").hide();
   connection.invoke("ConnectCall", room);
   onCall = true;
   $("#chatAlert").append("<p>Mentor has accepted the Call.</p>");
   alertTime();
-
+  clearTimeout(mentorTimeOut);
   connection.invoke("SendMessage", "HopeLine", "Call Connected.", room);
 });
 
@@ -434,10 +434,14 @@ $("input[type=checkbox]").on("click", function () {
 });
 
 $("#updateTopics").click(function () {
-  if (topicIds.length > 0) {
+  if (topicIds.length > 0 && !hasSelected) {
     connection.invoke("AddTopics", room, topicIds);
     $("#topicsOnLeft").hide();
     $("#topicsOnTop").hide();
+    hasSelected = true;
+  } else {
+    $("#chatAlert").append('<p>You already Selected Topics</p>');
+    alertTime();
   }
 });
 

@@ -29,27 +29,27 @@ Video.connect(
   console.log('Connected to Room "%s"', room.name);
   console.log('User name "%s"', userId);
 
-  Video.createLocalVideoTrack().then(function(videoTrack) {
+  Video.createLocalVideoTrack().then(function (videoTrack) {
     //Creating Video media
     localVideoMedia = videoTrack; //Saving the video media to use later
     $("#local-media").append(videoTrack.attach()); //Adding video media to our webpage
     localVideoMedia.disable(); //Disable it
   });
-  Video.createLocalAudioTrack().then(function(audioTrack) {
+  Video.createLocalAudioTrack().then(function (audioTrack) {
     //Creating audio media
     localAudioMedia = audioTrack; //Saving the audio media to use later
     $("#local-media").append(audioTrack.attach()); //Adding audio media to our webpage
     localAudioMedia.disable(); //Disable it
   });
 
-  $("#close-button").click(function() {
+  $("#close-button").click(function () {
     //When the click on the close icon, disconnect from room and close window
     room.disconnect();
 
     window.close();
   });
 
-  $("#mute-button").click(function() {
+  $("#mute-button").click(function () {
     //When clicking the mute button
     if (localAudioShow) {
       //If not muted
@@ -64,7 +64,7 @@ Video.connect(
     }
   });
 
-  $("#video-button").click(function() {
+  $("#video-button").click(function () {
     //When clicking the video button
     if (localVideoShow) {
       //If video enabled
@@ -79,22 +79,22 @@ Video.connect(
     }
   });
 
-  room.on("trackPublished", function() {
+  room.on("trackPublished", function () {
     console.log("track was published");
   });
-  room.on("trackUnpublished", function() {
+  room.on("trackUnpublished", function () {
     console.log("track was unpublished");
   });
 
-  room.on("trackDisabled", function() {
+  room.on("trackDisabled", function () {
     console.log("track was disabled");
   });
 
-  room.on("trackEnabled", function() {
+  room.on("trackEnabled", function () {
     console.log("track was enabled");
   });
 
-  room.participants.forEach(function(participant) {
+  room.participants.forEach(function (participant) {
     // When joining the room, checks whos there
     console.log("Already in Room: '" + participant.identity + "'");
   });
@@ -111,9 +111,9 @@ Video.connect(
 
 function attachTracks(tracks, container) {
   //Attach media to own screen
-
+  container.addClass("col-12");
   if (!localVideoShow) {
-    tracks.forEach(function(track) {
+    tracks.forEach(function (track) {
       container.append(track.attach());
     });
     localVideoShow = true;

@@ -8,10 +8,9 @@ using HopeLine.Web.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using HopeLine.DataAccess.Entities;
 namespace HopeLine.Web.Pages
 {
-    
+
     public class ResourcesModel : PageModel
     {
         public readonly ICommonResource _commonResource;
@@ -47,7 +46,7 @@ namespace HopeLine.Web.Pages
             SuicideRes = new List<ResourcesViewModel>();
         }
 
-        
+
         public async Task<IActionResult> OnGetAsync()
         {
             HopeLineUser CurrentUser = await _userManager.GetUserAsync(User);
@@ -76,7 +75,7 @@ namespace HopeLine.Web.Pages
                 ImageURL = r.ImageURL
             }).ToList();
 
-            foreach(var i in Resources)
+            foreach (var i in Resources)
             {
                 if (i.Id > 99 && i.Id < 200)
                     DepressionRes.Add(i);

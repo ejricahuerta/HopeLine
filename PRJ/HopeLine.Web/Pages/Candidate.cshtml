@@ -1,0 +1,39 @@
+﻿@page
+@model HopeLine.Web.Pages.CandidateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+        Layout = "/Pages/Shared/_Layout.cshtml";
+}
+<div style="margin-top:90px;"></div>
+<div class="container">
+  <h3>Application Form</h3>
+<form method="post">
+  <div class="form-row">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" asp-for="Applicant.Email" placeholder="Email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="fullname">Full Name</label>
+      <input type="text" class="form-control" asp-for="Applicant.FullName" placeholder="Full Name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Address</label>
+    <input type="text" class="form-control" asp-for="Applicant.Address" placeholder="Street, City, Postal Code">
+  </div>
+    <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" asp-for="Applicant.Phone" placeholder="Phone">
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" asp-for="Applicant.IsVolunteer">
+        Are you a Volunteer?
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>

@@ -16,18 +16,41 @@ namespace HopeLine.Service.CoreServices
     public class UserService : IUserService
     {
         private readonly ILogger<UserService> _logger;
+        private readonly IRepository<Applicant> _applicantRepo;
         private readonly IRepository<HopeLineUser> _userRepo;
         private readonly IRepository<Conversation> _convoRepo;
         private readonly IRepository<MentorSpecialization> _specializationRepo;
 
-        public UserService(ILogger<UserService> logger, IRepository<HopeLineUser> userRepo,
+        public UserService(ILogger<UserService> logger, IRepository<Applicant> applicantRepo, IRepository<HopeLineUser> userRepo,
             IRepository<Conversation> convoRepo,
             IRepository<MentorSpecialization> specializationRepo)
         {
             _logger = logger;
+            _applicantRepo = applicantRepo;
             _userRepo = userRepo;
             _convoRepo = convoRepo;
             _specializationRepo = specializationRepo;
+        }
+
+        public void AddNewApplication(ApplicantModel applicant)
+        {
+            try
+            {
+                _applicantRepo.Insert(new Applicant
+                {
+                    FullName = applicant.FullName,
+                    Email = applicant.Email,
+                    Address = applicant.Address,
+                    Phone = applicant.Phone,
+                    IsVolunteer = applicant.IsVolunteer
+                });
+                _applicantRepo.Save();
+
+            }
+            catch (System.Exception)
+            {
+                _logger.LogWarning("Unable to Add Applicant");
+            }
         }
 
         public IEnumerable<UserModel> GetAllMentors()
@@ -121,6 +144,18 @@ namespace HopeLine.Service.CoreServices
             }
 
         }
+
+        public IEnumerable<ApplicantModel> GetApplicants()
+        {
+            return _applicantRepo.GetAll(null).Select(a => new ApplicantModel
+            {
+                FullName = a.FullName,
+                Address = a.Address,
+                Phone = a.Phone,
+                Email = a.Email
+            });
+        }
+
         /// <summary>
         /// This function gets all mentors Activities
         /// </summary>

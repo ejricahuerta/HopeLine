@@ -1,5 +1,6 @@
 ﻿@page
 @model HopeLine.Web.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Home page";
     if (Model.isUser)
@@ -261,30 +262,41 @@
                 </div>
           
                 <div class="col-md-8 col-sm-12">
+                  @if (Model.Status == "Success"){
+                  <div class="col-12">
+                    <div class="alert alert-success" role="alert">
+                      Please Check your Email.
+                    </div>
+                  </div>
+                  }
+                  @if (Model.Status == "Failed") {
+                  <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                      Unable to Process.
+                    </div>
+                  </div>
+                  }
+     
                 <!-- Start  contact -->
-                  <form class="form rounded shadow-lg p-5">
+                  <form method="post" class="form rounded shadow-lg p-5">
                           <p>
                             Fill up the form so you can start helping.
                           </p>
                     <div class="form-group ml-auto">
                       <label for="fullname">Full Name</label>
-                      <input type="text" class="form-control" id="fullname" placeholder="First and Last Name">
+                      <input type="text" class="form-control" asp-for="Candidate.FullName" placeholder="First and Last Name">
                     </div>
                     <div class="form-group">
                       <label for="email">Email address</label>
-                      <input  id="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" style="width:100%">
+                      <input  id="email" type="email" class="form-control" asp-for="Candidate.Email" aria-describedby="emailHelp" placeholder="Enter email" style="width:100%">
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-                    <div class="form-group">
-                      <label for="file">Resume with Cover Letter</label>
-                      <input type="file" class="form-control-file" id="file">
-                    </div>
                     <div class="form-group form-check">
-                      <input type="checkbox" class="form-check-input" id="isvolunteer">
+                      <input type="checkbox" class="form-check-input" asp-for="Candidate.IsVolunteer">
                       <label class="form-check-label" for="isvolunteer">Volunteer?</label>
                     </div>
                     <div class="form-group">
-                    <button type="submit" class=" btn btn-primary">Submit</button>
+                    <button asp-page-handler="Candidate"  type="submit" class=" btn btn-primary">Submit</button>
                     </div>
                   </form>
                 <br>
