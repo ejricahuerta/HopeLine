@@ -15,41 +15,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
-        #local-media{
+
+        #local-media {
             position:fixed;
-            top:10px;
             right:10px;
-            z-index: 5
+            top:10px;
         }
-        #local-media video {
-            max-height: 300px;
-            max-width: 300px;
+        #remote-media {
+            position: fixed;
+            left: 10px;
+            top: 10px;
         }
-        
+            #local-media > video, #remote-media > video {
+                height: 100px;
+                width: 100px;
+            }
     </style>
 </head>
-
-<body class="container-fluid bg-dark text-white">
-<section class="row justify-content-center">
-            <div id="local-media" class="p-1 border">
-            </div>
-        <div id="remote-media" class=" border col-12">
-
+<body class="container-fluid bg-dark text-white" id="participant-video" style="min-height: 100%">
+    <section class="row" style="min-height: 100%">
+        <div id="remote-media" class=" border">
+        </div>
+        <div id="local-media" class="border" >
         </div>
     </section>
     <section class="row" style="bottom:20px;position:fixed;z-index:-1">
         <div class="col-4">
-            <button class=" btn btn-lg btn-outline-light">
+            <button class=" btn btn-lg btn-outline-light" id="mute-button">
                 <i class="fas fa-volume-mute"></i>
             </button>
         </div>
         <div class="col-4">
-            <button class=" btn btn-lg btn-outline-light">
+            <button class=" btn btn-lg btn-outline-light" id="video-button">
                 <i class="fas fa-video 9x"></i>
             </button>
         </div>
         <div class="col-4">
-            <button class=" btn btn-lg btn-outline-light">
+            <button class=" btn btn-lg btn-outline-light" id="close-button">
                 <i class="far fa-times-circle 9x"></i>
             </button>
         </div>
@@ -57,6 +59,7 @@
 
     <input id="token" type="hidden" value="@Model.Token" />
     <input id="roomId" type="hidden" value="@Model.RoomId" />
+    <input id="userId" type="hidden" value="@Model.UserId" />
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -11500,23 +11500,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\zshi1\\.nuget\\packages\\": {},
+    "C:\\Users\\eosorio1\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
       "projectName": "WebTemplate",
-      "projectPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
-      "packagesPath": "C:\\Users\\zshi1\\.nuget\\packages\\",
-      "outputPath": "D:\\StudyWork\\GitHub\\HopeLine\\PRJ\\WebTemplate\\obj\\",
+      "projectPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\WebTemplate.csproj",
+      "packagesPath": "C:\\Users\\eosorio1\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\eosorio1\\Source\\Repos\\HopeLine\\PRJ\\WebTemplate\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\zshi1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\eosorio1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
