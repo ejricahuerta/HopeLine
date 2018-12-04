@@ -30,10 +30,10 @@ connection = new signalR.HubConnectionBuilder()
 // put all functions after this line
 function findTime() {
     timeout = setTimeout(function () {
-        $("#loading").text("Unable to Find Mentor...");
-        $("#loading").append(
-            '<a href="' + url + '/instantChat" class="btn btn-info">Retry</a>'
-        );
+        $("#loadingheader").text("Unable to Find Mentor...");
+        $("#imgLoading").hide();
+        $("#retryLoading").show();
+        $("#cancelLoading").hide();
     }, 20000);
 }
 
@@ -64,6 +64,7 @@ function registerHub() {
     //when a  call is connected
     connection.on("CallConnected", function () {
         $("#requestedCall").hide();
+        $("#callWindow").show();
         window.open(
             url + "VideoChat?roomId=" + room + "&userId=" + userId,
             "HopeLine-Call",
@@ -90,11 +91,10 @@ function registerHub() {
     connection.on("Room", function (roomId) {
         room = roomId;
         connection.invoke("LoadMessage", room);
+        $("#loading").modal("hide");
         $("#sendArea").removeClass("d-none");
-        $("#requestChat").hide();
         $("#sendArea").show();
         $("#chatbox").show();
-        $("#loading").hide();
         $("#mentorFound").click();
         $("#toggleChat").removeClass("disabled");
         timeout = null;
@@ -116,14 +116,14 @@ function registerHub() {
         //notify mentors
         notifyMentor();
         //notify mentor for incoming call
-        connection.on("CallMentor", function() {
+        connection.on("CallMentor", function () {
             console.log("Notifying");
             $("#incomingCall").show();
             $("#requestedCall").show();
-            mentorTimeOut = setTimeout(function() {
-              $("#incomingCall").hide();
+            mentorTimeOut = setTimeout(function () {
+                $("#incomingCall").hide();
             }, 40000);
-          });
+        });
     } else {
         //notify user
         notifyUser();
@@ -173,28 +173,20 @@ function notifyUser() {
         console.log("code:  " + code);
         if (code == 1) {
             isLoggedOut = false;
-            $("#loading").hide();
-            $("#requestChat").hide();
             $("#sendArea").show();
             $("#chatbox").show();
-            //if 0 then keep notify the mentor
+            $("#loading").modal("hide");
         } else if (code == 0) {
             $("#sendArea").hide();
             $("#openLoading").click();
-            $("#requestChat").show();
-            $("#requestChat").click(function () {
-                window.reload();
-            });
+            $("#retryLoading").hide();
+            $("#cancelLoading").show();
+            $("#imgLoading").show();
             $("chatbox").hide();
             findTime();
-
         } else {
             $("chatbox").hide();
             $("sendArea").hide();
-            $("#requestChat").show();
-            $("#requestChat").click(function () {
-                window.reload();
-            });
             //$("#loading").show();
             findTime();
             $("#modaltrigger").click();
@@ -205,8 +197,6 @@ function notifyUser() {
 
 //notifying mentors func
 function notifyMentor() {
-
-
     connection.on("NotifyMentor", function (user, userConnectionId, code) {
         if (code == null) {
             console.log("User Request Id :" + user);
@@ -267,7 +257,7 @@ function addChatBubble(user, message) {
         "</small>" +
         '<div class="' +
         classId +
-        ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;  overflow-wrap: break-word;word-wrap: break-word;hyphens: auto;">' +
+        ' text-justify border-left pl-2" style="border-width:8px !important; min-height:40px;  overflow-wrap:break-word;word-wrap: break-word;hyphens: auto;">' +
         message +
         "</div></div>"
     );
@@ -292,13 +282,8 @@ setInterval(function () {
         } else {
             $("#sp").show();
         }
-
     }
-
-
 }, 100);
-
-
 
 
 $(function () {
@@ -399,6 +384,12 @@ $("#acceptCall").click(function () {
     mentorTimeOut = null;
     $("#chatAlert").append("<p>Mentor has accepted the Call.</p>");
     alertTime();
+    connection.invoke(
+        "SendMessage",
+        "HopeLine",
+        "Call Connected.",
+        room
+    );
 });
 
 $("#toggleChat").click(function () {
@@ -421,6 +412,7 @@ $("#toggleChat").click(function () {
 });
 
 $("#messageInput").click(function () {
+
     $("#message").animate({
             scrollTop: $("#message").prop("scrollHeight")
         },
@@ -433,6 +425,12 @@ $("#messageInput").click(function () {
     );
 });
 
+$('#loading').on('hidden.bs.modal', function (e) {
+    if (room == null) {
+        window.location.replace(url);
+    }
+});
+
 //Rate Mnetor
 window.onbeforeunload = function (event) {
     var rate = setInterval(function () {
@@ -440,6 +438,5 @@ window.onbeforeunload = function (event) {
     }, 100);
     $("#happy").click(function () {
         clearInterval(rate);
-    })
-    console.log("fffffffffffffffffffffffffffffffff")
+    });
 }
