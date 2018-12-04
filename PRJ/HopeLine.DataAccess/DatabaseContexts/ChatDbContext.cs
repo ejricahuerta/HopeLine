@@ -13,5 +13,6 @@ namespace HopeLine.DataAccess.DatabaseContexts
         public DbSet<Message> Messages { get; set; }
         public DbSet<OnlineMentor> OnlineMentors { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Topic> Topics { get; set; }
     }
 }

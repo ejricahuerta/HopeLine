@@ -1,7 +1,6 @@
 var userId = $("#userId").val();
 var topicsSelected = null;
 var onCall = false;
-var hasRequestedCall = false;
 var currentUser = userId;
 var isUser = currentUser.indexOf("Guest") != -1;
 var connection = null;
@@ -14,16 +13,16 @@ var mentorTimeOut;
 var isLoggedOut = false;
 var room = null;
 var topicIds = [];
-//url = "http://hopeline.azurewebsites.net/";
+url = "http://hopeline.azurewebsites.net/";
 var mentorMsgReceived = 0;
 var isToggleOpen = false;
 
 //comment out before pushing to master
-var url = "http://localhost:8000/";
+// var url = "http://localhost:8000/";
 
 connection = new signalR.HubConnectionBuilder()
-  //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-  .withUrl("http://localhost:5000/v2/chatHub")
+  .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+  // .withUrl("http://localhost:5000/v2/chatHub")
   .build();
 
 //ALL FUNCTIONS FOR THIS FILE
@@ -40,7 +39,6 @@ function findTime() {
 function requestCallTime() {
   console.log("requesting call...");
   mentorTimeOut = setTimeout(function () {
-    hasRequestedCall = false;
     connection.invoke(
       "SendMessage",
       "HopeLine",
@@ -307,8 +305,8 @@ $(function () {
     console.log("pin = " + room);
 
     connection = new signalR.HubConnectionBuilder()
-      //.withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
-      .withUrl("http://localhost:5000/v2/chatHub")
+      .withUrl("https://hopelineapi.azurewebsites.net/v2/chatHub")
+      // .withUrl("http://localhost:5000/v2/chatHub")
       .build();
     //register all methods
     registerHub();
@@ -371,7 +369,7 @@ $("#endConversation").click(function () {
 });
 
 $("#videoCallBtn").click(function () {
-  if (!onCall && !hasRequestedCall) {
+  if (!onCall) {
     connection.invoke(
       "SendMessage",
       "HopeLine",
@@ -380,21 +378,19 @@ $("#videoCallBtn").click(function () {
     );
     connection.invoke("RequestToVideoCall", room);
     requestCallTime();
-
     $("#chatAlert").append(
-      "<p id=msg>You have requested to Talk to Mentor via Call.</p>"
+      "<p id=msg>You have requested to Talk to Mentor via Call. Please Make sure allow pop-ups on you browser.</p>"
     );
     alertTime();
-    hasRequestedCall = true;
   }
 });
 
 $("#acceptCall").click(function () {
   connection.invoke("ConnectCall", room);
   onCall = true;
-  hasRequestedCall = true;
   $("#chatAlert").append("<p>Mentor has accepted the Call.</p>");
   alertTime();
+
   connection.invoke("SendMessage", "HopeLine", "Call Connected.", room);
 });
 

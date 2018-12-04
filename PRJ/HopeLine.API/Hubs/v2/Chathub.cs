@@ -7,12 +7,14 @@ using HopeLine.Service.Models;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
-namespace HopeLine.API.Hubs.v2 {
+namespace HopeLine.API.Hubs.v2
+{
     /// <summary>
     /// This class implements signalr hub that allows user to connect
     /// </summary>
 
-    public class ChatHub : Hub, IChat, ICall {
+    public class ChatHub : Hub, IChat, ICall
+    {
         private bool isConnected = false;
 
         public readonly ILogger<ChatHub> _logger;
@@ -24,215 +26,275 @@ namespace HopeLine.API.Hubs.v2 {
 
         private DateTime DateConversationStarted { get; set; }
         private static string Mentor = "MentorRoomOnly";
-        public ChatHub (ILogger<ChatHub> logger, IMessage messageService, ICommunication communicationService, ICommonResource commonResource) {
+        public ChatHub(ILogger<ChatHub> logger, IMessage messageService, ICommunication communicationService, ICommonResource commonResource)
+        {
             _logger = logger;
             _messageService = messageService;
             _communicationService = communicationService;
             _commonResource = commonResource;
         }
 
-        public override Task OnDisconnectedAsync (Exception exception) {
-            _logger.LogInformation ("User has been disconnected...");
-            return base.OnDisconnectedAsync (exception);
+        public override Task OnDisconnectedAsync(Exception exception)
+        {
+            _logger.LogInformation("User has been disconnected...");
+            return base.OnDisconnectedAsync(exception);
         }
 
-        public override Task OnConnectedAsync () {
-            _logger.LogInformation ("User has connected...");
-            return base.OnConnectedAsync ();
+        public override Task OnConnectedAsync()
+        {
+            _logger.LogInformation("User has connected...");
+            return base.OnConnectedAsync();
         }
 
-        public async Task LoadMessage (string room) {
-            try {
-                _logger.LogInformation ("Loading messages for {}", room);
-                var allMessages = _messageService.GetAllMessages (room);
+        public async Task LoadMessage(string room)
+        {
+            try
+            {
+                _logger.LogInformation("Loading messages for {}", room);
+                var allMessages = _messageService.GetAllMessages(room);
                 //allMessages.Reverse();
-                System.Console.WriteLine (" Count: " + allMessages.Count ());
-                if (allMessages != null) {
-                    foreach (var m in allMessages) {
-                        await Clients.Caller.SendAsync ("ReceiveMessage", m.UserName, m.Text);
+                System.Console.WriteLine(" Count: " + allMessages.Count());
+                if (allMessages != null)
+                {
+                    foreach (var m in allMessages)
+                    {
+                        await Clients.Caller.SendAsync("ReceiveMessage", m.UserName, m.Text);
                     }
                 }
-            } catch (System.Exception ex) {
-                _logger.LogCritical ("Unable to Load Data: ", ex);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogCritical("Unable to Load Data: ", ex);
             }
         }
 
-        public async Task SendMessage (string user, string message, string room) {
-            var newmsg = new MessageModel {
+        public async Task SendMessage(string user, string message, string room)
+        {
+            var newmsg = new MessageModel
+            {
                 ConnectionId = room,
                 UserName = user,
                 Text = message
             };
-            _logger.LogInformation ("Adding message for " + user);
-            _messageService.NewMessage (newmsg);
-            await Clients.Group (room).SendAsync ("ReceiveMessage", user, message);
+            _logger.LogInformation("Adding message for " + user);
+            _messageService.NewMessage(newmsg);
+            await Clients.Group(room).SendAsync("ReceiveMessage", user, message);
         }
 
-        public async Task AddMentor (string mentorId) {
-            var room = _messageService.GetRoomForUser (mentorId, false);
-            if (room != null) {
-                await Groups.AddToGroupAsync (Context.ConnectionId, room);
-                await Clients.Caller.SendAsync ("Room", room);
+        public async Task AddMentor(string mentorId)
+        {
+            var room = _messageService.GetRoomForUser(mentorId, false);
+            if (room != null)
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                await Clients.Caller.SendAsync("Room", room);
             }
 
-            try {
-                await Groups.AddToGroupAsync (Context.ConnectionId, Mentor);
-                _logger.LogInformation ("Added mentor to room: " + room);
-            } catch (System.Exception ex) {
-                throw new Exception ("Unable to Add Mentor to Group", ex);
+            try
+            {
+                await Groups.AddToGroupAsync(Context.ConnectionId, Mentor);
+                _logger.LogInformation("Added mentor to room: " + room);
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception("Unable to Add Mentor to Group", ex);
             }
         }
 
-        public async Task RemoveUser (string userId, string roomId, bool isUser) {
-            try {
-                _logger.LogInformation ("Removing User from room", roomId);
-                await Groups.RemoveFromGroupAsync (Context.ConnectionId, roomId);
+        public async Task RemoveUser(string userId, string roomId, bool isUser)
+        {
+            try
+            {
+                _logger.LogInformation("Removing User from room", roomId);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, roomId);
 
-                if (isUser) {
-                    await Clients.Group (roomId).SendAsync ("NotifyMentor", userId, null, MentorStatus.Error);
-                } else {
-                    await Clients.Group (roomId).SendAsync ("NotifyUser", MentorStatus.Error);
+                if (isUser)
+                {
+                    await Clients.Group(roomId).SendAsync("NotifyMentor", userId, null, MentorStatus.Error);
                 }
-                await _messageService.DeleteAllMessages (roomId);
-            } catch (System.Exception ex) {
-                _logger.LogCritical ("Unable to Proceed", ex);
+                else
+                {
+                    await Clients.Group(roomId).SendAsync("NotifyUser", MentorStatus.Error);
+                }
+                await _messageService.DeleteAllMessages(roomId);
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogCritical("Unable to Proceed", ex);
             }
 
             //Updating Conversation
-            if (CurrentRoom != null) {
-                var conversation = _communicationService.GetConversationByPIN (CurrentRoom);
+            if (CurrentRoom != null)
+            {
+                var conversation = _communicationService.GetConversationByPIN(CurrentRoom);
                 TimeSpan span = (DateTime.Now - conversation.DateOfConversation);
-
-                conversation.Minutes = (float) span.TotalSeconds;
-                var result = _communicationService.EditConversation (conversation);
-                if (!result) {
-                    _logger.LogWarning ("Unable to Proceed", CurrentRoom);
+                var result = _communicationService.EditConversation(conversation);
+                if (!result)
+                {
+                    _logger.LogWarning("Unable to Proceed", CurrentRoom);
                 }
             }
         }
 
-        public async Task AcceptUserRequest (string mentorId, string userId, string userConnectionId) {
+        public async Task AcceptUserRequest(string mentorId, string userId, string userConnectionId)
+        {
 
-            var room = _communicationService.GenerateConnectionId ();
-            try {
+            var room = _communicationService.GenerateConnectionId();
+            try
+            {
                 CurrentRoom = room;
-                await Groups.RemoveFromGroupAsync (Context.ConnectionId, Mentor);
-                await Groups.AddToGroupAsync (userConnectionId, room);
-                await Clients.Client (userConnectionId).SendAsync ("Room", room);
-                await _messageService.AndUsersToRoom (mentorId, userId, room);
-                await Groups.AddToGroupAsync (Context.ConnectionId, room);
-                await Clients.Caller.SendAsync ("Room", room);
-                await Clients.Group (room).SendAsync ("ReceiveMessage", "HopeLine", "Welcome to HopeLine Chatroom");
-            } catch (System.Exception ex) {
-                _logger.LogCritical ("Unable to Accept Request.", room, userId, ex);
+                await Groups.RemoveFromGroupAsync(Context.ConnectionId, Mentor);
+                await Groups.AddToGroupAsync(userConnectionId, room);
+                await Clients.Client(userConnectionId).SendAsync("Room", room);
+                await _messageService.AndUsersToRoom(mentorId, userId, room);
+                await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                await Clients.Caller.SendAsync("Room", room);
+                await Clients.Group(room).SendAsync("ReceiveMessage", "HopeLine", "Welcome to HopeLine Chatroom");
+            }
+            catch (System.Exception ex)
+            {
+                _logger.LogCritical("Unable to Accept Request.", room, userId, ex);
             }
 
             //Creating new Conversation
-            var result = _communicationService.AddConversation (new ConversationModel {
+            var result = _communicationService.AddConversation(new ConversationModel
+            {
                 PIN = room,
-                    UserId = userId,
-                    MentorId = mentorId,
-                    DateOfConversation = DateTime.Now
+                UserId = userId,
+                MentorId = mentorId,
+                DateOfConversation = DateTime.Now
             });
 
-            if (!result) {
-                _logger.LogWarning ("Adding Conversation Failed", room, userId);
-            } else {
-                _logger.LogInformation ("Adding Conversation", room, userId);
+            if (!result)
+            {
+                _logger.LogWarning("Adding Conversation Failed", room, userId);
+            }
+            else
+            {
+                _logger.LogInformation("Adding Conversation", room, userId);
             }
         }
 
-        public async Task RequestToTalk (string userId) {
-            try {
-                var room = _messageService.GetRoomForUser (userId, true);
-                if (room != null) {
-                    await Groups.AddToGroupAsync (Context.ConnectionId, room);
-                    await Clients.Caller.SendAsync ("Room", room);
-                    await Clients.Caller.SendAsync ("NotifyUser", MentorStatus.Connected);
-                } else {
-                    await Clients.Caller.SendAsync ("NotifyUser", MentorStatus.Finding);
-                    await Clients.Group (Mentor).SendAsync ("NotifyMentor", userId, Context.ConnectionId);
+        public async Task RequestToTalk(string userId)
+        {
+            try
+            {
+                var room = _messageService.GetRoomForUser(userId, true);
+                if (room != null)
+                {
+                    await Groups.AddToGroupAsync(Context.ConnectionId, room);
+                    await Clients.Caller.SendAsync("Room", room);
+                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Connected);
                 }
-            } catch (Exception ex) {
-                _logger.LogInformation ("Unable to Process Request for User: {} with Error: {}", userId, ex);
-                await Clients.Caller.SendAsync ("NotifyUser", MentorStatus.Error);
+                else
+                {
+                    await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Finding);
+                    await Clients.Group(Mentor).SendAsync("NotifyMentor", userId, Context.ConnectionId);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Unable to Process Request for User: {} with Error: {}", userId, ex);
+                await Clients.Caller.SendAsync("NotifyUser", MentorStatus.Error);
             }
         }
 
-        public async Task CallDisconnected (string roomId) {
-            _logger.LogInformation ("Call has been disconnected");
-            await Clients.Group (roomId).SendAsync ("Disconnected");
+        public async Task CallDisconnected(string roomId)
+        {
+            _logger.LogInformation("Call has been disconnected");
+            await Clients.Group(roomId).SendAsync("Disconnected");
         }
 
-        public async Task ConnectCall (string roomId) {
-            _logger.LogInformation ("Call Connected.");
-            await Clients.Group (roomId).SendAsync ("CallConnected");
+        public async Task ConnectCall(string roomId)
+        {
+            _logger.LogInformation("Call Connected.");
+            await Clients.Group(roomId).SendAsync("CallConnected");
 
         }
 
-        public async Task RequestToVideoCall (string roomId) {
-            _logger.LogInformation ("A request from room occured.", roomId);
-            try {
-                if (roomId != null) {
-                    await Clients.Group (roomId).SendAsync ("CallMentor");
+        public async Task RequestToVideoCall(string roomId)
+        {
+            _logger.LogInformation("A request from room occured.", roomId);
+            try
+            {
+                if (roomId != null)
+                {
+                    await Clients.Group(roomId).SendAsync("CallMentor");
                 }
 
-            } catch (Exception ex) {
-                _logger.LogWarning ("Unable to proceed request.", roomId, ex);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning("Unable to proceed request.", roomId, ex);
             }
         }
 
-        public async Task GetTopics (string userId, bool isUser) {
-            var room = _messageService.GetRoomForUser (userId, isUser);
-            var ids = _messageService.GetTopics (room);
-            var allTopics = _commonResource.GetTopics ();
-            var topics = new List<TopicModel> ();
+        public async Task GetTopics(string userId, bool isUser)
+        {
+            var room = _messageService.GetRoomForUser(userId, isUser);
+            var ids = _messageService.GetTopics(room);
+            var allTopics = _commonResource.GetTopics();
+            var topics = new List<TopicModel>();
             var stringTopics = "";
-            foreach (var id in ids) {
-                var topic = allTopics.FirstOrDefault (t => t.Id == id);
-                if (topic != null) {
-                    topics.Add (topic);
+            foreach (var id in ids)
+            {
+                var topic = allTopics.FirstOrDefault(t => t.Id == id);
+                if (topic != null)
+                {
+                    topics.Add(topic);
                     stringTopics = stringTopics + " " + topic.Name;
                 }
             }
-            await Clients.Group (room).SendAsync ("Topics", topics.Select (t => t.Name));
-            await Clients.Caller.SendAsync ("ReceiveMessage", "HopeLine", "You have selected the following Topics: " + stringTopics);
+            await Clients.Group(room).SendAsync("Topics", topics.Select(t => t.Name));
+            await Clients.Caller.SendAsync("ReceiveMessage", "HopeLine", "You have selected the following Topics: " + stringTopics);
         }
 
-        public async Task AddTopics (string roomId, IList<int> ids) {
-            if (ids.Count () != 0) {
-                try {
+        public async Task AddTopics(string roomId, IList<int> ids)
+        {
+            if (ids.Count() != 0)
+            {
+                try
+                {
                     //get topics from service
-                    _logger.LogInformation ("Fetching all Topics by ids: {}", ids);
-                    var allTopics = _commonResource.GetTopics ();
-                    var topics = new List<TopicModel> ();
-                    foreach (var id in ids) {
-                        var topic = allTopics.FirstOrDefault (t => t.Id == id);
-                        if (topic != null) {
-                            topics.Add (topic);
+                    _logger.LogInformation("Fetching all Topics by ids: {}", ids);
+                    var allTopics = _commonResource.GetTopics();
+                    var topics = new List<TopicModel>();
+                    foreach (var id in ids)
+                    {
+                        var topic = allTopics.FirstOrDefault(t => t.Id == id);
+                        if (topic != null)
+                        {
+                            topics.Add(topic);
                         }
                     }
-                    _messageService.AddTopicsToRoom (roomId, topics.Select (t => t.Id).ToList ());
-                    await Clients.Group (roomId).SendAsync ("Topics", topics.Select (t => t.Name));
-                } catch (Exception) {
-                    _logger.LogWarning ("Unable to Fetch Topics");
+                    _messageService.AddTopicsToRoom(roomId, topics.Select(t => t.Id).ToList());
+                    await Clients.Group(roomId).SendAsync("Topics", topics.Select(t => t.Name));
+                }
+                catch (Exception)
+                {
+                    _logger.LogWarning("Unable to Fetch Topics");
 
                 }
-            } else {
-                _logger.LogInformation ("No Topics Selected");
+            }
+            else
+            {
+                _logger.LogInformation("No Topics Selected");
             }
         }
 
-        public void Rate (string roomId, int rating) {
-            var conversation = _communicationService.GetConversationByPIN (roomId);
-            if (conversation == null) {
-                Rating rate = (Rating) rating;
+        public void Rate(string roomId, int rating)
+        {
+            var conversation = _communicationService.GetConversationByPIN(roomId);
+            if (conversation == null)
+            {
+                Rating rate = (Rating)rating;
                 conversation.Rating = rate;
-                _communicationService.EditConversation (conversation);
+                _communicationService.EditConversation(conversation);
             }
         }
     }
-    public enum MentorStatus {
+    public enum MentorStatus
+    {
         Finding = 0,
         Connected = 1,
         Error = -1
