@@ -27,6 +27,28 @@ namespace HopeLine.Service.CoreServices {
             _specializationRepo = specializationRepo;
         }
 
+        public IEnumerable<UserModel> GetAllMentors () {
+            try {
+                // For each user return a value
+                return _userRepo.GetAll ().Where (u => u.AccountType == Account.Mentor)
+                    .Select (u =>
+                        //for each value map to user model
+                        new UserModel {
+                            Id = u.Id,
+                                FirstName = (u.Profile != null) ? u.Profile.FirstName : "",
+                                LastName = (u.Profile != null) ? u.Profile.LastName : "",
+                                Languages = new List<string> (),
+                                AccountType = u.AccountType.ToString (),
+                                Username = u.UserName,
+                                Email = u.Email
+                        });
+
+            } catch (System.Exception ex) {
+                _logger.LogWarning ("Unable to process Service: {}", ex);
+                return null;
+            }
+        }
+
         /// <summary>
         /// This function returns a list of user model class mapped from user entities repo
         /// </summary>

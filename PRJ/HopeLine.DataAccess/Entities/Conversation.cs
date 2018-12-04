@@ -12,6 +12,7 @@ namespace HopeLine.DataAccess.Entities {
     public class Conversation : BaseEntity {
         public Conversation () {
             DateOfConversation = DateTime.Now.ToString ("MM/dd/yyyy HH:mm:ss");
+            Rating = -1;
         }
 
         [Required]
@@ -28,5 +29,7 @@ namespace HopeLine.DataAccess.Entities {
         [DataType (DataType.DateTime)]
         public string DateOfConversation { get; set; }
 
+        [Required]
+        public int Rating { get; set; }
     }
 }

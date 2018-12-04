@@ -267,7 +267,6 @@ function addChatBubble(user, message) {
 //ALL JQUERY USER INTERACTIONS (ACTIONS)
 //Put your code here for all actions from html
 
-
 //Received messages for mentor chat
 setInterval(function () {
     if ($("#toggleChat > span").val() == null) {
