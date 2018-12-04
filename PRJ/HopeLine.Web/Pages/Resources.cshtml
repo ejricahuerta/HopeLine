@@ -8,7 +8,7 @@
     }
     else
     {
-        Layout = "/Pages/Shared/_mentorLayout.cshtml";
+        Layout = "/Pages/Shared/_MentorLayout.cshtml";
     }
 }
 
@@ -17,7 +17,7 @@
 }
 <div style="margin-top:100px"></div>
 <div class="row mt-5">
-    <div class="col-3">
+    <div class="col-3 ml-1">
         <div class="list-group" id="list-tab" role="tablist">
             <a hidden class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Welcome</a>
             <a class="list-group-item list-group-item-action" id="list-depression-list" data-toggle="list" href="#list-depression" role="tab" aria-controls="profile">Depression</a>
@@ -26,8 +26,8 @@
             <a class="list-group-item list-group-item-action" id="list-suicide-list" data-toggle="list" href="#list-suicide" role="tab" aria-controls="settings">Suicide</a>
         </div>
     </div>
-    <div class="col-9">
-        <div class="tab-content" id="nav-tabContent">
+    <div class="col-8 border-left">
+        <div class="tab-content border-0" id="nav-tabContent">
             <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                 <h2 class="text-center">Welcome</h2>
                 <div class="card-body">
@@ -38,17 +38,19 @@
             </div>
             <div class="tab-pane fade" id="list-depression" role="tabpanel" aria-labelledby="list-depression-list">
                 <h2 class="text-center">Depression</h2>
-                <div class="card-deck">
+                <div class="row m-0">
                     @foreach (var item in Model.DepressionRes)
                     {
-                        <div class="card">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
-                                <p class="card-text">
-                                    @Html.DisplayFor(modelitem => item.Description)
-                                </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                        <div class="col-md-6 col-sm-12 mb-4">
+                            <div class="card shadow-lg">
+                                <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelitem => item.Description)
+                                    </p>
+                                    <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                                </div>
                             </div>
                         </div>
                     }
@@ -56,18 +58,19 @@
             </div>
             <div class="tab-pane fade" id="list-anxiety" role="tabpanel" aria-labelledby="list-anxiety-list">
                 <h2 class="text-center">Anxiety</h2>
-                <hr />
-                <div class="card-deck">
+                <div class="row m-0">
                     @foreach (var item in Model.AnxietyRes)
                     {
-                        <div class="card">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
-                                <p class="card-text">
-                                    @Html.DisplayFor(modelitem => item.Description)
-                                </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                        <div class=" col-md-6 col-sm-12 mb-4">
+                            <div class="card shadow-lg">
+                                <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelitem => item.Description)
+                                    </p>
+                                    <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                                </div>
                             </div>
                         </div>
                     }
@@ -75,18 +78,20 @@
             </div>
             <div class="tab-pane fade" id="list-bullying" role="tabpanel" aria-labelledby="list-bullying-list">
                 <h2 class="text-center">Bullying</h2>
-                <hr />
-                <div class="card-deck">
+
+                <div class="row m-0">
                     @foreach (var item in Model.BullyingRes)
                     {
-                        <div class="card">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
-                                <p class="card-text">
-                                    @Html.DisplayFor(modelitem => item.Description)
-                                </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                        <div class="col-md-6 col-sm-12 mb-4">
+                            <div class="card shadow-lg">
+                                <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelitem => item.Description)
+                                    </p>
+                                    <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                                </div>
                             </div>
                         </div>
                     }
@@ -94,18 +99,20 @@
             </div>
             <div class="tab-pane fade" id="list-suicide" role="tabpanel" aria-labelledby="list-suicide-list">
                 <h2 class="text-center">Suicide</h2>
-                <hr />
-                <div class="card-deck">
+    
+                <div class="row m-0">
                     @foreach (var item in Model.SuicideRes)
                     {
-                        <div class="card">
-                            <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
-                                <p class="card-text">
-                                    @Html.DisplayFor(modelitem => item.Description)
-                                </p>
-                                <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                        <div class="col-md-6 col-sm-12 mb-4">
+                            <div class="card shadow-lg">
+                                <img class="card-img-top" src=@Html.DisplayFor(modelitem => item.ImageURL) alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">@Html.DisplayFor(modelitem => item.Name)</h5>
+                                    <p class="card-text">
+                                        @Html.DisplayFor(modelitem => item.Description)
+                                    </p>
+                                    <p class="card-text"><a href=@Html.DisplayFor(modelitem => item.URL) class="btn btn-primary" target="_blank">Go</a></p>
+                                </div>
                             </div>
                         </div>
                     }
