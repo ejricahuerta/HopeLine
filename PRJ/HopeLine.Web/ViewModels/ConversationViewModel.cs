@@ -22,7 +22,6 @@ namespace HopeLine.Web.ViewModels {
         public string PIN { get; set; }
         public string UserId { get; set; }
         public string MentorId { get; set; }
-        public float Minutes { get; set; }
 
         [DataType (DataType.DateTime)]
         public string DateOfConversation { get; set; }
