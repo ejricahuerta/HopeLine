@@ -87,13 +87,6 @@ a:hover {
     color: white
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -105,10 +98,6 @@ a:hover {
     width: 100%;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
@@ -118,9 +107,3 @@ a:hover {
         display: none;
     }
 }
-
-input[type=checkbox] {
-    -webkit-appearance: checkbox;
-}
-
-s
