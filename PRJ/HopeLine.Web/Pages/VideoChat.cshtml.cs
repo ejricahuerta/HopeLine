@@ -63,47 +63,9 @@ namespace HopeLine.Web.Pages
             var grant = new VideoGrant();
             grant.Room = RoomId;
             var grants = new HashSet<IGrant> { grant };
-
-            var identity = UserId; //TODO : change this
-                                   // Create an Access Token generator
+            var identity = UserId;
             var token = new Token(twilioAccountSid, twilioApiKey, twilioApiSecret, identity, grants: grants);
-
-            Console.Write("Id is: " + UserId + " token is: " + token);
-
-
-            //var token = new Token(APIConstant.TwilioAccountSID,
-            //                        APIConstant.TwilioApiSID,
-            //                        APIConstant.TwilioSecret,
-            //                        identity: identity,
-            //                        grants: grants);
             Token = token.ToJwt();
-            //Console.WriteLine("Here is the token: " + token.ToJwt());
-            // Serialize the token as a JWT
-            Console.WriteLine("Here is the token from the CS" + token.ToJwt());
-
-        }
-        public IActionResult OnPost(string roomId = null, string userId = null)
-        {
-            try
-            {
-                if (userId == null || roomId == null)
-                {
-                    Redirect("/Index");
-                }
-                else
-                {
-                    RoomId = roomId;
-                    UserId = userId;
-                    GetTwilioToken();
-                    return Page();
-                }
-            }
-            catch (System.Exception ex)
-            {
-                return NotFound();
-            }
-            return Redirect("/Index");
-
         }
     }
 }
